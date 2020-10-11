@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>002-youtube.png</file>
+    <file>013-twitter-1.png</file>
+    <file>043-facebook-1.png</file>
+    <file>linha.png</file>
+    <file>escribas_logo.png</file>
+    <file>002-graduated.png</file>
+  </qresource>
+</RCC>
