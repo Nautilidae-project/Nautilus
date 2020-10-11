@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>mwCadastro</class>
+ <widget class="QMainWindow" name="mwCadastro">
   <property name="windowModality">
    <enum>Qt::NonModal</enum>
   </property>
@@ -70,8 +70,8 @@ QLineEdit {
   <property name="unifiedTitleAndToolBarOnMac">
    <bool>false</bool>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QFrame" name="frFrame">
+  <widget class="QWidget" name="wdgCadastro">
+   <widget class="QFrame" name="frCentral">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -84,7 +84,7 @@ QLineEdit {
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#frFrame {
+     <string notr="true">#frCentral {
 	background-color: #396d9d;
 	border-radius: 50%;
 	/*
@@ -96,7 +96,7 @@ QLineEdit {
 </string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
@@ -964,7 +964,7 @@ QPushButton:pressed {
     <zorder>leSenha_2</zorder>
     <zorder>lbSenha_2</zorder>
    </widget>
-   <widget class="QFrame" name="frame">
+   <widget class="QFrame" name="frEsquerda">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -977,13 +977,13 @@ QPushButton:pressed {
      <string notr="true"/>
     </property>
     <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
    </widget>
-   <widget class="QFrame" name="frame_2">
+   <widget class="QFrame" name="frDireita">
     <property name="geometry">
      <rect>
       <x>810</x>
@@ -996,15 +996,15 @@ QPushButton:pressed {
      <string notr="true"/>
     </property>
     <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
    </widget>
-   <zorder>frame</zorder>
-   <zorder>frame_2</zorder>
-   <zorder>frFrame</zorder>
+   <zorder>frEsquerda</zorder>
+   <zorder>frDireita</zorder>
+   <zorder>frCentral</zorder>
   </widget>
  </widget>
  <tabstops>
