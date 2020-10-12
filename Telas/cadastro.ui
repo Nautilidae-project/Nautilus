@@ -9,9 +9,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>998</width>
-    <height>700</height>
+    <width>1000</width>
+    <height>800</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>9</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -19,11 +24,12 @@
   <property name="styleSheet">
    <string notr="true">/*
 Azul1 = #58b3cc
-Azul2 = #58b3cc
-Azul3 = #16437c
+Azul2 = #0E90AD
+Azul3 = #3Ed0DA
+Azul4 = #3E5F8A
 */
 QWidget {
-	background-color: #16437c;
+	background-color: #3E5F8A;
 }
 
 QFrame {
@@ -71,21 +77,25 @@ QLineEdit {
    <bool>false</bool>
   </property>
   <widget class="QWidget" name="wdgCadastro">
-   <widget class="QFrame" name="frCentral">
+   <widget class="QFrame" name="frInformacoes">
     <property name="enabled">
      <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>20</y>
+      <x>120</x>
+      <y>80</y>
       <width>741</width>
-      <height>661</height>
+      <height>681</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#frCentral {
-	background-color: #396d9d;
+     <string notr="true">/*
+Azul2 = #0E90AD
+Azul4 = #16437c
+*/
+#frInformacoes {
+	background-color: #0E90AD;
 	border-radius: 50%;
 	/*
 	border: 5px solid rgb(211, 143, 37);
@@ -107,8 +117,8 @@ QLineEdit {
      </property>
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>40</y>
+       <x>170</x>
+       <y>310</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -154,7 +164,7 @@ QLineEdit {
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>40</y>
+       <y>310</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -183,7 +193,7 @@ QLineEdit {
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>100</y>
+       <y>360</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -205,7 +215,7 @@ QLineEdit {
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>160</y>
+       <y>410</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -227,7 +237,7 @@ QLineEdit {
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>220</y>
+       <y>210</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -249,7 +259,7 @@ QLineEdit {
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>280</y>
+       <y>460</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -271,7 +281,7 @@ QLineEdit {
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>340</y>
+       <y>560</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -293,7 +303,7 @@ QLineEdit {
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>400</y>
+       <y>510</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -315,7 +325,7 @@ QLineEdit {
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>460</y>
+       <y>110</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -336,8 +346,8 @@ QLineEdit {
     <widget class="QLineEdit" name="leNomeFantasia">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>100</y>
+       <x>170</x>
+       <y>360</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -376,14 +386,14 @@ QLineEdit {
       <set>Qt::AlignCenter</set>
      </property>
      <property name="placeholderText">
-      <string>Nome da Fantasia</string>
+      <string>Nome Fantasia</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="leCNPJ">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>160</y>
+       <x>170</x>
+       <y>410</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -428,8 +438,8 @@ QLineEdit {
     <widget class="QLineEdit" name="leSenha">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>460</y>
+       <x>170</x>
+       <y>110</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -482,8 +492,8 @@ QLineEdit {
     <widget class="QLineEdit" name="leEndereco">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>340</y>
+       <x>170</x>
+       <y>560</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -522,14 +532,14 @@ QLineEdit {
       <set>Qt::AlignCenter</set>
      </property>
      <property name="placeholderText">
-      <string>Emdereço</string>
+      <string>Endereço</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="leCEP">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>400</y>
+       <x>170</x>
+       <y>510</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -574,8 +584,8 @@ QLineEdit {
     <widget class="QLineEdit" name="leEmail">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>220</y>
+       <x>170</x>
+       <y>210</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -620,8 +630,8 @@ QLineEdit {
     <widget class="QLineEdit" name="leTelefone">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>280</y>
+       <x>170</x>
+       <y>460</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -667,7 +677,7 @@ QLineEdit {
      <property name="geometry">
       <rect>
        <x>420</x>
-       <y>580</y>
+       <y>610</y>
        <width>171</width>
        <height>51</height>
       </rect>
@@ -719,7 +729,7 @@ QLineEdit {
 	border-radius: 20px;
 	border: 5px solid #DAA520;
 	color: rgb(255, 255, 255);
-	background-color: #396d9d;
+	background-color: #0E90AD;
 }
 
 
@@ -768,8 +778,8 @@ QPushButton:pressed {
     <widget class="QPushButton" name="pbVoltarLogin">
      <property name="geometry">
       <rect>
-       <x>170</x>
-       <y>580</y>
+       <x>150</x>
+       <y>610</y>
        <width>170</width>
        <height>51</height>
       </rect>
@@ -821,7 +831,7 @@ QPushButton:pressed {
 	border-radius: 20px;
 	border: 5px solid #DAA520;
 	color: rgb(255, 255, 255);
-	background-color: #396d9d;
+	background-color: #0E90AD;
 }
 
 
@@ -867,11 +877,11 @@ QPushButton:pressed {
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QLineEdit" name="leSenha_2">
+    <widget class="QLineEdit" name="leSenhaConfirma">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>520</y>
+       <x>170</x>
+       <y>160</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -921,11 +931,11 @@ QPushButton:pressed {
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="lbSenha_2">
+    <widget class="QLabel" name="lbSenhaConfirma">
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>520</y>
+       <y>160</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -938,6 +948,142 @@ QPushButton:pressed {
      </property>
      <property name="text">
       <string>Senha</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="leNomeUsuario">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>60</y>
+       <width>450</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Roboto Slab</family>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="inputMethodHints">
+      <set>Qt::ImhNone</set>
+     </property>
+     <property name="inputMask">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="frame">
+      <bool>true</bool>
+     </property>
+     <property name="echoMode">
+      <enum>QLineEdit::Normal</enum>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="placeholderText">
+      <string>Nome de Usuário</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lbUsuario">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>60</y>
+       <width>81</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Usuário</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lbInfoLoginTexto">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>30</y>
+       <width>271</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Fira Sans</family>
+       <pointsize>18</pointsize>
+       <weight>10</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+       <underline>false</underline>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#lbInfoLoginTexto {
+	
+	font: 80  18pt &quot;Fira Sans&quot;;
+	background-color: rgba(0, 0, 0,0);
+	border: 0px
+}</string>
+     </property>
+     <property name="text">
+      <string>Informações de Login</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lbInfoEmpresaTexto">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>280</y>
+       <width>271</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#lbInfoEmpresaTexto {
+	
+	font: 80  18pt &quot;Fira Sans&quot;;
+	background-color: rgba(0, 0, 0,0);
+	border: 0px
+}</string>
+     </property>
+     <property name="text">
+      <string>Informações da Empresa</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -961,16 +1107,20 @@ QPushButton:pressed {
     <zorder>lbCEP</zorder>
     <zorder>pbFazerCadastro</zorder>
     <zorder>pbVoltarLogin</zorder>
-    <zorder>leSenha_2</zorder>
-    <zorder>lbSenha_2</zorder>
+    <zorder>leSenhaConfirma</zorder>
+    <zorder>lbSenhaConfirma</zorder>
+    <zorder>leNomeUsuario</zorder>
+    <zorder>lbUsuario</zorder>
+    <zorder>lbInfoLoginTexto</zorder>
+    <zorder>lbInfoEmpresaTexto</zorder>
    </widget>
    <widget class="QFrame" name="frEsquerda">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>60</y>
+      <x>100</x>
+      <y>110</y>
       <width>80</width>
-      <height>600</height>
+      <height>620</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -986,10 +1136,10 @@ QPushButton:pressed {
    <widget class="QFrame" name="frDireita">
     <property name="geometry">
      <rect>
-      <x>810</x>
-      <y>60</y>
+      <x>800</x>
+      <y>110</y>
       <width>80</width>
-      <height>600</height>
+      <height>620</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1002,22 +1152,83 @@ QPushButton:pressed {
      <enum>QFrame::Raised</enum>
     </property>
    </widget>
+   <widget class="QLabel" name="lbCadastroTexto">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>13</y>
+      <width>400</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Fira Sans</family>
+      <pointsize>38</pointsize>
+      <weight>10</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+      <stylestrategy>PreferDefault</stylestrategy>
+      <kerning>false</kerning>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#lbCadastroTexto{
+	font: 80  38pt &quot;Fira Sans&quot;;
+	border-radius: 50px;
+	border: 5px solid  #DAA520;
+	background-color: #0E90AD;
+	padding: 20;
+}</string>
+    </property>
+    <property name="text">
+     <string>CADASTRO</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+    <property name="margin">
+     <number>0</number>
+    </property>
+    <property name="indent">
+     <number>-1</number>
+    </property>
+    <property name="openExternalLinks">
+     <bool>false</bool>
+    </property>
+    <property name="textInteractionFlags">
+     <set>Qt::NoTextInteraction</set>
+    </property>
+   </widget>
+   <zorder>lbCadastroTexto</zorder>
    <zorder>frEsquerda</zorder>
    <zorder>frDireita</zorder>
-   <zorder>frCentral</zorder>
+   <zorder>frInformacoes</zorder>
   </widget>
  </widget>
  <tabstops>
   <tabstop>pbFazerCadastro</tabstop>
+  <tabstop>leNomeUsuario</tabstop>
+  <tabstop>leSenha</tabstop>
+  <tabstop>leSenhaConfirma</tabstop>
+  <tabstop>leEmail</tabstop>
   <tabstop>leNomeEmpresa</tabstop>
   <tabstop>leNomeFantasia</tabstop>
   <tabstop>leCNPJ</tabstop>
-  <tabstop>leEmail</tabstop>
   <tabstop>leTelefone</tabstop>
-  <tabstop>leEndereco</tabstop>
   <tabstop>leCEP</tabstop>
-  <tabstop>leSenha</tabstop>
-  <tabstop>leSenha_2</tabstop>
+  <tabstop>leEndereco</tabstop>
   <tabstop>pbVoltarLogin</tabstop>
  </tabstops>
  <resources>
