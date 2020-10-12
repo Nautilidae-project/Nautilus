@@ -1,0 +1,34 @@
+import sqlite3
+from os.path import join, dirname
+from os import listdir
+
+def criaBanco(nomeBanco):
+
+    conn = sqlite3.connect(join(dirname(__file__), f'{nomeBanco}.db'))
+    cursor = conn.cursor()
+
+    strComando = """CREATE TABLE IF NOT EXISTS usuario(
+	                    userId INTEGER PRIMARY KEY AUTOINCREMENT,
+                        nomeUsuario VARCHAR(20) NOT NULL,
+                        nomeEmpresa VARCHAR(30) NOT NULL,
+                        nomeFantasia VARCHAR(30) NULL,
+                        cnpj VARCHAR(15) NOT NULL,
+                        email VARCHAR(30) NOT NULL,
+                        tel INT NOT NULL,
+                        endereco VARCHAR(30) NOT NULL,
+                        cep INT NOT NULL,
+                        senha VARCHAR(20)
+                    );"""
+
+    cursor.executescript(strComando)
+
+
+def buscaBanco(nomeBanco):
+    listCurrentDir = listdir(dirname(__file__))
+    for dir in listCurrentDir:
+        if dir.endswith('.db'):
+            if dir[:len(dir)-3] == nomeBanco:
+                return True
+    print(f'Nenhum banco de dados com o nome {nomeBanco} listado')
+    return False
+
