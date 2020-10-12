@@ -1,6 +1,7 @@
 import sqlite3
 from os.path import join, dirname
 from os import listdir
+from bcrypt import checkpw
 
 
 def criaBanco(nomeBanco):
@@ -16,7 +17,7 @@ def criaBanco(nomeBanco):
                         email VARCHAR(30) NOT NULL,
                         tel INTEGER NOT NULL,
                         endereco VARCHAR(30) NOT NULL,
-                        cep INTEGER NOT NULL,
+                        cep VARCHAR(8) NOT NULL,
                         senha VARBINARY(80) NOT NULL
                     );"""
 
@@ -32,11 +33,11 @@ def criaBanco(nomeBanco):
 
 def cadastreUsuario(usuario):
     try:
-        criaBanco(usuario.nomeEmpresa)
+        criaBanco(usuario.nomeUsuario)
     except:
         return False
 
-    conn = sqlite3.connect(join(dirname(__file__), f'{usuario.nomeEmpresa}.db'))
+    conn = sqlite3.connect(join(dirname(__file__), f'{usuario.nomeUsuario}.db'))
     cursor = conn.cursor()
 
     strComando = f'''
@@ -48,9 +49,9 @@ def cadastreUsuario(usuario):
         )
         VALUES
         (
-            'Sem nome', '{usuario.nomeEmpresa}', '{usuario.nomeFantasia}',
+            '{usuario.nomeUsuario}', '{usuario.nomeEmpresa}', '{usuario.nomeFantasia}',
             '{usuario.cnpj}', '{usuario.email}', {usuario.tel},
-            '{usuario.endereco}', {usuario.cep}, '{usuario.senha}'          
+            '{usuario.endereco}', '{usuario.cep}', '{usuario.senha}'          
         )
         '''
     try:
@@ -71,3 +72,18 @@ def buscaBanco(nomeBanco):
                 return True
     print(f'Nenhum banco de dados com o nome {nomeBanco} listado')
     return False
+
+def confereSenha(banco, password):
+
+    conn = sqlite3.connect(join(dirname(__file__), f'{banco}.db'))
+    cursor = conn.cursor()
+
+    strComando = f'''
+        SELECT senha FROM usuario;
+    '''
+
+    cursor.execute(strComando)
+
+    senha = cursor.fetchone()[0]
+
+    return checkpw(password.encode('utf-8'), senha.encode('utf-8'))

@@ -23,13 +23,17 @@ class brainLogin(Ui_mwLogin, QMainWindow):
 
     def trataLogin(self):
         strNomeUsuario = self.leUsuario.text()
-        if not strNomeUsuario:
+        if strNomeUsuario == "":
             print("Digite um usuário")
             return False
         if not buscaBanco(strNomeUsuario):
             print("Não foi encontrado nenhum usuário com o nome cadastrado")
         else:
-            print('Banco de dados encontrado')
+            if confereSenha(strNomeUsuario, self.leSenha.text()):
+                print('Usuário(a) confirmado(a)!')
+            else:
+                print('Senha inválida!')
+
 
 
 if __name__ == '__main__':
