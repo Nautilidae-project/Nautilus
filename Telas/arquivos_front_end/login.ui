@@ -120,7 +120,8 @@
 	background-color: rgba(255, 255, 255, 0);
 	
 	
-	image: url(:/newPrefix/002-youtube.png);
+	
+	image: url(:/newPrefix/Imagens/002-youtube.png);
 }
 
 QPushButton:hover {
@@ -521,7 +522,7 @@ QPushButton:pressed
           <property name="styleSheet">
            <string notr="true">background-color: rgb(255, 255, 255);
 border: 20px;
-border-image: url(:/newPrefix/002-graduated.png);
+border-image: url(:/newPrefix/Imagens/002-graduated.png);
 border-radius: 100px
 
 
@@ -551,7 +552,7 @@ border-radius: 100px
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">border-image: url(:/newPrefix/escribas_logo.png);
+         <string notr="true">border-image: url(:/newPrefix/Imagens/escribas_logo.png);
 background-color: rgba(255, 255, 255, 0);
 
 
@@ -562,26 +563,6 @@ background-color: rgba(255, 255, 255, 0);
         </property>
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lblLinha">
-        <property name="geometry">
-         <rect>
-          <x>210</x>
-          <y>570</y>
-          <width>501</width>
-          <height>17</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(255, 255, 255, 0);
-</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="login.qrc">:/newPrefix/linha.png</pixmap>
         </property>
        </widget>
        <widget class="QLabel" name="lblNossaMissao">
@@ -666,7 +647,8 @@ p, li { white-space: pre-wrap; }
 	border-radius: 25px;
 	background-color: rgba(255, 255, 255, 0);
 	
-	image: url(:/newPrefix/013-twitter-1.png);
+	
+	image: url(:/newPrefix/Imagens/013-twitter-1.png);
 }
 
 QPushButton:hover {
@@ -765,7 +747,8 @@ QPushButton:pressed {
          <string notr="true">QPushButton {
 	border-radius: 25px;
 	background-color: rgba(255, 255, 255, 0);
-	border-image: url(:/newPrefix/043-facebook-1.png);
+	
+	border-image: url(:/newPrefix/Imagens/043-facebook-1.png);
 }
 
 QPushButton:hover {
