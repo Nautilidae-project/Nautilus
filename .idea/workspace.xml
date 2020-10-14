@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="bcdb2638-662c-41f8-9194-105cb29d8ac9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telas/002-graduated.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telas/002-youtube.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telas/013-twitter-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telas/043-facebook-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telas/cadastro.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telas/cadastro.ui" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telas/cores" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telas/escribas_logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telas/home.ui" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telas/linha.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telas/login.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telas/login.qrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telas/login.ui" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telas/login_rc.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telas/resource.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brainCadastro.py" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brainCadastro.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/cores" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/cores" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/login.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/login.qrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/login.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/login.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/login_rc.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/login_rc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/resource.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/brainLogin.py" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brainLogin.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,23 +130,50 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="false" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
-    <state width="1352" height="312" key="GridCell.Tab.0.bottom" timestamp="1602595521482">
+    <state width="1352" height="280" key="GridCell.Tab.0.bottom" timestamp="1602710020472">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1352" height="312" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1602595521482" />
-    <state width="1352" height="312" key="GridCell.Tab.0.center" timestamp="1602595521482">
+    <state width="1352" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1602710020472" />
+    <state width="1352" height="280" key="GridCell.Tab.0.center" timestamp="1602710020472">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1352" height="312" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1602595521482" />
-    <state width="1352" height="312" key="GridCell.Tab.0.left" timestamp="1602595521482">
+    <state width="1352" height="280" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1602710020472" />
+    <state width="1352" height="280" key="GridCell.Tab.0.left" timestamp="1602710020472">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1352" height="312" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1602595521482" />
-    <state width="1352" height="312" key="GridCell.Tab.0.right" timestamp="1602595521482">
+    <state width="1352" height="280" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1602710020472" />
+    <state width="1352" height="280" key="GridCell.Tab.0.right" timestamp="1602710020472">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1352" height="312" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1602595521482" />
+    <state width="1352" height="280" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1602710020472" />
     <state x="353" y="79" key="SettingsEditor" timestamp="1602510676036">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
