@@ -7,7 +7,7 @@ from brain.DAOs.brainUserConfig import *
 class brainLogin(Ui_mwLogin, QMainWindow):
 
     def __init__(self):
-        import Telas.arquivos_front_end.resource
+        import Telas.arquivos_front_end.image_rc
         super(brainLogin, self).__init__()
         self.setupUi(self)
         self.telaCadastro = brainCadastro(self)

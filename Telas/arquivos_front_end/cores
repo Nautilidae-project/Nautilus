@@ -1,3 +1,6 @@
+pyuic5 -x login.ui -o login.py
+pyrcc5 -o image_rc.py login.qrc
+
 primeiro fundo (morronzinho claro e branco quase bege divididos na vertica/diagonal):
 background-color: qlineargradient(spread:pad, x1:0.163, y1:0.5625, x2:0.888, y2:0.603273, stop:0.0918367 rgba(255, 239, 214, 255), stop:0.55102 rgba(255, 255, 255, 255));
 
