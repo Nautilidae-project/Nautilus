@@ -19,6 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="bcdb2638-662c-41f8-9194-105cb29d8ac9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/cores" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/cores" afterDir="false" />
@@ -27,6 +28,18 @@
       <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/login.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/login.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/login_rc.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/login_rc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/resource.py" beforeDir="false" />
+=======
+    <list default="true" id="9e72054e-e802-4e63-b595-b54068c8ac3f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/modelos/funcoesAuxiliares.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Nautilus.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Nautilus.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telas/cadastro.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/cadastro.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telas/cadastro.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/cadastro.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/DAOs/brainUserConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/brain/DAOs/brainUserConfig.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/brainCadastro.py" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brainCadastro.py" afterDir="false" />
+>>>>>>> IsraelBack
       <change beforePath="$PROJECT_DIR$/brain/brainLogin.py" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brainLogin.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,19 +47,26 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1imRBagQY9JaYogUjCyBeUzWOKx" />
+  <component name="ProjectId" id="1inBY8kEsCv4V9rqr4aEsqUi3X3" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Profnotas/DAOs/daoAlunos.py" />
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected="Python.brainLogin">
     <configuration name="brainCadastro" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Nautilus" />
@@ -69,6 +89,9 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+=======
+  <component name="RunManager">
+>>>>>>> IsraelBack
     <configuration name="brainLogin" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Nautilus" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -90,43 +113,25 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="usuario" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Nautilus" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/modelos" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modelos/usuario.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.brainLogin" />
+<<<<<<< HEAD
         <item itemvalue="Python.brainCadastro" />
         <item itemvalue="Python.usuario" />
+=======
+>>>>>>> IsraelBack
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bcdb2638-662c-41f8-9194-105cb29d8ac9" name="Default Changelist" comment="" />
-      <created>1602510645405</created>
+      <changelist id="9e72054e-e802-4e63-b595-b54068c8ac3f" name="Default Changelist" comment="" />
+      <created>1602533520349</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1602510645405</updated>
+      <updated>1602533520349</updated>
     </task>
     <servers />
   </component>
@@ -158,6 +163,7 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+<<<<<<< HEAD
     <state width="1352" height="280" key="GridCell.Tab.0.bottom" timestamp="1602710020472">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -182,5 +188,64 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="645" y="274" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1602594945833" />
+=======
+    <state x="743" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1602539503672">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="743" y="310" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1053/1920.0.1280.720@0.27.1920.1053" timestamp="1602539503672" />
+    <state width="1897" height="256" key="GridCell.Tab.0.bottom" timestamp="1602541554378">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1897" height="256" key="GridCell.Tab.0.bottom/0.27.1920.1053/1920.0.1280.720@0.27.1920.1053" timestamp="1602541554378" />
+    <state width="1897" height="256" key="GridCell.Tab.0.center" timestamp="1602541554378">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1897" height="256" key="GridCell.Tab.0.center/0.27.1920.1053/1920.0.1280.720@0.27.1920.1053" timestamp="1602541554377" />
+    <state width="1897" height="256" key="GridCell.Tab.0.left" timestamp="1602541554377">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1897" height="256" key="GridCell.Tab.0.left/0.27.1920.1053/1920.0.1280.720@0.27.1920.1053" timestamp="1602541554377" />
+    <state width="1897" height="256" key="GridCell.Tab.0.right" timestamp="1602541554378">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1897" height="256" key="GridCell.Tab.0.right/0.27.1920.1053/1920.0.1280.720@0.27.1920.1053" timestamp="1602541554378" />
+    <state width="1897" height="256" key="GridCell.Tab.1.bottom" timestamp="1602541554378">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1897" height="256" key="GridCell.Tab.1.bottom/0.27.1920.1053/1920.0.1280.720@0.27.1920.1053" timestamp="1602541554378" />
+    <state width="1897" height="256" key="GridCell.Tab.1.center" timestamp="1602541554378">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1897" height="256" key="GridCell.Tab.1.center/0.27.1920.1053/1920.0.1280.720@0.27.1920.1053" timestamp="1602541554378" />
+    <state width="1897" height="256" key="GridCell.Tab.1.left" timestamp="1602541554378">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1897" height="256" key="GridCell.Tab.1.left/0.27.1920.1053/1920.0.1280.720@0.27.1920.1053" timestamp="1602541554378" />
+    <state width="1897" height="256" key="GridCell.Tab.1.right" timestamp="1602541554378">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1897" height="256" key="GridCell.Tab.1.right/0.27.1920.1053/1920.0.1280.720@0.27.1920.1053" timestamp="1602541554378" />
+    <state x="1920" y="0" width="1280" height="720" key="dock-window-1" timestamp="1602539769211">
+      <screen x="1920" y="0" width="1280" height="720" />
+    </state>
+    <state x="1920" y="0" width="1280" height="720" key="dock-window-1/0.27.1920.1053/1920.0.1280.720@0.27.1920.1053" timestamp="1602539769211" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/brain/brainCadastro.py</url>
+          <line>109</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="self.usuario.tel" language="Python" />
+        <watch expression="self.leTelefone.text()" language="Python" />
+      </configuration>
+    </watches-manager>
+>>>>>>> IsraelBack
   </component>
 </project>
