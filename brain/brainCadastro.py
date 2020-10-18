@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import pyqtSignal
 from Telas.arquivos_front_end.cadastro import Ui_mwCadastro
 from modelos.usuario import Usuario
+from brain.DAOs.brainUserConfig import getEstados
 
 
 class brainCadastro(Ui_mwCadastro, QMainWindow):
@@ -17,6 +18,8 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
         self.usuario = Usuario()
 
         self.leNomeEmpresa.textChanged.connect(self.exibe)
+
+        self.cmbEstados.addItems(getEstados())
 
     def goHome(self):
         self.home.emit()
