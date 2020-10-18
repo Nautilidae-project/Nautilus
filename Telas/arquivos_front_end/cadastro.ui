@@ -83,8 +83,8 @@ QLineEdit {
     </property>
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>80</y>
+      <x>130</x>
+      <y>77</y>
       <width>741</width>
       <height>681</height>
      </rect>
@@ -118,7 +118,7 @@ Azul4 = #16437c
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>310</y>
+       <y>260</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -164,7 +164,7 @@ Azul4 = #16437c
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>310</y>
+       <y>260</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -193,7 +193,7 @@ Azul4 = #16437c
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>360</y>
+       <y>310</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -215,7 +215,7 @@ Azul4 = #16437c
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>410</y>
+       <y>360</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -237,7 +237,7 @@ Azul4 = #16437c
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>210</y>
+       <y>190</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -259,7 +259,7 @@ Azul4 = #16437c
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>460</y>
+       <y>410</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -303,7 +303,7 @@ Azul4 = #16437c
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>510</y>
+       <y>460</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -325,7 +325,7 @@ Azul4 = #16437c
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>110</y>
+       <y>90</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -347,7 +347,7 @@ Azul4 = #16437c
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>360</y>
+       <y>310</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -393,7 +393,7 @@ Azul4 = #16437c
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>410</y>
+       <y>360</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -439,7 +439,7 @@ Azul4 = #16437c
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>110</y>
+       <y>90</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -539,7 +539,7 @@ Azul4 = #16437c
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>510</y>
+       <y>460</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -585,7 +585,7 @@ Azul4 = #16437c
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>210</y>
+       <y>190</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -631,7 +631,7 @@ Azul4 = #16437c
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>460</y>
+       <y>410</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -881,7 +881,7 @@ QPushButton:pressed {
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>160</y>
+       <y>140</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -925,7 +925,7 @@ QPushButton:pressed {
       <bool>false</bool>
      </property>
      <property name="placeholderText">
-      <string>Senha</string>
+      <string>Cofirmação de Senha</string>
      </property>
      <property name="clearButtonEnabled">
       <bool>false</bool>
@@ -935,7 +935,7 @@ QPushButton:pressed {
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>160</y>
+       <y>140</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -960,7 +960,7 @@ QPushButton:pressed {
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>60</y>
+       <y>40</y>
        <width>450</width>
        <height>30</height>
       </rect>
@@ -1006,7 +1006,7 @@ QPushButton:pressed {
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>60</y>
+       <y>40</y>
        <width>81</width>
        <height>30</height>
       </rect>
@@ -1035,7 +1035,7 @@ QPushButton:pressed {
      <property name="geometry">
       <rect>
        <x>100</x>
-       <y>30</y>
+       <y>10</y>
        <width>271</width>
        <height>31</height>
       </rect>
@@ -1069,7 +1069,7 @@ QPushButton:pressed {
      <property name="geometry">
       <rect>
        <x>120</x>
-       <y>280</y>
+       <y>230</y>
        <width>271</width>
        <height>31</height>
       </rect>
@@ -1087,6 +1087,90 @@ QPushButton:pressed {
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="leCEP_2">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>510</y>
+       <width>450</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Roboto Slab</family>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="inputMethodHints">
+      <set>Qt::ImhNone</set>
+     </property>
+     <property name="inputMask">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="frame">
+      <bool>true</bool>
+     </property>
+     <property name="echoMode">
+      <enum>QLineEdit::Normal</enum>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="placeholderText">
+      <string>Cidade</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lbCEP_2">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>510</y>
+       <width>81</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Cidade</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="cmbEstados">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>510</y>
+       <width>86</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox {
+	
+	border: 3px;
+}</string>
      </property>
     </widget>
     <zorder>leNomeEmpresa</zorder>
@@ -1113,12 +1197,15 @@ QPushButton:pressed {
     <zorder>lbUsuario</zorder>
     <zorder>lbInfoLoginTexto</zorder>
     <zorder>lbInfoEmpresaTexto</zorder>
+    <zorder>leCEP_2</zorder>
+    <zorder>lbCEP_2</zorder>
+    <zorder>cmbEstados</zorder>
    </widget>
    <widget class="QFrame" name="frEsquerda">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>110</y>
+      <x>110</x>
+      <y>107</y>
       <width>80</width>
       <height>620</height>
      </rect>
@@ -1136,8 +1223,8 @@ QPushButton:pressed {
    <widget class="QFrame" name="frDireita">
     <property name="geometry">
      <rect>
-      <x>800</x>
-      <y>110</y>
+      <x>810</x>
+      <y>107</y>
       <width>80</width>
       <height>620</height>
      </rect>
@@ -1155,8 +1242,8 @@ QPushButton:pressed {
    <widget class="QLabel" name="lbCadastroTexto">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>13</y>
+      <x>300</x>
+      <y>10</y>
       <width>400</width>
       <height>111</height>
      </rect>
