@@ -1,27 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcdb2638-662c-41f8-9194-105cb29d8ac9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/cadastro.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/cadastro.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/cadastro.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/cadastro.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/DAOs/brainUserConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/brain/DAOs/brainUserConfig.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/brainCadastro.py" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brainCadastro.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +30,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.brainUserConfig">
+  <component name="RunManager" selected="Python.brainLogin">
     <configuration name="brainCadastro" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Nautilus" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -128,8 +117,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.brainUserConfig" />
         <item itemvalue="Python.brainLogin" />
+        <item itemvalue="Python.brainUserConfig" />
         <item itemvalue="Python.brainCadastro" />
         <item itemvalue="Python.usuario" />
       </list>
@@ -175,22 +164,22 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1351" height="280" key="GridCell.Tab.0.bottom" timestamp="1603048393453">
+    <state width="1346" height="212" key="GridCell.Tab.0.bottom" timestamp="1603051642865">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1351" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1603048393453" />
-    <state width="1351" height="280" key="GridCell.Tab.0.center" timestamp="1603048393453">
+    <state width="1346" height="212" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1603051642865" />
+    <state width="1346" height="212" key="GridCell.Tab.0.center" timestamp="1603051642864">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1351" height="280" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1603048393453" />
-    <state width="1351" height="280" key="GridCell.Tab.0.left" timestamp="1603048393453">
+    <state width="1346" height="212" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1603051642864" />
+    <state width="1346" height="212" key="GridCell.Tab.0.left" timestamp="1603051642864">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1351" height="280" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1603048393453" />
-    <state width="1351" height="280" key="GridCell.Tab.0.right" timestamp="1603048393453">
+    <state width="1346" height="212" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1603051642864" />
+    <state width="1346" height="212" key="GridCell.Tab.0.right" timestamp="1603051642864">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1351" height="280" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1603048393453" />
+    <state width="1346" height="212" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1603051642864" />
     <state x="353" y="79" key="SettingsEditor" timestamp="1602510676036">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

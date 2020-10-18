@@ -1162,14 +1162,22 @@ QPushButton:pressed {
       <rect>
        <x>630</x>
        <y>510</y>
-       <width>86</width>
-       <height>25</height>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QComboBox {
 	
-	border: 3px;
+	background-color: rgb(255, 255, 255);
+	border-radius: 15px;
+	border: 3px solid #DAA520;
+	color: #000000;
+	padding: 5px;
+}
+
+QComboBox::drop-down{
+	border: 0px;
 }</string>
      </property>
     </widget>

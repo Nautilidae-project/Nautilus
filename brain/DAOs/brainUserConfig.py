@@ -71,6 +71,20 @@ def addEstados():
         cursor.executescript(strComando)
 
 
+def getEstados():
+    listaEstados = []
+    conn = sqlite3.connect(join(dirname(__file__), 'estados.db'))
+    cursor = conn.cursor()
+
+    strComando = cursor.execute(f"""SELECT estados From estados""")
+
+    for estado in strComando:
+        print(estado)
+        listaEstados.append(estado[0])
+
+    return listaEstados
+
+
 def buscaBanco(nomeBanco):
     listCurrentDir = listdir(dirname(__file__))
     for dir in listCurrentDir:
@@ -83,3 +97,4 @@ def buscaBanco(nomeBanco):
 # criaBanco('Renan')
 # criaBancoEstados()
 # addEstados()
+print(getEstados())
