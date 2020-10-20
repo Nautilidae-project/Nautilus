@@ -9,8 +9,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/cadastro.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/cadastro.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/cadastro.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/cadastro.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/login.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/login.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/DAOs/brainUserConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/brain/DAOs/brainUserConfig.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brainCadastro.py" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brainCadastro.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +28,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/--Qt/testes" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager" selected="Python.brainLogin">
@@ -94,6 +95,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="login" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Nautilus" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Telas/arquivos_front_end" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Telas/arquivos_front_end/login.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="usuario" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Nautilus" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -118,6 +140,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.brainLogin" />
+        <item itemvalue="Python.login" />
         <item itemvalue="Python.brainUserConfig" />
         <item itemvalue="Python.brainCadastro" />
         <item itemvalue="Python.usuario" />
@@ -164,22 +187,26 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1346" height="212" key="GridCell.Tab.0.bottom" timestamp="1603051642865">
+    <state x="736" y="284" width="426" height="493" key="FileChooserDialogImpl" timestamp="1603209277165">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1346" height="212" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1603051642865" />
-    <state width="1346" height="212" key="GridCell.Tab.0.center" timestamp="1603051642864">
+    <state x="736" y="284" width="426" height="493" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1603209277165" />
+    <state width="1343" height="211" key="GridCell.Tab.0.bottom" timestamp="1603215567930">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1346" height="212" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1603051642864" />
-    <state width="1346" height="212" key="GridCell.Tab.0.left" timestamp="1603051642864">
+    <state width="1343" height="211" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1603215567930" />
+    <state width="1343" height="211" key="GridCell.Tab.0.center" timestamp="1603215567930">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1346" height="212" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1603051642864" />
-    <state width="1346" height="212" key="GridCell.Tab.0.right" timestamp="1603051642864">
+    <state width="1343" height="211" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1603215567930" />
+    <state width="1343" height="211" key="GridCell.Tab.0.left" timestamp="1603215567930">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1346" height="212" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1603051642864" />
+    <state width="1343" height="211" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1603215567930" />
+    <state width="1343" height="211" key="GridCell.Tab.0.right" timestamp="1603215567930">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1343" height="211" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1603215567930" />
     <state x="353" y="79" key="SettingsEditor" timestamp="1602510676036">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
