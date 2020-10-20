@@ -79,7 +79,6 @@ def getEstados():
     strComando = cursor.execute(f"""SELECT estados From estados""")
 
     for estado in strComando:
-        print(estado)
         listaEstados.append(estado[0])
 
     return listaEstados
@@ -97,4 +96,3 @@ def buscaBanco(nomeBanco):
 # criaBanco('Renan')
 # criaBancoEstados()
 # addEstados()
-print(getEstados())

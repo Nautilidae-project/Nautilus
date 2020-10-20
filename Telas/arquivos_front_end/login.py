@@ -15,8 +15,8 @@ class Ui_mwLogin(object):
     def setupUi(self, mwLogin):
         mwLogin.setObjectName("mwLogin")
         mwLogin.setWindowModality(QtCore.Qt.NonModal)
-        mwLogin.resize(1006, 800)
-        mwLogin.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0.163, y1:0.5625, x2:0.888, y2:0.603273, stop:0.0918367 rgba(255, 239, 214, 255), stop:0.55102 rgba(255, 255, 255, 255));")
+        mwLogin.resize(818, 778)
+        mwLogin.setStyleSheet("")
         mwLogin.setIconSize(QtCore.QSize(25, 25))
         mwLogin.setAnimated(True)
         mwLogin.setDocumentMode(False)
@@ -35,7 +35,7 @@ class Ui_mwLogin(object):
         self.pgLogin = QtWidgets.QWidget()
         self.pgLogin.setStyleSheet("\n"
 "QWidget {\n"
-"    background-color: #000000;\n"
+"    background-color: #3E5F8A;\n"
 "    \n"
 "}\n"
 "\n"
@@ -46,21 +46,51 @@ class Ui_mwLogin(object):
 "\n"
 "")
         self.pgLogin.setObjectName("pgLogin")
-        self.frBordaCirculo = QtWidgets.QFrame(self.pgLogin)
-        self.frBordaCirculo.setGeometry(QtCore.QRect(430, 20, 500, 500))
+        self.gridLayout = QtWidgets.QGridLayout(self.pgLogin)
+        self.gridLayout.setObjectName("gridLayout")
+        self.frame = QtWidgets.QFrame(self.pgLogin)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
+        self.frame.setSizePolicy(sizePolicy)
+        self.frame.setMinimumSize(QtCore.QSize(800, 760))
+        self.frame.setStyleSheet("#frame {\n"
+"background-color: transparent;\n"
+"}")
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.frLogo = QtWidgets.QFrame(self.frame)
+        self.frLogo.setGeometry(QtCore.QRect(0, 10, 131, 171))
+        self.frLogo.setStyleSheet("image: url(:/newPrefix/Imagens/nautilusIcone.png);\n"
+"image: url(:/newPrefix/Imagens/nautilusIcone.png);\n"
+"background-color: rgba(255, 255, 255, 0);\n"
+"\n"
+"\n"
+"")
+        self.frLogo.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frLogo.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frLogo.setObjectName("frLogo")
+        self.frBordaCirculo = QtWidgets.QFrame(self.frame)
+        self.frBordaCirculo.setGeometry(QtCore.QRect(170, 70, 500, 500))
         self.frBordaCirculo.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.frBordaCirculo.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.frBordaCirculo.setStyleSheet("QFrame { \n"
 "    border-radius: 250px;\n"
 "    border: 5px solid #DAA520\n"
+"    \n"
 "}")
         self.frBordaCirculo.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.frBordaCirculo.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frBordaCirculo.setObjectName("frBordaCirculo")
         self.frCirculoImputs = QtWidgets.QFrame(self.frBordaCirculo)
         self.frCirculoImputs.setGeometry(QtCore.QRect(50, 50, 400, 400))
-        self.frCirculoImputs.setStyleSheet("border-radius: 200px;\n"
+        self.frCirculoImputs.setStyleSheet("#frCirculoImputs {\n"
+"background-color: 3E5F8A;\n"
 "\n"
+"border-radius: 200px;\n"
+"}\n"
 "")
         self.frCirculoImputs.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frCirculoImputs.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -120,19 +150,8 @@ class Ui_mwLogin(object):
         self.frAvatar.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frAvatar.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frAvatar.setObjectName("frAvatar")
-        self.frLogo = QtWidgets.QFrame(self.pgLogin)
-        self.frLogo.setGeometry(QtCore.QRect(50, 150, 131, 171))
-        self.frLogo.setStyleSheet("image: url(:/newPrefix/Imagens/nautilusIcone.png);\n"
-"image: url(:/newPrefix/Imagens/nautilusIcone.png);\n"
-"background-color: rgba(255, 255, 255, 0);\n"
-"\n"
-"\n"
-"")
-        self.frLogo.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frLogo.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frLogo.setObjectName("frLogo")
-        self.pbCadastro = QtWidgets.QPushButton(self.pgLogin)
-        self.pbCadastro.setGeometry(QtCore.QRect(680, 390, 170, 51))
+        self.pbCadastro = QtWidgets.QPushButton(self.frCirculoImputs)
+        self.pbCadastro.setGeometry(QtCore.QRect(190, 310, 170, 51))
         self.pbCadastro.setSizeIncrement(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -178,8 +197,8 @@ class Ui_mwLogin(object):
         self.pbCadastro.setDefault(False)
         self.pbCadastro.setFlat(False)
         self.pbCadastro.setObjectName("pbCadastro")
-        self.pbLogin = QtWidgets.QPushButton(self.pgLogin)
-        self.pbLogin.setGeometry(QtCore.QRect(510, 390, 171, 51))
+        self.pbLogin = QtWidgets.QPushButton(self.frCirculoImputs)
+        self.pbLogin.setGeometry(QtCore.QRect(20, 310, 171, 51))
         self.pbLogin.setSizeIncrement(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -224,27 +243,8 @@ class Ui_mwLogin(object):
         self.pbLogin.setDefault(False)
         self.pbLogin.setFlat(False)
         self.pbLogin.setObjectName("pbLogin")
-        self.frGrandeAzul = QtWidgets.QFrame(self.pgLogin)
-        self.frGrandeAzul.setGeometry(QtCore.QRect(100, -340, 1000, 1000))
-        self.frGrandeAzul.setStyleSheet("QFrame {\n"
-"    background-color: #3E5F8A;\n"
-"    border-radius: 500px;\n"
-"    border: 5px solid #DAA520\n"
-"}")
-        self.frGrandeAzul.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frGrandeAzul.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frGrandeAzul.setObjectName("frGrandeAzul")
-        self.frCirculoImputs_2 = QtWidgets.QFrame(self.pgLogin)
-        self.frCirculoImputs_2.setGeometry(QtCore.QRect(20, 140, 200, 200))
-        self.frCirculoImputs_2.setStyleSheet("background-color: rgb(0, 0, 0);\n"
-"border-radius: 100px;\n"
-"border: 3px solid ;\n"
-"")
-        self.frCirculoImputs_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frCirculoImputs_2.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frCirculoImputs_2.setObjectName("frCirculoImputs_2")
-        self.pbFacebook = QtWidgets.QPushButton(self.pgLogin)
-        self.pbFacebook.setGeometry(QtCore.QRect(930, 560, 50, 50))
+        self.pbFacebook = QtWidgets.QPushButton(self.frame)
+        self.pbFacebook.setGeometry(QtCore.QRect(890, 550, 50, 50))
         self.pbFacebook.setSizeIncrement(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -290,8 +290,54 @@ class Ui_mwLogin(object):
         self.pbFacebook.setDefault(False)
         self.pbFacebook.setFlat(False)
         self.pbFacebook.setObjectName("pbFacebook")
-        self.pbYouTube = QtWidgets.QPushButton(self.pgLogin)
-        self.pbYouTube.setGeometry(QtCore.QRect(930, 680, 50, 50))
+        self.pbTweeter = QtWidgets.QPushButton(self.frame)
+        self.pbTweeter.setGeometry(QtCore.QRect(890, 610, 50, 50))
+        self.pbTweeter.setSizeIncrement(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setUnderline(False)
+        font.setWeight(50)
+        font.setStrikeOut(False)
+        font.setKerning(True)
+        font.setStyleStrategy(QtGui.QFont.PreferDefault)
+        self.pbTweeter.setFont(font)
+        self.pbTweeter.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+        self.pbTweeter.setMouseTracking(False)
+        self.pbTweeter.setTabletTracking(False)
+        self.pbTweeter.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.pbTweeter.setAcceptDrops(False)
+        self.pbTweeter.setToolTipDuration(-1)
+        self.pbTweeter.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.pbTweeter.setAutoFillBackground(False)
+        self.pbTweeter.setStyleSheet("QPushButton {\n"
+"    border-radius: 25px;\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"    image: url(:/newPrefix/Imagens/013-twitter-1.png);\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(127,255,212);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(170, 140, 140);\n"
+"}\n"
+"\n"
+"")
+        self.pbTweeter.setText("")
+        self.pbTweeter.setIconSize(QtCore.QSize(25, 25))
+        self.pbTweeter.setCheckable(False)
+        self.pbTweeter.setChecked(False)
+        self.pbTweeter.setAutoRepeat(False)
+        self.pbTweeter.setAutoExclusive(False)
+        self.pbTweeter.setAutoDefault(False)
+        self.pbTweeter.setDefault(False)
+        self.pbTweeter.setFlat(False)
+        self.pbTweeter.setObjectName("pbTweeter")
+        self.pbYouTube = QtWidgets.QPushButton(self.frame)
+        self.pbYouTube.setGeometry(QtCore.QRect(890, 670, 50, 50))
         self.pbYouTube.setSizeIncrement(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -339,54 +385,9 @@ class Ui_mwLogin(object):
         self.pbYouTube.setDefault(False)
         self.pbYouTube.setFlat(False)
         self.pbYouTube.setObjectName("pbYouTube")
-        self.pbTweeter = QtWidgets.QPushButton(self.pgLogin)
-        self.pbTweeter.setGeometry(QtCore.QRect(930, 620, 50, 50))
-        self.pbTweeter.setSizeIncrement(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setUnderline(False)
-        font.setWeight(50)
-        font.setStrikeOut(False)
-        font.setKerning(True)
-        font.setStyleStrategy(QtGui.QFont.PreferDefault)
-        self.pbTweeter.setFont(font)
-        self.pbTweeter.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
-        self.pbTweeter.setMouseTracking(False)
-        self.pbTweeter.setTabletTracking(False)
-        self.pbTweeter.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.pbTweeter.setAcceptDrops(False)
-        self.pbTweeter.setToolTipDuration(-1)
-        self.pbTweeter.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.pbTweeter.setAutoFillBackground(False)
-        self.pbTweeter.setStyleSheet("QPushButton {\n"
-"    border-radius: 25px;\n"
-"    background-color: rgba(255, 255, 255, 0);\n"
-"    image: url(:/newPrefix/Imagens/013-twitter-1.png);\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(127,255,212);\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(170, 140, 140);\n"
-"}\n"
-"\n"
-"")
-        self.pbTweeter.setText("")
-        self.pbTweeter.setIconSize(QtCore.QSize(25, 25))
-        self.pbTweeter.setCheckable(False)
-        self.pbTweeter.setChecked(False)
-        self.pbTweeter.setAutoRepeat(False)
-        self.pbTweeter.setAutoExclusive(False)
-        self.pbTweeter.setAutoDefault(False)
-        self.pbTweeter.setDefault(False)
-        self.pbTweeter.setFlat(False)
-        self.pbTweeter.setObjectName("pbTweeter")
-        self.frBarraBaixoAzul = QtWidgets.QFrame(self.pgLogin)
-        self.frBarraBaixoAzul.setGeometry(QtCore.QRect(-20, 750, 1051, 50))
+        self.frBarraBaixoAzul = QtWidgets.QFrame(self.frame)
+        self.frBarraBaixoAzul.setGeometry(QtCore.QRect(0, 670, 800, 84))
+        self.frBarraBaixoAzul.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.frBarraBaixoAzul.setStyleSheet("QFrame {\n"
 "    background-color: #3E5F8A;\n"
 "    border-radius: 500px;\n"
@@ -395,16 +396,13 @@ class Ui_mwLogin(object):
         self.frBarraBaixoAzul.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frBarraBaixoAzul.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frBarraBaixoAzul.setObjectName("frBarraBaixoAzul")
-        self.frGrandeAzul.raise_()
-        self.frCirculoImputs_2.raise_()
         self.frBordaCirculo.raise_()
-        self.frLogo.raise_()
-        self.pbCadastro.raise_()
-        self.pbLogin.raise_()
         self.pbFacebook.raise_()
-        self.pbYouTube.raise_()
         self.pbTweeter.raise_()
+        self.pbYouTube.raise_()
+        self.frLogo.raise_()
         self.frBarraBaixoAzul.raise_()
+        self.gridLayout.addWidget(self.frame, 1, 0, 1, 1)
         self.stkLogin.addWidget(self.pgLogin)
         self.horizontalLayout.addWidget(self.stkLogin)
         mwLogin.setCentralWidget(self.wdgLgin)
