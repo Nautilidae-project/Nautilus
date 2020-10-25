@@ -1,13 +1,13 @@
 from PyQt5 import QtGui, QtWidgets, QtCore
 from PyQt5.QtWidgets import QMainWindow
-from Telas.login import Ui_mwLogin
+from Telas.arquivos_front_end.login import Ui_mwLogin
 from brain.brainCadastro import brainCadastro
 from brain.DAOs.brainUserConfig import *
 
 class brainLogin(Ui_mwLogin, QMainWindow):
 
     def __init__(self):
-        import Telas.resource
+        import Telas.arquivos_front_end.image_rc
         super(brainLogin, self).__init__()
         self.setupUi(self)
         self.telaCadastro = brainCadastro(self)

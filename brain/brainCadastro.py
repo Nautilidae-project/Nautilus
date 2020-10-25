@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import pyqtSignal
-from Telas.cadastro import Ui_mwCadastro
+from Telas.arquivos_front_end.cadastro import Ui_mwCadastro
 from modelos.usuario import Usuario
 from brain.DAOs.brainUserConfig import *
 from modelos.funcoesAuxiliares import *
@@ -35,6 +35,8 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
         self.leCEP.editingFinished.connect(lambda: self.insereMascara('cep'))
 
         self.pbFazerCadastro.clicked.connect(self.trataCadastro)
+
+        self.cmbEstados.addItems(getEstados())
 
     def goHome(self):
         self.home.emit()
@@ -110,3 +112,6 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
         if campo == 'tel':
             if not self.leTelefone.text() == "":
                 self.leTelefone.setText(mascaraCelular(str(self.usuario.tel)))
+
+    def exibe(self, texto):
+        print(texto)

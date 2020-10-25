@@ -30,6 +30,9 @@ def criaBanco(nomeBanco):
     # finally:
     #     return False
 
+def criaBancoEstados():
+    conn = sqlite3.connect(join(dirname(__file__), 'estados.db'))
+    cursor = conn.cursor()
 
 def cadastreUsuario(usuario):
     try:
@@ -62,6 +65,64 @@ def cadastreUsuario(usuario):
         raise Exception(f'Erro SQL - cadastreUsuario({usuario.userId}) <CREATE TABLE>')
     # finally:
     #     return False
+
+
+    strComando = """CREATE TABLE IF NOT EXISTS estados(
+                    estados VARCHAR(20) NOT NULL);"""
+
+    cursor.executescript(strComando)
+
+
+def addEstados():
+    conn = sqlite3.connect(join(dirname(__file__), 'estados.db'))
+    cursor = conn.cursor()
+
+    listaEstados = {
+        'Acre',
+        'Alagoas',
+        'Amapá',
+        'Amazonas',
+        'Bahia',
+        'Ceará',
+        'Distrito Federal',
+        'Espírito Santo',
+        'Goiás',
+        'Maranhão',
+        'Mato Grosso',
+        'Mato Grosso do Sul',
+        'Minas Gerais',
+        'Pará',
+        'Paraíba',
+        'Paraná',
+        'Pernambuco',
+        'Piauí',
+        'Rio de Janeiro',
+        'Rio Grande do Norte',
+        'Rio Grande do Sul',
+        'Rondônia',
+        'Roraima',
+        'Santa Catarina',
+        'São Paulo',
+        'Sergipe',
+        'Tocantins'
+    }
+
+    for estado in listaEstados:
+        strComando = f"""INSERT INTO estados (estados) VALUES ('{estado}')"""
+        cursor.executescript(strComando)
+
+
+def getEstados():
+    listaEstados = []
+    conn = sqlite3.connect(join(dirname(__file__), 'estados.db'))
+    cursor = conn.cursor()
+
+    strComando = cursor.execute(f"""SELECT estados From estados""")
+
+    for estado in strComando:
+        listaEstados.append(estado[0])
+
+    return listaEstados
 
 
 def buscaBanco(nomeBanco):
