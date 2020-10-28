@@ -9,6 +9,8 @@ class brainLogin(Ui_mwLogin, QMainWindow):
     def __init__(self):
         import Telas.arquivos_front_end.image_rc
         super(brainLogin, self).__init__()
+        criaBancoEstados()
+        addEstados()
         self.setupUi(self)
         self.telaCadastro = brainCadastro(self)
         self.stkLogin.addWidget(self.telaCadastro)

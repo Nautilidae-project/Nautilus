@@ -641,7 +641,7 @@ class Ui_mwCadastro(object):
         self.lbCidade.setText(_translate("mwCadastro", "Cidade"))
 import resource
 
-import Telas.login_rc
+import Telas.arquivos_front_end.login_rc
 
 if __name__ == "__main__":
     import sys
