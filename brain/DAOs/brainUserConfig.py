@@ -2,6 +2,7 @@ import sqlite3
 from os.path import join, dirname
 from os import listdir
 from bcrypt import checkpw
+from modelos.estadosModelo import EstadosModelo
 
 
 def criaBanco(nomeBanco):
@@ -27,12 +28,52 @@ def criaBanco(nomeBanco):
         return True
     except:
         raise Exception(f'Erro SQL - criaBanco({nomeBanco}) <CREATE TABLE>')
-    # finally:
-    #     return False
 
 def criaBancoEstados():
     conn = sqlite3.connect(join(dirname(__file__), 'estados.db'))
     cursor = conn.cursor()
+
+def criaBancoEstados():
+    conn = sqlite3.connect(join(dirname(__file__), 'estados.db'))
+    cursor = conn.cursor()
+
+    strComando = """CREATE TABLE IF NOT EXISTS estados(
+                    extenso VARCHAR(20) NOT NULL,
+                    sigla VARCHAR(2) NOT NULL
+                    );"""
+
+    cursor.executescript(strComando)
+
+
+def addEstados():
+    conn = sqlite3.connect(join(dirname(__file__), 'estados.db'))
+    cursor = conn.cursor()
+
+    strComando = '''SELECT * FROM estados LIMIT 1'''
+
+    cursor.execute(strComando)
+    if len(cursor.fetchall()) != 0:
+        return False
+
+    listaEstados = EstadosModelo().toDict()
+
+    for extenso, sigla in listaEstados.items():
+        strComando = f"""INSERT INTO estados 
+                                (sigla, extenso) 
+                            VALUES 
+                                ('{sigla}', '{extenso}')"""
+        cursor.executescript(strComando)
+    return True
+
+
+def getEstados():
+    conn = sqlite3.connect(join(dirname(__file__), 'estados.db'))
+    cursor = conn.cursor()
+
+    listaEstados = cursor.execute(f"""SELECT extenso FROM estados ORDER BY extenso""")
+
+    return [estado[0] for estado in listaEstados]
+
 
 def cadastreUsuario(usuario):
     try:
@@ -67,64 +108,6 @@ def cadastreUsuario(usuario):
     #     return False
 
 
-    strComando = """CREATE TABLE IF NOT EXISTS estados(
-                    estados VARCHAR(20) NOT NULL);"""
-
-    cursor.executescript(strComando)
-
-
-def addEstados():
-    conn = sqlite3.connect(join(dirname(__file__), 'estados.db'))
-    cursor = conn.cursor()
-
-    listaEstados = {
-        'Acre',
-        'Alagoas',
-        'Amapá',
-        'Amazonas',
-        'Bahia',
-        'Ceará',
-        'Distrito Federal',
-        'Espírito Santo',
-        'Goiás',
-        'Maranhão',
-        'Mato Grosso',
-        'Mato Grosso do Sul',
-        'Minas Gerais',
-        'Pará',
-        'Paraíba',
-        'Paraná',
-        'Pernambuco',
-        'Piauí',
-        'Rio de Janeiro',
-        'Rio Grande do Norte',
-        'Rio Grande do Sul',
-        'Rondônia',
-        'Roraima',
-        'Santa Catarina',
-        'São Paulo',
-        'Sergipe',
-        'Tocantins'
-    }
-
-    for estado in listaEstados:
-        strComando = f"""INSERT INTO estados (estados) VALUES ('{estado}')"""
-        cursor.executescript(strComando)
-
-
-def getEstados():
-    listaEstados = []
-    conn = sqlite3.connect(join(dirname(__file__), 'estados.db'))
-    cursor = conn.cursor()
-
-    strComando = cursor.execute(f"""SELECT estados From estados""")
-
-    for estado in strComando:
-        listaEstados.append(estado[0])
-
-    return listaEstados
-
-
 def buscaBanco(nomeBanco):
     listCurrentDir = listdir(dirname(__file__))
     for dir in listCurrentDir:
@@ -134,6 +117,7 @@ def buscaBanco(nomeBanco):
     print(f'Nenhum banco de dados com o nome {nomeBanco} listado')
     return False
 
+<<<<<<<<< Temporary merge branch 1
 def confereSenha(banco, password):
 
     conn = sqlite3.connect(join(dirname(__file__), f'{banco}.db'))
