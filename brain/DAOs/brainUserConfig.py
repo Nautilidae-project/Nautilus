@@ -1,53 +1,70 @@
-import sqlite3
+import pymysql
+from configBD import ConfigDB
 from os.path import join, dirname
 from os import listdir
 from bcrypt import checkpw
 from modelos.estadosModelo import EstadosModelo
 
 
-def criaBanco(nomeBanco):
-    conn = sqlite3.connect(join(dirname(__file__), f'{nomeBanco}.db'))
-    cursor = conn.cursor()
+def criaBanco():
+    configs = ConfigDB()
 
-    strComando = """CREATE TABLE IF NOT EXISTS usuario(
-	                    userId INTEGER PRIMARY KEY AUTOINCREMENT,
+    connection = pymysql.connect(
+        host=configs.host,
+        user=configs.user,
+        passwd=configs.passwd,
+        db=configs.banco
+    )
+    cursor = connection.cursor()
+
+    strComando = f"""CREATE TABLE IF NOT EXISTS usuario(
+	                    userId INT AUTO_INCREMENT,
                         nomeUsuario VARCHAR(20) NOT NULL,
                         nomeEmpresa VARCHAR(30) NOT NULL,
                         nomeFantasia VARCHAR(30) NULL,
                         cnpj VARCHAR(15) NOT NULL,
                         email VARCHAR(30) NOT NULL,
-                        tel INTEGER NOT NULL,
+                        tel VARCHAR(11) NOT NULL,
                         endereco VARCHAR(30) NOT NULL,
                         cep VARCHAR(8) NOT NULL,
-                        senha VARBINARY(80) NOT NULL
+                        bairro VARCHAR(30) NULL,
+                        senha VARBINARY(80) NOT NULL,
+                        PRIMARY KEY (userId)
                     );"""
 
     try:
-        cursor.executescript(strComando)
-        conn.commit()
+        cursor.execute(strComando)
+        connection.commit()
         return True
     except:
-        raise Exception(f'Erro SQL - criaBanco({nomeBanco}) <CREATE TABLE>')
+        raise Exception(f'Erro SQL - criaBanco({configs.banco}) <CREATE TABLE (usuario)>')
 
-def criaBancoEstados():
-    conn = sqlite3.connect(join(dirname(__file__), 'estados.db'))
-    cursor = conn.cursor()
+    finally:
+        strComando = '''CREATE TABLE IF NOT EXISTS estados(
+                            extenso VARCHAR(20) NOT NULL,
+                            sigla VARCHAR(2) NOT NULL
+                        );'''
 
-def criaBancoEstados():
-    conn = sqlite3.connect(join(dirname(__file__), 'estados.db'))
-    cursor = conn.cursor()
-
-    strComando = """CREATE TABLE IF NOT EXISTS estados(
-                    extenso VARCHAR(20) NOT NULL,
-                    sigla VARCHAR(2) NOT NULL
-                    );"""
-
-    cursor.executescript(strComando)
+        try:
+            cursor.execute(strComando)
+            connection.commit()
+            return True
+        except:
+            raise Exception(f'Erro SQL - criaBanco({configs.banco}) <CREATE TABLE estados>')
+        finally:
+            connection.close()
 
 
 def addEstados():
-    conn = sqlite3.connect(join(dirname(__file__), 'estados.db'))
-    cursor = conn.cursor()
+    configs = ConfigDB()
+
+    connection = pymysql.connect(
+        host=configs.host,
+        user=configs.user,
+        passwd=configs.passwd,
+        db=configs.banco
+    )
+    cursor = connection.cursor()
 
     strComando = '''SELECT * FROM estados LIMIT 1'''
 
@@ -58,77 +75,133 @@ def addEstados():
     listaEstados = EstadosModelo().toDict()
 
     for extenso, sigla in listaEstados.items():
-        strComando = f"""INSERT INTO estados 
-                                (sigla, extenso) 
-                            VALUES 
+        strComando = f"""INSERT INTO estados
+                                (sigla, extenso)
+                            VALUES
                                 ('{sigla}', '{extenso}')"""
-        cursor.executescript(strComando)
+        cursor.execute(strComando)
+    connection.commit()
+    connection.close()
     return True
 
 
-def getEstados():
-    conn = sqlite3.connect(join(dirname(__file__), 'estados.db'))
-    cursor = conn.cursor()
+def getEstados(*args):
+    configs = ConfigDB()
 
-    listaEstados = cursor.execute(f"""SELECT extenso FROM estados ORDER BY extenso""")
+    connection = pymysql.connect(
+        host=configs.host,
+        user=configs.user,
+        passwd=configs.passwd,
+        db=configs.banco
+    )
+    cursor = connection.cursor()
+    if args != ():
+        if len(args[0]) > 2:
+            strComando = f"""SELECT sigla FROM {configs.tblEstados} WHERE extenso = '{args[0]}'"""
+        else:
+            strComando = f"""SELECT extenso FROM {configs.tblEstados} WHERE sigla = '{args[0]}'"""
+    else:
+        strComando = f"""SELECT extenso FROM {configs.tblEstados} ORDER BY extenso"""
 
-    return [estado[0] for estado in listaEstados]
+    cursor.execute(strComando)
+
+    return [estado[0] for estado in cursor.fetchall()]
 
 
 def cadastreUsuario(usuario):
-    try:
-        criaBanco(usuario.nomeUsuario)
-    except:
-        return False
+    configs = ConfigDB()
 
-    conn = sqlite3.connect(join(dirname(__file__), f'{usuario.nomeUsuario}.db'))
-    cursor = conn.cursor()
+    connection = pymysql.connect(
+        host=configs.host,
+        user=configs.user,
+        passwd=configs.passwd,
+        db=configs.banco
+    )
+    cursor = connection.cursor()
 
-    strComando = f'''
+    strComando = f"""
         INSERT INTO usuario
         (
              nomeUsuario, nomeEmpresa, nomeFantasia,
              cnpj, email, tel,
-             endereco, cep, senha                       
+             endereco, cep, senha
         )
         VALUES
         (
             '{usuario.nomeUsuario}', '{usuario.nomeEmpresa}', '{usuario.nomeFantasia}',
             '{usuario.cnpj}', '{usuario.email}', {usuario.tel},
-            '{usuario.endereco}', '{usuario.cep}', '{usuario.senha}'          
+            '{usuario.endereco}', '{usuario.cep}', '{usuario.senha}'
         )
-        '''
+        """
     try:
-        cursor.executescript(strComando)
-        conn.commit()
+        cursor.execute(strComando)
+        connection.commit()
+        connection.close()
         return True
     except:
         raise Exception(f'Erro SQL - cadastreUsuario({usuario.userId}) <CREATE TABLE>')
-    # finally:
-    #     return False
 
 
-def buscaBanco(nomeBanco):
-    listCurrentDir = listdir(dirname(__file__))
-    for dir in listCurrentDir:
-        if dir.endswith('.db'):
-            if dir[:len(dir) - 3] == nomeBanco:
-                return True
-    print(f'Nenhum banco de dados com o nome {nomeBanco} listado')
-    return False
+def buscaUsuario(strUsuario):
+    configs = ConfigDB()
 
-<<<<<<<<< Temporary merge branch 1
-def confereSenha(banco, password):
+    connection = pymysql.connect(
+        host=configs.host,
+        user=configs.user,
+        passwd=configs.passwd,
+        db=configs.banco
+    )
+    cursor = connection.cursor()
 
-    conn = sqlite3.connect(join(dirname(__file__), f'{banco}.db'))
-    cursor = conn.cursor()
-
-    strComando = f'''
-        SELECT senha FROM usuario;
-    '''
+    strComando = f"""
+                SELECT * 
+                FROM {configs.tblUsuario}
+                WHERE 
+                    nomeUsuario = '{strUsuario}'
+                OR
+                    email = '{strUsuario}'
+                OR
+                    nomeEmpresa = '{strUsuario}'
+                OR
+                    cnpj = '{strUsuario}'
+                """
 
     cursor.execute(strComando)
 
-    senha = cursor.fetchone()[0]
+    if cursor.fetchone() is None:
+        return False
+    else:
+        return True
 
-    return checkpw(password.encode('utf-8'), senha.encode('utf-8'))
+
+def confereSenha(strUsuario, password):
+    configs = ConfigDB()
+
+    connection = pymysql.connect(
+        host=configs.host,
+        user=configs.user,
+        passwd=configs.passwd,
+        db=configs.banco
+    )
+    cursor = connection.cursor()
+
+    strComando = f'''
+                SELECT senha 
+                FROM {configs.tblUsuario}
+                WHERE 
+                    nomeUsuario = '{strUsuario}'
+                OR
+                    email = '{strUsuario}'
+                OR
+                    nomeEmpresa = '{strUsuario}'
+                OR
+                    cnpj = '{strUsuario}'
+    '''
+
+    try:
+        cursor.execute(strComando)
+        senha = cursor.fetchall()[0][0]
+        strPassword = str(password)
+        return checkpw(strPassword.encode('utf-8'), senha)
+    except:
+        raise Exception(f'Erro SQL - confereSenha({configs.tblUsuario}) <SELECT>')

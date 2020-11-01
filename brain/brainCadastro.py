@@ -43,7 +43,6 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
     def goHome(self):
         self.home.emit()
 
-<<<<<<<<< Temporary merge branch 1
     def defineCampo(self, campo):
 
         if campo == 'nU':
@@ -67,7 +66,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
 
         if campo == 'tel':
             if self.leTelefone.text().isnumeric():
-                self.usuario.tel = int(self.leTelefone.text())
+                self.usuario.tel = self.leTelefone.text()
             else:
                 print('Digite apenas números')
                 self.leTelefone.setText("")
@@ -112,10 +111,8 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
         if campo == 'tel':
             if not self.leTelefone.text() == "":
                 self.leTelefone.setText(mascaraCelular(str(self.usuario.tel)))
-=========
     def exibe(self, texto):
         print(texto)
->>>>>>>>> Temporary merge branch 2
 
     def trataCep(self, *args):
         if not self.leCEP.text() == "":
@@ -125,4 +122,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
                 dictEndereco = json.loads(response.text)
                 self.leEndereco.setText(dictEndereco['logradouro'])
                 self.leCidade.setText(dictEndereco['localidade'])
-                self.cmbEstados.setCurrentText('São Paulo')
+                self.cmbEstados.setCurrentText(getEstados(dictEndereco['uf'])[0])
+            else:
+                print(f'Falha na conexão - Código de status: {response.status_code}')
+                return False

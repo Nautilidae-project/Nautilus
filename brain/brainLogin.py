@@ -9,7 +9,7 @@ class brainLogin(Ui_mwLogin, QMainWindow):
     def __init__(self):
         import Telas.arquivos_front_end.image_rc
         super(brainLogin, self).__init__()
-        criaBancoEstados()
+        criaBanco()
         addEstados()
         self.setupUi(self)
         self.telaCadastro = brainCadastro(self)
@@ -28,7 +28,7 @@ class brainLogin(Ui_mwLogin, QMainWindow):
         if strNomeUsuario == "":
             print("Digite um usuário")
             return False
-        if not buscaBanco(strNomeUsuario):
+        if not buscaUsuario(strNomeUsuario):
             print("Não foi encontrado nenhum usuário com o nome cadastrado")
         else:
             if confereSenha(strNomeUsuario, self.leSenha.text()):
