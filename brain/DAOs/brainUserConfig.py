@@ -74,15 +74,7 @@ def addEstados():
 
     listaEstados = EstadosModelo().toDict()
 
-    for extenso, sigla in listaEstados.items():
-        strComando = f"""INSERT INTO estados
-                                (sigla, extenso)
-                            VALUES
-                                ('{sigla}', '{extenso}')"""
-        cursor.execute(strComando)
-    connection.commit()
-    connection.close()
-    return True
+    strComando = cursor.execute(f"""SELECT estados From estados ORDER BY estados """)
 
 
 def getEstados(*args):
