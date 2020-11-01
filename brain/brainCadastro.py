@@ -6,6 +6,8 @@ from modelos.usuario import Usuario
 from brain.DAOs.brainUserConfig import *
 from modelos.funcoesAuxiliares import *
 import bcrypt
+import requests
+import json
 
 
 class brainCadastro(Ui_mwCadastro, QMainWindow):
@@ -30,9 +32,11 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
         self.leSenha.textEdited.connect(lambda: self.defineCampo('senha'))
         self.leSenhaConfirma.textEdited.connect(lambda: self.defineCampo('confS'))
 
+        self.cmbEstados.addItems(getEstados())
+
         self.leCNPJ.editingFinished.connect(lambda: self.insereMascara('cnpj'))
         self.leTelefone.editingFinished.connect(lambda: self.insereMascara('tel'))
-        self.leCEP.editingFinished.connect(lambda: self.insereMascara('cep'))
+        self.leCEP.editingFinished.connect(self.trataCep)
 
         self.pbFazerCadastro.clicked.connect(self.trataCadastro)
 
@@ -62,7 +66,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
 
         if campo == 'tel':
             if self.leTelefone.text().isnumeric():
-                self.usuario.tel = int(self.leTelefone.text())
+                self.usuario.tel = self.leTelefone.text()
             else:
                 print('Digite apenas números')
                 self.leTelefone.setText("")
@@ -104,9 +108,21 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
         if campo == 'cnpj':
             if not self.leCNPJ.text() == "":
                 self.leCNPJ.setText(mascaraCNPJ(self.usuario.cnpj))
-        if campo == 'cep':
-            if not self.leCEP.text() == "":
-                self.leCEP.setText(mascaraCep(str(self.usuario.cep)))
         if campo == 'tel':
             if not self.leTelefone.text() == "":
                 self.leTelefone.setText(mascaraCelular(str(self.usuario.tel)))
+    def exibe(self, texto):
+        print(texto)
+
+    def trataCep(self, *args):
+        if not self.leCEP.text() == "":
+            self.leCEP.setText(mascaraCep(str(self.usuario.cep)))
+            response = requests.get(f'http://viacep.com.br/ws/{str(self.usuario.cep)}/json/')
+            if response.status_code == 200:
+                dictEndereco = json.loads(response.text)
+                self.leEndereco.setText(dictEndereco['logradouro'])
+                self.leCidade.setText(dictEndereco['localidade'])
+                self.cmbEstados.setCurrentText(getEstados(dictEndereco['uf'])[0])
+            else:
+                print(f'Falha na conexão - Código de status: {response.status_code}')
+                return False

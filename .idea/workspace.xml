@@ -1,34 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
     <list default="true" id="bcdb2638-662c-41f8-9194-105cb29d8ac9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/cores" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/cores" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/cadastro.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/cadastro.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/cadastro.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/cadastro.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/login.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/login.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/login.qrc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/login.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/login.ui" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/login_rc.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telas/arquivos_front_end/login_rc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Telas/arquivos_front_end/resource.py" beforeDir="false" />
 =======
+>>>>>>> IsraelBack
     <list default="true" id="9e72054e-e802-4e63-b595-b54068c8ac3f" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/modelos/funcoesAuxiliares.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
@@ -41,6 +27,12 @@
       <change beforePath="$PROJECT_DIR$/brain/brainCadastro.py" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brainCadastro.py" afterDir="false" />
 >>>>>>> IsraelBack
       <change beforePath="$PROJECT_DIR$/brain/brainLogin.py" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brainLogin.py" afterDir="false" />
+<<<<<<< HEAD
+=======
+=======
+      <change beforePath="$PROJECT_DIR$/brain/DAOs/brainUserConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/brain/DAOs/brainUserConfig.py" afterDir="false" />
+>>>>>>> main
+>>>>>>> IsraelBack
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +56,17 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Profnotas/DAOs/daoAlunos.py" />
+  </component>
+  <component name="RunManager">
+=======
+<<<<<<< HEAD
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Profnotas/DAOs/daoAlunos.py" />
+=======
+    <property name="last_opened_file_path" value="$USER_HOME$/--Qt/testes" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+>>>>>>> main
   </component>
 <<<<<<< HEAD
   <component name="RunManager" selected="Python.brainLogin">
@@ -92,6 +94,7 @@
 =======
   <component name="RunManager">
 >>>>>>> IsraelBack
+>>>>>>> IsraelBack
     <configuration name="brainLogin" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Nautilus" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -113,13 +116,90 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.brainLogin" />
+=======
+<<<<<<< HEAD
     <recent_temporary>
       <list>
         <item itemvalue="Python.brainLogin" />
 <<<<<<< HEAD
+=======
+    <configuration name="brainUserConfig" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Nautilus" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/brain/DAOs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/brain/DAOs/brainUserConfig.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="login" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Nautilus" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Telas/arquivos_front_end" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Telas/arquivos_front_end/login.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="usuario" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Nautilus" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/modelos" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modelos/usuario.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.brainLogin" />
+        <item itemvalue="Python.login" />
+        <item itemvalue="Python.brainUserConfig" />
+>>>>>>> main
         <item itemvalue="Python.brainCadastro" />
         <item itemvalue="Python.usuario" />
 =======
+>>>>>>> IsraelBack
 >>>>>>> IsraelBack
       </list>
     </recent_temporary>
@@ -135,51 +215,34 @@
     </task>
     <servers />
   </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ORDER">
-      <list>
-        <option value="0" />
-        <option value="2" />
-        <option value="3" />
-        <option value="1" />
-      </list>
-    </option>
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="CUSTOM_BOOLEAN_PROPERTIES">
-                <map>
-                  <entry key="Show.Git.Branches" value="false" />
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="WindowStateProjectService">
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
     <state width="1352" height="280" key="GridCell.Tab.0.bottom" timestamp="1602710020472">
+=======
+    <state x="736" y="284" width="426" height="493" key="FileChooserDialogImpl" timestamp="1603209277165">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1352" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1602710020472" />
-    <state width="1352" height="280" key="GridCell.Tab.0.center" timestamp="1602710020472">
+    <state x="736" y="284" width="426" height="493" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1603209277165" />
+    <state width="1343" height="211" key="GridCell.Tab.0.bottom" timestamp="1603215567930">
+>>>>>>> main
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1352" height="280" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1602710020472" />
-    <state width="1352" height="280" key="GridCell.Tab.0.left" timestamp="1602710020472">
+    <state width="1343" height="211" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1603215567930" />
+    <state width="1343" height="211" key="GridCell.Tab.0.center" timestamp="1603215567930">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1352" height="280" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1602710020472" />
-    <state width="1352" height="280" key="GridCell.Tab.0.right" timestamp="1602710020472">
+    <state width="1343" height="211" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1603215567930" />
+    <state width="1343" height="211" key="GridCell.Tab.0.left" timestamp="1603215567930">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1352" height="280" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1602710020472" />
+    <state width="1343" height="211" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1603215567930" />
+    <state width="1343" height="211" key="GridCell.Tab.0.right" timestamp="1603215567930">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1343" height="211" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1603215567930" />
     <state x="353" y="79" key="SettingsEditor" timestamp="1602510676036">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -189,6 +252,7 @@
     </state>
     <state x="645" y="274" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1602594945833" />
 =======
+>>>>>>> IsraelBack
     <state x="743" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1602539503672">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -246,6 +310,9 @@
         <watch expression="self.leTelefone.text()" language="Python" />
       </configuration>
     </watches-manager>
+<<<<<<< HEAD
+=======
+>>>>>>> IsraelBack
 >>>>>>> IsraelBack
   </component>
 </project>
