@@ -15,8 +15,31 @@ class Ui_mwLogin(object):
     def setupUi(self, mwLogin):
         mwLogin.setObjectName("mwLogin")
         mwLogin.setWindowModality(QtCore.Qt.NonModal)
-        mwLogin.resize(818, 778)
-        mwLogin.setStyleSheet("")
+        mwLogin.resize(1000, 700)
+        mwLogin.setMinimumSize(QtCore.QSize(1000, 700))
+        mwLogin.setStyleSheet("QWidget {\n"
+"    background-color: #80CCE1;\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    font: bold;\n"
+"    border-radius: 10px;\n"
+"    border: 2px solid  #ffffff;\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: #DAA520;\n"
+"}\n"
+"\n"
+"QFrame {\n"
+"    background-color: #0E90AD;\n"
+"    border-radius: 50%;\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"border-radius: 10px;\n"
+"color: rgb(136, 138, 133);\n"
+"border-bottom-color: rgb(136, 138, 133);\n"
+"background-color: #fafafa;\n"
+"}")
         mwLogin.setIconSize(QtCore.QSize(25, 25))
         mwLogin.setAnimated(True)
         mwLogin.setDocumentMode(False)
@@ -25,90 +48,130 @@ class Ui_mwLogin(object):
         mwLogin.setUnifiedTitleAndToolBarOnMac(False)
         self.wdgLgin = QtWidgets.QWidget(mwLogin)
         self.wdgLgin.setObjectName("wdgLgin")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.wdgLgin)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout.setSpacing(0)
-        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.gridLayout = QtWidgets.QGridLayout(self.wdgLgin)
+        self.gridLayout.setObjectName("gridLayout")
         self.stkLogin = QtWidgets.QStackedWidget(self.wdgLgin)
+        self.stkLogin.setMinimumSize(QtCore.QSize(100, 0))
         self.stkLogin.setStyleSheet("")
         self.stkLogin.setObjectName("stkLogin")
         self.pgLogin = QtWidgets.QWidget()
-        self.pgLogin.setStyleSheet("\n"
-"QWidget {\n"
-"    background-color: #3E5F8A;\n"
-"    \n"
-"}\n"
-"\n"
-"QFrame {\n"
-"    background-color: rgb(140, 255, 196);\n"
-"    background-color: #0E90AD;\n"
-"}\n"
-"\n"
-"")
         self.pgLogin.setObjectName("pgLogin")
-        self.gridLayout = QtWidgets.QGridLayout(self.pgLogin)
-        self.gridLayout.setObjectName("gridLayout")
-        self.frame = QtWidgets.QFrame(self.pgLogin)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        self.gridLayout_8 = QtWidgets.QGridLayout(self.pgLogin)
+        self.gridLayout_8.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_8.setSpacing(0)
+        self.gridLayout_8.setObjectName("gridLayout_8")
+        self.frBordaIretaveisLogin = QtWidgets.QFrame(self.pgLogin)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(100)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frBordaIretaveisLogin.sizePolicy().hasHeightForWidth())
+        self.frBordaIretaveisLogin.setSizePolicy(sizePolicy)
+        self.frBordaIretaveisLogin.setMinimumSize(QtCore.QSize(352, 640))
+        self.frBordaIretaveisLogin.setMaximumSize(QtCore.QSize(500, 720))
+        self.frBordaIretaveisLogin.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.frBordaIretaveisLogin.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
+        self.frBordaIretaveisLogin.setStyleSheet("#frBordaIretaveisLogin {\n"
+"    background-color: #daa520;\n"
+"    border-radius: 50%;\n"
+"    /*\n"
+"    border: 5px solid rgb(211, 143, 37);\n"
+"*/\n"
+"\n"
+"}")
+        self.frBordaIretaveisLogin.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frBordaIretaveisLogin.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frBordaIretaveisLogin.setObjectName("frBordaIretaveisLogin")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.frBordaIretaveisLogin)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.frPrincipalIteraveis = QtWidgets.QFrame(self.frBordaIretaveisLogin)
+        self.frPrincipalIteraveis.setMinimumSize(QtCore.QSize(334, 100))
+        self.frPrincipalIteraveis.setMaximumSize(QtCore.QSize(450, 550))
+        self.frPrincipalIteraveis.setStyleSheet("")
+        self.frPrincipalIteraveis.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frPrincipalIteraveis.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frPrincipalIteraveis.setObjectName("frPrincipalIteraveis")
+        self.gridLayout_3 = QtWidgets.QGridLayout(self.frPrincipalIteraveis)
+        self.gridLayout_3.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
+        self.gridLayout_3.setContentsMargins(10, 0, 0, 0)
+        self.gridLayout_3.setSpacing(0)
+        self.gridLayout_3.setObjectName("gridLayout_3")
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_3.addItem(spacerItem, 5, 0, 1, 1)
+        self.frPopUp = QtWidgets.QFrame(self.frPrincipalIteraveis)
+        self.frPopUp.setMinimumSize(QtCore.QSize(287, 74))
+        self.frPopUp.setStyleSheet("background-color: none;")
+        self.frPopUp.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frPopUp.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frPopUp.setObjectName("frPopUp")
+        self.lbPopUp = QtWidgets.QLabel(self.frPopUp)
+        self.lbPopUp.setGeometry(QtCore.QRect(10, 0, 282, 51))
+        self.lbPopUp.setMinimumSize(QtCore.QSize(282, 51))
+        self.lbPopUp.setMaximumSize(QtCore.QSize(270, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("Dimnah")
+        font.setPointSize(14)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        self.lbPopUp.setFont(font)
+        self.lbPopUp.setStyleSheet("QLabel {\n"
+"    background-color: #DAA520;\n"
+"    border: none;\n"
+"    border-top-left-radius: 1px;\n"
+"    border-top-right-radius: 1px;\n"
+"    font:  14pt \"Dimnah\";\n"
+"}\n"
+"")
+        self.lbPopUp.setText("")
+        self.lbPopUp.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
+        self.lbPopUp.setObjectName("lbPopUp")
+        self.pbFechaPopUp = QtWidgets.QPushButton(self.frPopUp)
+        self.pbFechaPopUp.setGeometry(QtCore.QRect(120, 50, 50, 25))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
-        self.frame.setSizePolicy(sizePolicy)
-        self.frame.setMinimumSize(QtCore.QSize(800, 760))
-        self.frame.setStyleSheet("#frame {\n"
-"background-color: transparent;\n"
-"}")
-        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame.setObjectName("frame")
-        self.frLogo = QtWidgets.QFrame(self.frame)
-        self.frLogo.setGeometry(QtCore.QRect(0, 10, 131, 171))
-        self.frLogo.setStyleSheet("image: url(:/newPrefix/Imagens/nautilusIcone.png);\n"
-"image: url(:/newPrefix/Imagens/nautilusIcone.png);\n"
-"background-color: rgba(255, 255, 255, 0);\n"
+        sizePolicy.setHeightForWidth(self.pbFechaPopUp.sizePolicy().hasHeightForWidth())
+        self.pbFechaPopUp.setSizePolicy(sizePolicy)
+        self.pbFechaPopUp.setMinimumSize(QtCore.QSize(50, 25))
+        self.pbFechaPopUp.setMaximumSize(QtCore.QSize(30, 30))
+        self.pbFechaPopUp.setSizeIncrement(QtCore.QSize(30, 30))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.pbFechaPopUp.setFont(font)
+        self.pbFechaPopUp.setStyleSheet("QPushButton {\n"
+"    border-bottom-left-radius: 20px;\n"
+"    border-bottom-right-radius: 20px;\n"
+"    background-color: rgb(211, 143, 37);\n"
+"}\n"
 "\n"
-"\n"
-"")
-        self.frLogo.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frLogo.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frLogo.setObjectName("frLogo")
-        self.frBordaCirculo = QtWidgets.QFrame(self.frame)
-        self.frBordaCirculo.setGeometry(QtCore.QRect(170, 70, 500, 500))
-        self.frBordaCirculo.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.frBordaCirculo.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
-        self.frBordaCirculo.setStyleSheet("QFrame { \n"
-"    border-radius: 250px;\n"
-"    border: 5px solid #DAA520\n"
-"    \n"
-"}")
-        self.frBordaCirculo.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.frBordaCirculo.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frBordaCirculo.setObjectName("frBordaCirculo")
-        self.frCirculoImputs = QtWidgets.QFrame(self.frBordaCirculo)
-        self.frCirculoImputs.setGeometry(QtCore.QRect(50, 50, 400, 400))
-        self.frCirculoImputs.setStyleSheet("#frCirculoImputs {\n"
-"background-color: 3E5F8A;\n"
-"\n"
-"border-radius: 200px;\n"
+"QPushButton:hover {\n"
+"    background-color: #ffcaaa;\n"
 "}\n"
 "")
-        self.frCirculoImputs.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frCirculoImputs.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frCirculoImputs.setObjectName("frCirculoImputs")
-        self.leUsuario = QtWidgets.QLineEdit(self.frCirculoImputs)
-        self.leUsuario.setGeometry(QtCore.QRect(50, 220, 300, 25))
+        self.pbFechaPopUp.setObjectName("pbFechaPopUp")
+        self.gridLayout_3.addWidget(self.frPopUp, 0, 1, 1, 1)
+        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_3.addItem(spacerItem1, 5, 4, 1, 1)
+        self.gIyInputs = QtWidgets.QGridLayout()
+        self.gIyInputs.setSizeConstraint(QtWidgets.QLayout.SetMinAndMaxSize)
+        self.gIyInputs.setContentsMargins(7, 25, 0, 10)
+        self.gIyInputs.setVerticalSpacing(10)
+        self.gIyInputs.setObjectName("gIyInputs")
+        self.leUsuario = QtWidgets.QLineEdit(self.frPrincipalIteraveis)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.leUsuario.sizePolicy().hasHeightForWidth())
+        self.leUsuario.setSizePolicy(sizePolicy)
+        self.leUsuario.setMinimumSize(QtCore.QSize(200, 40))
+        self.leUsuario.setMaximumSize(QtCore.QSize(250, 25))
         font = QtGui.QFont()
         font.setFamily("Roboto Slab")
         font.setPointSize(12)
         self.leUsuario.setFont(font)
         self.leUsuario.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.leUsuario.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.leUsuario.setStyleSheet("QLineEdit {\n"
-"    border-radius: 10px;\n"
-"    color: rgb(136, 138, 133);\n"
-"    border-bottom-color: rgb(136, 138, 133);\n"
-"    background-color: rgb(255, 255, 255);\n"
-"}")
+        self.leUsuario.setStyleSheet("")
         self.leUsuario.setInputMethodHints(QtCore.Qt.ImhNone)
         self.leUsuario.setInputMask("")
         self.leUsuario.setText("")
@@ -116,8 +179,15 @@ class Ui_mwLogin(object):
         self.leUsuario.setEchoMode(QtWidgets.QLineEdit.Normal)
         self.leUsuario.setAlignment(QtCore.Qt.AlignCenter)
         self.leUsuario.setObjectName("leUsuario")
-        self.leSenha = QtWidgets.QLineEdit(self.frCirculoImputs)
-        self.leSenha.setGeometry(QtCore.QRect(50, 260, 300, 25))
+        self.gIyInputs.addWidget(self.leUsuario, 0, 0, 1, 1)
+        self.leSenha = QtWidgets.QLineEdit(self.frPrincipalIteraveis)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.leSenha.sizePolicy().hasHeightForWidth())
+        self.leSenha.setSizePolicy(sizePolicy)
+        self.leSenha.setMinimumSize(QtCore.QSize(200, 40))
+        self.leSenha.setMaximumSize(QtCore.QSize(250, 25))
         font = QtGui.QFont()
         font.setFamily("Roboto Slab")
         font.setPointSize(12)
@@ -125,12 +195,7 @@ class Ui_mwLogin(object):
         font.setWeight(50)
         self.leSenha.setFont(font)
         self.leSenha.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.leSenha.setStyleSheet("QLineEdit {\n"
-"    border-radius: 10px;\n"
-"    color: rgb(136, 138, 133);\n"
-"    border-bottom-color: rgb(136, 138, 133);\n"
-"    background-color: rgb(255, 255, 255);\n"
-"}")
+        self.leSenha.setStyleSheet("")
         self.leSenha.setInputMethodHints(QtCore.Qt.ImhHiddenText|QtCore.Qt.ImhNoAutoUppercase|QtCore.Qt.ImhNoPredictiveText|QtCore.Qt.ImhSensitiveData)
         self.leSenha.setInputMask("")
         self.leSenha.setText("")
@@ -138,67 +203,21 @@ class Ui_mwLogin(object):
         self.leSenha.setEchoMode(QtWidgets.QLineEdit.Password)
         self.leSenha.setAlignment(QtCore.Qt.AlignCenter)
         self.leSenha.setObjectName("leSenha")
-        self.frAvatar = QtWidgets.QFrame(self.frCirculoImputs)
-        self.frAvatar.setGeometry(QtCore.QRect(100, 0, 200, 200))
-        self.frAvatar.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border: 20px;\n"
-"border-image: url(:/newPrefix/Imagens/002-graduated.png);\n"
-"border-radius: 100px\n"
-"\n"
-"\n"
-"")
-        self.frAvatar.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frAvatar.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frAvatar.setObjectName("frAvatar")
-        self.pbCadastro = QtWidgets.QPushButton(self.frCirculoImputs)
-        self.pbCadastro.setGeometry(QtCore.QRect(190, 310, 170, 51))
-        self.pbCadastro.setSizeIncrement(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setUnderline(False)
-        font.setWeight(50)
-        font.setStrikeOut(False)
-        font.setKerning(True)
-        font.setStyleStrategy(QtGui.QFont.PreferDefault)
-        self.pbCadastro.setFont(font)
-        self.pbCadastro.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
-        self.pbCadastro.setMouseTracking(False)
-        self.pbCadastro.setTabletTracking(False)
-        self.pbCadastro.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.pbCadastro.setAcceptDrops(False)
-        self.pbCadastro.setToolTipDuration(-1)
-        self.pbCadastro.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.pbCadastro.setAutoFillBackground(False)
-        self.pbCadastro.setStyleSheet("QPushButton {\n"
-"    border-radius: 20px;\n"
-"    border: 5px solid #0E90AD;\n"
-"    color: rgb(0, 0, 0);\n"
-"    background-color: #ffffff;\n"
-"}\n"
-"\n"
-"\n"
-"QPushButton:hover {\n"
-"    border-color:#ffffff;\n"
-"\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(170, 140, 140);\n"
-"}\n"
-"")
-        self.pbCadastro.setIconSize(QtCore.QSize(35, 35))
-        self.pbCadastro.setCheckable(False)
-        self.pbCadastro.setChecked(False)
-        self.pbCadastro.setAutoRepeat(False)
-        self.pbCadastro.setAutoExclusive(False)
-        self.pbCadastro.setAutoDefault(False)
-        self.pbCadastro.setDefault(False)
-        self.pbCadastro.setFlat(False)
-        self.pbCadastro.setObjectName("pbCadastro")
-        self.pbLogin = QtWidgets.QPushButton(self.frCirculoImputs)
-        self.pbLogin.setGeometry(QtCore.QRect(20, 310, 171, 51))
+        self.gIyInputs.addWidget(self.leSenha, 1, 0, 1, 1)
+        self.gridLayout_3.addLayout(self.gIyInputs, 6, 0, 1, 5)
+        self.glytBotoes = QtWidgets.QGridLayout()
+        self.glytBotoes.setContentsMargins(0, 22, 0, 40)
+        self.glytBotoes.setHorizontalSpacing(6)
+        self.glytBotoes.setVerticalSpacing(10)
+        self.glytBotoes.setObjectName("glytBotoes")
+        self.pbLogin = QtWidgets.QPushButton(self.frPrincipalIteraveis)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pbLogin.sizePolicy().hasHeightForWidth())
+        self.pbLogin.setSizePolicy(sizePolicy)
+        self.pbLogin.setMinimumSize(QtCore.QSize(170, 50))
+        self.pbLogin.setMaximumSize(QtCore.QSize(220, 50))
         self.pbLogin.setSizeIncrement(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -220,19 +239,20 @@ class Ui_mwLogin(object):
         self.pbLogin.setAutoFillBackground(False)
         self.pbLogin.setStyleSheet("QPushButton {\n"
 "    border-radius: 20px;\n"
+"    border-color: rgb(254, 254, 254);\n"
 "    color: rgb(255, 255, 255);\n"
-"    background-color: #FF6961;\n"
-"    border: 5px solid #0E90AD;\n"
+"    background-color: rgb(211, 143, 37);\n"
 "}\n"
 "\n"
-"\n"
 "QPushButton:hover {\n"
-"    border-color:#FF6961;\n"
+"    background-color: #ffcaaa;\n"
+"    color: #000;\n"
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
 "    background-color: rgb(170, 140, 140);\n"
 "}\n"
+"\n"
 "")
         self.pbLogin.setIconSize(QtCore.QSize(25, 25))
         self.pbLogin.setCheckable(False)
@@ -243,8 +263,108 @@ class Ui_mwLogin(object):
         self.pbLogin.setDefault(False)
         self.pbLogin.setFlat(False)
         self.pbLogin.setObjectName("pbLogin")
-        self.pbFacebook = QtWidgets.QPushButton(self.frame)
-        self.pbFacebook.setGeometry(QtCore.QRect(890, 550, 50, 50))
+        self.glytBotoes.addWidget(self.pbLogin, 0, 0, 1, 1)
+        self.pbCadastro = QtWidgets.QPushButton(self.frPrincipalIteraveis)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pbCadastro.sizePolicy().hasHeightForWidth())
+        self.pbCadastro.setSizePolicy(sizePolicy)
+        self.pbCadastro.setMinimumSize(QtCore.QSize(170, 50))
+        self.pbCadastro.setMaximumSize(QtCore.QSize(220, 50))
+        self.pbCadastro.setSizeIncrement(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setUnderline(False)
+        font.setWeight(50)
+        font.setStrikeOut(False)
+        font.setKerning(True)
+        font.setStyleStrategy(QtGui.QFont.PreferDefault)
+        self.pbCadastro.setFont(font)
+        self.pbCadastro.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+        self.pbCadastro.setMouseTracking(False)
+        self.pbCadastro.setTabletTracking(False)
+        self.pbCadastro.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.pbCadastro.setAcceptDrops(False)
+        self.pbCadastro.setToolTipDuration(-1)
+        self.pbCadastro.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.pbCadastro.setAutoFillBackground(False)
+        self.pbCadastro.setStyleSheet("QPushButton {\n"
+"    border-radius: 20px;\n"
+"    border-color: rgb(254, 254, 254);\n"
+"    background-color: rgb(170, 170, 170);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #ffcaaa;\n"
+"    color: #000;\n"
+"}\n"
+"\n"
+"QPushButton:pressed\n"
+"{\n"
+"   background-color: rgb(170, 140, 140);\n"
+"}")
+        self.pbCadastro.setIconSize(QtCore.QSize(35, 35))
+        self.pbCadastro.setCheckable(False)
+        self.pbCadastro.setChecked(False)
+        self.pbCadastro.setAutoRepeat(False)
+        self.pbCadastro.setAutoExclusive(False)
+        self.pbCadastro.setAutoDefault(False)
+        self.pbCadastro.setDefault(False)
+        self.pbCadastro.setFlat(False)
+        self.pbCadastro.setObjectName("pbCadastro")
+        self.glytBotoes.addWidget(self.pbCadastro, 1, 0, 1, 1)
+        self.gridLayout_3.addLayout(self.glytBotoes, 7, 0, 1, 5)
+        self.frLogo = QtWidgets.QFrame(self.frPrincipalIteraveis)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frLogo.sizePolicy().hasHeightForWidth())
+        self.frLogo.setSizePolicy(sizePolicy)
+        self.frLogo.setMinimumSize(QtCore.QSize(305, 182))
+        self.frLogo.setMaximumSize(QtCore.QSize(200, 200))
+        self.frLogo.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.frLogo.setAutoFillBackground(False)
+        self.frLogo.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"background-color:#0E90AD;\n"
+"\n"
+"border: 20px;\n"
+"/*border-image: url(:/newPrefix/002-graduated.png);*/\n"
+"/*image: url(:/newPrefix/nautilusIcone.png);*/\n"
+"image: url(:/newPrefix/logo-naultilus.png);\n"
+"border-radius: 100px\n"
+"\n"
+"\n"
+"")
+        self.frLogo.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frLogo.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frLogo.setLineWidth(1)
+        self.frLogo.setMidLineWidth(0)
+        self.frLogo.setObjectName("frLogo")
+        self.gridLayout_3.addWidget(self.frLogo, 5, 1, 1, 3)
+        spacerItem2 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_3.addItem(spacerItem2, 4, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.frPrincipalIteraveis, 1, 0, 1, 1)
+        self.frRedes = QtWidgets.QFrame(self.frBordaIretaveisLogin)
+        self.frRedes.setMinimumSize(QtCore.QSize(280, 100))
+        self.frRedes.setMaximumSize(QtCore.QSize(16777215, 100))
+        self.frRedes.setStyleSheet("")
+        self.frRedes.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frRedes.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frRedes.setObjectName("frRedes")
+        self.gridLayout_6 = QtWidgets.QGridLayout(self.frRedes)
+        self.gridLayout_6.setObjectName("gridLayout_6")
+        self.pbFacebook = QtWidgets.QPushButton(self.frRedes)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pbFacebook.sizePolicy().hasHeightForWidth())
+        self.pbFacebook.setSizePolicy(sizePolicy)
+        self.pbFacebook.setMinimumSize(QtCore.QSize(50, 50))
+        self.pbFacebook.setMaximumSize(QtCore.QSize(50, 50))
         self.pbFacebook.setSizeIncrement(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -267,8 +387,7 @@ class Ui_mwLogin(object):
         self.pbFacebook.setStyleSheet("QPushButton {\n"
 "    border-radius: 25px;\n"
 "    background-color: rgba(255, 255, 255, 0);\n"
-"    \n"
-"    border-image: url(:/newPrefix/Imagens/043-facebook-1.png);\n"
+"    border-image: url(:/newPrefix/043-facebook-1.png);\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
@@ -290,54 +409,10 @@ class Ui_mwLogin(object):
         self.pbFacebook.setDefault(False)
         self.pbFacebook.setFlat(False)
         self.pbFacebook.setObjectName("pbFacebook")
-        self.pbTweeter = QtWidgets.QPushButton(self.frame)
-        self.pbTweeter.setGeometry(QtCore.QRect(890, 610, 50, 50))
-        self.pbTweeter.setSizeIncrement(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setUnderline(False)
-        font.setWeight(50)
-        font.setStrikeOut(False)
-        font.setKerning(True)
-        font.setStyleStrategy(QtGui.QFont.PreferDefault)
-        self.pbTweeter.setFont(font)
-        self.pbTweeter.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
-        self.pbTweeter.setMouseTracking(False)
-        self.pbTweeter.setTabletTracking(False)
-        self.pbTweeter.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.pbTweeter.setAcceptDrops(False)
-        self.pbTweeter.setToolTipDuration(-1)
-        self.pbTweeter.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.pbTweeter.setAutoFillBackground(False)
-        self.pbTweeter.setStyleSheet("QPushButton {\n"
-"    border-radius: 25px;\n"
-"    background-color: rgba(255, 255, 255, 0);\n"
-"    image: url(:/newPrefix/Imagens/013-twitter-1.png);\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(127,255,212);\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(170, 140, 140);\n"
-"}\n"
-"\n"
-"")
-        self.pbTweeter.setText("")
-        self.pbTweeter.setIconSize(QtCore.QSize(25, 25))
-        self.pbTweeter.setCheckable(False)
-        self.pbTweeter.setChecked(False)
-        self.pbTweeter.setAutoRepeat(False)
-        self.pbTweeter.setAutoExclusive(False)
-        self.pbTweeter.setAutoDefault(False)
-        self.pbTweeter.setDefault(False)
-        self.pbTweeter.setFlat(False)
-        self.pbTweeter.setObjectName("pbTweeter")
-        self.pbYouTube = QtWidgets.QPushButton(self.frame)
-        self.pbYouTube.setGeometry(QtCore.QRect(890, 670, 50, 50))
+        self.gridLayout_6.addWidget(self.pbFacebook, 0, 0, 1, 1)
+        self.pbYouTube = QtWidgets.QPushButton(self.frRedes)
+        self.pbYouTube.setMinimumSize(QtCore.QSize(50, 50))
+        self.pbYouTube.setMaximumSize(QtCore.QSize(50, 50))
         self.pbYouTube.setSizeIncrement(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -362,8 +437,7 @@ class Ui_mwLogin(object):
 "    background-color: rgba(255, 255, 255, 0);\n"
 "    \n"
 "    \n"
-"    \n"
-"    image: url(:/newPrefix/Imagens/002-youtube.png);\n"
+"    image: url(:/newPrefix/002-youtube.png);\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
@@ -385,39 +459,119 @@ class Ui_mwLogin(object):
         self.pbYouTube.setDefault(False)
         self.pbYouTube.setFlat(False)
         self.pbYouTube.setObjectName("pbYouTube")
-        self.frBarraBaixoAzul = QtWidgets.QFrame(self.frame)
-        self.frBarraBaixoAzul.setGeometry(QtCore.QRect(0, 670, 800, 84))
-        self.frBarraBaixoAzul.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.frBarraBaixoAzul.setStyleSheet("QFrame {\n"
-"    background-color: #3E5F8A;\n"
-"    border-radius: 500px;\n"
-"    border: 5px solid #DAA520\n"
+        self.gridLayout_6.addWidget(self.pbYouTube, 0, 1, 1, 1)
+        self.pbTweeter = QtWidgets.QPushButton(self.frRedes)
+        self.pbTweeter.setMinimumSize(QtCore.QSize(50, 50))
+        self.pbTweeter.setMaximumSize(QtCore.QSize(50, 50))
+        self.pbTweeter.setSizeIncrement(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setUnderline(False)
+        font.setWeight(50)
+        font.setStrikeOut(False)
+        font.setKerning(True)
+        font.setStyleStrategy(QtGui.QFont.PreferDefault)
+        self.pbTweeter.setFont(font)
+        self.pbTweeter.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+        self.pbTweeter.setMouseTracking(False)
+        self.pbTweeter.setTabletTracking(False)
+        self.pbTweeter.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.pbTweeter.setAcceptDrops(False)
+        self.pbTweeter.setToolTipDuration(-1)
+        self.pbTweeter.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.pbTweeter.setAutoFillBackground(False)
+        self.pbTweeter.setStyleSheet("QPushButton {\n"
+"    border-radius: 25px;\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"    \n"
+"    image: url(:/newPrefix/013-twitter-1.png);\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(127,255,212);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(170, 140, 140);\n"
+"}\n"
+"\n"
+"")
+        self.pbTweeter.setText("")
+        self.pbTweeter.setIconSize(QtCore.QSize(25, 25))
+        self.pbTweeter.setCheckable(False)
+        self.pbTweeter.setChecked(False)
+        self.pbTweeter.setAutoRepeat(False)
+        self.pbTweeter.setAutoExclusive(False)
+        self.pbTweeter.setAutoDefault(False)
+        self.pbTweeter.setDefault(False)
+        self.pbTweeter.setFlat(False)
+        self.pbTweeter.setObjectName("pbTweeter")
+        self.gridLayout_6.addWidget(self.pbTweeter, 0, 2, 1, 1)
+        self.gridLayout_2.addWidget(self.frRedes, 2, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.frBordaIretaveisLogin, 0, 3, 1, 1)
+        spacerItem3 = QtWidgets.QSpacerItem(50, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_8.addItem(spacerItem3, 0, 2, 1, 1)
+        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_8.addItem(spacerItem4, 0, 0, 1, 1)
+        self.frBordaTextuaisLogin = QtWidgets.QFrame(self.pgLogin)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(100)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frBordaTextuaisLogin.sizePolicy().hasHeightForWidth())
+        self.frBordaTextuaisLogin.setSizePolicy(sizePolicy)
+        self.frBordaTextuaisLogin.setMinimumSize(QtCore.QSize(500, 640))
+        self.frBordaTextuaisLogin.setMaximumSize(QtCore.QSize(1000, 720))
+        self.frBordaTextuaisLogin.setStyleSheet("#frBordaTextuaisLogin {\n"
+"    background-color: #fafafa;\n"
+"    background-color: #daa520;\n"
+"    border-radius: 50%;\n"
+"    /*\n"
+"    border: 5px solid rgb(211, 143, 37);\n"
+"*/\n"
 "}")
-        self.frBarraBaixoAzul.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frBarraBaixoAzul.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frBarraBaixoAzul.setObjectName("frBarraBaixoAzul")
-        self.frBordaCirculo.raise_()
-        self.pbFacebook.raise_()
-        self.pbTweeter.raise_()
-        self.pbYouTube.raise_()
-        self.frLogo.raise_()
-        self.frBarraBaixoAzul.raise_()
-        self.gridLayout.addWidget(self.frame, 1, 0, 1, 1)
+        self.frBordaTextuaisLogin.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frBordaTextuaisLogin.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frBordaTextuaisLogin.setObjectName("frBordaTextuaisLogin")
+        self.gridLayout_7 = QtWidgets.QGridLayout(self.frBordaTextuaisLogin)
+        self.gridLayout_7.setObjectName("gridLayout_7")
+        self.frTextuaisLogin = QtWidgets.QFrame(self.frBordaTextuaisLogin)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(100)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frTextuaisLogin.sizePolicy().hasHeightForWidth())
+        self.frTextuaisLogin.setSizePolicy(sizePolicy)
+        self.frTextuaisLogin.setMinimumSize(QtCore.QSize(472, 650))
+        self.frTextuaisLogin.setMaximumSize(QtCore.QSize(950, 650))
+        self.frTextuaisLogin.setStyleSheet("")
+        self.frTextuaisLogin.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frTextuaisLogin.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frTextuaisLogin.setObjectName("frTextuaisLogin")
+        self.frame = QtWidgets.QFrame(self.frTextuaisLogin)
+        self.frame.setGeometry(QtCore.QRect(80, 170, 301, 91))
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.gridLayout_7.addWidget(self.frTextuaisLogin, 0, 2, 1, 1)
+        self.gridLayout_8.addWidget(self.frBordaTextuaisLogin, 0, 1, 1, 1)
+        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_8.addItem(spacerItem5, 0, 4, 1, 1)
         self.stkLogin.addWidget(self.pgLogin)
-        self.horizontalLayout.addWidget(self.stkLogin)
+        self.gridLayout.addWidget(self.stkLogin, 0, 1, 1, 1)
         mwLogin.setCentralWidget(self.wdgLgin)
 
         self.retranslateUi(mwLogin)
-        self.stkLogin.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(mwLogin)
 
     def retranslateUi(self, mwLogin):
         _translate = QtCore.QCoreApplication.translate
         mwLogin.setWindowTitle(_translate("mwLogin", "MainWindow"))
+        self.pbFechaPopUp.setText(_translate("mwLogin", "X"))
         self.leUsuario.setPlaceholderText(_translate("mwLogin", "Usuário"))
         self.leSenha.setPlaceholderText(_translate("mwLogin", "Senha"))
-        self.pbCadastro.setText(_translate("mwLogin", "Cadastre-se"))
         self.pbLogin.setText(_translate("mwLogin", "Login"))
+        self.pbCadastro.setText(_translate("mwLogin", "Cadastre-se"))
 import resource
 
 

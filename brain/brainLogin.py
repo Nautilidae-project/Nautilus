@@ -4,6 +4,7 @@ from Telas.arquivos_front_end.login import Ui_mwLogin
 from brain.brainCadastro import brainCadastro
 from brain.DAOs.brainUserConfig import *
 
+
 class brainLogin(Ui_mwLogin, QMainWindow):
 
     def __init__(self):
@@ -16,6 +17,9 @@ class brainLogin(Ui_mwLogin, QMainWindow):
         self.stkLogin.addWidget(self.telaCadastro)
         self.pbCadastro.clicked.connect(self.navigate)
         self.pbLogin.clicked.connect(self.trataLogin)
+        self.lbPopUp.hide()
+        self.pbFechaPopUp.hide()
+        self.pbFechaPopUp.clicked.connect(lambda: (self.lbPopUp.hide(), self.pbFechaPopUp.hide()))
 
     def navigate(self):
         self.stkLogin.setCurrentIndex(1)
@@ -27,15 +31,22 @@ class brainLogin(Ui_mwLogin, QMainWindow):
         strNomeUsuario = self.leUsuario.text()
         if strNomeUsuario == "":
             print("Digite um usuário")
+            self.popUp("Digite um usuário")
             return False
         if not buscaUsuario(strNomeUsuario):
             print("Não foi encontrado nenhum usuário com o nome cadastrado")
+            self.popUp("Usuário Não Cadastrado")
         else:
             if confereSenha(strNomeUsuario, self.leSenha.text()):
                 print('Usuário(a) confirmado(a)!')
             else:
                 print('Senha inválida!')
+                self.popUp("Senha Inválida")
 
+    def popUp(self, mensagem):
+        self.lbPopUp.setText(mensagem)
+        self.lbPopUp.show()
+        self.pbFechaPopUp.show()
 
 
 if __name__ == '__main__':
