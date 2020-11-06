@@ -32,7 +32,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
         self.leSenha.textEdited.connect(lambda: self.defineCampo('senha'))
         self.leSenhaConfirma.textEdited.connect(lambda: self.defineCampo('confS'))
 
-        self.cmbEstados.addItems(getEstados())
+        self.cbxEstados.addItems(getEstados())
 
         self.leCNPJ.editingFinished.connect(lambda: self.insereMascara('cnpj'))
         self.leTelefone.editingFinished.connect(lambda: self.insereMascara('tel'))
