@@ -18,8 +18,10 @@ class Ui_mwLogin(object):
         mwLogin.resize(1000, 700)
         mwLogin.setMinimumSize(QtCore.QSize(1000, 700))
         mwLogin.setStyleSheet("QWidget {\n"
-"    background-color: #80CCE1;\n"
+"    background-color: #80CCE1; /*Azul externo - mais claro*/\n"
 "}\n"
+"\n"
+"/*------------------------------------------------------------------------------*/\n"
 "\n"
 "QLabel {\n"
 "    font: bold;\n"
@@ -29,10 +31,18 @@ class Ui_mwLogin(object):
 "    background-color: #DAA520;\n"
 "}\n"
 "\n"
+"/*------------------------------------------------------------------------------*/\n"
+"\n"
 "QFrame {\n"
-"    background-color: #0E90AD;\n"
+"    background-color: #0E90AD; /*Azul Interno-mais escuro*/\n"
 "    border-radius: 50%;\n"
 "}\n"
+"\n"
+"#frBordaIretaveisLogin, #frBordaTextuaisLogin  {\n"
+"    background-color: #DFD880;\n"
+"}\n"
+"\n"
+"/*------------------------------------------------------------------------------*/\n"
 "\n"
 "QLineEdit {\n"
 "border-radius: 10px;\n"
@@ -70,14 +80,7 @@ class Ui_mwLogin(object):
         self.frBordaIretaveisLogin.setMaximumSize(QtCore.QSize(500, 720))
         self.frBordaIretaveisLogin.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.frBordaIretaveisLogin.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
-        self.frBordaIretaveisLogin.setStyleSheet("#frBordaIretaveisLogin {\n"
-"    background-color: #daa520;\n"
-"    border-radius: 50%;\n"
-"    /*\n"
-"    border: 5px solid rgb(211, 143, 37);\n"
-"*/\n"
-"\n"
-"}")
+        self.frBordaIretaveisLogin.setStyleSheet("")
         self.frBordaIretaveisLogin.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frBordaIretaveisLogin.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frBordaIretaveisLogin.setObjectName("frBordaIretaveisLogin")
@@ -98,7 +101,7 @@ class Ui_mwLogin(object):
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_3.addItem(spacerItem, 5, 0, 1, 1)
         self.frPopUp = QtWidgets.QFrame(self.frPrincipalIteraveis)
-        self.frPopUp.setMinimumSize(QtCore.QSize(287, 74))
+        self.frPopUp.setMinimumSize(QtCore.QSize(300, 74))
         self.frPopUp.setStyleSheet("background-color: none;")
         self.frPopUp.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frPopUp.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -115,7 +118,7 @@ class Ui_mwLogin(object):
         font.setWeight(50)
         self.lbPopUp.setFont(font)
         self.lbPopUp.setStyleSheet("QLabel {\n"
-"    background-color: #DAA520;\n"
+"    background-color: #DFD880;\n"
 "    border: none;\n"
 "    border-top-left-radius: 1px;\n"
 "    border-top-right-radius: 1px;\n"
@@ -141,7 +144,7 @@ class Ui_mwLogin(object):
         self.pbFechaPopUp.setStyleSheet("QPushButton {\n"
 "    border-bottom-left-radius: 20px;\n"
 "    border-bottom-right-radius: 20px;\n"
-"    background-color: rgb(211, 143, 37);\n"
+"    background-color: #FF6961;\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
@@ -239,9 +242,9 @@ class Ui_mwLogin(object):
         self.pbLogin.setAutoFillBackground(False)
         self.pbLogin.setStyleSheet("QPushButton {\n"
 "    border-radius: 20px;\n"
-"    border-color: rgb(254, 254, 254);\n"
-"    color: rgb(255, 255, 255);\n"
+"    color: rgb(100, 100, 100);\n"
 "    background-color: rgb(211, 143, 37);\n"
+"    background-color: #DFD880;\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
@@ -293,9 +296,9 @@ class Ui_mwLogin(object):
         self.pbCadastro.setAutoFillBackground(False)
         self.pbCadastro.setStyleSheet("QPushButton {\n"
 "    border-radius: 20px;\n"
-"    border-color: rgb(254, 254, 254);\n"
+"    color: rgb(100, 100, 100);\n"
 "    background-color: rgb(170, 170, 170);\n"
-"    color: rgb(255, 255, 255);\n"
+"    background-color: #80CEE1\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
@@ -523,14 +526,7 @@ class Ui_mwLogin(object):
         self.frBordaTextuaisLogin.setSizePolicy(sizePolicy)
         self.frBordaTextuaisLogin.setMinimumSize(QtCore.QSize(500, 640))
         self.frBordaTextuaisLogin.setMaximumSize(QtCore.QSize(1000, 720))
-        self.frBordaTextuaisLogin.setStyleSheet("#frBordaTextuaisLogin {\n"
-"    background-color: #fafafa;\n"
-"    background-color: #daa520;\n"
-"    border-radius: 50%;\n"
-"    /*\n"
-"    border: 5px solid rgb(211, 143, 37);\n"
-"*/\n"
-"}")
+        self.frBordaTextuaisLogin.setStyleSheet("")
         self.frBordaTextuaisLogin.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frBordaTextuaisLogin.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frBordaTextuaisLogin.setObjectName("frBordaTextuaisLogin")

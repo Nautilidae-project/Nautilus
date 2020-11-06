@@ -24,13 +24,34 @@ class Ui_mwCadastro(object):
 "    background-color: #80CCE1;\n"
 "}\n"
 "\n"
+"/*---------------------------Label-------------------------------*/\n"
+"\n"
 "QLabel {\n"
 "    font: bold;\n"
 "    border-radius: 10px;\n"
 "    border: 2px solid  #ffffff;\n"
-"    color: rgb(255, 255, 255);\n"
-"    background-color: #DAA520;\n"
+"    color: rgb(100, 100, 100);\n"
+"    background-color: #DFD880;\n"
 "}\n"
+"\n"
+"#lbCadastroTexto, #lbCadastroTexto2{\n"
+"    font: 80  38pt \"Fira Sans\";\n"
+"    color: #ffffff;\n"
+"    border-radius: 0px;\n"
+"    border-color: transparent;\n"
+"    border-bottom: 5px solid  #DFD880;\n"
+"    background-color: none;\n"
+"    padding: -30;\n"
+"}\n"
+"\n"
+"#lbTextoLogin, #lbTextoEmpresa {\n"
+"    font: 80  18pt \"Fira Sans\" ;\n"
+"    background-color: none;\n"
+"    border: none;\n"
+"    color: #FFF;\n"
+"}\n"
+"\n"
+"/*-------------------------QLineEdit-----------------------------*/\n"
 "\n"
 "QLineEdit {\n"
 "    border-radius: 10px;\n"
@@ -39,15 +60,34 @@ class Ui_mwCadastro(object):
 "    background-color: rgb(255, 255, 255);\n"
 "}\n"
 "\n"
-"#frame, #frame_3 {\n"
+"/*----------------------Botões---------------------------------------*/\n"
+"\n"
+"QPushButton {\n"
+"    border: 5px solid #DFD880;\n"
+"    color: #ffffff;\n"
 "    background-color: #0E90AD;\n"
-"    border-radius: 50%;\n"
-"    /*\n"
-"    border: 5px solid rgb(211, 143, 37);\n"
-"*/\n"
-"    border: 15px solid #DAA520;\n"
 "}\n"
 "\n"
+"\n"
+"QPushButton:hover {\n"
+"    border-color:#ffffff;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(170, 140, 140);\n"
+"}\n"
+"\n"
+"#pbContinuaCadastro, #pbFazerCadastro{\n"
+"    border-bottom-right-radius: 50%;\n"
+"    border-top-left-radius: 50px;\n"
+"}\n"
+"\n"
+"#pbVoltarLogin, #pbVoltarTab{\n"
+"    border-bottom-left-radius: 50px;\n"
+"    border-top-right-radius: 50px;\n"
+"}\n"
+"\n"
+"/*-------------------------------------------------------------*/\n"
 "")
         mwCadastro.setIconSize(QtCore.QSize(25, 25))
         mwCadastro.setAnimated(True)
@@ -59,23 +99,8 @@ class Ui_mwCadastro(object):
         self.wdgCadastro.setObjectName("wdgCadastro")
         self.gridLayout = QtWidgets.QGridLayout(self.wdgCadastro)
         self.gridLayout.setObjectName("gridLayout")
-        self.frame_2 = QtWidgets.QFrame(self.wdgCadastro)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.frame_2.sizePolicy().hasHeightForWidth())
-        self.frame_2.setSizePolicy(sizePolicy)
-        self.frame_2.setMinimumSize(QtCore.QSize(600, 100))
-        self.frame_2.setMaximumSize(QtCore.QSize(2000, 2000))
-        self.frame_2.setStyleSheet("background-color: transparent;")
-        self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_2.setObjectName("frame_2")
-        self.gridLayout.addWidget(self.frame_2, 2, 0, 1, 1)
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem, 0, 0, 1, 1)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem1, 3, 0, 1, 1)
+        self.gridLayout.addItem(spacerItem, 2, 0, 1, 1)
         self.tabs = QtWidgets.QTabWidget(self.wdgCadastro)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -102,6 +127,9 @@ class Ui_mwCadastro(object):
         self.tabs.setAutoFillBackground(False)
         self.tabs.setStyleSheet("QTabWidget::pane {}\n"
 "\n"
+"/*-------------------------------------------------------------*/\n"
+"\n"
+"\n"
 "QTabWidget::tab-bar {\n"
 "    alignment: center;\n"
 "}\n"
@@ -118,10 +146,20 @@ class Ui_mwCadastro(object):
 "\n"
 "QTabBar::tab:selected{\n"
 "   \n"
-"    background-color: #DAA520;\n"
+"    background-color: #DFD880;\n"
 "    margin: 0 10 0 10;\n"
 "    height: 45px;\n"
 "}\n"
+"\n"
+"/*-------------------------------------------------------------*/\n"
+"\n"
+"#frTabLogin, #frTabEmpresa {\n"
+"    background-color: #0E90AD;\n"
+"    border-radius: 50%;\n"
+"    border: 15px solid #DFD880;\n"
+"}\n"
+"\n"
+"/*-------------------------------------------------------------*/\n"
 "\n"
 "QTabBar::tab:!selected {\n"
 "    background-color: #f0f0f0;\n"
@@ -129,6 +167,8 @@ class Ui_mwCadastro(object):
 "    text: top;\n"
 "\n"
 "}\n"
+"\n"
+"/*-------------------------------------------------------------*/\n"
 "\n"
 "QTabBar::tab:hover {\n"
 "     border-color: #C2C7CB; /* same as the pane color */\n"
@@ -142,140 +182,15 @@ class Ui_mwCadastro(object):
         self.tabs.setMovable(False)
         self.tabs.setTabBarAutoHide(False)
         self.tabs.setObjectName("tabs")
-        self.t1 = QtWidgets.QWidget()
-        self.t1.setObjectName("t1")
-        self.leNomeUsuario = QtWidgets.QLineEdit(self.t1)
-        self.leNomeUsuario.setEnabled(True)
-        self.leNomeUsuario.setGeometry(QtCore.QRect(120, 170, 600, 30))
-        font = QtGui.QFont()
-        font.setFamily("Roboto Slab")
-        font.setPointSize(12)
-        self.leNomeUsuario.setFont(font)
-        self.leNomeUsuario.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.leNomeUsuario.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.leNomeUsuario.setStyleSheet("")
-        self.leNomeUsuario.setInputMethodHints(QtCore.Qt.ImhNone)
-        self.leNomeUsuario.setInputMask("")
-        self.leNomeUsuario.setText("")
-        self.leNomeUsuario.setFrame(True)
-        self.leNomeUsuario.setEchoMode(QtWidgets.QLineEdit.Normal)
-        self.leNomeUsuario.setAlignment(QtCore.Qt.AlignCenter)
-        self.leNomeUsuario.setObjectName("leNomeUsuario")
-        self.lbSenhaConfirma = QtWidgets.QLabel(self.t1)
-        self.lbSenhaConfirma.setGeometry(QtCore.QRect(60, 270, 81, 30))
-        self.lbSenhaConfirma.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.lbSenhaConfirma.setStyleSheet("")
-        self.lbSenhaConfirma.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbSenhaConfirma.setObjectName("lbSenhaConfirma")
-        self.leEmail = QtWidgets.QLineEdit(self.t1)
-        self.leEmail.setGeometry(QtCore.QRect(120, 320, 321, 30))
-        font = QtGui.QFont()
-        font.setFamily("Roboto Slab")
-        font.setPointSize(12)
-        self.leEmail.setFont(font)
-        self.leEmail.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.leEmail.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.leEmail.setStyleSheet("")
-        self.leEmail.setInputMethodHints(QtCore.Qt.ImhNone)
-        self.leEmail.setInputMask("")
-        self.leEmail.setText("")
-        self.leEmail.setFrame(True)
-        self.leEmail.setEchoMode(QtWidgets.QLineEdit.Normal)
-        self.leEmail.setAlignment(QtCore.Qt.AlignCenter)
-        self.leEmail.setObjectName("leEmail")
-        self.lbEmail = QtWidgets.QLabel(self.t1)
-        self.lbEmail.setGeometry(QtCore.QRect(60, 320, 81, 30))
-        self.lbEmail.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.lbEmail.setStyleSheet("")
-        self.lbEmail.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbEmail.setObjectName("lbEmail")
-        self.leSenha = QtWidgets.QLineEdit(self.t1)
-        self.leSenha.setGeometry(QtCore.QRect(120, 220, 600, 30))
-        font = QtGui.QFont()
-        font.setFamily("Roboto Slab")
-        font.setPointSize(12)
-        font.setBold(False)
-        font.setWeight(50)
-        self.leSenha.setFont(font)
-        self.leSenha.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.leSenha.setStyleSheet("")
-        self.leSenha.setInputMethodHints(QtCore.Qt.ImhHiddenText|QtCore.Qt.ImhNoAutoUppercase|QtCore.Qt.ImhNoPredictiveText|QtCore.Qt.ImhSensitiveData)
-        self.leSenha.setInputMask("")
-        self.leSenha.setText("")
-        self.leSenha.setFrame(True)
-        self.leSenha.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.leSenha.setAlignment(QtCore.Qt.AlignCenter)
-        self.leSenha.setDragEnabled(False)
-        self.leSenha.setReadOnly(False)
-        self.leSenha.setClearButtonEnabled(False)
-        self.leSenha.setObjectName("leSenha")
-        self.lbUsuario = QtWidgets.QLabel(self.t1)
-        self.lbUsuario.setGeometry(QtCore.QRect(60, 170, 81, 30))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setItalic(False)
-        font.setWeight(75)
-        self.lbUsuario.setFont(font)
-        self.lbUsuario.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.lbUsuario.setStyleSheet("")
-        self.lbUsuario.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbUsuario.setObjectName("lbUsuario")
-        self.lbSenha = QtWidgets.QLabel(self.t1)
-        self.lbSenha.setGeometry(QtCore.QRect(60, 220, 81, 30))
-        self.lbSenha.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.lbSenha.setStyleSheet("")
-        self.lbSenha.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbSenha.setObjectName("lbSenha")
-        self.leSenhaConfirma = QtWidgets.QLineEdit(self.t1)
-        self.leSenhaConfirma.setGeometry(QtCore.QRect(120, 270, 600, 30))
-        font = QtGui.QFont()
-        font.setFamily("Roboto Slab")
-        font.setPointSize(12)
-        font.setBold(False)
-        font.setWeight(50)
-        self.leSenhaConfirma.setFont(font)
-        self.leSenhaConfirma.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.leSenhaConfirma.setStyleSheet("")
-        self.leSenhaConfirma.setInputMethodHints(QtCore.Qt.ImhHiddenText|QtCore.Qt.ImhNoAutoUppercase|QtCore.Qt.ImhNoPredictiveText|QtCore.Qt.ImhSensitiveData)
-        self.leSenhaConfirma.setInputMask("")
-        self.leSenhaConfirma.setText("")
-        self.leSenhaConfirma.setFrame(True)
-        self.leSenhaConfirma.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.leSenhaConfirma.setAlignment(QtCore.Qt.AlignCenter)
-        self.leSenhaConfirma.setDragEnabled(False)
-        self.leSenhaConfirma.setReadOnly(False)
-        self.leSenhaConfirma.setClearButtonEnabled(False)
-        self.leSenhaConfirma.setObjectName("leSenhaConfirma")
-        self.lbInfoLoginTexto = QtWidgets.QLabel(self.t1)
-        self.lbInfoLoginTexto.setGeometry(QtCore.QRect(60, 120, 237, 30))
-        font = QtGui.QFont()
-        font.setFamily("Fira Sans")
-        font.setPointSize(18)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setUnderline(False)
-        font.setWeight(10)
-        self.lbInfoLoginTexto.setFont(font)
-        self.lbInfoLoginTexto.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.lbInfoLoginTexto.setAutoFillBackground(False)
-        self.lbInfoLoginTexto.setStyleSheet("#lbInfoLoginTexto {\n"
-"    \n"
-"    font: 80  18pt \"Fira Sans\";\n"
-"    background-color: rgba(0, 0, 0,0);\n"
-"    border: 0px\n"
-"}")
-        self.lbInfoLoginTexto.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.lbInfoLoginTexto.setTextFormat(QtCore.Qt.AutoText)
-        self.lbInfoLoginTexto.setScaledContents(False)
-        self.lbInfoLoginTexto.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbInfoLoginTexto.setObjectName("lbInfoLoginTexto")
-        self.frame = QtWidgets.QFrame(self.t1)
-        self.frame.setGeometry(QtCore.QRect(0, 0, 791, 471))
-        self.frame.setStyleSheet("")
-        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame.setObjectName("frame")
-        self.lbCadastroTexto = QtWidgets.QLabel(self.frame)
+        self.tabCadastroLogin = QtWidgets.QWidget()
+        self.tabCadastroLogin.setObjectName("tabCadastroLogin")
+        self.frTabLogin = QtWidgets.QFrame(self.tabCadastroLogin)
+        self.frTabLogin.setGeometry(QtCore.QRect(0, 0, 791, 471))
+        self.frTabLogin.setStyleSheet("")
+        self.frTabLogin.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frTabLogin.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frTabLogin.setObjectName("frTabLogin")
+        self.lbCadastroTexto = QtWidgets.QLabel(self.frTabLogin)
         self.lbCadastroTexto.setGeometry(QtCore.QRect(190, 30, 400, 70))
         font = QtGui.QFont()
         font.setFamily("Fira Sans")
@@ -289,14 +204,7 @@ class Ui_mwCadastro(object):
         font.setStyleStrategy(QtGui.QFont.PreferDefault)
         self.lbCadastroTexto.setFont(font)
         self.lbCadastroTexto.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.lbCadastroTexto.setStyleSheet("#lbCadastroTexto{\n"
-"    font: 80  38pt \"Fira Sans\";\n"
-"    border-radius: 0px;\n"
-"    border-color: transparent;\n"
-"    border-bottom: 5px solid  #DAA520;\n"
-"    background-color: none;\n"
-"    padding: -30;\n"
-"}")
+        self.lbCadastroTexto.setStyleSheet("")
         self.lbCadastroTexto.setTextFormat(QtCore.Qt.AutoText)
         self.lbCadastroTexto.setAlignment(QtCore.Qt.AlignBottom|QtCore.Qt.AlignHCenter)
         self.lbCadastroTexto.setWordWrap(False)
@@ -304,13 +212,13 @@ class Ui_mwCadastro(object):
         self.lbCadastroTexto.setOpenExternalLinks(False)
         self.lbCadastroTexto.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
         self.lbCadastroTexto.setObjectName("lbCadastroTexto")
-        self.lbTelefone = QtWidgets.QLabel(self.frame)
+        self.lbTelefone = QtWidgets.QLabel(self.frTabLogin)
         self.lbTelefone.setGeometry(QtCore.QRect(460, 320, 81, 30))
         self.lbTelefone.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.lbTelefone.setStyleSheet("")
         self.lbTelefone.setAlignment(QtCore.Qt.AlignCenter)
         self.lbTelefone.setObjectName("lbTelefone")
-        self.leTelefone = QtWidgets.QLineEdit(self.frame)
+        self.leTelefone = QtWidgets.QLineEdit(self.frTabLogin)
         self.leTelefone.setGeometry(QtCore.QRect(520, 320, 201, 30))
         font = QtGui.QFont()
         font.setFamily("Roboto Slab")
@@ -326,7 +234,7 @@ class Ui_mwCadastro(object):
         self.leTelefone.setEchoMode(QtWidgets.QLineEdit.Normal)
         self.leTelefone.setAlignment(QtCore.Qt.AlignCenter)
         self.leTelefone.setObjectName("leTelefone")
-        self.pbContinuaCadastro = QtWidgets.QPushButton(self.frame)
+        self.pbContinuaCadastro = QtWidgets.QPushButton(self.frTabLogin)
         self.pbContinuaCadastro.setGeometry(QtCore.QRect(640, 420, 150, 50))
         self.pbContinuaCadastro.setSizeIncrement(QtCore.QSize(0, 0))
         font = QtGui.QFont()
@@ -347,24 +255,7 @@ class Ui_mwCadastro(object):
         self.pbContinuaCadastro.setToolTipDuration(-1)
         self.pbContinuaCadastro.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.pbContinuaCadastro.setAutoFillBackground(False)
-        self.pbContinuaCadastro.setStyleSheet("QPushButton {\n"
-"    border-bottom-right-radius: 50%;\n"
-"    border-top-left-radius: 50px;\n"
-"    border: 5px solid #DAA520;\n"
-"    color: rgb(255, 255, 255);\n"
-"    background-color: #0E90AD;\n"
-"}\n"
-"\n"
-"\n"
-"QPushButton:hover {\n"
-"    border-color:#ffffff;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(170, 140, 140);\n"
-"}\n"
-"\n"
-"")
+        self.pbContinuaCadastro.setStyleSheet("")
         self.pbContinuaCadastro.setIconSize(QtCore.QSize(35, 35))
         self.pbContinuaCadastro.setCheckable(False)
         self.pbContinuaCadastro.setChecked(False)
@@ -374,7 +265,7 @@ class Ui_mwCadastro(object):
         self.pbContinuaCadastro.setDefault(False)
         self.pbContinuaCadastro.setFlat(False)
         self.pbContinuaCadastro.setObjectName("pbContinuaCadastro")
-        self.pbVoltarLogin = QtWidgets.QPushButton(self.frame)
+        self.pbVoltarLogin = QtWidgets.QPushButton(self.frTabLogin)
         self.pbVoltarLogin.setGeometry(QtCore.QRect(0, 420, 150, 50))
         self.pbVoltarLogin.setSizeIncrement(QtCore.QSize(0, 0))
         font = QtGui.QFont()
@@ -395,25 +286,7 @@ class Ui_mwCadastro(object):
         self.pbVoltarLogin.setToolTipDuration(-1)
         self.pbVoltarLogin.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.pbVoltarLogin.setAutoFillBackground(False)
-        self.pbVoltarLogin.setStyleSheet("QPushButton {\n"
-"    border: 5px solid #DAA520;\n"
-"    border-bottom-left-radius: 50px;\n"
-"    border-top-right-radius: 50px;\n"
-"    color: rgb(255, 255, 255);\n"
-"    background-color: #0E90AD;\n"
-"}\n"
-"\n"
-"\n"
-"QPushButton:hover {\n"
-"    border-color:#ffffff;\n"
-"\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(170, 140, 140);\n"
-"}\n"
-"\n"
-"")
+        self.pbVoltarLogin.setStyleSheet("")
         self.pbVoltarLogin.setIconSize(QtCore.QSize(35, 35))
         self.pbVoltarLogin.setCheckable(False)
         self.pbVoltarLogin.setChecked(False)
@@ -423,115 +296,156 @@ class Ui_mwCadastro(object):
         self.pbVoltarLogin.setDefault(False)
         self.pbVoltarLogin.setFlat(False)
         self.pbVoltarLogin.setObjectName("pbVoltarLogin")
-        self.leTelefone.raise_()
-        self.lbCadastroTexto.raise_()
-        self.lbTelefone.raise_()
-        self.pbContinuaCadastro.raise_()
-        self.pbVoltarLogin.raise_()
-        self.frame.raise_()
-        self.leNomeUsuario.raise_()
-        self.leEmail.raise_()
-        self.lbEmail.raise_()
-        self.leSenha.raise_()
-        self.lbUsuario.raise_()
-        self.lbSenha.raise_()
-        self.leSenhaConfirma.raise_()
-        self.lbInfoLoginTexto.raise_()
-        self.lbSenhaConfirma.raise_()
-        self.tabs.addTab(self.t1, "")
-        self.t2 = QtWidgets.QWidget()
-        self.t2.setObjectName("t2")
-        self.lbInfoEmpresaTexto = QtWidgets.QLabel(self.t2)
-        self.lbInfoEmpresaTexto.setGeometry(QtCore.QRect(60, 120, 271, 30))
-        self.lbInfoEmpresaTexto.setStyleSheet("#lbInfoEmpresaTexto {\n"
+        self.lbSenhaConfirma = QtWidgets.QLabel(self.frTabLogin)
+        self.lbSenhaConfirma.setGeometry(QtCore.QRect(60, 270, 81, 30))
+        self.lbSenhaConfirma.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.lbSenhaConfirma.setStyleSheet("")
+        self.lbSenhaConfirma.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbSenhaConfirma.setObjectName("lbSenhaConfirma")
+        self.leNomeUsuario = QtWidgets.QLineEdit(self.frTabLogin)
+        self.leNomeUsuario.setEnabled(True)
+        self.leNomeUsuario.setGeometry(QtCore.QRect(120, 170, 600, 30))
+        font = QtGui.QFont()
+        font.setFamily("Roboto Slab")
+        font.setPointSize(12)
+        self.leNomeUsuario.setFont(font)
+        self.leNomeUsuario.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.leNomeUsuario.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.leNomeUsuario.setStyleSheet("")
+        self.leNomeUsuario.setInputMethodHints(QtCore.Qt.ImhNone)
+        self.leNomeUsuario.setInputMask("")
+        self.leNomeUsuario.setText("")
+        self.leNomeUsuario.setFrame(True)
+        self.leNomeUsuario.setEchoMode(QtWidgets.QLineEdit.Normal)
+        self.leNomeUsuario.setAlignment(QtCore.Qt.AlignCenter)
+        self.leNomeUsuario.setObjectName("leNomeUsuario")
+        self.lbTextoLogin = QtWidgets.QLabel(self.frTabLogin)
+        self.lbTextoLogin.setGeometry(QtCore.QRect(40, 120, 271, 30))
+        font = QtGui.QFont()
+        font.setFamily("Fira Sans")
+        font.setPointSize(18)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setUnderline(False)
+        font.setWeight(10)
+        self.lbTextoLogin.setFont(font)
+        self.lbTextoLogin.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.lbTextoLogin.setAutoFillBackground(False)
+        self.lbTextoLogin.setStyleSheet("#lbInfoLoginTexto {\n"
 "    \n"
 "    font: 80  18pt \"Fira Sans\";\n"
 "    background-color: rgba(0, 0, 0,0);\n"
 "    border: 0px\n"
 "}")
-        self.lbInfoEmpresaTexto.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbInfoEmpresaTexto.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse)
-        self.lbInfoEmpresaTexto.setObjectName("lbInfoEmpresaTexto")
-        self.lbEmpresa = QtWidgets.QLabel(self.t2)
-        self.lbEmpresa.setGeometry(QtCore.QRect(60, 170, 81, 30))
+        self.lbTextoLogin.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.lbTextoLogin.setTextFormat(QtCore.Qt.AutoText)
+        self.lbTextoLogin.setScaledContents(False)
+        self.lbTextoLogin.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbTextoLogin.setObjectName("lbTextoLogin")
+        self.lbSenha = QtWidgets.QLabel(self.frTabLogin)
+        self.lbSenha.setGeometry(QtCore.QRect(60, 220, 81, 30))
+        self.lbSenha.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.lbSenha.setStyleSheet("")
+        self.lbSenha.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbSenha.setObjectName("lbSenha")
+        self.lbUsuario = QtWidgets.QLabel(self.frTabLogin)
+        self.lbUsuario.setGeometry(QtCore.QRect(60, 170, 81, 30))
         font = QtGui.QFont()
         font.setBold(True)
         font.setItalic(False)
         font.setWeight(75)
-        self.lbEmpresa.setFont(font)
-        self.lbEmpresa.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.lbEmpresa.setStyleSheet("")
-        self.lbEmpresa.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbEmpresa.setObjectName("lbEmpresa")
-        self.lbFantasia = QtWidgets.QLabel(self.t2)
-        self.lbFantasia.setGeometry(QtCore.QRect(60, 220, 81, 30))
-        self.lbFantasia.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.lbFantasia.setStyleSheet("")
-        self.lbFantasia.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbFantasia.setObjectName("lbFantasia")
-        self.leCNPJ = QtWidgets.QLineEdit(self.t2)
-        self.leCNPJ.setGeometry(QtCore.QRect(120, 270, 221, 30))
+        self.lbUsuario.setFont(font)
+        self.lbUsuario.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.lbUsuario.setStyleSheet("")
+        self.lbUsuario.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbUsuario.setObjectName("lbUsuario")
+        self.lbEmail = QtWidgets.QLabel(self.frTabLogin)
+        self.lbEmail.setGeometry(QtCore.QRect(60, 320, 81, 30))
+        self.lbEmail.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.lbEmail.setStyleSheet("")
+        self.lbEmail.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbEmail.setObjectName("lbEmail")
+        self.leSenha = QtWidgets.QLineEdit(self.frTabLogin)
+        self.leSenha.setGeometry(QtCore.QRect(120, 220, 600, 30))
         font = QtGui.QFont()
         font.setFamily("Roboto Slab")
         font.setPointSize(12)
-        self.leCNPJ.setFont(font)
-        self.leCNPJ.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.leCNPJ.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.leCNPJ.setStyleSheet("")
-        self.leCNPJ.setInputMethodHints(QtCore.Qt.ImhNone)
-        self.leCNPJ.setInputMask("")
-        self.leCNPJ.setText("")
-        self.leCNPJ.setFrame(True)
-        self.leCNPJ.setEchoMode(QtWidgets.QLineEdit.Normal)
-        self.leCNPJ.setAlignment(QtCore.Qt.AlignCenter)
-        self.leCNPJ.setObjectName("leCNPJ")
-        self.leNomeEmpresa = QtWidgets.QLineEdit(self.t2)
-        self.leNomeEmpresa.setEnabled(True)
-        self.leNomeEmpresa.setGeometry(QtCore.QRect(120, 170, 600, 30))
+        font.setBold(False)
+        font.setWeight(50)
+        self.leSenha.setFont(font)
+        self.leSenha.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.leSenha.setStyleSheet("")
+        self.leSenha.setInputMethodHints(QtCore.Qt.ImhHiddenText|QtCore.Qt.ImhNoAutoUppercase|QtCore.Qt.ImhNoPredictiveText|QtCore.Qt.ImhSensitiveData)
+        self.leSenha.setInputMask("")
+        self.leSenha.setText("")
+        self.leSenha.setFrame(True)
+        self.leSenha.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.leSenha.setAlignment(QtCore.Qt.AlignCenter)
+        self.leSenha.setDragEnabled(False)
+        self.leSenha.setReadOnly(False)
+        self.leSenha.setClearButtonEnabled(False)
+        self.leSenha.setObjectName("leSenha")
+        self.leEmail = QtWidgets.QLineEdit(self.frTabLogin)
+        self.leEmail.setGeometry(QtCore.QRect(120, 320, 321, 30))
         font = QtGui.QFont()
         font.setFamily("Roboto Slab")
         font.setPointSize(12)
-        self.leNomeEmpresa.setFont(font)
-        self.leNomeEmpresa.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.leNomeEmpresa.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.leNomeEmpresa.setStyleSheet("")
-        self.leNomeEmpresa.setInputMethodHints(QtCore.Qt.ImhNone)
-        self.leNomeEmpresa.setInputMask("")
-        self.leNomeEmpresa.setText("")
-        self.leNomeEmpresa.setFrame(True)
-        self.leNomeEmpresa.setEchoMode(QtWidgets.QLineEdit.Normal)
-        self.leNomeEmpresa.setAlignment(QtCore.Qt.AlignCenter)
-        self.leNomeEmpresa.setObjectName("leNomeEmpresa")
-        self.leNomeFantasia = QtWidgets.QLineEdit(self.t2)
-        self.leNomeFantasia.setGeometry(QtCore.QRect(120, 220, 600, 30))
+        self.leEmail.setFont(font)
+        self.leEmail.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.leEmail.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.leEmail.setStyleSheet("")
+        self.leEmail.setInputMethodHints(QtCore.Qt.ImhNone)
+        self.leEmail.setInputMask("")
+        self.leEmail.setText("")
+        self.leEmail.setFrame(True)
+        self.leEmail.setEchoMode(QtWidgets.QLineEdit.Normal)
+        self.leEmail.setAlignment(QtCore.Qt.AlignCenter)
+        self.leEmail.setObjectName("leEmail")
+        self.leSenhaConfirma = QtWidgets.QLineEdit(self.frTabLogin)
+        self.leSenhaConfirma.setGeometry(QtCore.QRect(120, 270, 600, 30))
         font = QtGui.QFont()
         font.setFamily("Roboto Slab")
         font.setPointSize(12)
-        self.leNomeFantasia.setFont(font)
-        self.leNomeFantasia.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.leNomeFantasia.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.leNomeFantasia.setStyleSheet("")
-        self.leNomeFantasia.setInputMethodHints(QtCore.Qt.ImhNone)
-        self.leNomeFantasia.setInputMask("")
-        self.leNomeFantasia.setText("")
-        self.leNomeFantasia.setFrame(True)
-        self.leNomeFantasia.setEchoMode(QtWidgets.QLineEdit.Normal)
-        self.leNomeFantasia.setAlignment(QtCore.Qt.AlignCenter)
-        self.leNomeFantasia.setObjectName("leNomeFantasia")
-        self.lbCNPJ = QtWidgets.QLabel(self.t2)
-        self.lbCNPJ.setGeometry(QtCore.QRect(60, 270, 81, 30))
-        self.lbCNPJ.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.lbCNPJ.setStyleSheet("")
-        self.lbCNPJ.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbCNPJ.setObjectName("lbCNPJ")
-        self.frame_3 = QtWidgets.QFrame(self.t2)
-        self.frame_3.setGeometry(QtCore.QRect(0, 0, 791, 471))
-        self.frame_3.setStyleSheet("")
-        self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_3.setObjectName("frame_3")
-        self.lbCadastroTexto_2 = QtWidgets.QLabel(self.frame_3)
-        self.lbCadastroTexto_2.setGeometry(QtCore.QRect(190, 30, 400, 70))
+        font.setBold(False)
+        font.setWeight(50)
+        self.leSenhaConfirma.setFont(font)
+        self.leSenhaConfirma.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.leSenhaConfirma.setStyleSheet("")
+        self.leSenhaConfirma.setInputMethodHints(QtCore.Qt.ImhHiddenText|QtCore.Qt.ImhNoAutoUppercase|QtCore.Qt.ImhNoPredictiveText|QtCore.Qt.ImhSensitiveData)
+        self.leSenhaConfirma.setInputMask("")
+        self.leSenhaConfirma.setText("")
+        self.leSenhaConfirma.setFrame(True)
+        self.leSenhaConfirma.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.leSenhaConfirma.setAlignment(QtCore.Qt.AlignCenter)
+        self.leSenhaConfirma.setDragEnabled(False)
+        self.leSenhaConfirma.setReadOnly(False)
+        self.leSenhaConfirma.setClearButtonEnabled(False)
+        self.leSenhaConfirma.setObjectName("leSenhaConfirma")
+        self.leTelefone.raise_()
+        self.lbCadastroTexto.raise_()
+        self.lbTelefone.raise_()
+        self.pbContinuaCadastro.raise_()
+        self.pbVoltarLogin.raise_()
+        self.leNomeUsuario.raise_()
+        self.lbTextoLogin.raise_()
+        self.lbUsuario.raise_()
+        self.leSenha.raise_()
+        self.leEmail.raise_()
+        self.leSenhaConfirma.raise_()
+        self.lbSenhaConfirma.raise_()
+        self.lbSenha.raise_()
+        self.lbEmail.raise_()
+        self.tabs.addTab(self.tabCadastroLogin, "")
+        self.tabCadastroEmpresa = QtWidgets.QWidget()
+        self.tabCadastroEmpresa.setObjectName("tabCadastroEmpresa")
+        self.frTabEmpresa = QtWidgets.QFrame(self.tabCadastroEmpresa)
+        self.frTabEmpresa.setGeometry(QtCore.QRect(0, 0, 791, 471))
+        self.frTabEmpresa.setStyleSheet("")
+        self.frTabEmpresa.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frTabEmpresa.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frTabEmpresa.setObjectName("frTabEmpresa")
+        self.lbCadastroTexto2 = QtWidgets.QLabel(self.frTabEmpresa)
+        self.lbCadastroTexto2.setGeometry(QtCore.QRect(190, 30, 400, 70))
         font = QtGui.QFont()
         font.setFamily("Fira Sans")
         font.setPointSize(38)
@@ -542,24 +456,17 @@ class Ui_mwCadastro(object):
         font.setStrikeOut(False)
         font.setKerning(False)
         font.setStyleStrategy(QtGui.QFont.PreferDefault)
-        self.lbCadastroTexto_2.setFont(font)
-        self.lbCadastroTexto_2.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.lbCadastroTexto_2.setStyleSheet("#lbCadastroTexto_2{\n"
-"    font: 80  38pt \"Fira Sans\";\n"
-"    border-radius: 0px;\n"
-"    border-color: transparent;\n"
-"    border-bottom: 5px solid  #DAA520;\n"
-"    background-color: none;\n"
-"    padding: -30;\n"
-"}")
-        self.lbCadastroTexto_2.setTextFormat(QtCore.Qt.AutoText)
-        self.lbCadastroTexto_2.setAlignment(QtCore.Qt.AlignBottom|QtCore.Qt.AlignHCenter)
-        self.lbCadastroTexto_2.setWordWrap(False)
-        self.lbCadastroTexto_2.setIndent(-1)
-        self.lbCadastroTexto_2.setOpenExternalLinks(False)
-        self.lbCadastroTexto_2.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
-        self.lbCadastroTexto_2.setObjectName("lbCadastroTexto_2")
-        self.leCidade = QtWidgets.QLineEdit(self.frame_3)
+        self.lbCadastroTexto2.setFont(font)
+        self.lbCadastroTexto2.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.lbCadastroTexto2.setStyleSheet("")
+        self.lbCadastroTexto2.setTextFormat(QtCore.Qt.AutoText)
+        self.lbCadastroTexto2.setAlignment(QtCore.Qt.AlignBottom|QtCore.Qt.AlignHCenter)
+        self.lbCadastroTexto2.setWordWrap(False)
+        self.lbCadastroTexto2.setIndent(-1)
+        self.lbCadastroTexto2.setOpenExternalLinks(False)
+        self.lbCadastroTexto2.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
+        self.lbCadastroTexto2.setObjectName("lbCadastroTexto2")
+        self.leCidade = QtWidgets.QLineEdit(self.frTabEmpresa)
         self.leCidade.setGeometry(QtCore.QRect(120, 370, 331, 30))
         font = QtGui.QFont()
         font.setFamily("Roboto Slab")
@@ -575,13 +482,13 @@ class Ui_mwCadastro(object):
         self.leCidade.setEchoMode(QtWidgets.QLineEdit.Normal)
         self.leCidade.setAlignment(QtCore.Qt.AlignCenter)
         self.leCidade.setObjectName("leCidade")
-        self.lbCidade = QtWidgets.QLabel(self.frame_3)
+        self.lbCidade = QtWidgets.QLabel(self.frTabEmpresa)
         self.lbCidade.setGeometry(QtCore.QRect(60, 370, 81, 30))
         self.lbCidade.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.lbCidade.setStyleSheet("")
         self.lbCidade.setAlignment(QtCore.Qt.AlignCenter)
         self.lbCidade.setObjectName("lbCidade")
-        self.leEndereco = QtWidgets.QLineEdit(self.frame_3)
+        self.leEndereco = QtWidgets.QLineEdit(self.frTabEmpresa)
         self.leEndereco.setGeometry(QtCore.QRect(120, 320, 260, 30))
         font = QtGui.QFont()
         font.setFamily("Roboto Slab")
@@ -597,15 +504,15 @@ class Ui_mwCadastro(object):
         self.leEndereco.setEchoMode(QtWidgets.QLineEdit.Normal)
         self.leEndereco.setAlignment(QtCore.Qt.AlignCenter)
         self.leEndereco.setObjectName("leEndereco")
-        self.lbEndereco = QtWidgets.QLabel(self.frame_3)
+        self.lbEndereco = QtWidgets.QLabel(self.frTabEmpresa)
         self.lbEndereco.setGeometry(QtCore.QRect(60, 320, 81, 30))
         self.lbEndereco.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.lbEndereco.setStyleSheet("")
         self.lbEndereco.setAlignment(QtCore.Qt.AlignCenter)
         self.lbEndereco.setObjectName("lbEndereco")
-        self.cmbEstados = QtWidgets.QComboBox(self.frame_3)
-        self.cmbEstados.setGeometry(QtCore.QRect(600, 270, 121, 31))
-        self.cmbEstados.setStyleSheet("QComboBox {\n"
+        self.cbxEstados = QtWidgets.QComboBox(self.frTabEmpresa)
+        self.cbxEstados.setGeometry(QtCore.QRect(560, 270, 164, 31))
+        self.cbxEstados.setStyleSheet("QComboBox {\n"
 "    \n"
 "    background-color: rgb(255, 255, 255);\n"
 "    border-radius: 15px;\n"
@@ -617,9 +524,9 @@ class Ui_mwCadastro(object):
 "QComboBox::drop-down{\n"
 "    border: 0px;\n"
 "}")
-        self.cmbEstados.setObjectName("cmbEstados")
-        self.leCEP = QtWidgets.QLineEdit(self.frame_3)
-        self.leCEP.setGeometry(QtCore.QRect(420, 270, 161, 30))
+        self.cbxEstados.setObjectName("cbxEstados")
+        self.leCEP = QtWidgets.QLineEdit(self.frTabEmpresa)
+        self.leCEP.setGeometry(QtCore.QRect(400, 270, 141, 30))
         font = QtGui.QFont()
         font.setFamily("Roboto Slab")
         font.setPointSize(12)
@@ -634,13 +541,13 @@ class Ui_mwCadastro(object):
         self.leCEP.setEchoMode(QtWidgets.QLineEdit.Normal)
         self.leCEP.setAlignment(QtCore.Qt.AlignCenter)
         self.leCEP.setObjectName("leCEP")
-        self.lbCEP = QtWidgets.QLabel(self.frame_3)
-        self.lbCEP.setGeometry(QtCore.QRect(360, 270, 81, 30))
+        self.lbCEP = QtWidgets.QLabel(self.frTabEmpresa)
+        self.lbCEP.setGeometry(QtCore.QRect(340, 270, 81, 30))
         self.lbCEP.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.lbCEP.setStyleSheet("")
         self.lbCEP.setAlignment(QtCore.Qt.AlignCenter)
         self.lbCEP.setObjectName("lbCEP")
-        self.leBairro = QtWidgets.QLineEdit(self.frame_3)
+        self.leBairro = QtWidgets.QLineEdit(self.frTabEmpresa)
         self.leBairro.setGeometry(QtCore.QRect(460, 320, 260, 30))
         font = QtGui.QFont()
         font.setFamily("Roboto Slab")
@@ -656,13 +563,13 @@ class Ui_mwCadastro(object):
         self.leBairro.setEchoMode(QtWidgets.QLineEdit.Normal)
         self.leBairro.setAlignment(QtCore.Qt.AlignCenter)
         self.leBairro.setObjectName("leBairro")
-        self.lbBairro = QtWidgets.QLabel(self.frame_3)
+        self.lbBairro = QtWidgets.QLabel(self.frTabEmpresa)
         self.lbBairro.setGeometry(QtCore.QRect(400, 320, 81, 30))
         self.lbBairro.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.lbBairro.setStyleSheet("")
         self.lbBairro.setAlignment(QtCore.Qt.AlignCenter)
         self.lbBairro.setObjectName("lbBairro")
-        self.pbFazerCadastro = QtWidgets.QPushButton(self.frame_3)
+        self.pbFazerCadastro = QtWidgets.QPushButton(self.frTabEmpresa)
         self.pbFazerCadastro.setGeometry(QtCore.QRect(640, 420, 150, 51))
         self.pbFazerCadastro.setSizeIncrement(QtCore.QSize(0, 0))
         font = QtGui.QFont()
@@ -683,25 +590,7 @@ class Ui_mwCadastro(object):
         self.pbFazerCadastro.setToolTipDuration(-1)
         self.pbFazerCadastro.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.pbFazerCadastro.setAutoFillBackground(False)
-        self.pbFazerCadastro.setStyleSheet("QPushButton {\n"
-"    border-bottom-right-radius: 50%;\n"
-"    border-top-left-radius: 50px;\n"
-"    border: 5px solid #DAA520;\n"
-"    color: rgb(255, 255, 255);\n"
-"    background-color: #0E90AD;\n"
-"}\n"
-"\n"
-"\n"
-"QPushButton:hover {\n"
-"    border-color:#ffffff;\n"
-"\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(170, 140, 140);\n"
-"}\n"
-"\n"
-"")
+        self.pbFazerCadastro.setStyleSheet("")
         self.pbFazerCadastro.setIconSize(QtCore.QSize(25, 25))
         self.pbFazerCadastro.setCheckable(False)
         self.pbFazerCadastro.setChecked(False)
@@ -711,7 +600,7 @@ class Ui_mwCadastro(object):
         self.pbFazerCadastro.setDefault(False)
         self.pbFazerCadastro.setFlat(False)
         self.pbFazerCadastro.setObjectName("pbFazerCadastro")
-        self.pbVoltarTab = QtWidgets.QPushButton(self.frame_3)
+        self.pbVoltarTab = QtWidgets.QPushButton(self.frTabEmpresa)
         self.pbVoltarTab.setGeometry(QtCore.QRect(0, 420, 150, 50))
         self.pbVoltarTab.setSizeIncrement(QtCore.QSize(0, 0))
         font = QtGui.QFont()
@@ -732,25 +621,7 @@ class Ui_mwCadastro(object):
         self.pbVoltarTab.setToolTipDuration(-1)
         self.pbVoltarTab.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.pbVoltarTab.setAutoFillBackground(False)
-        self.pbVoltarTab.setStyleSheet("QPushButton {\n"
-"    border: 5px solid #DAA520;\n"
-"    border-bottom-left-radius: 50px;\n"
-"    border-top-right-radius: 50px;\n"
-"    color: rgb(255, 255, 255);\n"
-"    background-color: #0E90AD;\n"
-"}\n"
-"\n"
-"\n"
-"QPushButton:hover {\n"
-"    border-color:#ffffff;\n"
-"\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(170, 140, 140);\n"
-"}\n"
-"\n"
-"")
+        self.pbVoltarTab.setStyleSheet("")
         self.pbVoltarTab.setIconSize(QtCore.QSize(35, 35))
         self.pbVoltarTab.setCheckable(False)
         self.pbVoltarTab.setChecked(False)
@@ -760,76 +631,175 @@ class Ui_mwCadastro(object):
         self.pbVoltarTab.setDefault(False)
         self.pbVoltarTab.setFlat(False)
         self.pbVoltarTab.setObjectName("pbVoltarTab")
-        self.frame_3.raise_()
-        self.lbInfoEmpresaTexto.raise_()
+        self.leCNPJ = QtWidgets.QLineEdit(self.frTabEmpresa)
+        self.leCNPJ.setGeometry(QtCore.QRect(120, 270, 201, 30))
+        font = QtGui.QFont()
+        font.setFamily("Roboto Slab")
+        font.setPointSize(12)
+        self.leCNPJ.setFont(font)
+        self.leCNPJ.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.leCNPJ.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.leCNPJ.setStyleSheet("")
+        self.leCNPJ.setInputMethodHints(QtCore.Qt.ImhNone)
+        self.leCNPJ.setInputMask("")
+        self.leCNPJ.setText("")
+        self.leCNPJ.setFrame(True)
+        self.leCNPJ.setEchoMode(QtWidgets.QLineEdit.Normal)
+        self.leCNPJ.setAlignment(QtCore.Qt.AlignCenter)
+        self.leCNPJ.setObjectName("leCNPJ")
+        self.lbFantasia = QtWidgets.QLabel(self.frTabEmpresa)
+        self.lbFantasia.setGeometry(QtCore.QRect(60, 220, 81, 30))
+        self.lbFantasia.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.lbFantasia.setStyleSheet("")
+        self.lbFantasia.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbFantasia.setObjectName("lbFantasia")
+        self.leNomeFantasia = QtWidgets.QLineEdit(self.frTabEmpresa)
+        self.leNomeFantasia.setGeometry(QtCore.QRect(120, 220, 600, 30))
+        font = QtGui.QFont()
+        font.setFamily("Roboto Slab")
+        font.setPointSize(12)
+        self.leNomeFantasia.setFont(font)
+        self.leNomeFantasia.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.leNomeFantasia.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.leNomeFantasia.setStyleSheet("")
+        self.leNomeFantasia.setInputMethodHints(QtCore.Qt.ImhNone)
+        self.leNomeFantasia.setInputMask("")
+        self.leNomeFantasia.setText("")
+        self.leNomeFantasia.setFrame(True)
+        self.leNomeFantasia.setEchoMode(QtWidgets.QLineEdit.Normal)
+        self.leNomeFantasia.setAlignment(QtCore.Qt.AlignCenter)
+        self.leNomeFantasia.setObjectName("leNomeFantasia")
+        self.lbTextoEmpresa = QtWidgets.QLabel(self.frTabEmpresa)
+        self.lbTextoEmpresa.setGeometry(QtCore.QRect(32, 120, 321, 30))
+        self.lbTextoEmpresa.setStyleSheet("#lbInfoEmpresaTexto {\n"
+"    \n"
+"    font: 80  18pt \"Fira Sans\";\n"
+"    background-color: rgba(0, 0, 0,0);\n"
+"    border: 0px\n"
+"}")
+        self.lbTextoEmpresa.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbTextoEmpresa.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse)
+        self.lbTextoEmpresa.setObjectName("lbTextoEmpresa")
+        self.leNomeEmpresa = QtWidgets.QLineEdit(self.frTabEmpresa)
+        self.leNomeEmpresa.setEnabled(True)
+        self.leNomeEmpresa.setGeometry(QtCore.QRect(120, 170, 600, 30))
+        font = QtGui.QFont()
+        font.setFamily("Roboto Slab")
+        font.setPointSize(12)
+        self.leNomeEmpresa.setFont(font)
+        self.leNomeEmpresa.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.leNomeEmpresa.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.leNomeEmpresa.setStyleSheet("")
+        self.leNomeEmpresa.setInputMethodHints(QtCore.Qt.ImhNone)
+        self.leNomeEmpresa.setInputMask("")
+        self.leNomeEmpresa.setText("")
+        self.leNomeEmpresa.setFrame(True)
+        self.leNomeEmpresa.setEchoMode(QtWidgets.QLineEdit.Normal)
+        self.leNomeEmpresa.setAlignment(QtCore.Qt.AlignCenter)
+        self.leNomeEmpresa.setObjectName("leNomeEmpresa")
+        self.lbEmpresa = QtWidgets.QLabel(self.frTabEmpresa)
+        self.lbEmpresa.setGeometry(QtCore.QRect(60, 170, 81, 30))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setItalic(False)
+        font.setWeight(75)
+        self.lbEmpresa.setFont(font)
+        self.lbEmpresa.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.lbEmpresa.setStyleSheet("")
+        self.lbEmpresa.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbEmpresa.setObjectName("lbEmpresa")
+        self.lbCNPJ = QtWidgets.QLabel(self.frTabEmpresa)
+        self.lbCNPJ.setGeometry(QtCore.QRect(60, 270, 81, 30))
+        self.lbCNPJ.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.lbCNPJ.setStyleSheet("")
+        self.lbCNPJ.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbCNPJ.setObjectName("lbCNPJ")
+        self.lbCadastroTexto2.raise_()
+        self.leCidade.raise_()
+        self.lbCidade.raise_()
+        self.leEndereco.raise_()
+        self.lbEndereco.raise_()
+        self.cbxEstados.raise_()
+        self.leCEP.raise_()
+        self.lbCEP.raise_()
+        self.leBairro.raise_()
+        self.lbBairro.raise_()
+        self.pbFazerCadastro.raise_()
+        self.pbVoltarTab.raise_()
         self.leCNPJ.raise_()
-        self.leNomeEmpresa.raise_()
         self.leNomeFantasia.raise_()
+        self.lbTextoEmpresa.raise_()
+        self.leNomeEmpresa.raise_()
         self.lbEmpresa.raise_()
-        self.lbFantasia.raise_()
         self.lbCNPJ.raise_()
-        self.tabs.addTab(self.t2, "")
+        self.lbFantasia.raise_()
+        self.tabs.addTab(self.tabCadastroEmpresa, "")
         self.gridLayout.addWidget(self.tabs, 1, 0, 1, 1)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout.addItem(spacerItem1, 0, 0, 1, 1)
         mwCadastro.setCentralWidget(self.wdgCadastro)
 
         self.retranslateUi(mwCadastro)
         self.tabs.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(mwCadastro)
-        mwCadastro.setTabOrder(self.pbVoltarLogin, self.pbFazerCadastro)
-        mwCadastro.setTabOrder(self.pbFazerCadastro, self.leNomeUsuario)
+        mwCadastro.setTabOrder(self.pbVoltarLogin, self.leNomeUsuario)
         mwCadastro.setTabOrder(self.leNomeUsuario, self.leSenha)
         mwCadastro.setTabOrder(self.leSenha, self.leSenhaConfirma)
         mwCadastro.setTabOrder(self.leSenhaConfirma, self.leEmail)
         mwCadastro.setTabOrder(self.leEmail, self.leTelefone)
-        mwCadastro.setTabOrder(self.leTelefone, self.tabs)
-        mwCadastro.setTabOrder(self.tabs, self.leNomeEmpresa)
+        mwCadastro.setTabOrder(self.leTelefone, self.pbContinuaCadastro)
+        mwCadastro.setTabOrder(self.pbContinuaCadastro, self.leNomeEmpresa)
         mwCadastro.setTabOrder(self.leNomeEmpresa, self.leNomeFantasia)
         mwCadastro.setTabOrder(self.leNomeFantasia, self.leCNPJ)
         mwCadastro.setTabOrder(self.leCNPJ, self.leCEP)
-        mwCadastro.setTabOrder(self.leCEP, self.cmbEstados)
-        mwCadastro.setTabOrder(self.cmbEstados, self.leCidade)
-        mwCadastro.setTabOrder(self.leCidade, self.leEndereco)
+        mwCadastro.setTabOrder(self.leCEP, self.cbxEstados)
+        mwCadastro.setTabOrder(self.cbxEstados, self.leEndereco)
+        mwCadastro.setTabOrder(self.leEndereco, self.leBairro)
+        mwCadastro.setTabOrder(self.leBairro, self.leCidade)
+        mwCadastro.setTabOrder(self.leCidade, self.pbFazerCadastro)
+        mwCadastro.setTabOrder(self.pbFazerCadastro, self.tabs)
+        mwCadastro.setTabOrder(self.tabs, self.pbVoltarTab)
 
     def retranslateUi(self, mwCadastro):
         _translate = QtCore.QCoreApplication.translate
         mwCadastro.setWindowTitle(_translate("mwCadastro", "MainWindow"))
         self.tabs.setWhatsThis(_translate("mwCadastro", "<html><head/><body><p><br/></p></body></html>"))
-        self.leNomeUsuario.setPlaceholderText(_translate("mwCadastro", "Nome de Usuário"))
-        self.lbSenhaConfirma.setText(_translate("mwCadastro", "Senha"))
-        self.leEmail.setPlaceholderText(_translate("mwCadastro", "E-mail"))
-        self.lbEmail.setText(_translate("mwCadastro", "E-mail"))
-        self.leSenha.setPlaceholderText(_translate("mwCadastro", "Senha"))
-        self.lbUsuario.setText(_translate("mwCadastro", "Usuário"))
-        self.lbSenha.setText(_translate("mwCadastro", "Senha"))
-        self.leSenhaConfirma.setPlaceholderText(_translate("mwCadastro", "Cofirmação de Senha"))
-        self.lbInfoLoginTexto.setText(_translate("mwCadastro", "Informações de Login"))
         self.lbCadastroTexto.setText(_translate("mwCadastro", "CADASTRO"))
         self.lbTelefone.setText(_translate("mwCadastro", "Telefone"))
         self.leTelefone.setPlaceholderText(_translate("mwCadastro", "Telefone"))
         self.pbContinuaCadastro.setText(_translate("mwCadastro", "Continuar"))
         self.pbVoltarLogin.setText(_translate("mwCadastro", "Login"))
-        self.tabs.setTabText(self.tabs.indexOf(self.t1), _translate("mwCadastro", "Login"))
-        self.lbInfoEmpresaTexto.setText(_translate("mwCadastro", "Informações da Empresa"))
-        self.lbEmpresa.setText(_translate("mwCadastro", "Empresa"))
-        self.lbFantasia.setText(_translate("mwCadastro", "Fantasia"))
-        self.leCNPJ.setPlaceholderText(_translate("mwCadastro", "CNPJ"))
-        self.leNomeEmpresa.setPlaceholderText(_translate("mwCadastro", "Nome da Empresa"))
-        self.leNomeFantasia.setPlaceholderText(_translate("mwCadastro", "Nome Fantasia"))
-        self.lbCNPJ.setText(_translate("mwCadastro", "CNPJ"))
-        self.lbCadastroTexto_2.setText(_translate("mwCadastro", "CADASTRO"))
+        self.lbSenhaConfirma.setText(_translate("mwCadastro", "Senha"))
+        self.leNomeUsuario.setPlaceholderText(_translate("mwCadastro", "Nome de Usuário"))
+        self.lbTextoLogin.setText(_translate("mwCadastro", "Informações de Login"))
+        self.lbSenha.setText(_translate("mwCadastro", "Senha"))
+        self.lbUsuario.setText(_translate("mwCadastro", "Usuário"))
+        self.lbEmail.setText(_translate("mwCadastro", "E-mail"))
+        self.leSenha.setPlaceholderText(_translate("mwCadastro", "Senha"))
+        self.leEmail.setPlaceholderText(_translate("mwCadastro", "E-mail"))
+        self.leSenhaConfirma.setPlaceholderText(_translate("mwCadastro", "Cofirmação de Senha"))
+        self.tabs.setTabText(self.tabs.indexOf(self.tabCadastroLogin), _translate("mwCadastro", "Login"))
+        self.lbCadastroTexto2.setText(_translate("mwCadastro", "CADASTRO"))
         self.leCidade.setPlaceholderText(_translate("mwCadastro", "Cidade"))
         self.lbCidade.setText(_translate("mwCadastro", "Cidade"))
         self.leEndereco.setPlaceholderText(_translate("mwCadastro", "Endereço"))
         self.lbEndereco.setText(_translate("mwCadastro", "Endereço"))
-        self.cmbEstados.setToolTip(_translate("mwCadastro", "<html><head/><body><p><br/></p></body></html>"))
-        self.cmbEstados.setWhatsThis(_translate("mwCadastro", "<html><head/><body><p><br/></p></body></html>"))
+        self.cbxEstados.setToolTip(_translate("mwCadastro", "<html><head/><body><p><br/></p></body></html>"))
+        self.cbxEstados.setWhatsThis(_translate("mwCadastro", "<html><head/><body><p><br/></p></body></html>"))
         self.leCEP.setPlaceholderText(_translate("mwCadastro", "CEP"))
         self.lbCEP.setText(_translate("mwCadastro", "CEP"))
         self.leBairro.setPlaceholderText(_translate("mwCadastro", "Bairro"))
         self.lbBairro.setText(_translate("mwCadastro", "Bairro"))
         self.pbFazerCadastro.setText(_translate("mwCadastro", "Cadastre-se"))
         self.pbVoltarTab.setText(_translate("mwCadastro", "Voltar"))
-        self.tabs.setTabText(self.tabs.indexOf(self.t2), _translate("mwCadastro", "Empresa"))
+        self.leCNPJ.setPlaceholderText(_translate("mwCadastro", "CNPJ"))
+        self.lbFantasia.setText(_translate("mwCadastro", "Fantasia"))
+        self.leNomeFantasia.setPlaceholderText(_translate("mwCadastro", "Nome Fantasia"))
+        self.lbTextoEmpresa.setText(_translate("mwCadastro", "Informações da Empresa"))
+        self.leNomeEmpresa.setPlaceholderText(_translate("mwCadastro", "Nome da Empresa"))
+        self.lbEmpresa.setText(_translate("mwCadastro", "Empresa"))
+        self.lbCNPJ.setText(_translate("mwCadastro", "CNPJ"))
+        self.tabs.setTabText(self.tabs.indexOf(self.tabCadastroEmpresa), _translate("mwCadastro", "Empresa"))
 import resource
 
 
