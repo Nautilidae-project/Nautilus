@@ -12,6 +12,7 @@ class brainLogin(Ui_mwLogin, QMainWindow):
         super(brainLogin, self).__init__()
         criaBanco()
         addEstados()
+
         self.setupUi(self)
         self.telaCadastro = brainCadastro(self)
         self.stkLogin.addWidget(self.telaCadastro)
@@ -19,7 +20,10 @@ class brainLogin(Ui_mwLogin, QMainWindow):
         self.pbLogin.clicked.connect(self.trataLogin)
         self.lbPopUp.hide()
         self.pbFechaPopUp.hide()
+
         self.pbFechaPopUp.clicked.connect(lambda: (self.lbPopUp.hide(), self.pbFechaPopUp.hide()))
+        self.leUsuario.returnPressed.connect(lambda: self.trataLogin())
+        self.leSenha.returnPressed.connect(lambda: self.trataLogin())
 
     def navigate(self):
         self.stkLogin.setCurrentIndex(1)
@@ -38,6 +42,7 @@ class brainLogin(Ui_mwLogin, QMainWindow):
             self.popUp("Usuário Não Cadastrado")
         else:
             if confereSenha(strNomeUsuario, self.leSenha.text()):
+                self.popUp('Usuário(a) confirmado(a)!')
                 print('Usuário(a) confirmado(a)!')
             else:
                 print('Senha inválida!')

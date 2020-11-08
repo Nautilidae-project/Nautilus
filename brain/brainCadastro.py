@@ -39,6 +39,8 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
         self.leCEP.editingFinished.connect(self.trataCep)
 
         self.pbFazerCadastro.clicked.connect(self.trataCadastro)
+        self.pbContinuaCadastro.clicked.connect(lambda: self.tabs.setCurrentIndex(1))
+        self.pbVoltarTab.clicked.connect(lambda: self.tabs.setCurrentIndex(0))
 
     def goHome(self):
         self.home.emit()
@@ -111,8 +113,6 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
         if campo == 'tel':
             if not self.leTelefone.text() == "":
                 self.leTelefone.setText(mascaraCelular(str(self.usuario.tel)))
-    def exibe(self, texto):
-        print(texto)
 
     def trataCep(self, *args):
         if not self.leCEP.text() == "":
@@ -122,7 +122,8 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
                 dictEndereco = json.loads(response.text)
                 self.leEndereco.setText(dictEndereco['logradouro'])
                 self.leCidade.setText(dictEndereco['localidade'])
-                self.cmbEstados.setCurrentText(getEstados(dictEndereco['uf'])[0])
+                self.leBairro.setText(dictEndereco['bairro'])
+                self.cbxEstados.setCurrentText(getEstados(dictEndereco['uf'])[0])
             else:
                 print(f'Falha na conexão - Código de status: {response.status_code}')
                 return False
