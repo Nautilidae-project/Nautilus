@@ -100,24 +100,24 @@ class Ui_mwLogin(object):
         self.gridLayout_3.setObjectName("gridLayout_3")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_3.addItem(spacerItem, 5, 0, 1, 1)
-        self.frPopUp = QtWidgets.QFrame(self.frPrincipalIteraveis)
-        self.frPopUp.setMinimumSize(QtCore.QSize(300, 74))
-        self.frPopUp.setStyleSheet("background-color: none;")
-        self.frPopUp.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frPopUp.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frPopUp.setObjectName("frPopUp")
-        self.lbPopUp = QtWidgets.QLabel(self.frPopUp)
-        self.lbPopUp.setGeometry(QtCore.QRect(10, 0, 282, 51))
-        self.lbPopUp.setMinimumSize(QtCore.QSize(282, 51))
-        self.lbPopUp.setMaximumSize(QtCore.QSize(270, 16777215))
+        self.frSnackBarLogin = QtWidgets.QFrame(self.frPrincipalIteraveis)
+        self.frSnackBarLogin.setMinimumSize(QtCore.QSize(300, 74))
+        self.frSnackBarLogin.setStyleSheet("background-color: none;")
+        self.frSnackBarLogin.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frSnackBarLogin.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frSnackBarLogin.setObjectName("frSnackBarLogin")
+        self.lbSnackBarLogin = QtWidgets.QLabel(self.frSnackBarLogin)
+        self.lbSnackBarLogin.setGeometry(QtCore.QRect(10, 0, 282, 51))
+        self.lbSnackBarLogin.setMinimumSize(QtCore.QSize(282, 51))
+        self.lbSnackBarLogin.setMaximumSize(QtCore.QSize(270, 16777215))
         font = QtGui.QFont()
         font.setFamily("Dimnah")
         font.setPointSize(14)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
-        self.lbPopUp.setFont(font)
-        self.lbPopUp.setStyleSheet("QLabel {\n"
+        self.lbSnackBarLogin.setFont(font)
+        self.lbSnackBarLogin.setStyleSheet("QLabel {\n"
 "    background-color: #DFD880;\n"
 "    border: none;\n"
 "    border-top-left-radius: 1px;\n"
@@ -125,23 +125,23 @@ class Ui_mwLogin(object):
 "    font:  14pt \"Dimnah\";\n"
 "}\n"
 "")
-        self.lbPopUp.setText("")
-        self.lbPopUp.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
-        self.lbPopUp.setObjectName("lbPopUp")
-        self.pbFechaPopUp = QtWidgets.QPushButton(self.frPopUp)
-        self.pbFechaPopUp.setGeometry(QtCore.QRect(120, 50, 50, 25))
+        self.lbSnackBarLogin.setText("")
+        self.lbSnackBarLogin.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
+        self.lbSnackBarLogin.setObjectName("lbSnackBarLogin")
+        self.pbFechaSnackBarLogin = QtWidgets.QPushButton(self.frSnackBarLogin)
+        self.pbFechaSnackBarLogin.setGeometry(QtCore.QRect(120, 50, 50, 25))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pbFechaPopUp.sizePolicy().hasHeightForWidth())
-        self.pbFechaPopUp.setSizePolicy(sizePolicy)
-        self.pbFechaPopUp.setMinimumSize(QtCore.QSize(50, 25))
-        self.pbFechaPopUp.setMaximumSize(QtCore.QSize(30, 30))
-        self.pbFechaPopUp.setSizeIncrement(QtCore.QSize(30, 30))
+        sizePolicy.setHeightForWidth(self.pbFechaSnackBarLogin.sizePolicy().hasHeightForWidth())
+        self.pbFechaSnackBarLogin.setSizePolicy(sizePolicy)
+        self.pbFechaSnackBarLogin.setMinimumSize(QtCore.QSize(50, 25))
+        self.pbFechaSnackBarLogin.setMaximumSize(QtCore.QSize(30, 30))
+        self.pbFechaSnackBarLogin.setSizeIncrement(QtCore.QSize(30, 30))
         font = QtGui.QFont()
         font.setPointSize(12)
-        self.pbFechaPopUp.setFont(font)
-        self.pbFechaPopUp.setStyleSheet("QPushButton {\n"
+        self.pbFechaSnackBarLogin.setFont(font)
+        self.pbFechaSnackBarLogin.setStyleSheet("QPushButton {\n"
 "    border-bottom-left-radius: 20px;\n"
 "    border-bottom-right-radius: 20px;\n"
 "    background-color: #FF6961;\n"
@@ -151,8 +151,8 @@ class Ui_mwLogin(object):
 "    background-color: #ffcaaa;\n"
 "}\n"
 "")
-        self.pbFechaPopUp.setObjectName("pbFechaPopUp")
-        self.gridLayout_3.addWidget(self.frPopUp, 0, 1, 1, 1)
+        self.pbFechaSnackBarLogin.setObjectName("pbFechaSnackBarLogin")
+        self.gridLayout_3.addWidget(self.frSnackBarLogin, 0, 1, 1, 1)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_3.addItem(spacerItem1, 5, 4, 1, 1)
         self.gIyInputs = QtWidgets.QGridLayout()
@@ -563,7 +563,7 @@ class Ui_mwLogin(object):
     def retranslateUi(self, mwLogin):
         _translate = QtCore.QCoreApplication.translate
         mwLogin.setWindowTitle(_translate("mwLogin", "MainWindow"))
-        self.pbFechaPopUp.setText(_translate("mwLogin", "X"))
+        self.pbFechaSnackBarLogin.setText(_translate("mwLogin", "X"))
         self.leUsuario.setPlaceholderText(_translate("mwLogin", "Usuário"))
         self.leSenha.setPlaceholderText(_translate("mwLogin", "Senha"))
         self.pbLogin.setText(_translate("mwLogin", "Login"))

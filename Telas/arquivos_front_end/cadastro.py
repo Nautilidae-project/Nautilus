@@ -15,7 +15,7 @@ class Ui_mwCadastro(object):
     def setupUi(self, mwCadastro):
         mwCadastro.setObjectName("mwCadastro")
         mwCadastro.setWindowModality(QtCore.Qt.NonModal)
-        mwCadastro.resize(1000, 700)
+        mwCadastro.resize(1005, 700)
         mwCadastro.setMinimumSize(QtCore.QSize(1000, 700))
         font = QtGui.QFont()
         font.setPointSize(9)
@@ -99,8 +99,52 @@ class Ui_mwCadastro(object):
         self.wdgCadastro.setObjectName("wdgCadastro")
         self.gridLayout = QtWidgets.QGridLayout(self.wdgCadastro)
         self.gridLayout.setObjectName("gridLayout")
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem, 2, 0, 1, 1)
+        self.frSnackBarCadastro = QtWidgets.QFrame(self.wdgCadastro)
+        self.frSnackBarCadastro.setMinimumSize(QtCore.QSize(0, 100))
+        self.frSnackBarCadastro.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.frSnackBarCadastro.setStyleSheet("#frSnackBarCadastro {\n"
+"    border: none;\n"
+"}\n"
+"\n"
+"#pbSnackBarCadastro {\n"
+"    border: none;\n"
+"    border-bottom-left-radius: 20px;\n"
+"    border-bottom-right-radius: 20px;\n"
+"    background-color: #FF6961;\n"
+"}\n"
+"\n"
+"#pbSnackBarCadastro:hover {\n"
+"    background-color: #ffcaaa;\n"
+"    color: #000;\n"
+"}\n"
+"\n"
+"#lbSnackBarCadastro{\n"
+"    background-color: #ffcaaa;\n"
+"    border-color: #ffcaaa;\n"
+"}")
+        self.frSnackBarCadastro.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frSnackBarCadastro.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frSnackBarCadastro.setObjectName("frSnackBarCadastro")
+        self.lbSnackBarCadastro = QtWidgets.QLabel(self.frSnackBarCadastro)
+        self.lbSnackBarCadastro.setGeometry(QtCore.QRect(47, 1, 700, 51))
+        self.lbSnackBarCadastro.setMinimumSize(QtCore.QSize(700, 0))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setWeight(75)
+        self.lbSnackBarCadastro.setFont(font)
+        self.lbSnackBarCadastro.setText("")
+        self.lbSnackBarCadastro.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbSnackBarCadastro.setObjectName("lbSnackBarCadastro")
+        self.pbSnackBarCadastro = QtWidgets.QPushButton(self.frSnackBarCadastro)
+        self.pbSnackBarCadastro.setGeometry(QtCore.QRect(360, 50, 50, 25))
+        self.pbSnackBarCadastro.setMinimumSize(QtCore.QSize(50, 25))
+        self.pbSnackBarCadastro.setMaximumSize(QtCore.QSize(50, 25))
+        self.pbSnackBarCadastro.setSizeIncrement(QtCore.QSize(0, 0))
+        self.pbSnackBarCadastro.setStyleSheet("")
+        self.pbSnackBarCadastro.setObjectName("pbSnackBarCadastro")
+        self.gridLayout.addWidget(self.frSnackBarCadastro, 2, 0, 1, 1)
         self.tabs = QtWidgets.QTabWidget(self.wdgCadastro)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -320,7 +364,7 @@ class Ui_mwCadastro(object):
         self.leNomeUsuario.setAlignment(QtCore.Qt.AlignCenter)
         self.leNomeUsuario.setObjectName("leNomeUsuario")
         self.lbTextoLogin = QtWidgets.QLabel(self.frTabLogin)
-        self.lbTextoLogin.setGeometry(QtCore.QRect(40, 120, 271, 30))
+        self.lbTextoLogin.setGeometry(QtCore.QRect(55, 130, 241, 30))
         font = QtGui.QFont()
         font.setFamily("Fira Sans")
         font.setPointSize(18)
@@ -467,7 +511,7 @@ class Ui_mwCadastro(object):
         self.lbCadastroTexto2.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
         self.lbCadastroTexto2.setObjectName("lbCadastroTexto2")
         self.leCidade = QtWidgets.QLineEdit(self.frTabEmpresa)
-        self.leCidade.setGeometry(QtCore.QRect(120, 370, 331, 30))
+        self.leCidade.setGeometry(QtCore.QRect(480, 370, 241, 30))
         font = QtGui.QFont()
         font.setFamily("Roboto Slab")
         font.setPointSize(12)
@@ -483,13 +527,13 @@ class Ui_mwCadastro(object):
         self.leCidade.setAlignment(QtCore.Qt.AlignCenter)
         self.leCidade.setObjectName("leCidade")
         self.lbCidade = QtWidgets.QLabel(self.frTabEmpresa)
-        self.lbCidade.setGeometry(QtCore.QRect(60, 370, 81, 30))
+        self.lbCidade.setGeometry(QtCore.QRect(420, 370, 81, 30))
         self.lbCidade.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.lbCidade.setStyleSheet("")
         self.lbCidade.setAlignment(QtCore.Qt.AlignCenter)
         self.lbCidade.setObjectName("lbCidade")
         self.leEndereco = QtWidgets.QLineEdit(self.frTabEmpresa)
-        self.leEndereco.setGeometry(QtCore.QRect(120, 320, 260, 30))
+        self.leEndereco.setGeometry(QtCore.QRect(120, 320, 301, 30))
         font = QtGui.QFont()
         font.setFamily("Roboto Slab")
         font.setPointSize(12)
@@ -548,7 +592,7 @@ class Ui_mwCadastro(object):
         self.lbCEP.setAlignment(QtCore.Qt.AlignCenter)
         self.lbCEP.setObjectName("lbCEP")
         self.leBairro = QtWidgets.QLineEdit(self.frTabEmpresa)
-        self.leBairro.setGeometry(QtCore.QRect(460, 320, 260, 30))
+        self.leBairro.setGeometry(QtCore.QRect(490, 320, 231, 30))
         font = QtGui.QFont()
         font.setFamily("Roboto Slab")
         font.setPointSize(12)
@@ -564,7 +608,7 @@ class Ui_mwCadastro(object):
         self.leBairro.setAlignment(QtCore.Qt.AlignCenter)
         self.leBairro.setObjectName("leBairro")
         self.lbBairro = QtWidgets.QLabel(self.frTabEmpresa)
-        self.lbBairro.setGeometry(QtCore.QRect(400, 320, 81, 30))
+        self.lbBairro.setGeometry(QtCore.QRect(430, 320, 81, 30))
         self.lbBairro.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.lbBairro.setStyleSheet("")
         self.lbBairro.setAlignment(QtCore.Qt.AlignCenter)
@@ -670,7 +714,7 @@ class Ui_mwCadastro(object):
         self.leNomeFantasia.setAlignment(QtCore.Qt.AlignCenter)
         self.leNomeFantasia.setObjectName("leNomeFantasia")
         self.lbTextoEmpresa = QtWidgets.QLabel(self.frTabEmpresa)
-        self.lbTextoEmpresa.setGeometry(QtCore.QRect(32, 120, 321, 30))
+        self.lbTextoEmpresa.setGeometry(QtCore.QRect(57, 130, 271, 30))
         self.lbTextoEmpresa.setStyleSheet("#lbInfoEmpresaTexto {\n"
 "    \n"
 "    font: 80  18pt \"Fira Sans\";\n"
@@ -714,6 +758,28 @@ class Ui_mwCadastro(object):
         self.lbCNPJ.setStyleSheet("")
         self.lbCNPJ.setAlignment(QtCore.Qt.AlignCenter)
         self.lbCNPJ.setObjectName("lbCNPJ")
+        self.leComplemento = QtWidgets.QLineEdit(self.frTabEmpresa)
+        self.leComplemento.setGeometry(QtCore.QRect(120, 370, 281, 30))
+        font = QtGui.QFont()
+        font.setFamily("Roboto Slab")
+        font.setPointSize(12)
+        self.leComplemento.setFont(font)
+        self.leComplemento.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.leComplemento.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.leComplemento.setStyleSheet("")
+        self.leComplemento.setInputMethodHints(QtCore.Qt.ImhNone)
+        self.leComplemento.setInputMask("")
+        self.leComplemento.setText("")
+        self.leComplemento.setFrame(True)
+        self.leComplemento.setEchoMode(QtWidgets.QLineEdit.Normal)
+        self.leComplemento.setAlignment(QtCore.Qt.AlignCenter)
+        self.leComplemento.setObjectName("leComplemento")
+        self.lbComplemento = QtWidgets.QLabel(self.frTabEmpresa)
+        self.lbComplemento.setGeometry(QtCore.QRect(60, 370, 81, 30))
+        self.lbComplemento.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.lbComplemento.setStyleSheet("")
+        self.lbComplemento.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbComplemento.setObjectName("lbComplemento")
         self.lbCadastroTexto2.raise_()
         self.leCidade.raise_()
         self.lbCidade.raise_()
@@ -733,10 +799,14 @@ class Ui_mwCadastro(object):
         self.lbEmpresa.raise_()
         self.lbCNPJ.raise_()
         self.lbFantasia.raise_()
+        self.leComplemento.raise_()
+        self.lbComplemento.raise_()
         self.tabs.addTab(self.tabCadastroEmpresa, "")
         self.gridLayout.addWidget(self.tabs, 1, 0, 1, 1)
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout.addItem(spacerItem, 0, 0, 1, 1)
         spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem1, 0, 0, 1, 1)
+        self.gridLayout.addItem(spacerItem1, 3, 0, 1, 1)
         mwCadastro.setCentralWidget(self.wdgCadastro)
 
         self.retranslateUi(mwCadastro)
@@ -755,14 +825,17 @@ class Ui_mwCadastro(object):
         mwCadastro.setTabOrder(self.leCEP, self.cbxEstados)
         mwCadastro.setTabOrder(self.cbxEstados, self.leEndereco)
         mwCadastro.setTabOrder(self.leEndereco, self.leBairro)
-        mwCadastro.setTabOrder(self.leBairro, self.leCidade)
+        mwCadastro.setTabOrder(self.leBairro, self.leComplemento)
+        mwCadastro.setTabOrder(self.leComplemento, self.leCidade)
         mwCadastro.setTabOrder(self.leCidade, self.pbFazerCadastro)
-        mwCadastro.setTabOrder(self.pbFazerCadastro, self.tabs)
-        mwCadastro.setTabOrder(self.tabs, self.pbVoltarTab)
+        mwCadastro.setTabOrder(self.pbFazerCadastro, self.pbVoltarTab)
+        mwCadastro.setTabOrder(self.pbVoltarTab, self.pbSnackBarCadastro)
+        mwCadastro.setTabOrder(self.pbSnackBarCadastro, self.tabs)
 
     def retranslateUi(self, mwCadastro):
         _translate = QtCore.QCoreApplication.translate
         mwCadastro.setWindowTitle(_translate("mwCadastro", "MainWindow"))
+        self.pbSnackBarCadastro.setText(_translate("mwCadastro", "X"))
         self.tabs.setWhatsThis(_translate("mwCadastro", "<html><head/><body><p><br/></p></body></html>"))
         self.lbCadastroTexto.setText(_translate("mwCadastro", "CADASTRO"))
         self.lbTelefone.setText(_translate("mwCadastro", "Telefone"))
@@ -799,6 +872,8 @@ class Ui_mwCadastro(object):
         self.leNomeEmpresa.setPlaceholderText(_translate("mwCadastro", "Nome da Empresa"))
         self.lbEmpresa.setText(_translate("mwCadastro", "Empresa"))
         self.lbCNPJ.setText(_translate("mwCadastro", "CNPJ"))
+        self.leComplemento.setPlaceholderText(_translate("mwCadastro", "Complemento"))
+        self.lbComplemento.setText(_translate("mwCadastro", "Comp."))
         self.tabs.setTabText(self.tabs.indexOf(self.tabCadastroEmpresa), _translate("mwCadastro", "Empresa"))
 import resource
 

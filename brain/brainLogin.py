@@ -18,10 +18,10 @@ class brainLogin(Ui_mwLogin, QMainWindow):
         self.stkLogin.addWidget(self.telaCadastro)
         self.pbCadastro.clicked.connect(self.navigate)
         self.pbLogin.clicked.connect(self.trataLogin)
-        self.lbPopUp.hide()
-        self.pbFechaPopUp.hide()
+        self.lbSnackBarLogin.hide()
+        self.pbFechaSnackBarLogin.hide()
 
-        self.pbFechaPopUp.clicked.connect(lambda: (self.lbPopUp.hide(), self.pbFechaPopUp.hide()))
+        self.pbFechaSnackBarLogin.clicked.connect(lambda: (self.lbSnackBarLogin.hide(), self.pbFechaSnackBarLogin.hide()))
         self.leUsuario.returnPressed.connect(lambda: self.trataLogin())
         self.leSenha.returnPressed.connect(lambda: self.trataLogin())
 
@@ -35,23 +35,23 @@ class brainLogin(Ui_mwLogin, QMainWindow):
         strNomeUsuario = self.leUsuario.text()
         if strNomeUsuario == "":
             print("Digite um usuário")
-            self.popUp("Digite um usuário")
+            self.snackBar("Digite um usuário")
             return False
         if not buscaUsuario(strNomeUsuario):
             print("Não foi encontrado nenhum usuário com o nome cadastrado")
-            self.popUp("Usuário Não Cadastrado")
+            self.snackBar("Usuário Não Cadastrado")
         else:
             if confereSenha(strNomeUsuario, self.leSenha.text()):
-                self.popUp('Usuário(a) confirmado(a)!')
+                self.snackBar('Usuário(a) confirmado(a)!')
                 print('Usuário(a) confirmado(a)!')
             else:
                 print('Senha inválida!')
-                self.popUp("Senha Inválida")
+                self.snackBar("Senha Inválida")
 
-    def popUp(self, mensagem):
-        self.lbPopUp.setText(mensagem)
-        self.lbPopUp.show()
-        self.pbFechaPopUp.show()
+    def snackBar(self, mensagem):
+        self.lbSnackBarLogin.setText(mensagem)
+        self.lbSnackBarLogin.show()
+        self.pbFechaSnackBarLogin.show()
 
 
 if __name__ == '__main__':
