@@ -2,6 +2,7 @@ from PyQt5 import QtGui, QtWidgets, QtCore
 from PyQt5.QtWidgets import QMainWindow
 from Telas.arquivos_front_end.login import Ui_mwLogin
 from brain.brainCadastro import brainCadastro
+from brain.brainDashboard import brainDashboard
 from brain.DAOs.brainUserConfig import *
 
 
@@ -14,8 +15,15 @@ class brainLogin(Ui_mwLogin, QMainWindow):
         addEstados()
 
         self.setupUi(self)
+
+        # Iniciando a tela cadastro e inserindo-a no stkWidget
         self.telaCadastro = brainCadastro(self)
         self.stkLogin.addWidget(self.telaCadastro)
+
+        # Iniciando a dashboard e inserindo-o no StkWidget
+        self.dashboard = brainDashboard(self)
+        self.stkLogin.addWidget(self.dashboard)
+
         self.pbCadastro.clicked.connect(self.navigate)
         self.pbLogin.clicked.connect(self.trataLogin)
         self.lbPopUp.hide()
@@ -39,11 +47,12 @@ class brainLogin(Ui_mwLogin, QMainWindow):
             return False
         if not buscaUsuario(strNomeUsuario):
             print("Não foi encontrado nenhum usuário com o nome cadastrado")
-            self.popUp("Usuário Não Cadastrado")
+            self.popUp("Usuário não Cadastrado")
         else:
             if confereSenha(strNomeUsuario, self.leSenha.text()):
                 self.popUp('Usuário(a) confirmado(a)!')
                 print('Usuário(a) confirmado(a)!')
+                self.stkLogin.setCurrentIndex(2)
             else:
                 print('Senha inválida!')
                 self.popUp("Senha Inválida")
