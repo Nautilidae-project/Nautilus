@@ -14,7 +14,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
     home = pyqtSignal()
 
     def __init__(self, parent=None):
-        super(Ui_mwCadastro, self).__init__(parent)
+        super(brainCadastro, self).__init__(parent)
         self.setupUi(self)
         self.pbVoltarLogin.clicked.connect(self.goHome)
         self.home.connect(self.parent().backHome)
@@ -84,10 +84,9 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
                 print('Digite apenas números')
                 self.leCEP.setText("")
 
-
-            
     def trataCadastro(self):
-        wdgLista = [self.leCEP, self.leCNPJ, self.leEmail, self.leSenha, self.leEndereco, self.leTelefone, self.leSenhaConfirma,
+        wdgLista = [self.leCEP, self.leCNPJ, self.leEmail, self.leSenha, self.leEndereco, self.leTelefone,
+                    self.leSenhaConfirma,
                     self.leNomeEmpresa]
         for wdg in wdgLista:
             if wdg.text() == "":
