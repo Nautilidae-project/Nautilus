@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import pyqtSignal, QPropertyAnimation
 from Telas.dashbord import Ui_mwDash
 from brain.DAOs.brainUserConfig import *
+from brain.telaTeste import telaTeste
 from modelos.cliente import Cliente
 from modelos.funcoesAuxiliares import *
 from brain.DAOs.brainClienteConfig import cadastraCliente
@@ -21,6 +22,13 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.pbHome.setText('')
         self.pbAgenda.setText('')
         self.cliente = Cliente()
+
+        self.teste = telaTeste()
+        self.teste.setupUi(self.teste)
+        self.stkDash.addWidget(self.teste)
+
+        self.pbAgenda.clicked.connect(self.funTeste)
+
 
         self.pbDash.clicked.connect(self.dash)
         self.pbCadastrar.clicked.connect(lambda: self.trataCadastro(self.cliente))
@@ -121,6 +129,10 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         if campo == 'tel':
             if not self.leTel.text() == "":
                 self.leTel.setText(mascaraCelular(str(self.cliente.telefone)))
+
+    def funTeste(self):
+        print('Clicou no botão teste')
+        self.stkDash.setCurrentIndex(2)
 
 
 if __name__ == '__main__':
