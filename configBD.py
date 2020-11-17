@@ -20,11 +20,12 @@ class ConfigDB:
                         cep VARCHAR(8) NOT NULL,
                         bairro VARCHAR(30) NULL,
                         senha VARBINARY(80) NOT NULL,
+                        dataCadastro DATETIME NOT NULL,
                         PRIMARY KEY (userId)
                     );"""
         self.__sqlCreateEstado = f"""CREATE TABLE IF NOT EXISTS {self.tblEstados}(
-                            extenso VARCHAR(20) NOT NULL,
-                            sigla VARCHAR(2) NOT NULL
+                        extenso VARCHAR(20) NOT NULL,
+                        sigla VARCHAR(2) NOT NULL
                         );"""
         self.__sqlCreateCliente = f"""CREATE TABLE IF NOT EXISTS {self.tblCliente}(
 	                    clienteId INT AUTO_INCREMENT,
@@ -39,6 +40,8 @@ class ConfigDB:
                         bairro VARCHAR(30) NULL,
                         meioPagamento VARCHAR(2) DEFAULT 'CC',
                         ativo BIT(1) DEFAULT 1,
+                        dataCadastro DATETIME NOT NULL,
+                        dataUltAlt DATETIME NOT NULL,
                         PRIMARY KEY (clienteId)
                     );"""
 
