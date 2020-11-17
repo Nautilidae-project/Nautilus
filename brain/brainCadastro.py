@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import pyqtSignal
-from Telas.arquivos_front_end.cadastro import Ui_mwCadastro
+from Telas.cadastro import Ui_mwCadastro
 from modelos.usuario import Usuario
 from brain.DAOs.brainUserConfig import *
 from modelos.funcoesAuxiliares import *
@@ -18,6 +18,8 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
         self.setupUi(self)
         self.pbVoltarLogin.clicked.connect(self.goHome)
         self.home.connect(self.parent().backHome)
+
+        self.frSnackBarCadastro.hide()
 
         self.usuario = Usuario()
 
@@ -48,13 +50,13 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
     def defineCampo(self, campo):
 
         if campo == 'nU':
-            self.usuario.nomeUsuario = self.leNomeUsuario.text()
+            self.usuario.nomeUsuario = self.leNomeUsuario.text().capitalize()
 
         if campo == 'nE':
-            self.usuario.nomeEmpresa = self.leNomeEmpresa.text()
+            self.usuario.nomeEmpresa = self.leNomeEmpresa.text().title()
 
         if campo == 'nF':
-            self.usuario.nomeFantasia = self.leNomeFantasia.text()
+            self.usuario.nomeFantasia = self.leNomeFantasia.text().title()
 
         if campo == 'cnpj':
             if self.leCNPJ.text().isnumeric():
@@ -75,7 +77,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
                 return False
 
         if campo == 'end':
-            self.usuario.endereco = self.leEndereco.text()
+            self.usuario.endereco = self.leEndereco.text().capitalize()
 
         if campo == 'cep':
             if self.leCEP.text().isnumeric():
@@ -119,9 +121,9 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
             response = requests.get(f'http://viacep.com.br/ws/{str(self.usuario.cep)}/json/')
             if response.status_code == 200:
                 dictEndereco = json.loads(response.text)
-                self.leEndereco.setText(dictEndereco['logradouro'])
-                self.leCidade.setText(dictEndereco['localidade'])
-                self.leBairro.setText(dictEndereco['bairro'])
+                self.leEndereco.setText(dictEndereco['logradouro'].title())
+                self.leCidade.setText(dictEndereco['localidade'].title())
+                self.leBairro.setText(dictEndereco['bairro'].capitalize())
                 self.cbxEstados.setCurrentText(getEstados(dictEndereco['uf'])[0])
             else:
                 print(f'Falha na conexão - Código de status: {response.status_code}')
