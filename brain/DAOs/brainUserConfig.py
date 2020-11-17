@@ -110,13 +110,13 @@ def cadastreUsuario(usuario):
         (
              nomeUsuario, nomeEmpresa, nomeFantasia,
              cnpj, email, tel,
-             endereco, cep, senha
+             endereco, cep, senha, dataCadastro
         )
         VALUES
         (
             '{usuario.nomeUsuario}', '{usuario.nomeEmpresa}', '{usuario.nomeFantasia}',
             '{usuario.cnpj}', '{usuario.email}', {usuario.tel},
-            '{usuario.endereco}', '{usuario.cep}', '{usuario.senha}'
+            '{usuario.endereco}', '{usuario.cep}', '{usuario.senha}', NOW()
         )
         """
     try:

@@ -1,15 +1,15 @@
 from PyQt5 import QtGui, QtWidgets, QtCore
 from PyQt5.QtWidgets import QMainWindow
-from Telas.arquivos_front_end.login import Ui_mwLogin
+from Telas.login import Ui_mwLogin
+from brain.dashboard import brainDashboard
 from brain.brainCadastro import brainCadastro
-from brain.brainDashboard import brainDashboard
 from brain.DAOs.brainUserConfig import *
 
 
 class brainLogin(Ui_mwLogin, QMainWindow):
 
     def __init__(self):
-        import Telas.arquivos_front_end.image_rc
+        import Telas.image_rc
         super(brainLogin, self).__init__()
         criaBanco()
         addEstados()
@@ -20,9 +20,9 @@ class brainLogin(Ui_mwLogin, QMainWindow):
         self.telaCadastro = brainCadastro(self)
         self.stkLogin.addWidget(self.telaCadastro)
 
-        # Iniciando a dashboard e inserindo-o no StkWidget
-        self.dashboard = brainDashboard(self)
-        self.stkLogin.addWidget(self.dashboard)
+        # Iniciando a tela cadastro e inserindo-a no stkWidget
+        self.telaDashboard = brainDashboard(self)
+        self.stkLogin.addWidget(self.telaDashboard)
 
         self.pbCadastro.clicked.connect(self.navigate)
         self.pbLogin.clicked.connect(self.trataLogin)
