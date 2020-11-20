@@ -1,7 +1,12 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import pyqtSignal, QPropertyAnimation
+
 from Telas.dashbord import Ui_mwDash
+from Telas.dashHome import Ui_wdgHome
+from Telas.dashAgenda import Ui_wdgAgenda
+from Telas.dashCliente import Ui_wdgCliente
+
 from brain.DAOs.brainUserConfig import *
 from modelos.cliente import Cliente
 from modelos.funcoesAuxiliares import *
@@ -16,6 +21,11 @@ class brainDashboard(Ui_mwDash, QMainWindow):
 
     def __init__(self, parent=None):
         super(brainDashboard, self).__init__(parent)
+
+        self.pgHome = Ui_wdgHome(self)
+        self.pgAgenda = Ui_wdgAgenda(self)
+        self.pgCliente = Ui_wdgCliente(self)
+
         self.setupUi(self)
         self.enable = False
         self.pbHome.setText('')
@@ -23,19 +33,31 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.cliente = Cliente()
 
         self.pbDash.clicked.connect(self.dash)
-        self.pbCadastrar.clicked.connect(lambda: self.trataCadastro(self.cliente))
+        self.pgCliente.pbCadastrar.clicked.connect(lambda: self.trataCadastro(self.cliente))
 
-        self.leNome.textEdited.connect(lambda: self.defineCampo('nome'))
-        self.leSobrenome.textEdited.connect(lambda: self.defineCampo('sobrenome'))
-        self.leTel.textEdited.connect(lambda: self.defineCampo('tel'))
-        self.leEmail.textEdited.connect(lambda: self.defineCampo('email'))
-        self.leCep.textEdited.connect(lambda: self.defineCampo('cep'))
-        self.leEnd.textEdited.connect(lambda: self.defineCampo('end'))
-        self.leBairro.textEdited.connect(lambda: self.defineCampo('bairro'))
-        self.leCompl.textEdited.connect(lambda: self.defineCampo('compl'))
+        self.pgCliente.leNome.textEdited.connect(lambda: self.defineCampo('nome'))
+        self.pgCliente.leSobrenome.textEdited.connect(lambda: self.defineCampo('sobrenome'))
+        self.pgCliente.leTel.textEdited.connect(lambda: self.defineCampo('tel'))
+        self.pgCliente.leEmail.textEdited.connect(lambda: self.defineCampo('email'))
+        self.pgCliente.leCep.textEdited.connect(lambda: self.defineCampo('cep'))
+        self.pgCliente.leEnd.textEdited.connect(lambda: self.defineCampo('end'))
+        self.pgCliente.leBairro.textEdited.connect(lambda: self.defineCampo('bairro'))
+        self.pgCliente.leCompl.textEdited.connect(lambda: self.defineCampo('compl'))
 
-        self.leCep.editingFinished.connect(self.trataCep)
-        self.leTel.editingFinished.connect(lambda: self.insereMascara('tel'))
+        self.pgCliente.leCep.editingFinished.connect(self.trataCep)
+        self.pgCliente.leTel.editingFinished.connect(lambda: self.insereMascara('tel'))
+
+        # ----------------------------------
+        self.stkDash.addWidget(self.pgHome)
+        self.stkDash.addWidget(self.pgAgenda)
+        self.stkDash.addWidget(self.pgCliente)
+
+        self.pbHome.clicked.connect(lambda: self.stkDash.setCurrentIndex(0))
+        self.pbAgenda.clicked.connect(lambda: self.stkDash.setCurrentIndex(1))
+        self.pbCliente.clicked.connect(lambda: self.stkDash.setCurrentIndex(2))
+        # self.pbFuncionario.clicked.connect(lambda: self.stkDash.setCurrentIndex(3))
+
+    # ----------------------------------
 
     def dash(self):
 
@@ -61,37 +83,37 @@ class brainDashboard(Ui_mwDash, QMainWindow):
     def defineCampo(self, campo):
 
         if campo == 'nome':
-            self.cliente.nomeCliente = self.leNome.text().capitalize()
+            self.cliente.nomeCliente = self.pgCliente.leNome.text().capitalize()
 
         if campo == 'sobrenome':
-            self.cliente.sobrenomeCliente = self.leSobrenome.text().title()
+            self.cliente.sobrenomeCliente = self.pgCliente.leSobrenome.text().title()
 
         if campo == 'tel':
-            if self.leTel.text().isnumeric():
-                self.cliente.telefone = self.leTel.text()
+            if self.pgCliente.leTel.text().isnumeric():
+                self.cliente.telefone = self.pgCliente.leTel.text()
             else:
                 print('Digite apenas números')
-                self.leTelefone.setText("")
+                self.pgCliente.leTel.setText("")
                 return False
 
         if campo == 'email':
-            self.cliente.email = self.leEmail.text().capitalize()
+            self.cliente.email = self.pgCliente.leEmail.text().capitalize()
 
         if campo == 'cep':
-            if self.leCep.text().isnumeric():
-                self.cliente.cep = self.leCep.text()
+            if self.pgCliente.leCep.text().isnumeric():
+                self.cliente.cep = self.pgCliente.leCep.text()
             else:
                 print('Digite apenas números')
-                self.leCep.setText("")
+                self.pgCliente.leCep.setText("")
 
         if campo == 'end':
-            self.cliente.endereco = self.leEnd.text().capitalize()
+            self.cliente.endereco = self.pgCliente.leEnd.text().capitalize()
 
         if campo == 'bairro':
-            self.cliente.bairro = self.leBairro.text().capitalize()
+            self.cliente.bairro = self.pgCliente.leBairro.text().capitalize()
 
         if campo == 'compl':
-            self.cliente.complemento = self.leCompl.text().capitalize()
+            self.cliente.complemento = self.pgCliente.leCompl.text().capitalize()
 
     def trataCadastro(self, cliente):
         wdgLista = [cliente.nomeCliente, cliente.sobrenomeCliente, cliente.email, cliente.endereco, cliente.cep]
@@ -103,15 +125,15 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         cadastraCliente(self.cliente)
 
     def trataCep(self, *args):
-        if not self.leCep.text() == "":
-            self.leCep.setText(mascaraCep(str(self.cliente.cep)))
+        if not self.pgCliente.leCep.text() == "":
+            self.pgCliente.leCep.setText(mascaraCep(str(self.cliente.cep)))
             response = requests.get(f'http://viacep.com.br/ws/{str(self.cliente.cep)}/json/')
             if response.status_code == 200:
                 dictEndereco = json.loads(response.text)
-                self.leEnd.setText(dictEndereco['logradouro'].title())
+                self.pgCliente.leEnd.setText(dictEndereco['logradouro'].title())
                 self.cliente.endereco = dictEndereco['logradouro'].title()
                 # self.leCidade.setText(dictEndereco['localidade'])
-                self.leBairro.setText(dictEndereco['bairro'].title())
+                self.pgCliente.leBairro.setText(dictEndereco['bairro'].title())
                 self.cliente.bairro = dictEndereco['bairro'].title()
             else:
                 print(f'Falha na conexão - Código de status: {response.status_code}')
@@ -119,8 +141,8 @@ class brainDashboard(Ui_mwDash, QMainWindow):
 
     def insereMascara(self, campo: str):
         if campo == 'tel':
-            if not self.leTel.text() == "":
-                self.leTel.setText(mascaraCelular(str(self.cliente.telefone)))
+            if not self.pgCliente.leTel.text() == "":
+                self.pgCliente.leTel.setText(mascaraCelular(str(self.cliente.telefone)))
 
 
 if __name__ == '__main__':
