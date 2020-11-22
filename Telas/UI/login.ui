@@ -1272,7 +1272,7 @@ QPushButton:pressed {
   </widget>
  </widget>
  <resources>
-  <include location="login.qrc"/>
+  <include location="../Imagens/login.qrc"/>
  </resources>
  <connections/>
 </ui>
