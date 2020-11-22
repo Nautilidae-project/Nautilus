@@ -17,7 +17,7 @@ class Ui_mwDash(object):
         mwDash.resize(1000, 876)
         mwDash.setMinimumSize(QtCore.QSize(1000, 500))
         mwDash.setStyleSheet("QWidget {\n"
-"    background-color: #80CCE1;\n"
+"    background-color: #0E90AD;\n"
 "}\n"
 "\n"
 "")
@@ -25,14 +25,6 @@ class Ui_mwDash(object):
         self.wdgDash.setObjectName("wdgDash")
         self.gridLayout = QtWidgets.QGridLayout(self.wdgDash)
         self.gridLayout.setObjectName("gridLayout")
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem, 1, 2, 1, 1)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.gridLayout.addItem(spacerItem1, 0, 1, 1, 1)
-        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem2, 1, 0, 1, 1)
-        spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.gridLayout.addItem(spacerItem3, 2, 1, 1, 1)
         self.frPrincipalDash = QtWidgets.QFrame(self.wdgDash)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -221,7 +213,7 @@ class Ui_mwDash(object):
         self.stkDash.setObjectName("stkDash")
         self.gridLayout_2.addWidget(self.stkDash, 0, 0, 1, 1)
         self.horizontalLayout.addWidget(self.frStakeds)
-        self.gridLayout.addWidget(self.frPrincipalDash, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.frPrincipalDash, 0, 0, 1, 1)
         mwDash.setCentralWidget(self.wdgDash)
 
         self.retranslateUi(mwDash)

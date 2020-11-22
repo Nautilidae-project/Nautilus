@@ -11,6 +11,7 @@ from brain.DAOs.brainUserConfig import *
 from modelos.cliente import Cliente
 from modelos.funcoesAuxiliares import *
 from brain.DAOs.brainClienteConfig import cadastraCliente
+from brain.DAOs.brainUserConfig import criaBanco
 import bcrypt
 import requests
 import json
@@ -57,7 +58,9 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.pbCliente.clicked.connect(lambda: self.stkDash.setCurrentIndex(2))
         # self.pbFuncionario.clicked.connect(lambda: self.stkDash.setCurrentIndex(3))
 
-    # ----------------------------------
+        criaBanco()
+
+        # ----------------------------------
 
     def dash(self):
 
