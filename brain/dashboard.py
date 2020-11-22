@@ -29,9 +29,10 @@ class brainDashboard(Ui_mwDash, QMainWindow):
 
         self.pbAgenda.clicked.connect(self.funTeste)
 
-
         self.pbDash.clicked.connect(self.dash)
         self.pbCadastrar.clicked.connect(lambda: self.trataCadastro(self.cliente))
+
+        self.pbHome.clicked.connect(self.navStkInicial)
 
         self.leNome.textEdited.connect(lambda: self.defineCampo('nome'))
         self.leSobrenome.textEdited.connect(lambda: self.defineCampo('sobrenome'))
@@ -133,6 +134,9 @@ class brainDashboard(Ui_mwDash, QMainWindow):
     def funTeste(self):
         print('Clicou no botão teste')
         self.stkDash.setCurrentIndex(2)
+
+    def navStkInicial(self):
+        self.stkDash.setCurrentIndex(1)
 
 
 if __name__ == '__main__':
