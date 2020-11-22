@@ -140,7 +140,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
     def apresentaAviso(self, mensagem: str):
         self.lbSnackBarCadastro.setText(mensagem)
         self.frSnackBarCadastro.show()
-        self.timer.start(3000)
+        self.timer.start(5000)
 
     def escondeSnackbar(self):
         self.lbSnackBarCadastro.setText('')
