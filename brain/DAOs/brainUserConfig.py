@@ -17,42 +17,28 @@ def criaBanco():
     )
     cursor = connection.cursor()
 
-    strComando = f"""CREATE TABLE IF NOT EXISTS usuario(
-	                    userId INT AUTO_INCREMENT,
-                        nomeUsuario VARCHAR(20) NOT NULL,
-                        nomeEmpresa VARCHAR(30) NOT NULL,
-                        nomeFantasia VARCHAR(30) NULL,
-                        cnpj VARCHAR(15) NOT NULL,
-                        email VARCHAR(30) NOT NULL,
-                        tel VARCHAR(11) NOT NULL,
-                        endereco VARCHAR(30) NOT NULL,
-                        cep VARCHAR(8) NOT NULL,
-                        bairro VARCHAR(30) NULL,
-                        senha VARBINARY(80) NOT NULL,
-                        PRIMARY KEY (userId)
-                    );"""
-
     try:
-        cursor.execute(strComando)
+        cursor.execute(configs.sqlCreateUsuario)
         connection.commit()
         return True
     except:
-        raise Exception(f'Erro SQL - criaBanco({configs.banco}) <CREATE TABLE (usuario)>')
-
+        raise Warning(f'Erro SQL - criaBanco({configs.banco}) <CREATE TABLE ({configs.tblUsuario})>')
     finally:
-        strComando = '''CREATE TABLE IF NOT EXISTS estados(
-                            extenso VARCHAR(20) NOT NULL,
-                            sigla VARCHAR(2) NOT NULL
-                        );'''
-
         try:
-            cursor.execute(strComando)
+            cursor.execute(configs.sqlCreateEstado)
             connection.commit()
             return True
         except:
-            raise Exception(f'Erro SQL - criaBanco({configs.banco}) <CREATE TABLE estados>')
+            raise Warning(f'Erro SQL - criaBanco({configs.banco}) <CREATE TABLE {configs.tblEstados}>')
         finally:
-            connection.close()
+            try:
+                cursor.execute(configs.sqlCreateCliente)
+                connection.commit()
+                return True
+            except:
+                raise Warning(f'Erro SQL - criaBanco({configs.banco}) <CREATE TABLE {configs.tblCliente}>')
+            finally:
+                connection.close()
 
 
 def addEstados():
@@ -124,13 +110,13 @@ def cadastreUsuario(usuario):
         (
              nomeUsuario, nomeEmpresa, nomeFantasia,
              cnpj, email, tel,
-             endereco, cep, senha
+             endereco, cep, senha, dataCadastro
         )
         VALUES
         (
             '{usuario.nomeUsuario}', '{usuario.nomeEmpresa}', '{usuario.nomeFantasia}',
             '{usuario.cnpj}', '{usuario.email}', {usuario.tel},
-            '{usuario.endereco}', '{usuario.cep}', '{usuario.senha}'
+            '{usuario.endereco}', '{usuario.cep}', '{usuario.senha}', NOW()
         )
         """
     try:

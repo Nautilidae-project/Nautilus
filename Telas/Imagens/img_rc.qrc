@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="logoDash">
+    <file>nautilusDash.png</file>
+  </qresource>
+  <qresource prefix="iconAgenda">
+    <file>calendar.png</file>
+  </qresource>
+  <qresource prefix="iconHome">
+    <file>home.png</file>
+  </qresource>
+</RCC>
