@@ -1960,7 +1960,7 @@ QComboBox::drop-down{
   <tabstop>tabs</tabstop>
  </tabstops>
  <resources>
-  <include location="login.qrc"/>
+  <include location="../Imagens/login.qrc"/>
  </resources>
  <connections/>
 </ui>
