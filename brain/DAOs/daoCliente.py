@@ -34,3 +34,21 @@ def cadastraCliente(cliente):
         connection.close()
     except:
         raise Warning(f'Erro SQL - insereCliente({cliente.clienteId}) <INSERT>')
+
+def findAll():
+    configs = ConfigDB()
+
+    connection = pymysql.connect(
+        host=configs.host,
+        user=configs.user,
+        passwd=configs.passwd,
+        db=configs.banco
+    )
+
+    cursor = connection.cursor()
+
+    strComando = f"SELECT * FROM {configs.tblCliente}"
+
+    cursor.execute(strComando)
+
+    return cursor.fetchall()
