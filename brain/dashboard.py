@@ -8,7 +8,6 @@ from Telas.dashAgenda import Ui_wdgAgenda
 from Telas.dashCliente import Ui_wdgCliente
 
 from brain.DAOs.brainUserConfig import *
-from brain.telaTeste import telaTeste
 from modelos.cliente import Cliente
 from modelos.funcoesAuxiliares import *
 from brain.DAOs.brainClienteConfig import cadastraCliente
@@ -34,25 +33,17 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.pbAgenda.setText('')
         self.cliente = Cliente()
 
-        self.teste = telaTeste()
-        self.teste.setupUi(self.teste)
-        self.stkDash.addWidget(self.teste)
-
-        self.pbAgenda.clicked.connect(self.funTeste)
-
         self.pbDash.clicked.connect(self.dash)
         self.pgCliente.pbCadastrar.clicked.connect(lambda: self.trataCadastro(self.cliente))
 
-        self.pbHome.clicked.connect(self.navStkInicial)
-
-        self.leNome.textEdited.connect(lambda: self.defineCampo('nome'))
-        self.leSobrenome.textEdited.connect(lambda: self.defineCampo('sobrenome'))
-        self.leTel.textEdited.connect(lambda: self.defineCampo('tel'))
-        self.leEmail.textEdited.connect(lambda: self.defineCampo('email'))
-        self.leCep.textEdited.connect(lambda: self.defineCampo('cep'))
-        self.leEnd.textEdited.connect(lambda: self.defineCampo('end'))
-        self.leBairro.textEdited.connect(lambda: self.defineCampo('bairro'))
-        self.leCompl.textEdited.connect(lambda: self.defineCampo('compl'))
+        self.pgCliente.leNome.textEdited.connect(lambda: self.defineCampo('nome'))
+        self.pgCliente.leSobrenome.textEdited.connect(lambda: self.defineCampo('sobrenome'))
+        self.pgCliente.leTel.textEdited.connect(lambda: self.defineCampo('tel'))
+        self.pgCliente.leEmail.textEdited.connect(lambda: self.defineCampo('email'))
+        self.pgCliente.leCep.textEdited.connect(lambda: self.defineCampo('cep'))
+        self.pgCliente.leEnd.textEdited.connect(lambda: self.defineCampo('end'))
+        self.pgCliente.leBairro.textEdited.connect(lambda: self.defineCampo('bairro'))
+        self.pgCliente.leCompl.textEdited.connect(lambda: self.defineCampo('compl'))
 
         self.pgCliente.leCep.editingFinished.connect(self.trataCep)
         self.pgCliente.leTel.editingFinished.connect(lambda: self.insereMascara('tel'))
@@ -155,13 +146,6 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         if campo == 'tel':
             if not self.pgCliente.leTel.text() == "":
                 self.pgCliente.leTel.setText(mascaraCelular(str(self.cliente.telefone)))
-
-    def funTeste(self):
-        print('Clicou no botão teste')
-        self.stkDash.setCurrentIndex(2)
-
-    def navStkInicial(self):
-        self.stkDash.setCurrentIndex(1)
 
 
 if __name__ == '__main__':
