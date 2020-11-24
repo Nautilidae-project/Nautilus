@@ -7,11 +7,14 @@ from Telas.dashHome import Ui_wdgHome
 from Telas.dashAgenda import Ui_wdgAgenda
 from Telas.dashCliente import Ui_wdgCliente
 
-from brain.DAOs.brainUserConfig import *
 from modelos.cliente import Cliente
 from modelos.funcoesAuxiliares import *
+from modelos.envioDeEmail import enviaEmail
+
+from brain.DAOs.brainUserConfig import *
 from brain.DAOs.brainClienteConfig import cadastraCliente
 from brain.DAOs.brainUserConfig import criaBanco
+
 import bcrypt
 import requests
 import json
@@ -19,6 +22,11 @@ import json
 
 class brainDashboard(Ui_mwDash, QMainWindow):
     home = pyqtSignal()
+
+    # ----- Váriaveis de envio de e-mail -----
+    titulo = "Testando no Codigo"
+    msgCadastro = "Cliente Cadastrado Com Sucesso"
+    # ----------------------------------------
 
     def __init__(self, parent=None):
         super(brainDashboard, self).__init__(parent)
@@ -100,7 +108,7 @@ class brainDashboard(Ui_mwDash, QMainWindow):
                 return False
 
         if campo == 'email':
-            self.cliente.email = self.pgCliente.leEmail.text().capitalize()
+            self.cliente.email = self.pgCliente.leEmail.text().lower()
 
         if campo == 'cep':
             if self.pgCliente.leCep.text().isnumeric():
@@ -126,6 +134,7 @@ class brainDashboard(Ui_mwDash, QMainWindow):
                 return False
 
         cadastraCliente(self.cliente)
+        enviaEmail(self.titulo, self.msgCadastro, self.pgCliente.leEmail.text())
 
     def trataCep(self, *args):
         if not self.pgCliente.leCep.text() == "":
