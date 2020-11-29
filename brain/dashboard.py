@@ -23,11 +23,6 @@ import json
 class brainDashboard(Ui_mwDash, QMainWindow):
     home = pyqtSignal()
 
-    # ----- Váriaveis de envio de e-mail -----
-    titulo = "Testando no Codigo"
-    msgCadastro = "Cliente Cadastrado Com Sucesso"
-    # ----------------------------------------
-
     def __init__(self, parent=None):
         super(brainDashboard, self).__init__(parent)
 
@@ -67,8 +62,9 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         # self.pbFuncionario.clicked.connect(lambda: self.stkDash.setCurrentIndex(3))
 
         criaBanco()
-
         # ----------------------------------
+
+
 
     def dash(self):
 
@@ -132,6 +128,21 @@ class brainDashboard(Ui_mwDash, QMainWindow):
             if wdg == "":
                 print("Informação faltante.")
                 return False
+
+        # ----- Váriaveis de envio de e-mail -----
+        self.titulo = "Testando no Codigo"
+        self.msgCadastro = f"""Cliente Cadastrado Com Sucesso
+
+        --------------------- Dados Cadastrados ---------------------
+        Nome: {self.cliente.nomeCliente} {self.cliente.sobrenomeCliente}
+        E-mail: {self.cliente.email}
+        Senha: senha
+        Cep: {self.cliente.cep}
+        Enredeço: {self.cliente.endereco}
+        Bairro: {self.cliente.bairro}
+        Complemento: {self.cliente.complemento}
+"""
+        # ----------------------------------------
 
         cadastraCliente(self.cliente)
         enviaEmail(self.titulo, self.msgCadastro, self.pgCliente.leEmail.text())

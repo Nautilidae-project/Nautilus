@@ -7,14 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>963</width>
-    <height>821</height>
+    <height>830</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget {
+   <string notr="true">#wdgCliente {
 	background-color: #80CCE1;
 }
 
@@ -76,7 +76,7 @@ QPushButton:hover {
     <number>0</number>
    </property>
    <property name="bottomMargin">
-    <number>0</number>
+    <number>30</number>
    </property>
    <property name="spacing">
     <number>0</number>
