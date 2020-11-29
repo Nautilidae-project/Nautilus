@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import pyqtSignal
 from Telas.cadastro import Ui_mwCadastro
 from modelos.usuario import Usuario
-from brain.DAOs.brainUserConfig import *
+from brain.DAOs.UserConfig import *
 from modelos.funcoesAuxiliares import *
 import bcrypt
 import requests

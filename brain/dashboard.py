@@ -7,12 +7,10 @@ from Telas.dashHome import Ui_wdgHome
 from Telas.dashAgenda import Ui_wdgAgenda
 from Telas.dashCliente import Ui_wdgCliente
 
-from brain.DAOs.brainUserConfig import *
 from modelos.cliente import Cliente
 from modelos.funcoesAuxiliares import *
-from brain.DAOs.brainClienteConfig import cadastraCliente
-from brain.DAOs.brainUserConfig import criaBanco
-import bcrypt
+from brain.DAOs.daoCliente import cadastraCliente
+from brain.DAOs.UserConfig import criaBanco
 import requests
 import json
 
