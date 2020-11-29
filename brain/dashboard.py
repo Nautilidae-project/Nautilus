@@ -7,11 +7,14 @@ from Telas.dashHome import Ui_wdgHome
 from Telas.dashAgenda import Ui_wdgAgenda
 from Telas.dashCliente import Ui_wdgCliente
 
-from brain.DAOs.brainUserConfig import *
 from modelos.cliente import Cliente
 from modelos.funcoesAuxiliares import *
+from modelos.envioDeEmail import enviaEmail
+
+from brain.DAOs.brainUserConfig import *
 from brain.DAOs.brainClienteConfig import cadastraCliente
 from brain.DAOs.brainUserConfig import criaBanco
+
 import bcrypt
 import requests
 import json
@@ -59,8 +62,9 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         # self.pbFuncionario.clicked.connect(lambda: self.stkDash.setCurrentIndex(3))
 
         criaBanco()
-
         # ----------------------------------
+
+
 
     def dash(self):
 
@@ -100,7 +104,7 @@ class brainDashboard(Ui_mwDash, QMainWindow):
                 return False
 
         if campo == 'email':
-            self.cliente.email = self.pgCliente.leEmail.text().capitalize()
+            self.cliente.email = self.pgCliente.leEmail.text().lower()
 
         if campo == 'cep':
             if self.pgCliente.leCep.text().isnumeric():
@@ -125,7 +129,23 @@ class brainDashboard(Ui_mwDash, QMainWindow):
                 print("Informação faltante.")
                 return False
 
+        # ----- Váriaveis de envio de e-mail -----
+        self.titulo = "Testando no Codigo"
+        self.msgCadastro = f"""Cliente Cadastrado Com Sucesso
+
+        --------------------- Dados Cadastrados ---------------------
+        Nome: {self.cliente.nomeCliente} {self.cliente.sobrenomeCliente}
+        E-mail: {self.cliente.email}
+        Senha: senha
+        Cep: {self.cliente.cep}
+        Enredeço: {self.cliente.endereco}
+        Bairro: {self.cliente.bairro}
+        Complemento: {self.cliente.complemento}
+"""
+        # ----------------------------------------
+
         cadastraCliente(self.cliente)
+        enviaEmail(self.titulo, self.msgCadastro, self.pgCliente.leEmail.text())
 
     def trataCep(self, *args):
         if not self.pgCliente.leCep.text() == "":
