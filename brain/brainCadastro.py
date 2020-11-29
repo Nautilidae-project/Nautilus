@@ -1,4 +1,5 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import pyqtSignal
 from Telas.cadastro import Ui_mwCadastro
@@ -18,6 +19,8 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
         self.setupUi(self)
         self.pbVoltarLogin.clicked.connect(self.goHome)
         self.home.connect(self.parent().backHome)
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.escondeSnackbar)
 
         self.frSnackBarCadastro.hide()
 
@@ -62,6 +65,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
             if self.leCNPJ.text().isnumeric():
                 self.usuario.cnpj = self.leCNPJ.text()
             else:
+                self.apresentaAviso('Digite apenas números')
                 print('Digite apenas números')
                 self.leCNPJ.setText("")
 
@@ -72,6 +76,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
             if self.leTelefone.text().isnumeric():
                 self.usuario.tel = self.leTelefone.text()
             else:
+                self.apresentaAviso('Digite apenas números')
                 print('Digite apenas números')
                 self.leTelefone.setText("")
                 return False
@@ -83,6 +88,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
             if self.leCEP.text().isnumeric():
                 self.usuario.cep = self.leCEP.text()
             else:
+                self.apresentaAviso('Digite apenas números')
                 print('Digite apenas números')
                 self.leCEP.setText("")
 
@@ -92,9 +98,11 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
                     self.leNomeEmpresa]
         for wdg in wdgLista:
             if wdg.text() == "":
-                print("Informação faltante.")
+                self.apresentaAviso('Informação faltante')
+                print("Informação faltante")
                 return False
         if self.leSenha.text() != self.leSenhaConfirma.text():
+            self.apresentaAviso('As senhas não coincidem')
             print("As senhas não coincidem")
             return False
 
@@ -105,7 +113,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
             self.goHome()
             return True
         else:
-            print('Deu merda no cadastro')
+            self.apresentaAviso('Deu merda no cadastro')
 
     def insereMascara(self, campo):
         if campo == 'cnpj':
@@ -128,3 +136,14 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
             else:
                 print(f'Falha na conexão - Código de status: {response.status_code}')
                 return False
+
+    def apresentaAviso(self, mensagem: str):
+        self.lbSnackBarCadastro.setText(mensagem)
+        self.frSnackBarCadastro.show()
+        self.timer.start(5000)
+
+    def escondeSnackbar(self):
+        self.lbSnackBarCadastro.setText('')
+        self.frSnackBarCadastro.hide()
+
+
