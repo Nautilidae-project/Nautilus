@@ -1,3 +1,6 @@
+from PyQt5.QtCore import QAbstractTableModel, QModelIndex, Qt
+
+
 class Cliente:
 
     def __init__(self):
@@ -50,3 +53,47 @@ class Cliente:
                f'telefone: {self.telefone}, email: {self.email}, cpf: {self.cpf}, endereco: {self.endereco}, \n' \
                f'complemento: {self.complemento}, cep: {self.cep}, bairro: {self.bairro}, meioPagamento: {self.meioPagamento},\n' \
                f'ativo: {self.ativo}'
+
+
+class ClientTableModel(QAbstractTableModel):
+
+    def __init__(self, colunas=None, dados=None):
+        super(ClientTableModel, self).__init__()
+        self.dados = dados
+        self.colunas = colunas
+        self.qtdColunas = len(colunas)
+        self.qtdLinhas = len(dados)
+
+        print(f'self.dados: {self.dados}')
+        print(f'qtdLinhas: {self.qtdLinhas}')
+        print(f'self.colunas: {self.colunas}')
+        print(f'qtdColunas: {self.qtdColunas}')
+
+    def rowCount(self, parent=QModelIndex()) -> int:
+        return self.qtdLinhas
+
+    def columnCount(self, parent=QModelIndex()) -> int:
+        return self.qtdColunas
+
+    def headerData(self, section: int, orientation: Qt.Orientation, role: int = ...):
+        print('Entrou no headerData')
+        if role != Qt.DisplayRole:
+            return None
+
+        if orientation == Qt.Horizontal:
+            # print(f'Colunas: {self.colunas[section]}')
+            return self.colunas[section]
+        else:
+            return section
+
+    def data(self, index: QModelIndex, role=Qt.DisplayRole):
+        column = index.column()
+        row = index.row()
+
+        if role == Qt.DisplayRole:
+            # print(self.dados[row][column])
+            return self.dados[row][column]
+        elif role == Qt.TextAlignmentRole:
+            return Qt.AlignCenter
+        else:
+            return None

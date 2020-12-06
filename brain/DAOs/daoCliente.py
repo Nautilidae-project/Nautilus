@@ -47,7 +47,8 @@ def findAll():
 
     cursor = connection.cursor()
 
-    strComando = f"SELECT * FROM {configs.tblCliente}"
+    # strComando = f"SELECT * FROM {configs.tblCliente}"
+    strComando = f"SELECT nomeCliente, telefone, meioPagamento, ativo FROM {configs.tblCliente}"
 
     cursor.execute(strComando)
 

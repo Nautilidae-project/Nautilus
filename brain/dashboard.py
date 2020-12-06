@@ -2,20 +2,15 @@ from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import pyqtSignal, QPropertyAnimation
 
-from Telas.dashbord import Ui_mwDash
+from Telas.dashboard import Ui_mwDash
 from Telas.dashHome import Ui_wdgHome
 from Telas.dashAgenda import Ui_wdgAgenda
-from Telas.dashCliente import Ui_wdgCliente
+from brain.brainCliente import brainCliente
 
 from modelos.cliente import Cliente
 from modelos.funcoesAuxiliares import *
 from modelos.envioDeEmail import enviaEmail
 
-from brain.DAOs.brainUserConfig import *
-from brain.DAOs.brainClienteConfig import cadastraCliente
-from brain.DAOs.brainUserConfig import criaBanco
-
-import bcrypt
 from brain.DAOs.daoCliente import cadastraCliente
 from brain.DAOs.UserConfig import criaBanco
 import requests
@@ -30,7 +25,7 @@ class brainDashboard(Ui_mwDash, QMainWindow):
 
         self.pgHome = Ui_wdgHome(self)
         self.pgAgenda = Ui_wdgAgenda(self)
-        self.pgCliente = Ui_wdgCliente(self)
+        self.pgCliente = brainCliente(self)
 
         self.setupUi(self)
         self.enable = False
