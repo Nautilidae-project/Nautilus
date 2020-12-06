@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QMainWindow
 from Telas.login import Ui_mwLogin
 from brain.dashboard import brainDashboard
 from brain.brainCadastro import brainCadastro
-from brain.DAOs.brainUserConfig import *
+from brain.DAOs.UserConfig import *
 
 
 class brainLogin(Ui_mwLogin, QMainWindow):
