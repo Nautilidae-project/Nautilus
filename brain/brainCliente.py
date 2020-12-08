@@ -27,4 +27,3 @@ class brainCliente(Ui_wdgCliente, QWidget):
                 self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(data)))
 
         self.tblClientes.resizeColumnsToContents()
-
