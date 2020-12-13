@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>981</width>
+    <width>1087</width>
     <height>843</height>
    </rect>
   </property>
@@ -447,11 +447,17 @@ QTableView::item:selected {
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>
             </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
             <property name="lineWidth">
              <number>0</number>
             </property>
             <property name="sizeAdjustPolicy">
              <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+            </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
             </property>
             <property name="alternatingRowColors">
              <bool>true</bool>
@@ -459,20 +465,32 @@ QTableView::item:selected {
             <property name="selectionMode">
              <enum>QAbstractItemView::SingleSelection</enum>
             </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
             <property name="showGrid">
+             <bool>false</bool>
+            </property>
+            <property name="gridStyle">
+             <enum>Qt::NoPen</enum>
+            </property>
+            <property name="cornerButtonEnabled">
              <bool>false</bool>
             </property>
             <property name="rowCount">
              <number>0</number>
             </property>
             <property name="columnCount">
-             <number>4</number>
+             <number>5</number>
             </property>
             <attribute name="horizontalHeaderVisible">
              <bool>true</bool>
             </attribute>
+            <attribute name="horizontalHeaderCascadingSectionResizes">
+             <bool>true</bool>
+            </attribute>
             <attribute name="horizontalHeaderMinimumSectionSize">
-             <number>145</number>
+             <number>28</number>
             </attribute>
             <attribute name="horizontalHeaderDefaultSectionSize">
              <number>150</number>
@@ -480,6 +498,11 @@ QTableView::item:selected {
             <attribute name="verticalHeaderVisible">
              <bool>false</bool>
             </attribute>
+            <column>
+             <property name="text">
+              <string>Id</string>
+             </property>
+            </column>
             <column>
              <property name="text">
               <string>Nome</string>
@@ -540,135 +563,6 @@ QTableView::item:selected {
              <property name="bottomMargin">
               <number>0</number>
              </property>
-             <item>
-              <widget class="QTableWidget" name="tblClientes">
-               <property name="styleSheet">
-                <string notr="true">#tblClientes::item {
-	padding-left: 8px;
-	padding-right: 8px;
-}
-
-#tblClientes::section {
-	padding-left: 8px;
-	padding-right: 8px;
-}
-
-</string>
-               </property>
-               <property name="locale">
-                <locale language="Portuguese" country="Brazil"/>
-               </property>
-               <property name="frameShape">
-                <enum>QFrame::NoFrame</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
-               <property name="lineWidth">
-                <number>0</number>
-               </property>
-               <property name="sizeAdjustPolicy">
-                <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
-               </property>
-               <property name="editTriggers">
-                <set>QAbstractItemView::NoEditTriggers</set>
-               </property>
-               <property name="selectionMode">
-                <enum>QAbstractItemView::SingleSelection</enum>
-               </property>
-               <property name="selectionBehavior">
-                <enum>QAbstractItemView::SelectRows</enum>
-               </property>
-               <property name="showGrid">
-                <bool>false</bool>
-               </property>
-               <property name="gridStyle">
-                <enum>Qt::NoPen</enum>
-               </property>
-               <property name="wordWrap">
-                <bool>true</bool>
-               </property>
-               <property name="cornerButtonEnabled">
-                <bool>false</bool>
-               </property>
-               <property name="rowCount">
-                <number>0</number>
-               </property>
-               <property name="columnCount">
-                <number>5</number>
-               </property>
-               <attribute name="horizontalHeaderVisible">
-                <bool>true</bool>
-               </attribute>
-               <attribute name="horizontalHeaderCascadingSectionResizes">
-                <bool>true</bool>
-               </attribute>
-               <attribute name="horizontalHeaderDefaultSectionSize">
-                <number>150</number>
-               </attribute>
-               <attribute name="horizontalHeaderHighlightSections">
-                <bool>true</bool>
-               </attribute>
-               <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-                <bool>false</bool>
-               </attribute>
-               <attribute name="horizontalHeaderStretchLastSection">
-                <bool>false</bool>
-               </attribute>
-               <attribute name="verticalHeaderVisible">
-                <bool>false</bool>
-               </attribute>
-               <column>
-                <property name="text">
-                 <string>Id</string>
-                </property>
-               </column>
-               <column>
-                <property name="text">
-                 <string>Nome</string>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Ubuntu</family>
-                  <pointsize>16</pointsize>
-                 </font>
-                </property>
-               </column>
-               <column>
-                <property name="text">
-                 <string>Telefone</string>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Ubuntu</family>
-                  <pointsize>16</pointsize>
-                 </font>
-                </property>
-               </column>
-               <column>
-                <property name="text">
-                 <string>Meio de pagamento</string>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Ubuntu</family>
-                  <pointsize>16</pointsize>
-                 </font>
-                </property>
-               </column>
-               <column>
-                <property name="text">
-                 <string>Ativo</string>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Ubuntu</family>
-                  <pointsize>16</pointsize>
-                 </font>
-                </property>
-               </column>
-              </widget>
-             </item>
             </layout>
            </widget>
           </item>
