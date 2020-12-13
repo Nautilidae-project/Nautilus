@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1046</width>
+    <width>841</width>
     <height>537</height>
    </rect>
   </property>
@@ -66,7 +66,7 @@ QPushButton{
 }
 
 QPushButton:hover {
-	background-color: #8cdf80;
+	background-color: #80CCE1;
 }
 </string>
   </property>
@@ -139,6 +139,9 @@ QTabBar::tab:selected, QTabBar::tab:hover {
        <string>Informações</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
+       <property name="rightMargin">
+        <number>18</number>
+       </property>
        <item row="1" column="0">
         <widget class="QFrame" name="frListButtons">
          <property name="minimumSize">
@@ -364,7 +367,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
          </property>
          <layout class="QGridLayout" name="gridLayout_5">
           <property name="leftMargin">
-           <number>10</number>
+           <number>0</number>
           </property>
           <property name="topMargin">
            <number>10</number>
@@ -385,7 +388,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
             </property>
             <property name="maximumSize">
              <size>
-              <width>600</width>
+              <width>630</width>
               <height>16777215</height>
              </size>
             </property>
@@ -404,15 +407,29 @@ QTabBar::tab:selected, QTabBar::tab:hover {
 
 QHeaderView::section:checked
 {
-    background-color: red;
-	border-radius: 10%;
+    background-color: #DFD880;
+	border-top-left-radius: 15%;
+	border-top-right-radius: 15%;
 }
 
+
+
 QTableView {
-	selection-background-color: rgb(251, 184, 108);
-	
-	alternate-background-color: rgb(108, 251, 208);
+	alternate-background-color: #ddd;
 }
+
+
+QTableView::item:hover {
+	border: 2px solid;
+	border-radius: 10%;
+	font: 16px;
+}
+
+QTableView::item:selected {
+	background-color: #DFD880;
+	color: #444;
+}
+
 </string>
             </property>
             <property name="locale">
@@ -436,12 +453,6 @@ QTableView {
             <property name="showGrid">
              <bool>false</bool>
             </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-            <property name="cornerButtonEnabled">
-             <bool>true</bool>
-            </property>
             <property name="rowCount">
              <number>5</number>
             </property>
@@ -452,7 +463,7 @@ QTableView {
              <bool>true</bool>
             </attribute>
             <attribute name="horizontalHeaderMinimumSectionSize">
-             <number>140</number>
+             <number>145</number>
             </attribute>
             <attribute name="horizontalHeaderDefaultSectionSize">
              <number>150</number>
@@ -529,9 +540,29 @@ QTableView {
               </font>
              </property>
             </column>
+            <item row="0" column="0">
+             <property name="text">
+              <string>rerer</string>
+             </property>
+            </item>
+            <item row="0" column="1">
+             <property name="text">
+              <string>erere</string>
+             </property>
+            </item>
+            <item row="0" column="2">
+             <property name="text">
+              <string>erer</string>
+             </property>
+            </item>
             <item row="1" column="0">
              <property name="text">
               <string>s</string>
+             </property>
+            </item>
+            <item row="1" column="1">
+             <property name="text">
+              <string>erer</string>
              </property>
             </item>
             <item row="1" column="2">
@@ -539,9 +570,24 @@ QTableView {
               <string>s</string>
              </property>
             </item>
+            <item row="1" column="3">
+             <property name="text">
+              <string>ererer</string>
+             </property>
+            </item>
+            <item row="2" column="0">
+             <property name="text">
+              <string>rere</string>
+             </property>
+            </item>
             <item row="2" column="1">
              <property name="text">
               <string>s</string>
+             </property>
+            </item>
+            <item row="2" column="2">
+             <property name="text">
+              <string>erer</string>
              </property>
             </item>
             <item row="3" column="0">
@@ -562,6 +608,16 @@ QTableView {
             <item row="3" column="3">
              <property name="text">
               <string>ss</string>
+             </property>
+            </item>
+            <item row="4" column="0">
+             <property name="text">
+              <string>ererer</string>
+             </property>
+            </item>
+            <item row="4" column="2">
+             <property name="text">
+              <string>erere</string>
              </property>
             </item>
            </widget>
@@ -594,13 +650,13 @@ QTableView {
            <number>24</number>
           </property>
           <property name="leftMargin">
-           <number>12</number>
+           <number>9</number>
           </property>
           <property name="topMargin">
            <number>0</number>
           </property>
           <property name="rightMargin">
-           <number>12</number>
+           <number>0</number>
           </property>
           <property name="bottomMargin">
            <number>0</number>

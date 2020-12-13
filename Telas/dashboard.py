@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'dashbord.ui'
+# Form implementation generated from reading ui file 'dashboard.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.1
 #
@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_mwDash(object):
     def setupUi(self, mwDash):
         mwDash.setObjectName("mwDash")
-        mwDash.resize(1000, 876)
+        mwDash.resize(1000, 826)
         mwDash.setMinimumSize(QtCore.QSize(1000, 500))
         mwDash.setStyleSheet("QWidget {\n"
 "    background-color: #0E90AD;\n"
@@ -181,10 +181,20 @@ class Ui_mwDash(object):
         self.pbCliente.setMinimumSize(QtCore.QSize(0, 50))
         self.pbCliente.setObjectName("pbCliente")
         self.verticalLayout.addWidget(self.pbCliente)
-        self.pbFuncionario = QtWidgets.QPushButton(self.frMenu)
-        self.pbFuncionario.setMinimumSize(QtCore.QSize(0, 50))
-        self.pbFuncionario.setObjectName("pbFuncionario")
-        self.verticalLayout.addWidget(self.pbFuncionario)
+        self.pbFinanceiro = QtWidgets.QPushButton(self.frMenu)
+        self.pbFinanceiro.setMinimumSize(QtCore.QSize(0, 50))
+        self.pbFinanceiro.setObjectName("pbFinanceiro")
+        self.verticalLayout.addWidget(self.pbFinanceiro)
+        self.pbConfig = QtWidgets.QPushButton(self.frMenu)
+        self.pbConfig.setMinimumSize(QtCore.QSize(0, 50))
+        self.pbConfig.setObjectName("pbConfig")
+        self.verticalLayout.addWidget(self.pbConfig)
+        spacerItem = QtWidgets.QSpacerItem(20, 200, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem)
+        self.pbSairDash = QtWidgets.QPushButton(self.frMenu)
+        self.pbSairDash.setMinimumSize(QtCore.QSize(0, 50))
+        self.pbSairDash.setObjectName("pbSairDash")
+        self.verticalLayout.addWidget(self.pbSairDash)
         self.horizontalLayout.addWidget(self.frMenu, 0, QtCore.Qt.AlignTop)
         self.frStakeds = QtWidgets.QFrame(self.frPrincipalDash)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
@@ -226,7 +236,9 @@ class Ui_mwDash(object):
         self.pbHome.setText(_translate("mwDash", "Home"))
         self.pbAgenda.setText(_translate("mwDash", "Agenda"))
         self.pbCliente.setText(_translate("mwDash", "Cliente"))
-        self.pbFuncionario.setText(_translate("mwDash", "funcionários"))
+        self.pbFinanceiro.setText(_translate("mwDash", "Financeiro"))
+        self.pbConfig.setText(_translate("mwDash", "Config"))
+        self.pbSairDash.setText(_translate("mwDash", "Sair"))
 import Telas.Imagens.img_rc
 
 

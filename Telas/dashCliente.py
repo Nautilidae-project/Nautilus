@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_wdgCliente(object):
     def setupUi(self, wdgCliente):
         wdgCliente.setObjectName("wdgCliente")
-        wdgCliente.resize(1046, 537)
+        wdgCliente.resize(841, 537)
         wdgCliente.setStyleSheet("#wdgCliente {\n"
 "    background-color: #80CCE1;\n"
 "}\n"
@@ -67,7 +67,7 @@ class Ui_wdgCliente(object):
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"    background-color: #8cdf80;\n"
+"    background-color: #80CCE1;\n"
 "}\n"
 "")
         self.gridLayout = QtWidgets.QGridLayout(wdgCliente)
@@ -116,6 +116,7 @@ class Ui_wdgCliente(object):
         self.tbInfosCliente = QtWidgets.QWidget()
         self.tbInfosCliente.setObjectName("tbInfosCliente")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.tbInfosCliente)
+        self.gridLayout_3.setContentsMargins(-1, -1, 18, -1)
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.frListButtons = QtWidgets.QFrame(self.tbInfosCliente)
         self.frListButtons.setMinimumSize(QtCore.QSize(700, 60))
@@ -194,11 +195,11 @@ class Ui_wdgCliente(object):
         self.frClientsList.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frClientsList.setObjectName("frClientsList")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.frClientsList)
-        self.gridLayout_5.setContentsMargins(10, 10, 0, 0)
+        self.gridLayout_5.setContentsMargins(0, 10, 0, 0)
         self.gridLayout_5.setObjectName("gridLayout_5")
         self.tblClientes = QtWidgets.QTableWidget(self.frClientsList)
         self.tblClientes.setMinimumSize(QtCore.QSize(600, 0))
-        self.tblClientes.setMaximumSize(QtCore.QSize(600, 16777215))
+        self.tblClientes.setMaximumSize(QtCore.QSize(630, 16777215))
         self.tblClientes.setStyleSheet("QHeaderView::section {\n"
 "   \n"
 "    background-color: #fafafa;\n"
@@ -213,15 +214,29 @@ class Ui_wdgCliente(object):
 "\n"
 "QHeaderView::section:checked\n"
 "{\n"
-"    background-color: red;\n"
-"    border-radius: 10%;\n"
+"    background-color: #DFD880;\n"
+"    border-top-left-radius: 15%;\n"
+"    border-top-right-radius: 15%;\n"
 "}\n"
 "\n"
+"\n"
+"\n"
 "QTableView {\n"
-"    selection-background-color: rgb(251, 184, 108);\n"
-"    \n"
-"    alternate-background-color: rgb(108, 251, 208);\n"
+"    alternate-background-color: #ddd;\n"
 "}\n"
+"\n"
+"\n"
+"QTableView::item:hover {\n"
+"    border: 2px solid;\n"
+"    border-radius: 10%;\n"
+"    font: 16px;\n"
+"}\n"
+"\n"
+"QTableView::item:selected {\n"
+"    background-color: #DFD880;\n"
+"    color: #444;\n"
+"}\n"
+"\n"
 "")
         self.tblClientes.setLocale(QtCore.QLocale(QtCore.QLocale.Portuguese, QtCore.QLocale.Brazil))
         self.tblClientes.setFrameShape(QtWidgets.QFrame.NoFrame)
@@ -230,8 +245,6 @@ class Ui_wdgCliente(object):
         self.tblClientes.setAlternatingRowColors(True)
         self.tblClientes.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
         self.tblClientes.setShowGrid(False)
-        self.tblClientes.setWordWrap(True)
-        self.tblClientes.setCornerButtonEnabled(True)
         self.tblClientes.setRowCount(5)
         self.tblClientes.setColumnCount(4)
         self.tblClientes.setObjectName("tblClientes")
@@ -270,11 +283,25 @@ class Ui_wdgCliente(object):
         item.setFont(font)
         self.tblClientes.setHorizontalHeaderItem(3, item)
         item = QtWidgets.QTableWidgetItem()
+        self.tblClientes.setItem(0, 0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tblClientes.setItem(0, 1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tblClientes.setItem(0, 2, item)
+        item = QtWidgets.QTableWidgetItem()
         self.tblClientes.setItem(1, 0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tblClientes.setItem(1, 1, item)
         item = QtWidgets.QTableWidgetItem()
         self.tblClientes.setItem(1, 2, item)
         item = QtWidgets.QTableWidgetItem()
+        self.tblClientes.setItem(1, 3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tblClientes.setItem(2, 0, item)
+        item = QtWidgets.QTableWidgetItem()
         self.tblClientes.setItem(2, 1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tblClientes.setItem(2, 2, item)
         item = QtWidgets.QTableWidgetItem()
         self.tblClientes.setItem(3, 0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -283,9 +310,13 @@ class Ui_wdgCliente(object):
         self.tblClientes.setItem(3, 2, item)
         item = QtWidgets.QTableWidgetItem()
         self.tblClientes.setItem(3, 3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tblClientes.setItem(4, 0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tblClientes.setItem(4, 2, item)
         self.tblClientes.horizontalHeader().setVisible(True)
         self.tblClientes.horizontalHeader().setDefaultSectionSize(150)
-        self.tblClientes.horizontalHeader().setMinimumSectionSize(140)
+        self.tblClientes.horizontalHeader().setMinimumSectionSize(145)
         self.tblClientes.verticalHeader().setVisible(False)
         self.gridLayout_5.addWidget(self.tblClientes, 0, 0, 1, 1)
         self.gridLayout_3.addWidget(self.frClientsList, 2, 0, 1, 1)
@@ -296,7 +327,7 @@ class Ui_wdgCliente(object):
         self.frTopTabMenu.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frTopTabMenu.setObjectName("frTopTabMenu")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.frTopTabMenu)
-        self.horizontalLayout_2.setContentsMargins(12, 0, 12, 0)
+        self.horizontalLayout_2.setContentsMargins(9, 0, 0, 0)
         self.horizontalLayout_2.setSpacing(24)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.frLeftInfo = QtWidgets.QFrame(self.frTopTabMenu)
@@ -642,12 +673,26 @@ class Ui_wdgCliente(object):
         item.setText(_translate("wdgCliente", "Ativo"))
         __sortingEnabled = self.tblClientes.isSortingEnabled()
         self.tblClientes.setSortingEnabled(False)
+        item = self.tblClientes.item(0, 0)
+        item.setText(_translate("wdgCliente", "rerer"))
+        item = self.tblClientes.item(0, 1)
+        item.setText(_translate("wdgCliente", "erere"))
+        item = self.tblClientes.item(0, 2)
+        item.setText(_translate("wdgCliente", "erer"))
         item = self.tblClientes.item(1, 0)
         item.setText(_translate("wdgCliente", "s"))
+        item = self.tblClientes.item(1, 1)
+        item.setText(_translate("wdgCliente", "erer"))
         item = self.tblClientes.item(1, 2)
         item.setText(_translate("wdgCliente", "s"))
+        item = self.tblClientes.item(1, 3)
+        item.setText(_translate("wdgCliente", "ererer"))
+        item = self.tblClientes.item(2, 0)
+        item.setText(_translate("wdgCliente", "rere"))
         item = self.tblClientes.item(2, 1)
         item.setText(_translate("wdgCliente", "s"))
+        item = self.tblClientes.item(2, 2)
+        item.setText(_translate("wdgCliente", "erer"))
         item = self.tblClientes.item(3, 0)
         item.setText(_translate("wdgCliente", "s"))
         item = self.tblClientes.item(3, 1)
@@ -656,6 +701,10 @@ class Ui_wdgCliente(object):
         item.setText(_translate("wdgCliente", "s"))
         item = self.tblClientes.item(3, 3)
         item.setText(_translate("wdgCliente", "ss"))
+        item = self.tblClientes.item(4, 0)
+        item.setText(_translate("wdgCliente", "ererer"))
+        item = self.tblClientes.item(4, 2)
+        item.setText(_translate("wdgCliente", "erere"))
         self.tblClientes.setSortingEnabled(__sortingEnabled)
         self.tabsCliente.setTabText(self.tabsCliente.indexOf(self.tbInfosCliente), _translate("wdgCliente", "Informações"))
         self.lbTitulo.setText(_translate("wdgCliente", "Cadastro de clientes"))
