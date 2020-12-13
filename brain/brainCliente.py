@@ -2,10 +2,15 @@ import base64
 
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QMessageBox
 from PyQt5.QtCore import pyqtSignal, Qt
+from PyQt5.QtWidgets import QWidget, QTableWidgetItem
+from PyQt5.QtCore import pyqtSignal
+from PyQt5.Qt import Qt
 from Telas.dashCliente import Ui_wdgCliente
 from brain.DAOs.daoCliente import findAll, buscaPorId
 from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento
 from modelos.cliente import Cliente
+from brain.DAOs.daoCliente import findAll, buscaCliente
+
 
 
 class brainCliente(Ui_wdgCliente, QWidget):
@@ -22,8 +27,24 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.tblClientes.setColumnHidden(0, True)
 
         self.pbConfirmarAtualizacao.clicked.connect(lambda: self.showPopup('As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
+        self.leSearchCliente.textEdited.connect(lambda: self.busca())
 
         self.tblClientes.doubleClicked.connect(self.carregaInfoCliente)
+
+    def busca(self):
+        print(self.leSearchCliente.text())
+
+        clientes = buscaCliente(self.leSearchCliente.text())
+
+        self.tblClientes.setRowCount(0)
+
+        for rowCount, rowData in enumerate(clientes):
+            self.tblClientes.insertRow(rowCount)
+            for columnNumber, data in enumerate(rowData):
+                self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(data)))
+                print(f'Count -> {rowCount}     rowData -> {rowData}      columnNumber -> {columnNumber}     Data -> {data} ')
+
+        self.tblClientes.resizeColumnsToContents()
 
     def atualizaTabela(self):
         clientes = findAll()
@@ -32,6 +53,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         for rowCount, rowData in enumerate(clientes):
             self.tblClientes.insertRow(rowCount)
             for columnNumber, data in enumerate(rowData):
+                print(data)
                 if columnNumber == 2:
                     self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(mascaraCelular(data))))
                 elif columnNumber == 3:
