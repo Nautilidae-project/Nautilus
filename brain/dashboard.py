@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import pyqtSignal, QPropertyAnimation
 
@@ -8,7 +8,7 @@ from Telas.dashAgenda import Ui_wdgAgenda
 from brain.brainCliente import brainCliente
 
 from modelos.cliente import Cliente
-from modelos.funcoesAuxiliares import *
+from brain.funcoesAuxiliares import *
 from modelos.envioDeEmail import enviaEmail
 
 from brain.DAOs.daoCliente import cadastraCliente
