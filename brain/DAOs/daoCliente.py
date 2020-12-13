@@ -38,6 +38,7 @@ def cadastraCliente(cliente):
     except:
         raise Warning(f'Erro SQL - insereCliente({cliente.clienteId}) <INSERT>')
 
+
 def findAll():
     configs = ConfigDB()
 
@@ -56,6 +57,29 @@ def findAll():
     cursor.execute(strComando)
 
     return cursor.fetchall()
+
+
+def buscaCliente(busca):
+    configs = ConfigDB()
+
+    connection = pymysql.connect(
+        host=configs.host,
+        user=configs.user,
+        passwd=configs.passwd,
+        db=configs.banco
+    )
+
+    cursor = connection.cursor()
+
+    strComando = f"SELECT nomeCliente, telefone, meioPagamento, ativo  FROM cliente where " \
+                 f"nomeCliente LIKE '%{busca}%' OR " \
+                 f"sobrenomeCliente like '%{busca}%' OR " \
+                 f"telefone like '%{busca}%'"
+
+    cursor.execute(strComando)
+
+    return cursor.fetchall()
+
 
 def buscaPorId(clienteId: int):
     configs = ConfigDB()
