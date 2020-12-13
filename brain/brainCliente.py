@@ -53,6 +53,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         for rowCount, rowData in enumerate(clientes):
             self.tblClientes.insertRow(rowCount)
             for columnNumber, data in enumerate(rowData):
+                print(data)
                 if columnNumber == 2:
                     self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(mascaraCelular(data))))
                 elif columnNumber == 3:
