@@ -80,6 +80,21 @@ background-color: #fafafa;
   </property>
   <widget class="QWidget" name="wdgLgin">
    <layout class="QGridLayout" name="gridLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <item row="0" column="1">
      <widget class="QStackedWidget" name="stkLogin">
       <property name="minimumSize">
@@ -97,17 +112,126 @@ background-color: #fafafa;
          <number>0</number>
         </property>
         <property name="topMargin">
-         <number>0</number>
+         <number>9</number>
         </property>
         <property name="rightMargin">
          <number>0</number>
         </property>
         <property name="bottomMargin">
-         <number>0</number>
+         <number>9</number>
         </property>
         <property name="spacing">
          <number>0</number>
         </property>
+        <item row="0" column="0">
+         <spacer name="hSpacer1">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="1">
+         <widget class="QFrame" name="frBordaTextuaisLogin">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>100</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>500</width>
+            <height>640</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>1000</width>
+            <height>720</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_7">
+           <property name="topMargin">
+            <number>9</number>
+           </property>
+           <item row="0" column="2">
+            <widget class="QFrame" name="frTextuaisLogin">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>100</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>472</width>
+               <height>650</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>950</width>
+               <height>650</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <widget class="QFrame" name="frame">
+              <property name="geometry">
+               <rect>
+                <x>80</x>
+                <y>170</y>
+                <width>301</width>
+                <height>91</height>
+               </rect>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <spacer name="hSpacer2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
         <item row="0" column="3">
          <widget class="QFrame" name="frBordaIretaveisLogin">
           <property name="sizePolicy">
@@ -144,6 +268,9 @@ background-color: #fafafa;
            <enum>QFrame::Raised</enum>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
+           <property name="leftMargin">
+            <number>9</number>
+           </property>
            <item row="1" column="0">
             <widget class="QFrame" name="frPrincipalIteraveis">
              <property name="minimumSize">
@@ -1153,112 +1280,6 @@ QPushButton:pressed {
           <property name="sizeHint" stdset="0">
            <size>
             <width>50</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="0">
-         <spacer name="hSpacer1">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="1">
-         <widget class="QFrame" name="frBordaTextuaisLogin">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>100</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>500</width>
-            <height>640</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>1000</width>
-            <height>720</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_7">
-           <item row="0" column="2">
-            <widget class="QFrame" name="frTextuaisLogin">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>100</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>472</width>
-               <height>650</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>950</width>
-               <height>650</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-             <widget class="QFrame" name="frame">
-              <property name="geometry">
-               <rect>
-                <x>80</x>
-                <y>170</y>
-                <width>301</width>
-                <height>91</height>
-               </rect>
-              </property>
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
-              </property>
-             </widget>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="0" column="4">
-         <spacer name="hSpacer2">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
             <height>20</height>
            </size>
           </property>
