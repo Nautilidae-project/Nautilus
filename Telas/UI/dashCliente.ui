@@ -454,7 +454,7 @@ QTableView::item:selected {
              <bool>false</bool>
             </property>
             <property name="rowCount">
-             <number>5</number>
+             <number>0</number>
             </property>
             <property name="columnCount">
              <number>4</number>
@@ -471,31 +471,6 @@ QTableView::item:selected {
             <attribute name="verticalHeaderVisible">
              <bool>false</bool>
             </attribute>
-            <row>
-             <property name="text">
-              <string>New Row</string>
-             </property>
-            </row>
-            <row>
-             <property name="text">
-              <string>New Row</string>
-             </property>
-            </row>
-            <row>
-             <property name="text">
-              <string>New Row</string>
-             </property>
-            </row>
-            <row>
-             <property name="text">
-              <string>New Row</string>
-             </property>
-            </row>
-            <row>
-             <property name="text">
-              <string>New Row</string>
-             </property>
-            </row>
             <column>
              <property name="text">
               <string>Nome</string>
@@ -540,86 +515,6 @@ QTableView::item:selected {
               </font>
              </property>
             </column>
-            <item row="0" column="0">
-             <property name="text">
-              <string>rerer</string>
-             </property>
-            </item>
-            <item row="0" column="1">
-             <property name="text">
-              <string>erere</string>
-             </property>
-            </item>
-            <item row="0" column="2">
-             <property name="text">
-              <string>erer</string>
-             </property>
-            </item>
-            <item row="1" column="0">
-             <property name="text">
-              <string>s</string>
-             </property>
-            </item>
-            <item row="1" column="1">
-             <property name="text">
-              <string>erer</string>
-             </property>
-            </item>
-            <item row="1" column="2">
-             <property name="text">
-              <string>s</string>
-             </property>
-            </item>
-            <item row="1" column="3">
-             <property name="text">
-              <string>ererer</string>
-             </property>
-            </item>
-            <item row="2" column="0">
-             <property name="text">
-              <string>rere</string>
-             </property>
-            </item>
-            <item row="2" column="1">
-             <property name="text">
-              <string>s</string>
-             </property>
-            </item>
-            <item row="2" column="2">
-             <property name="text">
-              <string>erer</string>
-             </property>
-            </item>
-            <item row="3" column="0">
-             <property name="text">
-              <string>s</string>
-             </property>
-            </item>
-            <item row="3" column="1">
-             <property name="text">
-              <string>s</string>
-             </property>
-            </item>
-            <item row="3" column="2">
-             <property name="text">
-              <string>s</string>
-             </property>
-            </item>
-            <item row="3" column="3">
-             <property name="text">
-              <string>ss</string>
-             </property>
-            </item>
-            <item row="4" column="0">
-             <property name="text">
-              <string>ererer</string>
-             </property>
-            </item>
-            <item row="4" column="2">
-             <property name="text">
-              <string>erere</string>
-             </property>
-            </item>
            </widget>
           </item>
          </layout>
