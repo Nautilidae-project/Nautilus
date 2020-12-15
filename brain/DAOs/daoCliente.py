@@ -71,7 +71,7 @@ def buscaCliente(busca):
 
     cursor = connection.cursor()
 
-    strComando = f"SELECT nomeCliente, telefone, meioPagamento, ativo  FROM cliente where " \
+    strComando = f"SELECT clienteId, nomeCliente, telefone, meioPagamento, ativo  FROM cliente where " \
                  f"nomeCliente LIKE '%{busca}%' OR " \
                  f"sobrenomeCliente like '%{busca}%' OR " \
                  f"telefone like '%{busca}%'"
