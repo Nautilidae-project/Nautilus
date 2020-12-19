@@ -1,13 +1,13 @@
 import base64
 
-from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QMessageBox
-from PyQt5.QtCore import pyqtSignal, Qt
+from PyQt5 import QtCore
+from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QMessageBox, QCheckBox
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 from PyQt5.QtCore import pyqtSignal
-from PyQt5.Qt import Qt
+
 from Telas.dashCliente import Ui_wdgCliente
 from brain.DAOs.daoCliente import findAll, buscaPorId
-from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento
+from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt
 from modelos.cliente import Cliente
 from brain.DAOs.daoCliente import findAll, buscaCliente
 
@@ -53,11 +53,21 @@ class brainCliente(Ui_wdgCliente, QWidget):
         for rowCount, rowData in enumerate(clientes):
             self.tblClientes.insertRow(rowCount)
             for columnNumber, data in enumerate(rowData):
-                print(data)
                 if columnNumber == 2:
                     self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(mascaraCelular(data))))
                 elif columnNumber == 3:
                     self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(macaraFormaPagamento(data))))
+                elif columnNumber == 4:
+                    cbItemTbl = QTableWidgetItem()
+                    cbItemTbl.setFlags(QtCore.Qt.ItemIsEnabled)
+                    cbItemTbl.setText('')
+                    # print(f'isTrueBool(data): {isTrueBool(data)}')
+
+                    if isTrueBool(data):
+                        cbItemTbl.setCheckState(QtCore.Qt.Unchecked)
+                    else:
+                        cbItemTbl.setCheckState(QtCore.Qt.Checked)
+                    self.tblClientes.setItem(rowCount, columnNumber, cbItemTbl)
                 else:
                     self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(data)))
 
@@ -82,10 +92,11 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.cliente.cep = listCliente[8]
             self.cliente.bairro = listCliente[9]
             self.cliente.meioPagamento = listCliente[10]
-            if [bool(i) for i in listCliente[11]][0]:
-                self.cliente.ativo = 1
-            else:
-                self.cliente.ativo = 0
+            self.cliente.ativo = isTrueInt(listCliente)
+            # if [bool(i) for i in listCliente[11]][0]:
+            #     self.cliente.ativo = 1
+            # else:
+            #     self.cliente.ativo = 0
 
             self.leInfoNome.setText(self.cliente.nomeCliente)
             self.leInfoSobrenome.setText(self.cliente.sobrenomeCliente)

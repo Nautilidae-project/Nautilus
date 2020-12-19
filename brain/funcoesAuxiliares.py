@@ -19,4 +19,14 @@ def macaraFormaPagamento(pagamento: str):
     else:
         return 'Outras opções'
 
+def isTrueInt(lista):
+    if [bool(i) for i in lista[11]][0]:
+        return 1
+    else:
+        return 0
 
+def isTrueBool(data):
+    if [bool(i) for i in data][0]:
+        return False
+    else:
+        return True
