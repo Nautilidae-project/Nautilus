@@ -34,8 +34,8 @@ class brainLogin(Ui_mwLogin, QMainWindow):
         self.leSenha.returnPressed.connect(lambda: self.trataLogin())
 
         self.leUsuario.setFocus()
-        self.leUsuario.setText('renan')
-        self.leSenha.setText('123456')
+        self.leUsuario.setText('israeldev')
+        self.leSenha.setText('123')
 
     def navigate(self):
         self.stkLogin.setCurrentIndex(1)

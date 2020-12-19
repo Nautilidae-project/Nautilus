@@ -7,6 +7,7 @@ from PyQt5.QtCore import pyqtSignal
 
 from Telas.dashCliente import Ui_wdgCliente
 from brain.DAOs.daoCliente import findAll, buscaPorId
+from brain.delegates.alinhamento import AlinhamentoDelegate
 from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt
 from modelos.cliente import Cliente
 from brain.DAOs.daoCliente import findAll, buscaCliente
@@ -25,6 +26,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.atualizaTabela()
         self.frInfoCliente.hide()
         self.tblClientes.setColumnHidden(0, True)
+        self.tblClientes.setItemDelegate(AlinhamentoDelegate())
 
         self.pbConfirmarAtualizacao.clicked.connect(lambda: self.showPopup('As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
         self.leSearchCliente.textEdited.connect(lambda: self.busca())
@@ -32,22 +34,15 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.tblClientes.doubleClicked.connect(self.carregaInfoCliente)
 
     def busca(self):
-        print(self.leSearchCliente.text())
-
         clientes = buscaCliente(self.leSearchCliente.text())
 
-        self.tblClientes.setRowCount(0)
+        self.atualizaTabela(clientes)
 
-        for rowCount, rowData in enumerate(clientes):
-            self.tblClientes.insertRow(rowCount)
-            for columnNumber, data in enumerate(rowData):
-                self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(data)))
-                print(f'Count -> {rowCount}     rowData -> {rowData}      columnNumber -> {columnNumber}     Data -> {data} ')
+    def atualizaTabela(self, clientes=None):
 
-        self.tblClientes.resizeColumnsToContents()
+        if clientes is None:
+            clientes = findAll()
 
-    def atualizaTabela(self):
-        clientes = findAll()
         self.tblClientes.setRowCount(0)
 
         for rowCount, rowData in enumerate(clientes):
@@ -61,7 +56,6 @@ class brainCliente(Ui_wdgCliente, QWidget):
                     cbItemTbl = QTableWidgetItem()
                     cbItemTbl.setFlags(QtCore.Qt.ItemIsEnabled)
                     cbItemTbl.setText('')
-                    # print(f'isTrueBool(data): {isTrueBool(data)}')
 
                     if isTrueBool(data):
                         cbItemTbl.setCheckState(QtCore.Qt.Unchecked)
@@ -93,10 +87,6 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.cliente.bairro = listCliente[9]
             self.cliente.meioPagamento = listCliente[10]
             self.cliente.ativo = isTrueInt(listCliente)
-            # if [bool(i) for i in listCliente[11]][0]:
-            #     self.cliente.ativo = 1
-            # else:
-            #     self.cliente.ativo = 0
 
             self.leInfoNome.setText(self.cliente.nomeCliente)
             self.leInfoSobrenome.setText(self.cliente.sobrenomeCliente)
@@ -130,7 +120,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
 
     def atualizaCliente(self, *args):
-        print(args[0] == QMessageBox.Yes)
+        print(f'args[0] == QMessageBox.Yes: {args[0]}')
 
     def animationInfo(self):
         pass
