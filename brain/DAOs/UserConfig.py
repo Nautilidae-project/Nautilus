@@ -38,7 +38,27 @@ def criaBanco():
             except:
                 raise Warning(f'Erro SQL - criaBanco({configs.banco}) <CREATE TABLE {configs.tblCliente}>')
             finally:
-                connection.close()
+                try:
+                    cursor.execute(configs.sqlCreateEvento)
+                    connection.commit()
+                    return True
+                except:
+                    raise Warning(f'Erro SQL - criaBanco({configs.banco}) <CREATE TABLE {configs.tblEvento}>')
+                finally:
+                    try:
+                        cursor.execute(configs.sqlCreateParticipantes)
+                        connection.commit()
+                        return True
+                    except:
+                        raise Warning(
+                            f'Erro SQL - criaBanco({configs.banco}) <CREATE TABLE {configs.tblParticipantes}>')
+                    finally:
+                        try:
+                            cursor.execute(configs.sqlCreateTurma)
+                            connection.commit()
+                            return True
+                        except:
+                            raise Warning(f'Erro SQL - criaBanco({configs.banco}) <CREATE TABLE {configs.tblTurma}>')
 
 
 def addEstados():

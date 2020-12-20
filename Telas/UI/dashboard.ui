@@ -28,6 +28,9 @@
   </property>
   <widget class="QWidget" name="wdgDash">
    <layout class="QGridLayout" name="gridLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
     <item row="0" column="0">
      <widget class="QFrame" name="frPrincipalDash">
       <property name="sizePolicy">
@@ -55,6 +58,9 @@ border-radius: 60%;</string>
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
        <item alignment="Qt::AlignTop">
         <widget class="QFrame" name="frMenu">
          <property name="sizePolicy">
@@ -100,7 +106,7 @@ QPushButton {
            <number>9</number>
           </property>
           <property name="leftMargin">
-           <number>9</number>
+           <number>0</number>
           </property>
           <property name="topMargin">
            <number>9</number>
@@ -143,7 +149,7 @@ QPushButton {
               <number>0</number>
              </property>
              <property name="leftMargin">
-              <number>0</number>
+              <number>9</number>
              </property>
              <property name="topMargin">
               <number>0</number>
