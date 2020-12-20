@@ -5,15 +5,14 @@ from PyQt5.QtCore import pyqtSignal, QPropertyAnimation
 from Telas.dashboard import Ui_mwDash
 from Telas.dashHome import Ui_wdgHome
 from Telas.dashAgenda import Ui_wdgAgenda
-from brain.brainCliente import brainCliente
-from Telas.dashFinanceiro import Ui_wdgFinanceiro
-from Telas.dashConfig import Ui_wdgConfig
+from brain.dashboard.financeiroPage import FinanceiroPage
+from brain.dashboard.infoCliente import brainCliente
 
-from modelos.cliente import Cliente
+from modelos.clienteModel import Cliente
 from brain.funcoesAuxiliares import *
-from modelos.envioDeEmail import enviaEmail
+from modelos.envioDeEmailModel import enviaEmail
 
-from brain.DAOs.daoCliente import cadastraCliente
+from brain.DAOs.daoCliente import DaoCliente
 from brain.DAOs.UserConfig import criaBanco
 import requests
 import json
@@ -25,11 +24,14 @@ class brainDashboard(Ui_mwDash, QMainWindow):
     def __init__(self, parent=None):
         super(brainDashboard, self).__init__(parent)
 
+        # Inicializando as telas e stackes
         self.pgHome = Ui_wdgHome(self)
         self.pgAgenda = Ui_wdgAgenda(self)
         self.pgCliente = brainCliente(self)
-        self.pgFinanceiro = Ui_wdgFinanceiro(self)
-        self.pgConfig = Ui_wdgConfig(self)
+        self.pgFinanceiro = FinanceiroPage(self)
+
+
+        self.daoCliente = DaoCliente()
 
         self.setupUi(self)
         self.enable = False
@@ -37,7 +39,7 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.pbAgenda.setText('')
         self.cliente = Cliente()
 
-        self.pbDash.clicked.connect(self.dash)
+        self.pbDash.clicked.connect(self.animationDash)
         self.pgCliente.pbCadastrar.clicked.connect(lambda: self.trataCadastro(self.cliente))
 
         self.pgCliente.leNome.textEdited.connect(lambda: self.defineCampo('nome'))
@@ -57,20 +59,18 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.stkDash.addWidget(self.pgAgenda)
         self.stkDash.addWidget(self.pgCliente)
         self.stkDash.addWidget(self.pgFinanceiro)
-        self.stkDash.addWidget(self.pgConfig)
 
         self.pbHome.clicked.connect(lambda: self.stkDash.setCurrentIndex(0))
         self.pbAgenda.clicked.connect(lambda: self.stkDash.setCurrentIndex(1))
         self.pbCliente.clicked.connect(lambda: self.stkDash.setCurrentIndex(2))
         self.pbFinanceiro.clicked.connect(lambda: self.stkDash.setCurrentIndex(3))
-        self.pbConfig.clicked.connect(lambda: self.stkDash.setCurrentIndex(4))
 
         criaBanco()
         # ----------------------------------
 
 
 
-    def dash(self):
+    def animationDash(self):
 
         if self.enable:
             multBy = 1/1.4
@@ -130,7 +130,7 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         wdgLista = [cliente.nomeCliente, cliente.sobrenomeCliente, cliente.email, cliente.endereco, cliente.cep]
         for wdg in wdgLista:
             if wdg == "":
-                print("Informação faltante.")
+                print("Informação faltante - <trataCadastro>")
                 return False
 
         # ----- Váriaveis de envio de e-mail -----
@@ -148,7 +148,7 @@ class brainDashboard(Ui_mwDash, QMainWindow):
 """
         # ----------------------------------------
 
-        cadastraCliente(self.cliente)
+        self.daoCliente.cadastraCliente(self.cliente)
         enviaEmail(self.titulo, self.msgCadastro, self.pgCliente.leEmail.text())
 
     def trataCep(self, *args):
