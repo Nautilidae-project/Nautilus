@@ -5,6 +5,7 @@ from PyQt5.QtCore import pyqtSignal, QPropertyAnimation
 from Telas.dashboard import Ui_mwDash
 from Telas.dashHome import Ui_wdgHome
 from Telas.dashAgenda import Ui_wdgAgenda
+from brain.dashboard.financeiroPage import FinanceiroPage
 from brain.dashboard.infoCliente import brainCliente
 
 from modelos.clienteModel import Cliente
@@ -23,9 +24,13 @@ class brainDashboard(Ui_mwDash, QMainWindow):
     def __init__(self, parent=None):
         super(brainDashboard, self).__init__(parent)
 
+        # Inicializando as telas e stackes
         self.pgHome = Ui_wdgHome(self)
         self.pgAgenda = Ui_wdgAgenda(self)
         self.pgCliente = brainCliente(self)
+        self.pgFinanceiro = FinanceiroPage(self)
+
+
         self.daoCliente = DaoCliente()
 
         self.setupUi(self)
@@ -53,11 +58,12 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.stkDash.addWidget(self.pgHome)
         self.stkDash.addWidget(self.pgAgenda)
         self.stkDash.addWidget(self.pgCliente)
+        self.stkDash.addWidget(self.pgFinanceiro)
 
         self.pbHome.clicked.connect(lambda: self.stkDash.setCurrentIndex(0))
         self.pbAgenda.clicked.connect(lambda: self.stkDash.setCurrentIndex(1))
         self.pbCliente.clicked.connect(lambda: self.stkDash.setCurrentIndex(2))
-        # self.pbFuncionario.clicked.connect(lambda: self.stkDash.setCurrentIndex(3))
+        self.pbFinanceiro.clicked.connect(lambda: self.stkDash.setCurrentIndex(3))
 
         criaBanco()
         # ----------------------------------
