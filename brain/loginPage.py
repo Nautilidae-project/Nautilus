@@ -1,8 +1,9 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMainWindow
 from Telas.login import Ui_mwLogin
-from brain.dashboard.cadastraCliente import brainDashboard
 from brain.cadastraUser import brainCadastro
+from brain.dashboard.homePage import HomePage
+from brain.dashboard.dashboardStk import brainDashboard
 from brain.DAOs.UserConfig import *
 
 
