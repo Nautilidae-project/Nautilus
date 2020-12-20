@@ -6,6 +6,8 @@ from Telas.dashboard import Ui_mwDash
 from Telas.dashHome import Ui_wdgHome
 from Telas.dashAgenda import Ui_wdgAgenda
 from brain.brainCliente import brainCliente
+from Telas.dashFinanceiro import Ui_wdgFinanceiro
+from Telas.dashConfig import Ui_wdgConfig
 
 from modelos.cliente import Cliente
 from brain.funcoesAuxiliares import *
@@ -26,6 +28,8 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.pgHome = Ui_wdgHome(self)
         self.pgAgenda = Ui_wdgAgenda(self)
         self.pgCliente = brainCliente(self)
+        self.pgFinanceiro = Ui_wdgFinanceiro(self)
+        self.pgConfig = Ui_wdgConfig(self)
 
         self.setupUi(self)
         self.enable = False
@@ -52,11 +56,14 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.stkDash.addWidget(self.pgHome)
         self.stkDash.addWidget(self.pgAgenda)
         self.stkDash.addWidget(self.pgCliente)
+        self.stkDash.addWidget(self.pgFinanceiro)
+        self.stkDash.addWidget(self.pgConfig)
 
         self.pbHome.clicked.connect(lambda: self.stkDash.setCurrentIndex(0))
         self.pbAgenda.clicked.connect(lambda: self.stkDash.setCurrentIndex(1))
         self.pbCliente.clicked.connect(lambda: self.stkDash.setCurrentIndex(2))
-        # self.pbFuncionario.clicked.connect(lambda: self.stkDash.setCurrentIndex(3))
+        self.pbFinanceiro.clicked.connect(lambda: self.stkDash.setCurrentIndex(3))
+        self.pbConfig.clicked.connect(lambda: self.stkDash.setCurrentIndex(4))
 
         criaBanco()
         # ----------------------------------
