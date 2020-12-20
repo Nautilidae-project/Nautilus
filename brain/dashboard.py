@@ -5,18 +5,20 @@ from PyQt5.QtCore import pyqtSignal, QPropertyAnimation
 from Telas.dashboard import Ui_mwDash
 from Telas.dashHome import Ui_wdgHome
 from Telas.dashAgenda import Ui_wdgAgenda
-from brain.brainCliente import brainCliente
 from Telas.dashFinanceiro import Ui_wdgFinanceiro
 from Telas.dashConfig import Ui_wdgConfig
+from brain.DAOs.daoCliente import DaoCliente
+from brain.dashboard.financeiroPage import FinanceiroPage
 
-from modelos.cliente import Cliente
+from brain.dashboard.infoCliente import brainCliente
 from brain.funcoesAuxiliares import *
-from modelos.envioDeEmail import enviaEmail
 
-from brain.DAOs.daoCliente import cadastraCliente
 from brain.DAOs.UserConfig import criaBanco
 import requests
 import json
+
+from modelos.clienteModel import Cliente
+from modelos.envioDeEmailModel import enviaEmail
 
 
 class brainDashboard(Ui_mwDash, QMainWindow):
@@ -28,8 +30,9 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.pgHome = Ui_wdgHome(self)
         self.pgAgenda = Ui_wdgAgenda(self)
         self.pgCliente = brainCliente(self)
-        self.pgFinanceiro = Ui_wdgFinanceiro(self)
+        self.pgFinanceiro = FinanceiroPage(self)
         self.pgConfig = Ui_wdgConfig(self)
+        self.daoCliente = DaoCliente()
 
         self.setupUi(self)
         self.enable = False
@@ -148,7 +151,7 @@ class brainDashboard(Ui_mwDash, QMainWindow):
 """
         # ----------------------------------------
 
-        cadastraCliente(self.cliente)
+        self.daoCliente.cadastraCliente(self.cliente)
         enviaEmail(self.titulo, self.msgCadastro, self.pgCliente.leEmail.text())
 
     def trataCep(self, *args):
