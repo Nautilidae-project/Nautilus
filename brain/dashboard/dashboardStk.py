@@ -6,6 +6,7 @@ from Telas.dashboard import Ui_mwDash
 from Telas.dashHome import Ui_wdgHome
 from Telas.dashAgenda import Ui_wdgAgenda
 from brain.dashboard.financeiroPage import FinanceiroPage
+from brain.dashboard.homePage import HomePage
 from brain.dashboard.infoCliente import brainCliente
 
 from modelos.clienteModel import Cliente
@@ -25,7 +26,7 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         super(brainDashboard, self).__init__(parent)
 
         # Inicializando as telas e stackes
-        self.pgHome = Ui_wdgHome(self)
+        self.pgHome = HomePage(self)
         self.pgAgenda = Ui_wdgAgenda(self)
         self.pgCliente = brainCliente(self)
         self.pgFinanceiro = FinanceiroPage(self)
