@@ -3,7 +3,7 @@ from configBD import ConfigDB
 from os.path import join, dirname
 from os import listdir
 from bcrypt import checkpw
-from modelos.estadosModelo import EstadosModelo
+from modelos.estadosModel import EstadosModelo
 
 
 def criaBanco():

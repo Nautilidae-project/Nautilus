@@ -1,15 +1,14 @@
-from PyQt5 import QtGui, QtWidgets, QtCore
+from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMainWindow
 from Telas.login import Ui_mwLogin
-from brain.dashboard import brainDashboard
-from brain.brainCadastro import brainCadastro
+from brain.dashboard.cadastraCliente import brainDashboard
+from brain.cadastraUser import brainCadastro
 from brain.DAOs.UserConfig import *
 
 
 class brainLogin(Ui_mwLogin, QMainWindow):
 
     def __init__(self):
-        import Telas.image_rc
         super(brainLogin, self).__init__()
         criaBanco()
         addEstados()
@@ -34,8 +33,8 @@ class brainLogin(Ui_mwLogin, QMainWindow):
         self.leSenha.returnPressed.connect(lambda: self.trataLogin())
 
         self.leUsuario.setFocus()
-        self.leUsuario.setText('renan')
-        self.leSenha.setText('123456')
+        self.leUsuario.setText('israeldev')
+        self.leSenha.setText('123')
 
     def navigate(self):
         self.stkLogin.setCurrentIndex(1)
