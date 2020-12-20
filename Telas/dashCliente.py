@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_wdgCliente(object):
     def setupUi(self, wdgCliente):
         wdgCliente.setObjectName("wdgCliente")
-        wdgCliente.resize(955, 774)
+        wdgCliente.resize(980, 794)
         wdgCliente.setStyleSheet("#wdgCliente {\n"
 "    background-color: #80CCE1;\n"
 "}\n"
@@ -123,6 +123,263 @@ class Ui_wdgCliente(object):
         self.gridLayout_3 = QtWidgets.QGridLayout(self.tbInfosCliente)
         self.gridLayout_3.setContentsMargins(-1, -1, 18, -1)
         self.gridLayout_3.setObjectName("gridLayout_3")
+        self.frClientsList = QtWidgets.QFrame(self.tbInfosCliente)
+        self.frClientsList.setMaximumSize(QtCore.QSize(700, 16777215))
+        self.frClientsList.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frClientsList.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frClientsList.setObjectName("frClientsList")
+        self.gridLayout_5 = QtWidgets.QGridLayout(self.frClientsList)
+        self.gridLayout_5.setContentsMargins(10, 10, 0, 0)
+        self.gridLayout_5.setObjectName("gridLayout_5")
+        self.tblClientes = QtWidgets.QTableWidget(self.frClientsList)
+        self.tblClientes.setMinimumSize(QtCore.QSize(530, 0))
+        self.tblClientes.setMaximumSize(QtCore.QSize(530, 16777215))
+        self.tblClientes.setStyleSheet("QHeaderView::section {\n"
+"   \n"
+"    background-color: #fafafa;\n"
+"    padding-left: 4px;\n"
+"    border: none;\n"
+"    border-bottom: 2px solid;\n"
+"    color: #444;\n"
+"}\n"
+"\n"
+"QHeaderView::section:checked\n"
+"{\n"
+"    background-color: #DFD880;\n"
+"\n"
+"}\n"
+"\n"
+"QTableView {\n"
+"    alternate-background-color: #ddd;\n"
+"}\n"
+"\n"
+"\n"
+"QTableView::item:selected {\n"
+"    background-color: #DFD880;\n"
+"    color: #444;\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+" QScrollBar:vertical {\n"
+"     border: 2px solid grey;\n"
+"     background: #32CC99;\n"
+"     width: 15px;\n"
+"     margin: 22px 0 22px 0;\n"
+" }\n"
+" QScrollBar::handle:vertical {\n"
+"     background: white;\n"
+"     min-height: 20px;\n"
+" }\n"
+" QScrollBar::add-line:vertical {\n"
+"     border: 2px solid grey;\n"
+"     background: #32CC99;\n"
+"     height: 20px;\n"
+"     subcontrol-position: bottom;\n"
+"     subcontrol-origin: margin;\n"
+" }\n"
+"\n"
+" QScrollBar::sub-line:vertical {\n"
+"     border: 2px solid grey;\n"
+"     background: #32CC99;\n"
+"     height: 20px;\n"
+"     subcontrol-position: top;\n"
+"     subcontrol-origin: margin;\n"
+" }\n"
+" QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {\n"
+"     border: 2px solid grey;\n"
+"     width: 3px;\n"
+"     height: 3px;\n"
+"     background: white;\n"
+" }\n"
+"\n"
+" QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {\n"
+"     background: none;\n"
+" }\n"
+"")
+        self.tblClientes.setLocale(QtCore.QLocale(QtCore.QLocale.Portuguese, QtCore.QLocale.Brazil))
+        self.tblClientes.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.tblClientes.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.tblClientes.setLineWidth(0)
+        self.tblClientes.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContentsOnFirstShow)
+        self.tblClientes.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.tblClientes.setAlternatingRowColors(True)
+        self.tblClientes.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.tblClientes.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.tblClientes.setShowGrid(False)
+        self.tblClientes.setGridStyle(QtCore.Qt.NoPen)
+        self.tblClientes.setCornerButtonEnabled(False)
+        self.tblClientes.setRowCount(0)
+        self.tblClientes.setColumnCount(5)
+        self.tblClientes.setObjectName("tblClientes")
+        item = QtWidgets.QTableWidgetItem()
+        self.tblClientes.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setFamily("Fira Sans")
+        font.setPointSize(14)
+        item.setFont(font)
+        self.tblClientes.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setFamily("Fira Sans")
+        font.setPointSize(14)
+        item.setFont(font)
+        self.tblClientes.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setFamily("Fira Sans")
+        font.setPointSize(14)
+        item.setFont(font)
+        self.tblClientes.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setFamily("Fira Sans")
+        font.setPointSize(14)
+        item.setFont(font)
+        self.tblClientes.setHorizontalHeaderItem(4, item)
+        self.horizontalLayout_20 = QtWidgets.QHBoxLayout(self.tblClientes)
+        self.horizontalLayout_20.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_20.setSpacing(8)
+        self.horizontalLayout_20.setObjectName("horizontalLayout_20")
+        self.tblClientes.horizontalHeader().setCascadingSectionResizes(True)
+        self.tblClientes.horizontalHeader().setDefaultSectionSize(150)
+        self.tblClientes.horizontalHeader().setMinimumSectionSize(100)
+        self.tblClientes.verticalHeader().setVisible(False)
+        self.gridLayout_5.addWidget(self.tblClientes, 0, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.frClientsList, 2, 0, 1, 1)
+        self.frTopTabMenu = QtWidgets.QFrame(self.tbInfosCliente)
+        self.frTopTabMenu.setMinimumSize(QtCore.QSize(0, 110))
+        self.frTopTabMenu.setMaximumSize(QtCore.QSize(16777215, 110))
+        self.frTopTabMenu.setStyleSheet("")
+        self.frTopTabMenu.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frTopTabMenu.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frTopTabMenu.setObjectName("frTopTabMenu")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.frTopTabMenu)
+        self.horizontalLayout_2.setContentsMargins(9, 0, 0, 0)
+        self.horizontalLayout_2.setSpacing(24)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.leCard1 = QtWidgets.QLabel(self.frTopTabMenu)
+        self.leCard1.setMaximumSize(QtCore.QSize(300, 16777215))
+        self.leCard1.setStyleSheet("color: rgb(255, 255, 255);\n"
+"background-color: rgb(204, 0, 0);")
+        self.leCard1.setObjectName("leCard1")
+        self.horizontalLayout_2.addWidget(self.leCard1)
+        self.leCard2 = QtWidgets.QLabel(self.frTopTabMenu)
+        self.leCard2.setMaximumSize(QtCore.QSize(300, 16777215))
+        self.leCard2.setStyleSheet("background-color: rgb(245, 121, 0);\n"
+"color: rgb(255, 255, 255);")
+        self.leCard2.setObjectName("leCard2")
+        self.horizontalLayout_2.addWidget(self.leCard2)
+        self.leCard3 = QtWidgets.QLabel(self.frTopTabMenu)
+        self.leCard3.setMaximumSize(QtCore.QSize(300, 16777215))
+        self.leCard3.setStyleSheet("color: rgb(0, 0, 0);\n"
+"background-color: rgb(237, 212, 0);")
+        self.leCard3.setObjectName("leCard3")
+        self.horizontalLayout_2.addWidget(self.leCard3)
+        self.leCard4 = QtWidgets.QLabel(self.frTopTabMenu)
+        self.leCard4.setMaximumSize(QtCore.QSize(300, 16777215))
+        self.leCard4.setStyleSheet("background-color: rgb(115, 210, 22);")
+        self.leCard4.setObjectName("leCard4")
+        self.horizontalLayout_2.addWidget(self.leCard4)
+        self.gridLayout_3.addWidget(self.frTopTabMenu, 0, 0, 1, 2)
+        self.frListButtons = QtWidgets.QFrame(self.tbInfosCliente)
+        self.frListButtons.setMinimumSize(QtCore.QSize(0, 60))
+        self.frListButtons.setMaximumSize(QtCore.QSize(16777215, 60))
+        self.frListButtons.setStyleSheet("#frListButtons {\n"
+"BORDER-TOP: 2PX SOLID;\n"
+"}")
+        self.frListButtons.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frListButtons.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frListButtons.setObjectName("frListButtons")
+        self.gridLayout_4 = QtWidgets.QGridLayout(self.frListButtons)
+        self.gridLayout_4.setContentsMargins(-1, 9, -1, -1)
+        self.gridLayout_4.setVerticalSpacing(6)
+        self.gridLayout_4.setObjectName("gridLayout_4")
+        self.frNomeTabela = QtWidgets.QFrame(self.frListButtons)
+        self.frNomeTabela.setMinimumSize(QtCore.QSize(190, 0))
+        self.frNomeTabela.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.frNomeTabela.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frNomeTabela.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frNomeTabela.setObjectName("frNomeTabela")
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.frNomeTabela)
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        self.lbNomeTabela = QtWidgets.QLabel(self.frNomeTabela)
+        self.lbNomeTabela.setMinimumSize(QtCore.QSize(180, 30))
+        self.lbNomeTabela.setMaximumSize(QtCore.QSize(180, 16777215))
+        self.lbNomeTabela.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbNomeTabela.setObjectName("lbNomeTabela")
+        self.horizontalLayout_4.addWidget(self.lbNomeTabela)
+        self.gridLayout_4.addWidget(self.frNomeTabela, 1, 1, 1, 1)
+        self.frCmbFilter = QtWidgets.QFrame(self.frListButtons)
+        self.frCmbFilter.setMinimumSize(QtCore.QSize(140, 0))
+        self.frCmbFilter.setMaximumSize(QtCore.QSize(170, 60))
+        self.frCmbFilter.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frCmbFilter.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frCmbFilter.setObjectName("frCmbFilter")
+        self.horizontalLayout_18 = QtWidgets.QHBoxLayout(self.frCmbFilter)
+        self.horizontalLayout_18.setObjectName("horizontalLayout_18")
+        self.comboBox = QtWidgets.QComboBox(self.frCmbFilter)
+        self.comboBox.setMaximumSize(QtCore.QSize(140, 16777215))
+        self.comboBox.setObjectName("comboBox")
+        self.horizontalLayout_18.addWidget(self.comboBox)
+        self.gridLayout_4.addWidget(self.frCmbFilter, 1, 3, 1, 1)
+        self.frSearch = QtWidgets.QFrame(self.frListButtons)
+        self.frSearch.setMinimumSize(QtCore.QSize(160, 0))
+        self.frSearch.setMaximumSize(QtCore.QSize(260, 60))
+        self.frSearch.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frSearch.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frSearch.setObjectName("frSearch")
+        self.horizontalLayout_17 = QtWidgets.QHBoxLayout(self.frSearch)
+        self.horizontalLayout_17.setObjectName("horizontalLayout_17")
+        self.leSearchCliente = QtWidgets.QLineEdit(self.frSearch)
+        self.leSearchCliente.setMinimumSize(QtCore.QSize(145, 30))
+        self.leSearchCliente.setMaximumSize(QtCore.QSize(250, 16777215))
+        self.leSearchCliente.setInputMask("")
+        self.leSearchCliente.setText("")
+        self.leSearchCliente.setObjectName("leSearchCliente")
+        self.horizontalLayout_17.addWidget(self.leSearchCliente)
+        self.gridLayout_4.addWidget(self.frSearch, 1, 2, 1, 1)
+        self.frRightButtons = QtWidgets.QFrame(self.frListButtons)
+        self.frRightButtons.setMinimumSize(QtCore.QSize(100, 0))
+        self.frRightButtons.setMaximumSize(QtCore.QSize(160, 60))
+        self.frRightButtons.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frRightButtons.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frRightButtons.setObjectName("frRightButtons")
+        self.horizontalLayout_19 = QtWidgets.QHBoxLayout(self.frRightButtons)
+        self.horizontalLayout_19.setObjectName("horizontalLayout_19")
+        self.frRightButtons1 = QtWidgets.QFrame(self.frRightButtons)
+        self.frRightButtons1.setMaximumSize(QtCore.QSize(16777215, 60))
+        self.frRightButtons1.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frRightButtons1.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frRightButtons1.setObjectName("frRightButtons1")
+        self.horizontalLayout_191 = QtWidgets.QHBoxLayout(self.frRightButtons1)
+        self.horizontalLayout_191.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_191.setSpacing(16)
+        self.horizontalLayout_191.setObjectName("horizontalLayout_191")
+        self.pbFuncionalidade1 = QtWidgets.QPushButton(self.frRightButtons1)
+        self.pbFuncionalidade1.setObjectName("pbFuncionalidade1")
+        self.horizontalLayout_191.addWidget(self.pbFuncionalidade1)
+        self.pbFuncionalidade2 = QtWidgets.QPushButton(self.frRightButtons1)
+        self.pbFuncionalidade2.setObjectName("pbFuncionalidade2")
+        self.horizontalLayout_191.addWidget(self.pbFuncionalidade2)
+        self.horizontalLayout_19.addWidget(self.frRightButtons1)
+        self.gridLayout_4.addWidget(self.frRightButtons, 1, 4, 1, 1)
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_4.addItem(spacerItem, 1, 0, 1, 1)
+        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_4.addItem(spacerItem1, 1, 5, 1, 1)
+        self.gridLayout_3.addWidget(self.frListButtons, 1, 0, 1, 2)
         self.frInfoCliente = QtWidgets.QFrame(self.tbInfosCliente)
         self.frInfoCliente.setMinimumSize(QtCore.QSize(300, 0))
         self.frInfoCliente.setStyleSheet("")
@@ -337,6 +594,7 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_29.addWidget(self.leInfoBairro)
         self.verticalLayout_4.addWidget(self.frInfoBairro)
         self.frInfoMeioPag = QtWidgets.QFrame(self.frInfoCliente)
+        self.frInfoMeioPag.setMaximumSize(QtCore.QSize(359, 16777215))
         self.frInfoMeioPag.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frInfoMeioPag.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frInfoMeioPag.setObjectName("frInfoMeioPag")
@@ -359,7 +617,7 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_30.addWidget(self.lbInfoMeioPag)
         self.cbxInfoMeioPag = QtWidgets.QComboBox(self.frInfoMeioPag)
         self.cbxInfoMeioPag.setMinimumSize(QtCore.QSize(0, 30))
-        self.cbxInfoMeioPag.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.cbxInfoMeioPag.setMaximumSize(QtCore.QSize(200, 30))
         self.cbxInfoMeioPag.setObjectName("cbxInfoMeioPag")
         self.horizontalLayout_30.addWidget(self.cbxInfoMeioPag)
         self.verticalLayout_4.addWidget(self.frInfoMeioPag)
@@ -371,8 +629,8 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_32.setContentsMargins(-1, -1, 16, -1)
         self.horizontalLayout_32.setSpacing(16)
         self.horizontalLayout_32.setObjectName("horizontalLayout_32")
-        spacerItem = QtWidgets.QSpacerItem(0, 30, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_32.addItem(spacerItem)
+        spacerItem2 = QtWidgets.QSpacerItem(0, 30, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_32.addItem(spacerItem2)
         self.pbConfirmarAtualizacao = QtWidgets.QPushButton(self.frInfoConfirmar)
         self.pbConfirmarAtualizacao.setMinimumSize(QtCore.QSize(0, 30))
         self.pbConfirmarAtualizacao.setObjectName("pbConfirmarAtualizacao")
@@ -734,8 +992,8 @@ class Ui_wdgCliente(object):
         self.leSobrenome.raise_()
         self.lbSobrenome.raise_()
         self.horizontalLayout_5.addWidget(self.frSobrenome)
-        spacerItem1 = QtWidgets.QSpacerItem(100, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_5.addItem(spacerItem1)
+        spacerItem3 = QtWidgets.QSpacerItem(100, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_5.addItem(spacerItem3)
         self.gridLayout_2.addWidget(self.frNomeSobrenome, 1, 0, 1, 1)
         self.frame = QtWidgets.QFrame(self.tbCadastraCliente)
         self.frame.setMaximumSize(QtCore.QSize(16777215, 100))
@@ -807,8 +1065,8 @@ class Ui_wdgCliente(object):
         self.leEmail.setObjectName("leEmail")
         self.horizontalLayout_12.addWidget(self.leEmail)
         self.horizontalLayout_6.addWidget(self.frEmail)
-        spacerItem2 = QtWidgets.QSpacerItem(100, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_6.addItem(spacerItem2)
+        spacerItem4 = QtWidgets.QSpacerItem(100, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_6.addItem(spacerItem4)
         self.gridLayout_2.addWidget(self.frEmailTel, 2, 0, 1, 1)
         self.frCepEnd = QtWidgets.QFrame(self.tbCadastraCliente)
         self.frCepEnd.setMinimumSize(QtCore.QSize(600, 60))
@@ -863,8 +1121,8 @@ class Ui_wdgCliente(object):
         self.leEnd.setObjectName("leEnd")
         self.horizontalLayout_14.addWidget(self.leEnd)
         self.horizontalLayout_7.addWidget(self.frEndereco)
-        spacerItem3 = QtWidgets.QSpacerItem(100, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_7.addItem(spacerItem3)
+        spacerItem5 = QtWidgets.QSpacerItem(100, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_7.addItem(spacerItem5)
         self.gridLayout_2.addWidget(self.frCepEnd, 3, 0, 1, 1)
         self.frBairroCompl = QtWidgets.QFrame(self.tbCadastraCliente)
         self.frBairroCompl.setMinimumSize(QtCore.QSize(600, 60))
@@ -919,8 +1177,8 @@ class Ui_wdgCliente(object):
         self.leCompl.setObjectName("leCompl")
         self.horizontalLayout_16.addWidget(self.leCompl)
         self.horizontalLayout_8.addWidget(self.frComplemento)
-        spacerItem4 = QtWidgets.QSpacerItem(100, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_8.addItem(spacerItem4)
+        spacerItem6 = QtWidgets.QSpacerItem(100, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_8.addItem(spacerItem6)
         self.gridLayout_2.addWidget(self.frBairroCompl, 4, 0, 1, 1)
         self.tabsCliente.addTab(self.tbCadastraCliente, "")
         self.tbCronogramaCliente = QtWidgets.QWidget()
@@ -938,6 +1196,24 @@ class Ui_wdgCliente(object):
     def retranslateUi(self, wdgCliente):
         _translate = QtCore.QCoreApplication.translate
         wdgCliente.setWindowTitle(_translate("wdgCliente", "Form"))
+        item = self.tblClientes.horizontalHeaderItem(0)
+        item.setText(_translate("wdgCliente", "Id"))
+        item = self.tblClientes.horizontalHeaderItem(1)
+        item.setText(_translate("wdgCliente", "Nome"))
+        item = self.tblClientes.horizontalHeaderItem(2)
+        item.setText(_translate("wdgCliente", "CPF"))
+        item = self.tblClientes.horizontalHeaderItem(3)
+        item.setText(_translate("wdgCliente", "Meio de pagamento"))
+        item = self.tblClientes.horizontalHeaderItem(4)
+        item.setText(_translate("wdgCliente", "Ativo"))
+        self.leCard1.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">Clientes Ativos/</p><p align=\"center\">Clientes Totais</p></body></html>"))
+        self.leCard2.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">Clientes Inativos/</p><p align=\"center\">Clientes Totais</p></body></html>"))
+        self.leCard3.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">Novos Clientes</p></body></html>"))
+        self.leCard4.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">Compromissos</p><p align=\"center\">da Semana</p></body></html>"))
+        self.lbNomeTabela.setText(_translate("wdgCliente", "Todos os clientes"))
+        self.leSearchCliente.setPlaceholderText(_translate("wdgCliente", "Buscar Cliente"))
+        self.pbFuncionalidade1.setText(_translate("wdgCliente", "Função 1"))
+        self.pbFuncionalidade2.setText(_translate("wdgCliente", "Função 2"))
         self.lbInformacoes.setText(_translate("wdgCliente", "Informações"))
         self.cbInfoAtivo.setText(_translate("wdgCliente", "Ativo"))
         self.lbInfoNome.setText(_translate("wdgCliente", "Nome"))
