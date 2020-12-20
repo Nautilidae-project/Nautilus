@@ -11,7 +11,7 @@ from modelos.cliente import Cliente
 from brain.funcoesAuxiliares import *
 from modelos.envioDeEmail import enviaEmail
 
-from brain.DAOs.daoCliente import cadastraCliente
+from brain.DAOs.daoCliente import DaoCliente
 from brain.DAOs.UserConfig import criaBanco
 import requests
 import json
@@ -26,6 +26,7 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.pgHome = Ui_wdgHome(self)
         self.pgAgenda = Ui_wdgAgenda(self)
         self.pgCliente = brainCliente(self)
+        self.daoCliente = DaoCliente()
 
         self.setupUi(self)
         self.enable = False
@@ -33,7 +34,7 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.pbAgenda.setText('')
         self.cliente = Cliente()
 
-        self.pbDash.clicked.connect(self.dash)
+        self.pbDash.clicked.connect(self.animationDash)
         self.pgCliente.pbCadastrar.clicked.connect(lambda: self.trataCadastro(self.cliente))
 
         self.pgCliente.leNome.textEdited.connect(lambda: self.defineCampo('nome'))
@@ -63,7 +64,7 @@ class brainDashboard(Ui_mwDash, QMainWindow):
 
 
 
-    def dash(self):
+    def animationDash(self):
 
         if self.enable:
             multBy = 1/1.4
@@ -123,7 +124,7 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         wdgLista = [cliente.nomeCliente, cliente.sobrenomeCliente, cliente.email, cliente.endereco, cliente.cep]
         for wdg in wdgLista:
             if wdg == "":
-                print("Informação faltante.")
+                print("Informação faltante - <trataCadastro>")
                 return False
 
         # ----- Váriaveis de envio de e-mail -----
@@ -141,7 +142,7 @@ class brainDashboard(Ui_mwDash, QMainWindow):
 """
         # ----------------------------------------
 
-        cadastraCliente(self.cliente)
+        self.daoCliente.cadastraCliente(self.cliente)
         enviaEmail(self.titulo, self.msgCadastro, self.pgCliente.leEmail.text())
 
     def trataCep(self, *args):

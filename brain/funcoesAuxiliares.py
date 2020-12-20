@@ -1,6 +1,5 @@
 from PyQt5.QtWidgets import QMessageBox
 
-
 def mascaraCelular(celular):
     return f'({celular[0:2]}) {celular[2:3]}.{celular[3:7]}-{celular[7:]}'
 
@@ -11,7 +10,6 @@ def mascaraCNPJ(cnpj):
 
 def mascaraCep(cep):
     return f'{cep[:5]}-{cep[5:]}'
-
 
 def macaraFormaPagamento(pagamento: str):
     if (pagamento.upper() == 'CC'):
@@ -30,3 +28,8 @@ def isTrueBool(data):
         return False
     else:
         return True
+
+formasPagamento = {
+    'Cartão de crédito' : 'CC',
+    'Outras opções' : 'OP'
+}

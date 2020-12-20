@@ -4,106 +4,114 @@ import pymysql
 from modelos.cliente import Cliente
 
 
-def cadastraCliente(cliente):
-    configs = ConfigDB()
+class DaoCliente():
 
-    connection = pymysql.connect(
-        host=configs.host,
-        user=configs.user,
-        passwd=configs.passwd,
-        db=configs.banco
-    )
-    print(cliente)
+    def __init__(self):
+        self.configs = ConfigDB()
 
-    cursor = connection.cursor()
-
-    strComando = f"""
-        INSERT INTO cliente
-        (
-            nomeCliente, sobrenomeCliente, telefone,
-            email, cpf, endereco, complemento , cep, bairro,
-            meioPagamento, ativo, dataCadastro, dataUltAlt
+        self.connection = pymysql.connect(
+            host=self.configs.host,
+            user=self.configs.user,
+            passwd=self.configs.passwd,
+            db=self.configs.banco
         )
-        VALUES
-        (
-            '{cliente.nomeCliente}', '{cliente.sobrenomeCliente}', '{cliente.telefone}',
-            '{cliente.email}', '{cliente.cpf}', '{cliente.endereco}', '{cliente.complemento}', '{cliente.cep}',
-            '{cliente.bairro}', 'CC', {cliente.ativo}, NOW(), NOW()
-)
-        """
-    try:
+
+    def cadastraCliente(self, cliente):
+
+        cursor = self.connection.cursor()
+
+        strComando = f"""
+            INSERT INTO cliente
+            (
+                nomeCliente, sobrenomeCliente, telefone,
+                email, cpf, endereco, complemento , cep, bairro,
+                meioPagamento, ativo, dataCadastro, dataUltAlt
+            )
+            VALUES
+            (
+                '{cliente.nomeCliente}', '{cliente.sobrenomeCliente}', '{cliente.telefone}',
+                '{cliente.email}', '{cliente.cpf}', '{cliente.endereco}', '{cliente.complemento}', '{cliente.cep}',
+                '{cliente.bairro}', 'CC', {cliente.ativo}, NOW(), NOW()
+    )
+            """
+        try:
+            cursor.execute(strComando)
+            self.connection.commit()
+            # self.connection.close()
+        except:
+            raise Warning(f'Erro SQL - insereCliente({cliente.clienteId}) <INSERT>')
+
+    def findAll(self):
+
+        cursor = self.connection.cursor()
+
+        # strComando = f"SELECT * FROM {configs.tblCliente}"
+        strComando = f"SELECT clienteId, nomeCliente, telefone, meioPagamento, ativo FROM {self.configs.tblCliente}"
+
         cursor.execute(strComando)
-        connection.commit()
-        connection.close()
-    except:
-        raise Warning(f'Erro SQL - insereCliente({cliente.clienteId}) <INSERT>')
 
+        return cursor.fetchall()
 
-def findAll():
-    configs = ConfigDB()
+    def buscaCliente(self, busca):
 
-    connection = pymysql.connect(
-        host=configs.host,
-        user=configs.user,
-        passwd=configs.passwd,
-        db=configs.banco
-    )
+        cursor = self.connection.cursor()
 
-    cursor = connection.cursor()
+        strComando = f"SELECT clienteId, nomeCliente, telefone, meioPagamento, ativo  FROM cliente where " \
+                     f"nomeCliente LIKE '%{busca}%' OR " \
+                     f"sobrenomeCliente like '%{busca}%' OR " \
+                     f"telefone like '%{busca}%'"
 
-    # strComando = f"SELECT * FROM {configs.tblCliente}"
-    strComando = f"SELECT clienteId, nomeCliente, telefone, meioPagamento, ativo FROM {configs.tblCliente}"
-
-    cursor.execute(strComando)
-
-    return cursor.fetchall()
-
-
-def buscaCliente(busca):
-    configs = ConfigDB()
-
-    connection = pymysql.connect(
-        host=configs.host,
-        user=configs.user,
-        passwd=configs.passwd,
-        db=configs.banco
-    )
-
-    cursor = connection.cursor()
-
-    strComando = f"SELECT clienteId, nomeCliente, telefone, meioPagamento, ativo  FROM cliente where " \
-                 f"nomeCliente LIKE '%{busca}%' OR " \
-                 f"sobrenomeCliente like '%{busca}%' OR " \
-                 f"telefone like '%{busca}%'"
-
-    cursor.execute(strComando)
-
-    return cursor.fetchall()
-
-
-def buscaPorId(clienteId: int):
-    configs = ConfigDB()
-    listCliente = []
-
-    connection = pymysql.connect(
-        host=configs.host,
-        user=configs.user,
-        passwd=configs.passwd,
-        db=configs.banco
-    )
-
-    cursor = connection.cursor()
-
-    strComando = f"""SELECT * FROM {configs.tblCliente} WHERE clienteId = {clienteId}"""
-
-    try:
         cursor.execute(strComando)
-        listCliente = cursor.fetchall()
-        connection.close()
-    except:
-        raise Warning(f'Erro SQL - buscaPorId({clienteId}) <SELECT>')
-    finally:
-        if len(listCliente) == 0:
-            return []
-        else:
-            return listCliente
+
+        return cursor.fetchall()
+
+    def buscaPorId(self, clienteId: int):
+        listCliente = []
+
+        cursor = self.connection.cursor()
+
+        strComando = f"""SELECT * FROM {self.configs.tblCliente} WHERE clienteId = {clienteId}"""
+
+        try:
+            cursor.execute(strComando)
+            listCliente = cursor.fetchall()
+            # connection.close()
+        except:
+            raise Warning(f'Erro SQL - buscaPorId({clienteId}) <SELECT>')
+        finally:
+            if len(listCliente) == 0:
+                return []
+            else:
+                return listCliente
+
+    def atualizaInfoCliente(self, cliente):
+
+        cursor = self.connection.cursor()
+
+        strComando = f""" UPDATE {self.configs.tblCliente} SET 
+                
+                            nomeCliente = '{cliente.nomeCliente}', 
+                            sobrenomeCliente = '{cliente.sobrenomeCliente}', 
+                            telefone = '{cliente.telefone}',
+                            email = '{cliente.email}', 
+                            cpf = '{cliente.cpf}', 
+                            endereco = '{cliente.endereco}', 
+                            complemento = '{cliente.complemento}', 
+                            cep = '{cliente.cep}', 
+                            bairro = '{cliente.bairro}',
+                            meioPagamento = '{cliente.meioPagamento}', 
+                            ativo = {cliente.ativo},
+                            dataUltAlt = NOW()
+                
+                        WHERE
+                            clienteId = {cliente.clienteId}
+                    
+                    """
+
+        print(strComando)
+
+        try:
+            cursor.execute(strComando)
+
+        except:
+            raise Warning(f'Erro SQL - atualizaInfoCliente({cliente.clienteId}) <UPDATE>')

@@ -65,7 +65,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
                 self.usuario.cnpj = self.leCNPJ.text()
             else:
                 self.apresentaAviso('Digite apenas números')
-                print('Digite apenas números')
+                print('Erro ao inserir CNPJ')
                 self.leCNPJ.setText("")
 
         if campo == 'email':
@@ -88,18 +88,19 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
                 self.usuario.cep = self.leCEP.text()
             else:
                 self.apresentaAviso('Digite apenas números')
-                print('Digite apenas números')
+                print('Erro ao inserir CEP')
                 self.leCEP.setText("")
 
     def trataCadastro(self):
-        wdgLista = [self.leCEP, self.leCNPJ, self.leEmail, self.leSenha, self.leEndereco, self.leTelefone,
-                    self.leSenhaConfirma,
-                    self.leNomeEmpresa]
+        wdgLista = [self.leCEP, self.leCNPJ, self.leEmail, self.leSenha, self.leEndereco,
+                    self.leTelefone, self.leSenhaConfirma, self.leNomeEmpresa]
+
         for wdg in wdgLista:
             if wdg.text() == "":
                 self.apresentaAviso('Informação faltante')
                 print("Informação faltante")
                 return False
+
         if self.leSenha.text() != self.leSenhaConfirma.text():
             self.apresentaAviso('As senhas não coincidem')
             print("As senhas não coincidem")
@@ -123,6 +124,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
                 self.leTelefone.setText(mascaraCelular(str(self.usuario.tel)))
 
     def trataCep(self, *args):
+
         if not self.leCEP.text() == "":
             self.leCEP.setText(mascaraCep(str(self.usuario.cep)))
             response = requests.get(f'http://viacep.com.br/ws/{str(self.usuario.cep)}/json/')

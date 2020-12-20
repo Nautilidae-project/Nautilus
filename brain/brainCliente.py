@@ -6,12 +6,10 @@ from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 from PyQt5.QtCore import pyqtSignal
 
 from Telas.dashCliente import Ui_wdgCliente
-from brain.DAOs.daoCliente import findAll, buscaPorId
+from brain.DAOs.daoCliente import DaoCliente
 from brain.delegates.alinhamento import AlinhamentoDelegate
-from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt
+from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt, formasPagamento
 from modelos.cliente import Cliente
-from brain.DAOs.daoCliente import findAll, buscaCliente
-
 
 
 class brainCliente(Ui_wdgCliente, QWidget):
@@ -21,6 +19,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         super(brainCliente, self).__init__(parent)
         self.setupUi(self)
         self.cliente = Cliente()
+        self.daoCliente = DaoCliente()
 
         self.pbFuncionalidade1.clicked.connect(self.atualizaTabela)
         self.atualizaTabela()
@@ -33,15 +32,68 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         self.tblClientes.doubleClicked.connect(self.carregaInfoCliente)
 
+        self.leInfoNome.textEdited.connect(lambda: self.defineCampo('nome'))
+        self.leInfoSobrenome.textEdited.connect(lambda: self.defineCampo('sobrenome'))
+        self.leInfoTel.textEdited.connect(lambda: self.defineCampo('tel'))
+        self.leInfoEmail.textEdited.connect(lambda: self.defineCampo('email'))
+        self.leInfoCep.textEdited.connect(lambda: self.defineCampo('cep'))
+        self.leInfoCpf.textEdited.connect(lambda: self.defineCampo('cpf'))
+        self.leInfoEndereco.textEdited.connect(lambda: self.defineCampo('end'))
+        self.leInfoBairro.textEdited.connect(lambda: self.defineCampo('bairro'))
+        self.leInfoComplemento.textEdited.connect(lambda: self.defineCampo('compl'))
+
+    def defineCampo(self, campo):
+
+        if campo == 'nome':
+            self.cliente.nomeCliente = self.leInfoNome.text().capitalize()
+
+        if campo == 'sobrenome':
+            self.cliente.sobrenomeCliente = self.leInfoSobrenome.text().title()
+
+        if campo == 'tel':
+            if self.leInfoTel.text().isnumeric():
+                self.cliente.telefone = self.leInfoTel.text()
+            else:
+                print('Digite apenas números')
+                self.leInfoTel.setText("")
+                return False
+
+        if campo == 'email':
+            self.cliente.email = self.leInfoEmail.text().lower()
+
+        if campo == 'cpf':
+            if self.leInfoCpf.text().isnumeric():
+                self.cliente.cpf = self.leInfoCpf.text()
+
+        if campo == 'cep':
+            if self.leInfoCep.text().isnumeric():
+                self.cliente.cep = self.leInfoCep.text()
+            else:
+                print('Digite apenas números no cep')
+                self.leInfoCep.setText("")
+
+        if campo == 'end':
+            self.cliente.endereco = self.leInfoEndereco.text().capitalize()
+
+        if campo == 'bairro':
+            self.cliente.bairro = self.leInfoBairro.text().capitalize()
+
+        if campo == 'compl':
+            self.cliente.complemento = self.leInfoComplemento.text().capitalize()
+
+        self.cliente.ativo = self.cbInfoAtivo.isChecked()
+
+        self.atualizaTabela()
+
     def busca(self):
-        clientes = buscaCliente(self.leSearchCliente.text())
+        clientes = self.daoCliente.buscaCliente(self.leSearchCliente.text())
 
         self.atualizaTabela(clientes)
 
     def atualizaTabela(self, clientes=None):
 
         if clientes is None:
-            clientes = findAll()
+            clientes = self.daoCliente.findAll()
 
         self.tblClientes.setRowCount(0)
 
@@ -69,7 +121,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
     def carregaInfoCliente(self, *args):
         intClienteId = int(self.tblClientes.item(args[0].row(), 0).text())
-        listCliente = buscaPorId(intClienteId)[0]
+        listCliente = self.daoCliente.buscaPorId(intClienteId)[0]
         if len(listCliente) == 0:
             print('Não encontrei o cliente')
         # elif len(listCliente) > 1:
@@ -88,39 +140,43 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.cliente.meioPagamento = listCliente[10]
             self.cliente.ativo = isTrueInt(listCliente)
 
-            self.leInfoNome.setText(self.cliente.nomeCliente)
-            self.leInfoSobrenome.setText(self.cliente.sobrenomeCliente)
-            self.leInfoTel.setText(self.cliente.telefone)
-            self.leInfoEmail.setText(self.cliente.email)
-            self.leInfoCpf.setText(self.cliente.cpf)
-            self.leInfoEndereco.setText(self.cliente.endereco)
-            self.leInfoComplemento.setText(self.cliente.complemento)
-            self.leInfoCep.setText(self.cliente.cep)
-            self.leInfoBairro.setText(self.cliente.bairro)
-            # self.leInfoMeioPag.setText(self.cliente.meioPagamento)
+            if self.cliente.nomeCliente != 'None':
+                self.leInfoNome.setText(self.cliente.nomeCliente)
+
+            if self.cliente.sobrenomeCliente != 'None':
+                self.leInfoSobrenome.setText(self.cliente.sobrenomeCliente)
+
+            if self.cliente.telefone != 'None':
+                self.leInfoTel.setText(self.cliente.telefone)
+
+            if self.cliente.email != 'None':
+                self.leInfoEmail.setText(self.cliente.email)
+
+            if self.cliente.cpf != 'None':
+                print(type(self.cliente.cpf))
+                self.leInfoCpf.setText(self.cliente.cpf)
+
+            if self.cliente.endereco != 'None':
+                self.leInfoEndereco.setText(self.cliente.endereco)
+
+            if self.cliente.complemento != 'None':
+                self.leInfoComplemento.setText(self.cliente.complemento)
+
+            if self.cliente.cep != 'None':
+                self.leInfoCep.setText(self.cliente.cep)
+
+            if self.cliente.bairro != 'None':
+                self.leInfoBairro.setText(self.cliente.bairro)
+
+            # self.leInfoMeioPag.setText(formasPagamento[self.cliente.meioPagamento])
             self.cbInfoAtivo.setChecked(self.cliente.ativo)
 
             self.frInfoCliente.show()
 
-    # def trataAtualização(self):
-    #     dictLinesEdit = {
-    #         'Nome': self.leInfoNome,
-    #         'Sobrenome': self.leInfoSobrenome,
-    #         'Telefone': self.leInfoTel,
-    #         'Email':  self.leInfoEmail,
-    #         'CPF': self.leInfoCpf,
-    #         'Endereco': self.leInfoEndereco,
-    #         'Complemento': self.leInfoComplemento,
-    #         'CEP': self.leInfoCep,
-    #         'Bairro': self.leInfoBairro,
-    #         'Ativo': self.cbInfoAtivo
-    #     }
-    #     for chave, valor in dictLinesEdit.values():
-    #         if len(valor.text()) == 0:
-
-
     def atualizaCliente(self, *args):
-        print(f'args[0] == QMessageBox.Yes: {args[0]}')
+        if args[0].text() == "&Yes":
+            self.daoCliente.atualizaInfoCliente(self.cliente)
+        self.frInfoCliente.hide()
 
     def animationInfo(self):
         pass
@@ -134,6 +190,3 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         dialogPopup.buttonClicked.connect(self.atualizaCliente)
         close = dialogPopup.exec_()
-
-
-
