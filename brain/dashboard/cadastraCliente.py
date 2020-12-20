@@ -5,11 +5,11 @@ from PyQt5.QtCore import pyqtSignal, QPropertyAnimation
 from Telas.dashboard import Ui_mwDash
 from Telas.dashHome import Ui_wdgHome
 from Telas.dashAgenda import Ui_wdgAgenda
-from brain.brainCliente import brainCliente
+from brain.dashboard.infoCliente import brainCliente
 
-from modelos.cliente import Cliente
+from modelos.clienteModel import Cliente
 from brain.funcoesAuxiliares import *
-from modelos.envioDeEmail import enviaEmail
+from modelos.envioDeEmailModel import enviaEmail
 
 from brain.DAOs.daoCliente import DaoCliente
 from brain.DAOs.UserConfig import criaBanco

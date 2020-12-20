@@ -9,7 +9,7 @@ from Telas.dashCliente import Ui_wdgCliente
 from brain.DAOs.daoCliente import DaoCliente
 from brain.delegates.alinhamento import AlinhamentoDelegate
 from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt, formasPagamento
-from modelos.cliente import Cliente
+from modelos.clienteModel import Cliente
 
 
 class brainCliente(Ui_wdgCliente, QWidget):
@@ -100,10 +100,13 @@ class brainCliente(Ui_wdgCliente, QWidget):
         for rowCount, rowData in enumerate(clientes):
             self.tblClientes.insertRow(rowCount)
             for columnNumber, data in enumerate(rowData):
+                # columnNumber == 2 coluna dos telefones
                 if columnNumber == 2:
                     self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(mascaraCelular(data))))
+                # columnNumber == 3 coluna das formas de pagamento
                 elif columnNumber == 3:
                     self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(macaraFormaPagamento(data))))
+                    # columnNumber == 4 coluna dos checkbox Ativo
                 elif columnNumber == 4:
                     cbItemTbl = QTableWidgetItem()
                     cbItemTbl.setFlags(QtCore.Qt.ItemIsEnabled)
@@ -153,7 +156,6 @@ class brainCliente(Ui_wdgCliente, QWidget):
                 self.leInfoEmail.setText(self.cliente.email)
 
             if self.cliente.cpf != 'None':
-                print(type(self.cliente.cpf))
                 self.leInfoCpf.setText(self.cliente.cpf)
 
             if self.cliente.endereco != 'None':
@@ -177,6 +179,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         if args[0].text() == "&Yes":
             self.daoCliente.atualizaInfoCliente(self.cliente)
         self.frInfoCliente.hide()
+        self.atualizaTabela()
 
     def animationInfo(self):
         pass
