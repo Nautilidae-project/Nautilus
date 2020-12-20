@@ -108,8 +108,6 @@ class DaoCliente():
                     
                     """
 
-        print(strComando)
-
         try:
             cursor.execute(strComando)
             self.connection.commit()
