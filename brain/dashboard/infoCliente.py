@@ -100,13 +100,16 @@ class brainCliente(Ui_wdgCliente, QWidget):
         for rowCount, rowData in enumerate(clientes):
             self.tblClientes.insertRow(rowCount)
             for columnNumber, data in enumerate(rowData):
+
                 # columnNumber == 2 coluna dos telefones
                 if columnNumber == 2:
                     self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(mascaraCelular(data))))
+
                 # columnNumber == 3 coluna das formas de pagamento
                 elif columnNumber == 3:
                     self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(macaraFormaPagamento(data))))
-                    # columnNumber == 4 coluna dos checkbox Ativo
+
+                # columnNumber == 4 coluna dos checkbox Ativo
                 elif columnNumber == 4:
                     cbItemTbl = QTableWidgetItem()
                     cbItemTbl.setFlags(QtCore.Qt.ItemIsEnabled)
@@ -123,6 +126,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.tblClientes.resizeColumnsToContents()
 
     def carregaInfoCliente(self, *args):
+
         intClienteId = int(self.tblClientes.item(args[0].row(), 0).text())
         listCliente = self.daoCliente.buscaPorId(intClienteId)[0]
         if len(listCliente) == 0:

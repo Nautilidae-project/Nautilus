@@ -7,6 +7,11 @@ class ConfigDB:
         self.__tblUsuario = 'usuario'
         self.__tblEstados = 'estados'
         self.__tblCliente = 'cliente'
+        self.__tblEvento = 'evento'
+        self.__tblParticipantes = 'participantes'
+        self.__tblTurma = 'turma'
+
+        # Comando SQL para criar tabela de usuários
         self.__sqlCreateUsuario = f"""CREATE TABLE IF NOT EXISTS {self.tblUsuario}(
 	                    userId INT AUTO_INCREMENT,
                         nomeUsuario VARCHAR(20) NOT NULL,
@@ -23,10 +28,14 @@ class ConfigDB:
                         dataCadastro DATETIME NOT NULL,
                         PRIMARY KEY (userId)
                     );"""
+
+        # Comando SQL para criar tabela de Estados
         self.__sqlCreateEstado = f"""CREATE TABLE IF NOT EXISTS {self.tblEstados}(
                         extenso VARCHAR(20) NOT NULL,
                         sigla VARCHAR(2) NOT NULL
                         );"""
+
+        # Comando SQL para criar tabela de clientes
         self.__sqlCreateCliente = f"""CREATE TABLE IF NOT EXISTS {self.tblCliente}(
 	                    clienteId INT AUTO_INCREMENT,
                         nomeCliente VARCHAR(20) NOT NULL,
@@ -45,6 +54,36 @@ class ConfigDB:
                         PRIMARY KEY (clienteId)
                     );"""
 
+        # Comando SQL para criar tabela de eventos
+        self.__sqlCreateEvento = f"""CREATE TABLE IF NOT EXISTS {self.tblEvento} (		
+                        eventoId INT AUTO_INCREMENT,
+                        titulo VARCHAR(19) NOT NULL,
+                        detalhe VARCHAR(500) NULL,
+                        turmaId INT NULL,
+                        dataEvento DATETIME NOT NULL,
+                        dataCadastro DATETIME NOT NULL,
+                        horaInicio DATETIME NULL,
+                        horaFim DATETIME NULL,
+                        diaInteiro BOOL NOT NULL DEFAULT FALSE,
+                        PRIMARY KEY (eventoId)
+                    );"""
+
+        # Comando SQL para criar tabela de participantes de um evento
+        self.__sqlCreateParticipantes = f"""CREATE TABLE IF NOT EXISTS {self.tblParticipantes} (
+                        eventoId INT AUTO_INCREMENT,
+                        clienteId INT NOT NULL,
+                        PRIMARY KEY (eventoId)
+                    );"""
+
+        # Comando SQL para criar tabela de turmas
+        self.__sqlCreateTurma = f"""CREATE TABLE IF NOT EXISTS {self.tblTurma} (
+                        turmaId INT AUTO_INCREMENT,
+                        clienteId INT NOT NULL,
+                        titulo VARCHAR(30) NULL,
+                        descricao VARCHAR(120) NULL,
+                        PRIMARY KEY (turmaId)
+                    );"""
+
     @property
     def sqlCreateUsuario(self):
         return self.__sqlCreateUsuario
@@ -56,6 +95,18 @@ class ConfigDB:
     @property
     def sqlCreateCliente(self):
         return self.__sqlCreateCliente
+
+    @property
+    def sqlCreateEvento(self):
+        return self.__sqlCreateEvento
+
+    @property
+    def sqlCreateParticipantes(self):
+        return self.__sqlCreateParticipantes
+
+    @property
+    def sqlCreateTurma(self):
+        return self.__sqlCreateTurma
 
     @property
     def host(self):
@@ -84,6 +135,19 @@ class ConfigDB:
     @property
     def tblCliente(self):
         return self.__tblCliente
+
+    @property
+    def tblEvento(self):
+        return self.__tblEvento
+
+    @property
+    def tblParticipantes(self):
+        return self.__tblParticipantes
+
+    @property
+    def tblTurma(self):
+        return self.__tblTurma
+
 
     def __repr__(self):
         return f'''
