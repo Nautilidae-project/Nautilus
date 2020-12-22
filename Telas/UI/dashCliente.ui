@@ -228,35 +228,44 @@ QTableView::item:selected {
 
 
 
- QScrollBar:vertical {
-     border: 2px solid grey;
-     background: #32CC99;
+
+ 
+QScrollBar:vertical {
+     border: 2px solid transparent;
+     background: transparent;
      width: 15px;
-     margin: 22px 0 22px 0;
+     margin: 22px 4px 22px 0;
  }
  QScrollBar::handle:vertical {
-     background: white;
-     min-height: 20px;
+     background: transparent;
+	 border-right: 2px solid;
+     min-height:20px;
  }
+
+
+
  QScrollBar::add-line:vertical {
-     border: 2px solid grey;
-     background: #32CC99;
+     border-top: 2px solid grey;
+     background: transparent;
      height: 20px;
      subcontrol-position: bottom;
      subcontrol-origin: margin;
  }
 
  QScrollBar::sub-line:vertical {
-     border: 2px solid grey;
-     background: #32CC99;
+     border-bottom: 2px solid grey;
+     background: transparent;
      height: 20px;
      subcontrol-position: top;
      subcontrol-origin: margin;
  }
+
+
  QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
      border: 2px solid grey;
-     width: 3px;
-     height: 3px;
+	 border-radius: 5px;
+     width: 6px;
+     height: 6px;
      background: white;
  }
 
