@@ -1,4 +1,4 @@
-
+from PyQt5 import QtCore, QtGui
 from PyQt5.QtGui import QPainter, QColor, QFont
 
 from Telas.dashAgenda import Ui_wdgAgenda
@@ -19,37 +19,28 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
 
         self.calendarWidget.clicked.connect(self.printDateInfo)
 
-        self.calendarWidget.paintCell()
+        # for d in (QtCore.Qt.Saturday, QtCore.Qt.Sunday,):
+        #     fmt = self.weekdayTextFormat(d)
+        #     fmt.setForeground(QtCore.Qt.darkGray)
+        #     self.setWeekdayTextFormat(d, fmt)
+
+
+        #if date.month() == 12 and date.day() == 20 or date == self.selectedDate():
 
     def paintCell(self, painter, rect, date):
-        super(AgendaPage, self).calendarWidget.paintCell(painter, rect, date)
-        print(self)
-
-        # checking if date is selected date
-        if date.month() == 12 and date.day() == 20 or date == self.selectedDate():
-            # saving the painter
-            self.calendarWidget.painter.save()
-
-            # criando o objeto Fonte
-            font = QFont()
-
-            # setando tamanho da fonte
-            font.setPixelSize(10)
-
-            # marcando a fonte com negrito
-            font.setBold(True)
-
-            # marcando a fonte com italic
-            font.setItalic(True)
-
-            # setting font to the painter
-            painter.setFont(font)
-
-            # Desenhando um texto
-            painter.drawText(rect.topLeft() + QPoint(5, 100), "{}".format("Compromisso"))
-
-            # restoring the painter
+        if date == self.selectedDate():
+            painter.save()
+            painter.fillRect(rect, QtGui.QColor("#D3D3D3"))
+            painter.setPen(QtCore.Qt.NoPen)
+            painter.setBrush(QtGui.QColor("#33B5E5"))
+            r = QtCore.QRect(QtCore.QPoint(), min(rect.width(), rect.height()) * QtCore.QSize(1, 1))
+            r.moveCenter(rect.center())
+            painter.drawEllipse(r)
+            painter.setPen(QtGui.QPen(QtGui.QColor("gray")))
+            painter.drawText(rect, QtCore.Qt.AlignCenter, str(date.day()))
             painter.restore()
+        else:
+            super(AgendaPage, self).paintCell(painter, rect, date)
 
     def printDateInfo(self, qDate):
         # x = datetime.now().strftime("%B")
