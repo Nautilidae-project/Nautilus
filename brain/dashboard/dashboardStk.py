@@ -14,7 +14,6 @@ from brain.funcoesAuxiliares import *
 from modelos.envioDeEmailModel import enviaEmail
 
 from brain.DAOs.daoCliente import DaoCliente
-from brain.DAOs.UserConfig import criaBanco
 import requests
 import json
 
@@ -66,7 +65,6 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.pbCliente.clicked.connect(lambda: self.stkDash.setCurrentIndex(2))
         self.pbFinanceiro.clicked.connect(lambda: self.stkDash.setCurrentIndex(3))
 
-        criaBanco()
         # ----------------------------------
 
 
@@ -150,7 +148,7 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         # ----------------------------------------
 
         self.daoCliente.cadastraCliente(self.cliente)
-        enviaEmail(self.titulo, self.msgCadastro, self.pgCliente.leEmail.text())
+        # enviaEmail(self.titulo, self.msgCadastro, self.pgCliente.leEmail.text())
 
     def trataCep(self, *args):
         if not self.pgCliente.leCep.text() == "":

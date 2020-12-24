@@ -9,7 +9,7 @@ class ConfigDB:
         self.__tblCliente = 'cliente'
         self.__tblEvento = 'evento'
         self.__tblParticipantes = 'participantes'
-        self.__tblTurma = 'turma'
+        self.__tblgrupo = 'grupo'
 
         # Comando SQL para criar tabela de usuários
         self.__sqlCreateUsuario = f"""CREATE TABLE IF NOT EXISTS {self.tblUsuario}(
@@ -59,7 +59,7 @@ class ConfigDB:
                         eventoId INT AUTO_INCREMENT,
                         titulo VARCHAR(19) NOT NULL,
                         detalhe VARCHAR(500) NULL,
-                        turmaId INT NULL,
+                        grupoId INT NULL,
                         dataEvento DATETIME NOT NULL,
                         dataCadastro DATETIME NOT NULL,
                         horaInicio DATETIME NULL,
@@ -75,13 +75,13 @@ class ConfigDB:
                         PRIMARY KEY (eventoId)
                     );"""
 
-        # Comando SQL para criar tabela de turmas
-        self.__sqlCreateTurma = f"""CREATE TABLE IF NOT EXISTS {self.tblTurma} (
-                        turmaId INT AUTO_INCREMENT,
+        # Comando SQL para criar tabela de grupos
+        self.__sqlCreategrupo = f"""CREATE TABLE IF NOT EXISTS {self.tblgrupo} (
+                        grupoId INT AUTO_INCREMENT,
                         clienteId INT NOT NULL,
                         titulo VARCHAR(30) NULL,
                         descricao VARCHAR(120) NULL,
-                        PRIMARY KEY (turmaId)
+                        PRIMARY KEY (grupoId)
                     );"""
 
     @property
@@ -105,8 +105,8 @@ class ConfigDB:
         return self.__sqlCreateParticipantes
 
     @property
-    def sqlCreateTurma(self):
-        return self.__sqlCreateTurma
+    def sqlCreategrupo(self):
+        return self.__sqlCreategrupo
 
     @property
     def host(self):
@@ -145,8 +145,8 @@ class ConfigDB:
         return self.__tblParticipantes
 
     @property
-    def tblTurma(self):
-        return self.__tblTurma
+    def tblgrupo(self):
+        return self.__tblgrupo
 
 
     def __repr__(self):

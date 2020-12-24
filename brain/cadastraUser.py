@@ -16,6 +16,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
     def __init__(self, parent=None):
         super(brainCadastro, self).__init__(parent)
         self.setupUi(self)
+        self.daoConfig = DaoConfiguracoes()
         self.pbVoltarLogin.clicked.connect(self.goHome)
         self.home.connect(self.parent().backHome)
         self.timer = QTimer()
@@ -36,7 +37,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
         self.leSenha.textEdited.connect(lambda: self.defineCampo('senha'))
         self.leSenhaConfirma.textEdited.connect(lambda: self.defineCampo('confS'))
 
-        self.cbxEstados.addItems(getEstados())
+        self.cbxEstados.addItems(self.daoConfig.getEstados())
 
         self.leCNPJ.editingFinished.connect(lambda: self.insereMascara('cnpj'))
         self.leTelefone.editingFinished.connect(lambda: self.insereMascara('tel'))
@@ -108,7 +109,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
 
         self.usuario.senha = bcrypt.hashpw(self.leSenha.text().encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
-        if cadastreUsuario(self.usuario):
+        if self.daoConfig.cadastreUsuario(self.usuario):
             print('Usuário cadastrado com sucesso')
             self.goHome()
             return True
@@ -133,7 +134,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
                 self.leEndereco.setText(dictEndereco['logradouro'].title())
                 self.leCidade.setText(dictEndereco['localidade'].title())
                 self.leBairro.setText(dictEndereco['bairro'].capitalize())
-                self.cbxEstados.setCurrentText(getEstados(dictEndereco['uf'])[0])
+                self.cbxEstados.setCurrentText(self.daoConfig.getEstados(dictEndereco['uf'])[0])
             else:
                 print(f'Falha na conexão - Código de status: {response.status_code}')
                 return False

@@ -1,6 +1,5 @@
 <RCC>
-  <qresource prefix="background">
-    <file>Branco e Azul Foto do Mar Cartão Postal.png</file>
+  <qresource prefix="imagemBg">
+    <file>imagemBg.png</file>
   </qresource>
-  <qresource prefix="newPrefix"/>
 </RCC>
