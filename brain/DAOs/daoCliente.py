@@ -4,7 +4,7 @@ import pymysql
 from modelos.clienteModel import Cliente
 
 
-class DaoCliente():
+class DaoCliente:
 
     def __init__(self):
         self.configs = ConfigDB()
