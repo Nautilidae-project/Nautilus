@@ -9,7 +9,7 @@ class ConfigDB:
         self.__tblCliente = 'cliente'
         self.__tblEvento = 'evento'
         self.__tblParticipantes = 'participantes'
-        self.__tblgrupo = 'grupo'
+        self.__tblGrupo = 'grupo'
 
         # Comando SQL para criar tabela de usuários
         self.__sqlCreateUsuario = f"""CREATE TABLE IF NOT EXISTS {self.tblUsuario}(
@@ -76,7 +76,7 @@ class ConfigDB:
                     );"""
 
         # Comando SQL para criar tabela de grupos
-        self.__sqlCreategrupo = f"""CREATE TABLE IF NOT EXISTS {self.tblgrupo} (
+        self.__sqlCreateGrupo = f"""CREATE TABLE IF NOT EXISTS {self.tblGrupo} (
                         grupoId INT AUTO_INCREMENT,
                         clienteId INT NOT NULL,
                         titulo VARCHAR(30) NULL,
@@ -105,8 +105,8 @@ class ConfigDB:
         return self.__sqlCreateParticipantes
 
     @property
-    def sqlCreategrupo(self):
-        return self.__sqlCreategrupo
+    def sqlCreateGrupo(self):
+        return self.__sqlCreateGrupo
 
     @property
     def host(self):
@@ -145,8 +145,8 @@ class ConfigDB:
         return self.__tblParticipantes
 
     @property
-    def tblgrupo(self):
-        return self.__tblgrupo
+    def tblGrupo(self):
+        return self.__tblGrupo
 
 
     def __repr__(self):

@@ -1,7 +1,6 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QMainWindow
 
-from CustomWidget import TesteCustomWindow
 from Telas.SplashScreen.splashScreen import Ui_MainWindow
 from brain.DAOs.UserConfig import DaoConfiguracoes
 from brain.loginPage import LoginPage
@@ -11,7 +10,6 @@ class Main(Ui_MainWindow, QMainWindow):
 
     def __init__(self):
         super(Main, self).__init__()
-        self.teste = TesteCustomWindow('Israel', 'Renan')
         self.setupUi(self)
         self.contador = 0
         self.daoConfigs = DaoConfiguracoes()
@@ -54,8 +52,8 @@ class Main(Ui_MainWindow, QMainWindow):
         if self.daoConfigs.criaTblEvento():
             self.progresso(add=10)
 
-        self.lbInfo.setText('CRIANDO BANCO DAS TURMAS...')
-        if self.daoConfigs.criaTblTurma():
+        self.lbInfo.setText('CRIANDO BANCO DAS GRUPOS...')
+        if self.daoConfigs.criaTblGrupo():
             self.progresso(add=10)
 
         self.lbInfo.setText('CRIANDO BANCO DOS PARTICIPANTES...')
@@ -83,9 +81,8 @@ class Main(Ui_MainWindow, QMainWindow):
         self.iniciaNautilus()
 
     def iniciaNautilus(self):
-        # self.close()
-        # LoginPage().show()
-        self.show()
+        self.close()
+        LoginPage().show()
 
     def center(self):
         frameGm = self.frameGeometry()

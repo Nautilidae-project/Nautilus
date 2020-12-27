@@ -37,14 +37,14 @@ class DaoConfiguracoes:
         except:
             raise Warning(f'Erro SQL - criaTblCliente({self.configs.banco}) <CREATE TABLE {self.configs.tblCliente}>')
 
-    def criaTblTurma(self):
+    def criaTblGrupo(self):
 
         try:
-            self.cursor.execute(self.configs.sqlCreateTurma)
+            self.cursor.execute(self.configs.sqlCreateGrupo)
             self.connection.commit()
             return True
         except:
-            raise Warning(f'Erro SQL - criaTblTurma({self.configs.banco}) <CREATE TABLE {self.configs.tblTurma}>')
+            raise Warning(f'Erro SQL - criaTblGrupo({self.configs.banco}) <CREATE TABLE {self.configs.tblGrupo}>')
 
     def criaTblEvento(self):
 

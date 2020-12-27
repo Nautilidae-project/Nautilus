@@ -3,7 +3,7 @@ import pymysql
 from configBD import ConfigDB
 
 
-class DaoTurma():
+class DaoGrupo():
 
     def __init__(self):
         self.configs = ConfigDB()
