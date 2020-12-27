@@ -7,14 +7,14 @@ from brain.dashboard.dashboardStk import brainDashboard
 from brain.DAOs.UserConfig import *
 
 
-class brainLogin(Ui_mwLogin, QMainWindow):
+class LoginPage(Ui_mwLogin, QMainWindow):
 
     def __init__(self):
-        super(brainLogin, self).__init__()
-        criaBanco()
-        addEstados()
+        super(LoginPage, self).__init__()
+        self.daoConfig = DaoConfiguracoes()
 
         self.setupUi(self)
+        self.center()
 
         # Iniciando a tela cadastro e inserindo-a no stkWidget
         self.telaCadastro = brainCadastro(self)
@@ -49,11 +49,11 @@ class brainLogin(Ui_mwLogin, QMainWindow):
             print("Digite um usuário")
             self.snackBar("Digite um usuário")
             return False
-        if not buscaUsuario(strNomeUsuario):
+        if not self.daoConfig.buscaUsuario(strNomeUsuario):
             print("Não foi encontrado nenhum usuário com o nome cadastrado")
             self.snackBar("Usuário Não Cadastrado")
         else:
-            if confereSenha(strNomeUsuario, self.leSenha.text()):
+            if self.daoConfig.confereSenha(strNomeUsuario, self.leSenha.text()):
                 self.snackBar('Usuário(a) confirmado(a)!')
                 print('Usuário(a) confirmado(a)!')
                 self.stkLogin.setCurrentIndex(2)
@@ -66,10 +66,17 @@ class brainLogin(Ui_mwLogin, QMainWindow):
         self.lbSnackBarLogin.show()
         self.pbFechaSnackBarLogin.show()
 
+    def center(self):
+        frameGm = self.frameGeometry()
+        screen = QtWidgets.QApplication.desktop().screenNumber(QtWidgets.QApplication.desktop().cursor().pos())
+        centerPoint = QtWidgets.QApplication.desktop().screenGeometry(screen).center()
+        frameGm.moveCenter(centerPoint)
+        self.move(frameGm.topLeft())
+
 
 if __name__ == '__main__':
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    ui = brainLogin()
+    ui = LoginPage()
     ui.show()
     sys.exit(app.exec_())

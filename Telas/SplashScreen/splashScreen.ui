@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>480</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>480</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="frBg">
+      <property name="styleSheet">
+       <string notr="true">#frBg {
+/*	background-image: url(:/imagemBg/imagemBg.png);*/
+	background-position: center;
+	background-repeat: no-repeat;
+	border-image:  url(:/imagemBg/imagemBg.png);
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QProgressBar" name="pbarSplash">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>350</y>
+         <width>701</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#pbarSplash {
+	border-radius: 10px;
+	background-color: rgb(30, 41, 99);
+	color: rgb(211, 215, 207);
+	border-style: none;
+	text-align: center;
+}
+
+#pbarSplash::chunk {
+	border-radius: 10px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0.506, x2:1, y2:0.5, stop:0 rgba(74, 172, 82, 255), stop:1 rgba(86, 179, 204, 255));
+}</string>
+       </property>
+       <property name="value">
+        <number>24</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lbCreated">
+       <property name="geometry">
+        <rect>
+         <x>693</x>
+         <y>440</y>
+         <width>81</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Fira Sans</family>
+         <pointsize>9</pointsize>
+         <italic>true</italic>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#lbCreated {
+	color: rgb(238, 238, 236);
+}</string>
+       </property>
+       <property name="text">
+        <string>Nautilus Group</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lbCreated_2">
+       <property name="geometry">
+        <rect>
+         <x>630</x>
+         <y>440</y>
+         <width>61</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Fira Sans</family>
+         <pointsize>6</pointsize>
+         <italic>true</italic>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#lbCreated_2 {
+	color: rgb(238, 238, 236);
+}</string>
+       </property>
+       <property name="text">
+        <string>Created by</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lbInfo">
+       <property name="geometry">
+        <rect>
+         <x>23</x>
+         <y>380</y>
+         <width>751</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Ubuntu Mono</family>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#lbInfo {
+	color: rgb(238, 238, 236);
+}</string>
+       </property>
+       <property name="text">
+        <string>LOADING...</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="SplashIcons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

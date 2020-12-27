@@ -4,7 +4,7 @@ import pymysql
 from modelos.clienteModel import Cliente
 
 
-class DaoCliente():
+class DaoCliente:
 
     def __init__(self):
         self.configs = ConfigDB()
@@ -37,7 +37,7 @@ class DaoCliente():
         try:
             cursor.execute(strComando)
             self.connection.commit()
-            # self.connection.close()
+            self.connection.close()
         except:
             raise Warning(f'Erro SQL - insereCliente({cliente.clienteId}) <INSERT>')
 
