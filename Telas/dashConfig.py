@@ -11,14 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_wdgConfig(QtWidgets.QWidget):
-
-    # ----------------------------------
-    def __init__(self, parent=None):
-        super(Ui_wdgConfig, self).__init__()
-        self.setupUi(self)
-    # ----------------------------------
-
+class Ui_wdgConfig(object):
     def setupUi(self, wdgConfig):
         wdgConfig.setObjectName("wdgConfig")
         wdgConfig.resize(615, 556)

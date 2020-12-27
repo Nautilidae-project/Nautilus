@@ -11,38 +11,13 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_wdgAgenda(QtWidgets.QWidget):
-
-    # ----------------------------------
-    def __init__(self, parent=None):
-        super(Ui_wdgAgenda, self).__init__()
-        self.setupUi(self)
-    # ----------------------------------
-
+class Ui_wdgAgenda(object):
     def setupUi(self, wdgAgenda):
         wdgAgenda.setObjectName("wdgAgenda")
-        wdgAgenda.resize(800, 588)
+        wdgAgenda.resize(754, 700)
         self.gridLayout = QtWidgets.QGridLayout(wdgAgenda)
         self.gridLayout.setObjectName("gridLayout")
-        self.frame = QtWidgets.QFrame(wdgAgenda)
-        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame.setObjectName("frame")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.frame)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.calendarWidget = QtWidgets.QCalendarWidget(self.frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.calendarWidget.sizePolicy().hasHeightForWidth())
-        self.calendarWidget.setSizePolicy(sizePolicy)
-        self.calendarWidget.setMinimumSize(QtCore.QSize(500, 550))
-        self.calendarWidget.setMaximumSize(QtCore.QSize(1000, 16777215))
-        self.calendarWidget.setSizeIncrement(QtCore.QSize(0, 0))
-        self.calendarWidget.setStyleSheet("background-color: rgb(108, 251, 208);")
-        self.calendarWidget.setObjectName("calendarWidget")
-        self.horizontalLayout.addWidget(self.calendarWidget)
-        self.frCompromisso = QtWidgets.QFrame(self.frame)
+        self.frCompromisso = QtWidgets.QFrame(wdgAgenda)
         self.frCompromisso.setMinimumSize(QtCore.QSize(210, 0))
         self.frCompromisso.setStyleSheet("#frCompromisso{\n"
 "background-color: transparent;\n"
@@ -54,6 +29,13 @@ class Ui_wdgAgenda(QtWidgets.QWidget):
         self.frCompromisso.setObjectName("frCompromisso")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.frCompromisso)
         self.gridLayout_2.setObjectName("gridLayout_2")
+        self.lbData = QtWidgets.QLabel(self.frCompromisso)
+        self.lbData.setMinimumSize(QtCore.QSize(0, 50))
+        self.lbData.setStyleSheet("background-color: rgb(233, 185, 110);")
+        self.lbData.setText("")
+        self.lbData.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbData.setObjectName("lbData")
+        self.gridLayout_2.addWidget(self.lbData, 1, 1, 1, 1)
         self.label = QtWidgets.QLabel(self.frCompromisso)
         font = QtGui.QFont()
         font.setFamily("Fira Sans ExtraLight")
@@ -64,9 +46,66 @@ class Ui_wdgAgenda(QtWidgets.QWidget):
         self.label.setObjectName("label")
         self.gridLayout_2.addWidget(self.label, 0, 1, 1, 1)
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout_2.addItem(spacerItem, 1, 1, 1, 1)
-        self.horizontalLayout.addWidget(self.frCompromisso)
-        self.gridLayout.addWidget(self.frame, 0, 2, 1, 1)
+        self.gridLayout_2.addItem(spacerItem, 2, 1, 1, 1)
+        self.gridLayout.addWidget(self.frCompromisso, 0, 3, 2, 1)
+        self.frAgenda = QtWidgets.QFrame(wdgAgenda)
+        self.frAgenda.setMaximumSize(QtCore.QSize(1000, 16777215))
+        self.frAgenda.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frAgenda.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frAgenda.setObjectName("frAgenda")
+        self.gridLayout_3 = QtWidgets.QGridLayout(self.frAgenda)
+        self.gridLayout_3.setObjectName("gridLayout_3")
+        self.calendarWidget = QtWidgets.QCalendarWidget(self.frAgenda)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.calendarWidget.sizePolicy().hasHeightForWidth())
+        self.calendarWidget.setSizePolicy(sizePolicy)
+        self.calendarWidget.setMinimumSize(QtCore.QSize(500, 500))
+        self.calendarWidget.setMaximumSize(QtCore.QSize(1000, 800))
+        self.calendarWidget.setSizeIncrement(QtCore.QSize(0, 0))
+        self.calendarWidget.setStyleSheet(" /*Tool button styles */\n"
+"QCalendarWidget QToolButton {\n"
+" \n"
+"    height:40px;\n"
+"    width:500px;\n"
+"    color:white;\n"
+"    font-size:20px;\n"
+"    icon-size:56px,56px;\n"
+"    background-color: #DFD880;\n"
+" \n"
+"}\n"
+"\n"
+"  /*normal days */\n"
+"QCalendarWidget QAbstractItemView:enabled {\n"
+" \n"
+" \n"
+"font-size:18px;\n"
+"color: #444;\n"
+"background-color: #80CCE1;\n"
+"selection-background-color:rgb(64,64,64);\n"
+"selection-color:rgb(0,255,0);\n"
+"}\n"
+"\n"
+"  /* header row */\n"
+"QCalendarWidget  QWidget{\n"
+" \n"
+"alternate-background-color: #FAFAFA;\n"
+" \n"
+"}")
+        self.calendarWidget.setObjectName("calendarWidget")
+        self.gridLayout_3.addWidget(self.calendarWidget, 1, 0, 1, 1)
+        self.label_2 = QtWidgets.QLabel(self.frAgenda)
+        self.label_2.setMinimumSize(QtCore.QSize(0, 100))
+        font = QtGui.QFont()
+        font.setFamily("Fira Sans ExtraLight")
+        font.setPointSize(22)
+        self.label_2.setFont(font)
+        self.label_2.setStyleSheet("background-color: rgb(108, 251, 208);")
+        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_2.setObjectName("label_2")
+        self.gridLayout_3.addWidget(self.label_2, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.frAgenda, 0, 2, 1, 1)
 
         self.retranslateUi(wdgAgenda)
         QtCore.QMetaObject.connectSlotsByName(wdgAgenda)
@@ -75,6 +114,7 @@ class Ui_wdgAgenda(QtWidgets.QWidget):
         _translate = QtCore.QCoreApplication.translate
         wdgAgenda.setWindowTitle(_translate("wdgAgenda", "Form"))
         self.label.setText(_translate("wdgAgenda", "Compromissos"))
+        self.label_2.setText(_translate("wdgAgenda", "Agendamentos"))
 
 
 if __name__ == "__main__":

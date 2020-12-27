@@ -24,6 +24,53 @@
 	background-color: #0E90AD;
 }
 
+#frPrincipalDash{
+background-color: #0E90AD;
+
+border-radius: 60%;
+}
+
+QFrame  {
+	background: transparent;
+
+	border-radius: 25%;
+}
+QPushButton {
+	background-color: #DFD880;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+QPushButton:hover {
+	background-color: #80CCE1;
+}
+
+#frAgenda, #frHome  {
+	background-color: rgb(223, 216, 128);
+	border-radius: 0px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+#frAgenda:hover, #frHome:hover  {
+	background-color: #80CCE1;
+	border-radius: 0px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+#frIconAgenda {
+	background-image: url(:/iconAgenda/calendar.png);
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#frIconHome {
+	background-image: url(:/iconHome/home.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
 </string>
   </property>
   <widget class="QWidget" name="wdgDash">
@@ -46,10 +93,7 @@
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">
-background-color: #0E90AD;
-
-border-radius: 60%;</string>
+       <string notr="true"/>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -82,18 +126,7 @@ border-radius: 60%;</string>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">QFrame  {
-	background: transparent;
-
-	border-radius: 25%;
-}
-QPushButton {
-	background-color: #DFD880;
-	border-top-right-radius: 18%;
-	border-bottom-right-radius: 18%;
-}
-
-</string>
+          <string notr="true"/>
          </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
@@ -185,6 +218,12 @@ QPushButton {
           </item>
           <item alignment="Qt::AlignHCenter">
            <widget class="QFrame" name="frHome">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -192,19 +231,7 @@ QPushButton {
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#frHome {
-	background-color: rgb(223, 216, 128);
-	border-radius: 0px;
-	border-top-right-radius: 12px;
-	border-bottom-right-radius: 12px;
-}
-
-#frHome:hover {
-	background-color: #80CCE1;
-	border-radius: 0px;
-	border-top-right-radius: 12px;
-	border-bottom-right-radius: 12px;
-}</string>
+             <string notr="true"/>
             </property>
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>
@@ -243,11 +270,7 @@ QPushButton {
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">#frIconHome {
-	background-image: url(:/iconHome/home.png);
-	background-repeat: no-repeat;
-	background-position: center;
-}</string>
+                <string notr="true"/>
                </property>
                <property name="frameShape">
                 <enum>QFrame::NoFrame</enum>
@@ -266,10 +289,7 @@ QPushButton {
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">#pbHome {
-	
-	background-color: rgba(238, 238, 236,0);
-}</string>
+                <string notr="true"/>
                </property>
                <property name="text">
                 <string>Home</string>
@@ -281,6 +301,12 @@ QPushButton {
           </item>
           <item alignment="Qt::AlignHCenter">
            <widget class="QFrame" name="frAgenda">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -288,19 +314,7 @@ QPushButton {
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#frAgenda {
-	background-color: rgb(223, 216, 128);
-	border-radius: 0px;
-	border-top-right-radius: 12px;
-	border-bottom-right-radius: 12px;
-}
-
-#frAgenda:hover {
-	background-color: #80CCE1;
-	border-radius: 0px;
-	border-top-right-radius: 12px;
-	border-bottom-right-radius: 12px;
-}</string>
+             <string notr="true"/>
             </property>
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>
@@ -339,11 +353,7 @@ QPushButton {
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">#frIconAgenda {
-	background-image: url(:/iconAgenda/calendar.png);
-	background-position: center;
-	background-repeat: no-repeat;
-}</string>
+                <string notr="true"/>
                </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
@@ -379,7 +389,7 @@ QPushButton {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>50</height>
+              <height>60</height>
              </size>
             </property>
             <property name="text">
@@ -392,7 +402,7 @@ QPushButton {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>50</height>
+              <height>60</height>
              </size>
             </property>
             <property name="text">
@@ -405,7 +415,7 @@ QPushButton {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>50</height>
+              <height>60</height>
              </size>
             </property>
             <property name="text">
@@ -431,7 +441,7 @@ QPushButton {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>50</height>
+              <height>60</height>
              </size>
             </property>
             <property name="text">
