@@ -87,6 +87,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
     def busca(self):
         clientes = self.daoCliente.buscaCliente(self.leSearchCliente.text())
+        print(clientes)
 
         self.atualizaTabela(clientes)
 

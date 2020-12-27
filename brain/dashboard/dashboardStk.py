@@ -67,8 +67,6 @@ class brainDashboard(Ui_mwDash, QMainWindow):
 
         # ----------------------------------
 
-
-
     def animationDash(self):
 
         if self.enable:
