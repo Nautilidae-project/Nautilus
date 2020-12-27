@@ -91,7 +91,7 @@ border-right: 3px dashed rgb(108, 251, 208);
     </widget>
    </item>
    <item row="0" column="2">
-    <widget class="QFrame" name="frame">
+    <widget class="QFrame" name="frAgenda">
      <property name="maximumSize">
       <size>
        <width>1000</width>
