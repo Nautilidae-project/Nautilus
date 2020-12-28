@@ -6,208 +6,178 @@ from bcrypt import checkpw
 from modelos.estadosModel import EstadosModelo
 
 
-def criaBanco():
-    configs = ConfigDB()
+class DaoConfiguracoes:
+    def __init__(self):
+        self.configs = ConfigDB()
 
-    connection = pymysql.connect(
-        host=configs.host,
-        user=configs.user,
-        passwd=configs.passwd,
-        db=configs.banco
-    )
-    cursor = connection.cursor()
+        self.connection = pymysql.connect(
+            host=self.configs.host,
+            user=self.configs.user,
+            passwd=self.configs.passwd,
+            db=self.configs.banco
+        )
 
-    try:
-        cursor.execute(configs.sqlCreateUsuario)
-        connection.commit()
-        return True
-    except:
-        raise Warning(f'Erro SQL - criaBanco({configs.banco}) <CREATE TABLE ({configs.tblUsuario})>')
-    finally:
+        self.cursor = self.connection.cursor()
+
+    def criaTblUsuario(self):
+
         try:
-            cursor.execute(configs.sqlCreateEstado)
-            connection.commit()
+            self.cursor.execute(self.configs.sqlCreateUsuario)
+            self.connection.commit()
             return True
         except:
-            raise Warning(f'Erro SQL - criaBanco({configs.banco}) <CREATE TABLE {configs.tblEstados}>')
-        finally:
-            try:
-                cursor.execute(configs.sqlCreateCliente)
-                connection.commit()
-                return True
-            except:
-                raise Warning(f'Erro SQL - criaBanco({configs.banco}) <CREATE TABLE {configs.tblCliente}>')
-            finally:
-                try:
-                    cursor.execute(configs.sqlCreateEvento)
-                    connection.commit()
-                    return True
-                except:
-                    raise Warning(f'Erro SQL - criaBanco({configs.banco}) <CREATE TABLE {configs.tblEvento}>')
-                finally:
-                    try:
-                        cursor.execute(configs.sqlCreateParticipantes)
-                        connection.commit()
-                        return True
-                    except:
-                        raise Warning(
-                            f'Erro SQL - criaBanco({configs.banco}) <CREATE TABLE {configs.tblParticipantes}>')
-                    finally:
-                        try:
-                            cursor.execute(configs.sqlCreateTurma)
-                            connection.commit()
-                            return True
-                        except:
-                            raise Warning(f'Erro SQL - criaBanco({configs.banco}) <CREATE TABLE {configs.tblTurma}>')
+            raise Warning(f'Erro SQL - criaTblUsuario({self.configs.banco}) <CREATE TABLE ({self.configs.tblUsuario})>')
 
+    def criaTblCliente(self):
 
-def addEstados():
-    configs = ConfigDB()
+        try:
+            self.cursor.execute(self.configs.sqlCreateCliente)
+            self.connection.commit()
+            return True
+        except:
+            raise Warning(f'Erro SQL - criaTblCliente({self.configs.banco}) <CREATE TABLE {self.configs.tblCliente}>')
 
-    connection = pymysql.connect(
-        host=configs.host,
-        user=configs.user,
-        passwd=configs.passwd,
-        db=configs.banco
-    )
-    cursor = connection.cursor()
+    def criaTblGrupo(self):
 
-    strComando = '''SELECT * FROM estados LIMIT 1'''
+        try:
+            self.cursor.execute(self.configs.sqlCreateGrupo)
+            self.connection.commit()
+            return True
+        except:
+            raise Warning(f'Erro SQL - criaTblGrupo({self.configs.banco}) <CREATE TABLE {self.configs.tblGrupo}>')
 
-    cursor.execute(strComando)
-    if len(cursor.fetchall()) != 0:
-        return False
+    def criaTblEvento(self):
 
-    listaEstados = EstadosModelo().toDict()
+        try:
+            self.cursor.execute(self.configs.sqlCreateEvento)
+            self.connection.commit()
+            return True
+        except:
+            raise Warning(f'Erro SQL - criaTblEvento({self.configs.banco}) <CREATE TABLE {self.configs.tblEvento}>')
 
-    for extenso, sigla in listaEstados.items():
-        strComando = f"""INSERT INTO estados
-                                (sigla, extenso)
-                            VALUES
-                                ('{sigla}', '{extenso}')"""
-        cursor.execute(strComando)
-    connection.commit()
-    connection.close()
-    return True
+    def criaTblParticipantes(self):
 
+        try:
+            self.cursor.execute(self.configs.sqlCreateParticipantes)
+            self.connection.commit()
+            return True
+        except:
+            raise Warning(f'Erro SQL - criaTblParticipantes({self.configs.banco}) <CREATE TABLE {self.configs.tblParticipantes}>')
 
-def getEstados(*args):
-    configs = ConfigDB()
+    def criaTblEstado(self):
 
-    connection = pymysql.connect(
-        host=configs.host,
-        user=configs.user,
-        passwd=configs.passwd,
-        db=configs.banco
-    )
-    cursor = connection.cursor()
-    if args != ():
-        if len(args[0]) > 2:
-            strComando = f"""SELECT sigla FROM {configs.tblEstados} WHERE extenso = '{args[0]}'"""
+        try:
+            self.cursor.execute(self.configs.sqlCreateEstado)
+            self.connection.commit()
+            return True
+        except:
+            raise Warning(f'Erro SQL - criaBanco({self.configs.banco}) <CREATE TABLE {self.configs.tblEstados}>')
+
+    def addEstados(self):
+
+        listaEstados = EstadosModelo().toDict()
+
+        for extenso, sigla in listaEstados.items():
+            strComando = f"""INSERT INTO estados
+                                    (sigla, extenso)
+                                VALUES
+                                    ('{sigla}', '{extenso}')"""
+
+            self.cursor.execute(strComando)
+        self.connection.commit()
+        return True
+
+    def getEstados(self, *args):
+
+        if args != ():
+            if len(args[0]) > 2:
+                strComando = f"""SELECT sigla FROM {self.configs.tblEstados} WHERE extenso = '{args[0]}'"""
+            else:
+                strComando = f"""SELECT extenso FROM {self.configs.tblEstados} WHERE sigla = '{args[0]}'"""
         else:
-            strComando = f"""SELECT extenso FROM {configs.tblEstados} WHERE sigla = '{args[0]}'"""
-    else:
-        strComando = f"""SELECT extenso FROM {configs.tblEstados} ORDER BY extenso"""
+            strComando = f"""SELECT extenso FROM {self.configs.tblEstados} ORDER BY extenso"""
 
-    cursor.execute(strComando)
+        self.cursor.execute(strComando)
 
-    return [estado[0] for estado in cursor.fetchall()]
+        return [estado[0] for estado in self.cursor.fetchall()]
 
+    def cadastreUsuario(self, usuario):
 
-def cadastreUsuario(usuario):
-    configs = ConfigDB()
+        strComando = f"""
+            INSERT INTO usuario
+            (
+                 nomeUsuario, nomeEmpresa, nomeFantasia,
+                 cnpj, email, tel,
+                 endereco, cep, senha, dataCadastro
+            )
+            VALUES
+            (
+                '{usuario.nomeUsuario}', '{usuario.nomeEmpresa}', '{usuario.nomeFantasia}',
+                '{usuario.cnpj}', '{usuario.email}', {usuario.tel},
+                '{usuario.endereco}', '{usuario.cep}', '{usuario.senha}', NOW()
+            )
+            """
+        try:
+            self.cursor.execute(strComando)
+            self.connection.commit()
+            return True
+        except:
+            raise Exception(f'Erro SQL - cadastreUsuario({usuario.userId}) <CREATE TABLE>')
 
-    connection = pymysql.connect(
-        host=configs.host,
-        user=configs.user,
-        passwd=configs.passwd,
-        db=configs.banco
-    )
-    cursor = connection.cursor()
+    def buscaUsuario(self, strUsuario):
 
-    strComando = f"""
-        INSERT INTO usuario
-        (
-             nomeUsuario, nomeEmpresa, nomeFantasia,
-             cnpj, email, tel,
-             endereco, cep, senha, dataCadastro
-        )
-        VALUES
-        (
-            '{usuario.nomeUsuario}', '{usuario.nomeEmpresa}', '{usuario.nomeFantasia}',
-            '{usuario.cnpj}', '{usuario.email}', {usuario.tel},
-            '{usuario.endereco}', '{usuario.cep}', '{usuario.senha}', NOW()
-        )
-        """
-    try:
-        cursor.execute(strComando)
-        connection.commit()
-        connection.close()
-        return True
-    except:
-        raise Exception(f'Erro SQL - cadastreUsuario({usuario.userId}) <CREATE TABLE>')
+        strComando = f"""
+                    SELECT * 
+                    FROM {self.configs.tblUsuario}
+                    WHERE 
+                        nomeUsuario = '{strUsuario}'
+                    OR
+                        email = '{strUsuario}'
+                    OR
+                        nomeEmpresa = '{strUsuario}'
+                    OR
+                        cnpj = '{strUsuario}'
+                    """
 
+        self.cursor.execute(strComando)
 
-def buscaUsuario(strUsuario):
-    configs = ConfigDB()
+        if self.cursor.fetchone() is None:
+            return False
+        else:
+            return True
 
-    connection = pymysql.connect(
-        host=configs.host,
-        user=configs.user,
-        passwd=configs.passwd,
-        db=configs.banco
-    )
-    cursor = connection.cursor()
+    def confereSenha(self, strUsuario, password):
 
-    strComando = f"""
-                SELECT * 
-                FROM {configs.tblUsuario}
-                WHERE 
-                    nomeUsuario = '{strUsuario}'
-                OR
-                    email = '{strUsuario}'
-                OR
-                    nomeEmpresa = '{strUsuario}'
-                OR
-                    cnpj = '{strUsuario}'
-                """
+        strComando = f'''
+                    SELECT senha 
+                    FROM {self.configs.tblUsuario}
+                    WHERE 
+                        nomeUsuario = '{strUsuario}'
+                    OR
+                        email = '{strUsuario}'
+                    OR
+                        nomeEmpresa = '{strUsuario}'
+                    OR
+                        cnpj = '{strUsuario}'
+        '''
 
-    cursor.execute(strComando)
+        try:
+            self.cursor.execute(strComando)
+            senha = self.cursor.fetchall()[0][0]
+            strPassword = str(password)
+            return checkpw(strPassword.encode('utf-8'), senha)
+        except:
+            raise Exception(f'Erro SQL - confereSenha({self.configs.tblUsuario}) <SELECT>')
 
-    if cursor.fetchone() is None:
-        return False
-    else:
-        return True
+    def verificaEstados(self):
 
+        strComando = """ SELECT COUNT(*) FROM estados"""
 
-def confereSenha(strUsuario, password):
-    configs = ConfigDB()
+        self.cursor.execute(strComando)
 
-    connection = pymysql.connect(
-        host=configs.host,
-        user=configs.user,
-        passwd=configs.passwd,
-        db=configs.banco
-    )
-    cursor = connection.cursor()
-
-    strComando = f'''
-                SELECT senha 
-                FROM {configs.tblUsuario}
-                WHERE 
-                    nomeUsuario = '{strUsuario}'
-                OR
-                    email = '{strUsuario}'
-                OR
-                    nomeEmpresa = '{strUsuario}'
-                OR
-                    cnpj = '{strUsuario}'
-    '''
-
-    try:
-        cursor.execute(strComando)
-        senha = cursor.fetchall()[0][0]
-        strPassword = str(password)
-        return checkpw(strPassword.encode('utf-8'), senha)
-    except:
-        raise Exception(f'Erro SQL - confereSenha({configs.tblUsuario}) <SELECT>')
+        if self.cursor.fetchone()[0] != 27:
+            strComando = " DROP TABLE estados"
+            self.cursor.execute(strComando)
+            return False
+        else:
+            return True
