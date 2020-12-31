@@ -1,12 +1,11 @@
 import pymysql
 from configBD import ConfigDB
-from os.path import join, dirname
-from os import listdir
 from bcrypt import checkpw
 from modelos.estadosModel import EstadosModelo
 
 
 class DaoConfiguracoes:
+
     def __init__(self):
         self.configs = ConfigDB()
 
@@ -25,10 +24,13 @@ class DaoConfiguracoes:
         try:
             cursor.execute(self.configs.sqlCreateUsuario)
             self.connection.commit()
-            cursor.close()
+            # cursor.close()
             return True
         except:
             raise Warning(f'Erro SQL - criaTblUsuario({self.configs.banco}) <CREATE TABLE ({self.configs.tblUsuario})>')
+        finally:
+            cursor.close()
+            self.connection.close()
 
     def criaTblCliente(self):
 
@@ -38,10 +40,13 @@ class DaoConfiguracoes:
         try:
             cursor.execute(self.configs.sqlCreateCliente)
             self.connection.commit()
-            cursor.close()
+            # cursor.close()
             return True
         except:
             raise Warning(f'Erro SQL - criaTblCliente({self.configs.banco}) <CREATE TABLE {self.configs.tblCliente}>')
+        finally:
+            cursor.close()
+            self.connection.close()
 
     def criaTblGrupo(self):
 
@@ -51,10 +56,13 @@ class DaoConfiguracoes:
         try:
             cursor.execute(self.configs.sqlCreateGrupo)
             self.connection.commit()
-            cursor.close()
+            # cursor.close()
             return True
         except:
             raise Warning(f'Erro SQL - criaTblGrupo({self.configs.banco}) <CREATE TABLE {self.configs.tblGrupo}>')
+        finally:
+            cursor.close()
+            self.connection.close()
 
     def criaTblEvento(self):
 
@@ -64,10 +72,13 @@ class DaoConfiguracoes:
         try:
             cursor.execute(self.configs.sqlCreateEvento)
             self.connection.commit()
-            cursor.close()
+            # cursor.close()
             return True
         except:
             raise Warning(f'Erro SQL - criaTblEvento({self.configs.banco}) <CREATE TABLE {self.configs.tblEvento}>')
+        finally:
+            cursor.close()
+            self.connection.close()
 
     def criaTblParticipantes(self):
 
@@ -77,10 +88,14 @@ class DaoConfiguracoes:
         try:
             cursor.execute(self.configs.sqlCreateParticipantes)
             self.connection.commit()
-            cursor.close()
+            # cursor.close()
             return True
         except:
-            raise Warning(f'Erro SQL - criaTblParticipantes({self.configs.banco}) <CREATE TABLE {self.configs.tblParticipantes}>')
+            raise Warning(
+                f'Erro SQL - criaTblParticipantes({self.configs.banco}) <CREATE TABLE {self.configs.tblParticipantes}>')
+        finally:
+            cursor.close()
+            self.connection.close()
 
     def criaTblEstado(self):
 
@@ -90,10 +105,12 @@ class DaoConfiguracoes:
         try:
             cursor.execute(self.configs.sqlCreateEstado)
             self.connection.commit()
-            cursor.close()
+            # cursor.close()
             return True
         except:
             raise Warning(f'Erro SQL - criaBanco({self.configs.banco}) <CREATE TABLE {self.configs.tblEstados}>')
+        finally:
+            self.disconectBD(cursor)
 
     def addEstados(self):
 
@@ -107,11 +124,13 @@ class DaoConfiguracoes:
                                     (sigla, extenso)
                                 VALUES
                                     ('{sigla}', '{extenso}')"""
-
-            cursor.execute(strComando)
+            try:
+                cursor.execute(strComando)
+            except:
+                raise Warning(f'Erro SQL - addEstados({self.configs.banco}) <INSERT {self.configs.tblEstados}>')
 
         self.connection.commit()
-        cursor.close()
+        self.disconectBD(cursor)
         return True
 
     def getEstados(self, *args):
@@ -127,11 +146,14 @@ class DaoConfiguracoes:
         else:
             strComando = f"""SELECT extenso FROM {self.configs.tblEstados} ORDER BY extenso"""
 
-        cursor.execute(strComando)
-        listaEstados = [estado[0] for estado in cursor.fetchall()]
-        cursor.close()
-
-        return listaEstados
+        try:
+            cursor.execute(strComando)
+            listaEstados = [estado[0] for estado in cursor.fetchall()]
+            return listaEstados
+        except:
+            raise Warning(f'Erro SQL - getEstados({self.configs.banco}) <SELECT {self.configs.tblEstados}>')
+        finally:
+            self.disconectBD(cursor)
 
     def cadastreUsuario(self, usuario):
 
@@ -155,10 +177,12 @@ class DaoConfiguracoes:
         try:
             cursor.execute(strComando)
             self.connection.commit()
-            cursor.close()
             return True
         except:
             raise Exception(f'Erro SQL - cadastreUsuario({usuario.userId}) <CREATE TABLE>')
+        finally:
+            cursor.close()
+            self.connection.close()
 
     def buscaUsuario(self, strUsuario):
 
@@ -178,14 +202,17 @@ class DaoConfiguracoes:
                         cnpj = '{strUsuario}'
                     """
 
-        cursor.execute(strComando)
+        try:
+            cursor.execute(strComando)
 
-        if cursor.fetchone() is None:
-            cursor.close()
-            return False
-        else:
-            cursor.close()
-            return True
+            if cursor.fetchone() is None:
+                return False
+            else:
+                return True
+        except:
+            raise Exception(f'Erro SQL - buscaUsuario({strUsuario}) <SELECT {self.configs.tblUsuario}>')
+        finally:
+            self.disconectBD(cursor)
 
     def confereSenha(self, strUsuario, password):
 
@@ -212,8 +239,7 @@ class DaoConfiguracoes:
         except:
             raise Exception(f'Erro SQL - confereSenha({self.configs.tblUsuario}) <SELECT>')
         finally:
-            cursor.close()
-
+            self.disconectBD(cursor)
 
     def verificaEstados(self):
 
@@ -227,8 +253,12 @@ class DaoConfiguracoes:
         if cursor.fetchone()[0] != 27:
             strComando = " DROP TABLE estados"
             cursor.execute(strComando)
-            cursor.close()
+            self.disconectBD(cursor)
             return False
         else:
-            cursor.close()
+            self.disconectBD(cursor)
             return True
+
+    def disconectBD(self, cursor):
+        cursor.close()
+        self.connection.close()

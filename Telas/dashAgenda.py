@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'dashAgenda.ui'
+# Form implementation generated from reading ui file 'dashAgenda1.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.1
 #
@@ -55,46 +55,8 @@ class Ui_wdgAgenda(object):
         self.frAgenda.setObjectName("frAgenda")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.frAgenda)
         self.gridLayout_3.setObjectName("gridLayout_3")
-        self.calendarWidget = QtWidgets.QCalendarWidget(self.frAgenda)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.calendarWidget.sizePolicy().hasHeightForWidth())
-        self.calendarWidget.setSizePolicy(sizePolicy)
-        self.calendarWidget.setMinimumSize(QtCore.QSize(500, 500))
-        self.calendarWidget.setMaximumSize(QtCore.QSize(1000, 800))
-        self.calendarWidget.setSizeIncrement(QtCore.QSize(0, 0))
-        self.calendarWidget.setStyleSheet(" /*Tool button styles */\n"
-"QCalendarWidget QToolButton {\n"
-" \n"
-"    height:40px;\n"
-"    width:500px;\n"
-"    color:white;\n"
-"    font-size:20px;\n"
-"    icon-size:56px,56px;\n"
-"    background-color: #DFD880;\n"
-" \n"
-"}\n"
-"\n"
-"  /*normal days */\n"
-"QCalendarWidget QAbstractItemView:enabled {\n"
-" \n"
-" \n"
-"font-size:18px;\n"
-"color: #444;\n"
-"background-color: #80CCE1;\n"
-"selection-background-color:rgb(64,64,64);\n"
-"selection-color:rgb(0,255,0);\n"
-"}\n"
-"\n"
-"  /* header row */\n"
-"QCalendarWidget  QWidget{\n"
-" \n"
-"alternate-background-color: #FAFAFA;\n"
-" \n"
-"}")
-        self.calendarWidget.setObjectName("calendarWidget")
-        self.gridLayout_3.addWidget(self.calendarWidget, 1, 0, 1, 1)
+        self.vlAgenda = QtWidgets.QVBoxLayout()
+        self.vlAgenda.setObjectName("vlAgenda")
         self.label_2 = QtWidgets.QLabel(self.frAgenda)
         self.label_2.setMinimumSize(QtCore.QSize(0, 100))
         font = QtGui.QFont()
@@ -104,7 +66,8 @@ class Ui_wdgAgenda(object):
         self.label_2.setStyleSheet("background-color: rgb(108, 251, 208);")
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
-        self.gridLayout_3.addWidget(self.label_2, 0, 0, 1, 1)
+        self.vlAgenda.addWidget(self.label_2)
+        self.gridLayout_3.addLayout(self.vlAgenda, 1, 0, 1, 1)
         self.gridLayout.addWidget(self.frAgenda, 0, 2, 1, 1)
 
         self.retranslateUi(wdgAgenda)

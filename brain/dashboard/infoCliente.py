@@ -183,11 +183,23 @@ class brainCliente(Ui_wdgCliente, QWidget):
     def atualizaCliente(self, *args):
         if args[0].text() == "&Yes":
             self.daoCliente.atualizaInfoCliente(self.cliente)
+            self.limpaCampos()
         self.frInfoCliente.hide()
         self.atualizaTabela()
 
     def animationInfo(self):
         pass
+
+    def limpaCampos(self):
+        self.leInfoNome.clear()
+        self.leInfoSobrenome.clear()
+        self.leInfoCep.clear()
+        self.leInfoTel.clear()
+        self.leInfoCpf.clear()
+        self.leInfoComplemento.clear()
+        self.leInfoBairro.clear()
+        self.leInfoEndereco.clear()
+        self.leInfoEmail.clear()
 
     def showPopup(self, mensagem, titulo='Atenção!'):
         dialogPopup = QMessageBox()
