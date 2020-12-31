@@ -2,7 +2,6 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMainWindow
 from Telas.login import Ui_mwLogin
 from brain.cadastraUser import brainCadastro
-from brain.dashboard.homePage import HomePage
 from brain.dashboard.dashboardStk import brainDashboard
 from brain.DAOs.UserConfig import *
 
@@ -34,8 +33,8 @@ class LoginPage(Ui_mwLogin, QMainWindow):
         self.leSenha.returnPressed.connect(lambda: self.trataLogin())
 
         self.leUsuario.setFocus()
-        self.leUsuario.setText('renan')
-        self.leSenha.setText('123456')
+        self.leUsuario.setText('israeldev')
+        self.leSenha.setText('123')
 
     def navigate(self):
         self.stkLogin.setCurrentIndex(1)

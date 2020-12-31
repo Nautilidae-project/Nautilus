@@ -11,7 +11,7 @@ class AgendaController(Ui_Form, QWidget):
     def __init__(self):
         super(AgendaController, self).__init__()
         self.setupUi(self)
-        
+
     def paintCell(self, painter, rect, date):
         if date == self.selectedDate():
             painter.save()

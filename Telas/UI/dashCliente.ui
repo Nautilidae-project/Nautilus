@@ -595,16 +595,9 @@ QScrollBar:vertical {
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QPushButton" name="pbFuncionalidade1">
+                 <widget class="QPushButton" name="pbExportar">
                   <property name="text">
-                   <string>Função 1</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="pbFuncionalidade2">
-                  <property name="text">
-                   <string>Função 2</string>
+                   <string>Exportar</string>
                   </property>
                  </widget>
                 </item>

@@ -1,14 +1,10 @@
-from PyQt5 import QtCore, QtGui
-from PyQt5.QtGui import QPainter, QColor, QFont
 from PyQt5 import QtWidgets
 
 from Telas.dashAgenda import Ui_wdgAgenda
-from datetime import datetime
 
-from PyQt5.QtWidgets import QWidget, QCalendarWidget
-from PyQt5.QtCore import QPoint
+from PyQt5.QtWidgets import QWidget
 
-from brain.dashboard.agendaController import AgendaController
+from brain.dashboard.Agenda.agendaController import AgendaController
 
 
 class AgendaPage(Ui_wdgAgenda, QWidget):
@@ -21,20 +17,6 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         self.calendario = AgendaController()
 
         self.vlAgenda.addWidget(self.calendario)
-
-        # self.calendarWidget.setGridVisible(True)
-
-        # self.calendarWidget.clicked.connect(self.printDateInfo)
-
-        # for d in (QtCore.Qt.Saturday, QtCore.Qt.Sunday,):
-        #     fmt = self.weekdayTextFormat(d)
-        #     fmt.setForeground(QtCore.Qt.darkGray)
-        #     self.setWeekdayTextFormat(d, fmt)
-
-
-        #if date.month() == 12 and date.day() == 20 or date == self.selectedDate():
-
-
 
     def printDateInfo(self, qDate):
         # x = datetime.now().strftime("%B")
