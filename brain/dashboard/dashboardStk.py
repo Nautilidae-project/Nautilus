@@ -1,30 +1,27 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMainWindow
-from PyQt5.QtCore import pyqtSignal, QPropertyAnimation
+from PyQt5.QtCore import QPropertyAnimation
 
 from Telas.dashboard import Ui_mwDash
-from Telas.dashHome import Ui_wdgHome
-from Telas.dashAgenda import Ui_wdgAgenda
-from brain.dashboard.agendaPage import AgendaPage
-from brain.dashboard.configPage import ConfigPage
-from brain.dashboard.financeiroPage import FinanceiroPage
-from brain.dashboard.homePage import HomePage
-from brain.dashboard.infoCliente import brainCliente
+from brain.dashboard.Agenda.agendaPage import AgendaPage
+from brain.dashboard.Configuracao.configPage import ConfigPage
+from brain.dashboard.Financeiro.financeiroPage import FinanceiroPage
+from brain.dashboard.Home.homePage import HomePage
+from brain.dashboard.Cliente.infoCliente import brainCliente
+from brain.dashboard.Sinais import Sinais
 
 from modelos.clienteModel import Cliente
 from brain.funcoesAuxiliares import *
-from modelos.envioDeEmailModel import enviaEmail
 
 from brain.DAOs.daoCliente import DaoCliente
 import requests
-import json
 
 
 class brainDashboard(Ui_mwDash, QMainWindow):
-    home = pyqtSignal()
 
     def __init__(self, parent=None):
         super(brainDashboard, self).__init__(parent)
+        self.parent = parent
 
         # Inicializando as telas e stacks
         self.pgHome = HomePage(self)
@@ -32,7 +29,9 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.pgCliente = brainCliente(self)
         self.pgFinanceiro = FinanceiroPage(self)
         self.pgConfig = ConfigPage(self)
+        self.sinais = Sinais()
 
+        self.sinais.sBackLoginPage.connect(self.logoff)
 
         self.daoCliente = DaoCliente()
 
@@ -57,18 +56,20 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.pgCliente.leCep.editingFinished.connect(self.trataCep)
         self.pgCliente.leTel.editingFinished.connect(lambda: self.insereMascara('tel'))
 
-        # ----------------------------------
+        # Adição das páginas na sacked Widget
         self.stkDash.addWidget(self.pgHome)
         self.stkDash.addWidget(self.pgAgenda)
         self.stkDash.addWidget(self.pgCliente)
         self.stkDash.addWidget(self.pgFinanceiro)
         self.stkDash.addWidget(self.pgConfig)
 
+        # Definindo funcionalidades dos cliques dos botões
         self.pbHome.clicked.connect(lambda: self.stkDash.setCurrentIndex(0))
         self.pbAgenda.clicked.connect(lambda: self.stkDash.setCurrentIndex(1))
         self.pbCliente.clicked.connect(lambda: self.stkDash.setCurrentIndex(2))
         self.pbFinanceiro.clicked.connect(lambda: self.stkDash.setCurrentIndex(3))
         self.pbConfig.clicked.connect(lambda: self.stkDash.setCurrentIndex(4))
+        self.pbSairDash.clicked.connect(lambda: self.sairApp())
 
         # ----------------------------------
 
@@ -158,8 +159,10 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         if not self.pgCliente.leCep.text() == "":
             self.pgCliente.leCep.setText(mascaraCep(str(self.cliente.cep)))
             response = requests.get(f'http://viacep.com.br/ws/{str(self.cliente.cep)}/json/')
-            if response.status_code == 200:
-                dictEndereco = json.loads(response.text)
+
+            # Ao enviar um cep que não é encontrado, ele retorna o status 200, mas com o json {'erro': True}
+            if response.status_code == 200 and "erro" not in response.json():
+                dictEndereco = response.json()
                 self.pgCliente.leEnd.setText(dictEndereco['logradouro'].title())
                 self.cliente.endereco = dictEndereco['logradouro'].title()
                 # self.leCidade.setText(dictEndereco['localidade'])
@@ -183,6 +186,13 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.pgCliente.leBairro.clear()
         self.pgCliente.leEmail.clear()
         self.pgCliente.leCep.clear()
+
+    def sairApp(self):
+        print(self.parent)
+        self.sinais.sBackLoginPage.emit()
+
+    def logoff(self):
+        self.parent.backHome()
 
 
 if __name__ == '__main__':

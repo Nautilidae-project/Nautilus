@@ -1,6 +1,6 @@
 import base64
 
-from PyQt5 import QtCore
+from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QMessageBox, QCheckBox
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 from PyQt5.QtCore import pyqtSignal
@@ -21,7 +21,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.cliente = Cliente()
         self.daoCliente = DaoCliente()
 
-        self.pbFuncionalidade1.clicked.connect(self.atualizaTabela)
+        self.pbExportar.clicked.connect(self.atualizaTabela)
         self.atualizaTabela()
         self.frInfoCliente.hide()
         self.tblClientes.setColumnHidden(0, True)
@@ -41,6 +41,10 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leInfoEndereco.textEdited.connect(lambda: self.defineCampo('end'))
         self.leInfoBairro.textEdited.connect(lambda: self.defineCampo('bairro'))
         self.leInfoComplemento.textEdited.connect(lambda: self.defineCampo('compl'))
+
+        self.tabsCliente.currentChanged.connect(self.onChange)
+
+
 
     def defineCampo(self, campo):
 
@@ -210,3 +214,16 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         dialogPopup.buttonClicked.connect(self.atualizaCliente)
         close = dialogPopup.exec_()
+
+    def onChange(self, *args):
+        if args[0] == 0:
+            self.atualizaTabela()
+            self.limpaCampos()
+
+
+if __name__ == '__main__':
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    ui = brainCliente()
+    ui.show()
+    sys.exit(app.exec_())
