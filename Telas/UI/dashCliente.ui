@@ -184,7 +184,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
           <property name="bottomMargin">
            <number>0</number>
           </property>
-          <item row="0" column="0">
+          <item row="0" column="0" alignment="Qt::AlignLeft">
            <widget class="QTableWidget" name="tblClientes">
             <property name="minimumSize">
              <size>

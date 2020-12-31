@@ -1,8 +1,6 @@
 from configBD import ConfigDB
 import pymysql
 
-from modelos.clienteModel import Cliente
-
 
 class DaoCliente:
 
@@ -18,6 +16,7 @@ class DaoCliente:
 
     def cadastraCliente(self, cliente):
 
+        self.connection.connect()
         cursor = self.connection.cursor()
 
         strComando = f"""
@@ -37,12 +36,16 @@ class DaoCliente:
         try:
             cursor.execute(strComando)
             self.connection.commit()
-            self.connection.close()
+            cursor.close()
+            # self.connection.close()
         except:
             raise Warning(f'Erro SQL - insereCliente({cliente.clienteId}) <INSERT>')
+        finally:
+            cursor.close()
 
     def findAll(self):
 
+        self.connection.connect()
         cursor = self.connection.cursor()
 
         # strComando = f"SELECT * FROM {configs.tblCliente}"
@@ -50,10 +53,14 @@ class DaoCliente:
 
         cursor.execute(strComando)
 
-        return cursor.fetchall()
+        clientesList = cursor.fetchall()
+        cursor.close()
+
+        return clientesList
 
     def buscaCliente(self, busca):
 
+        self.connection.connect()
         cursor = self.connection.cursor()
 
         strComando = f"SELECT clienteId, nomeCliente, telefone, meioPagamento, ativo  FROM cliente where " \
@@ -62,12 +69,16 @@ class DaoCliente:
                      f"telefone like '%{busca}%' ORDER BY ativo DESC"
 
         cursor.execute(strComando)
+        clientesList = cursor.fetchall()
 
-        return cursor.fetchall()
+        cursor.close()
+
+        return clientesList
 
     def buscaPorId(self, clienteId: int):
         listCliente = []
 
+        self.connection.connect()
         cursor = self.connection.cursor()
 
         strComando = f"""SELECT * FROM {self.configs.tblCliente} WHERE clienteId = {clienteId} """
@@ -75,10 +86,10 @@ class DaoCliente:
         try:
             cursor.execute(strComando)
             listCliente = cursor.fetchall()
-            # connection.close()
         except:
             raise Warning(f'Erro SQL - buscaPorId({clienteId}) <SELECT>')
         finally:
+            cursor.close()
             if len(listCliente) == 0:
                 return []
             else:
@@ -86,6 +97,7 @@ class DaoCliente:
 
     def atualizaInfoCliente(self, cliente):
 
+        self.connection.connect()
         cursor = self.connection.cursor()
 
         strComando = f""" UPDATE {self.configs.tblCliente} SET 
@@ -111,6 +123,7 @@ class DaoCliente:
         try:
             cursor.execute(strComando)
             self.connection.commit()
-
         except:
             raise Warning(f'Erro SQL - atualizaInfoCliente({cliente.clienteId}) <UPDATE>')
+        finally:
+            cursor.close()

@@ -273,7 +273,7 @@ class Ui_wdgCliente(object):
         self.tblClientes.horizontalHeader().setDefaultSectionSize(150)
         self.tblClientes.horizontalHeader().setMinimumSectionSize(100)
         self.tblClientes.verticalHeader().setVisible(False)
-        self.gridLayout_5.addWidget(self.tblClientes, 0, 0, 1, 1)
+        self.gridLayout_5.addWidget(self.tblClientes, 0, 0, 1, 1, QtCore.Qt.AlignLeft)
         self.gridLayout_3.addWidget(self.frClientsList, 2, 0, 1, 1)
         self.frTopTabMenu = QtWidgets.QFrame(self.tbInfosCliente)
         self.frTopTabMenu.setMinimumSize(QtCore.QSize(0, 110))

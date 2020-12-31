@@ -26,7 +26,7 @@ class brainDashboard(Ui_mwDash, QMainWindow):
     def __init__(self, parent=None):
         super(brainDashboard, self).__init__(parent)
 
-        # Inicializando as telas e stackes
+        # Inicializando as telas e stacks
         self.pgHome = HomePage(self)
         self.pgAgenda = AgendaPage(self)
         self.pgCliente = brainCliente(self)
@@ -71,8 +71,6 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.pbConfig.clicked.connect(lambda: self.stkDash.setCurrentIndex(4))
 
         # ----------------------------------
-
-
 
     def animationDash(self):
 
@@ -153,6 +151,7 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         # ----------------------------------------
 
         self.daoCliente.cadastraCliente(self.cliente)
+        self.limpaCampos()
         # enviaEmail(self.titulo, self.msgCadastro, self.pgCliente.leEmail.text())
 
     def trataCep(self, *args):
@@ -174,6 +173,16 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         if campo == 'tel':
             if not self.pgCliente.leTel.text() == "":
                 self.pgCliente.leTel.setText(mascaraCelular(str(self.cliente.telefone)))
+
+    def limpaCampos(self):
+        self.pgCliente.leNome.clear()
+        self.pgCliente.leSobrenome.clear()
+        self.pgCliente.leCompl.clear()
+        self.pgCliente.leTel.clear()
+        self.pgCliente.leEnd.clear()
+        self.pgCliente.leBairro.clear()
+        self.pgCliente.leEmail.clear()
+        self.pgCliente.leCep.clear()
 
 
 if __name__ == '__main__':

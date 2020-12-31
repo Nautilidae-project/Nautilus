@@ -1,11 +1,14 @@
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtGui import QPainter, QColor, QFont
+from PyQt5 import QtWidgets
 
 from Telas.dashAgenda import Ui_wdgAgenda
 from datetime import datetime
 
 from PyQt5.QtWidgets import QWidget, QCalendarWidget
 from PyQt5.QtCore import QPoint
+
+from brain.dashboard.agendaController import AgendaController
 
 
 class AgendaPage(Ui_wdgAgenda, QWidget):
@@ -15,9 +18,13 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
 
         self.setupUi(self)
 
-        self.calendarWidget.setGridVisible(True)
+        self.calendario = AgendaController()
 
-        self.calendarWidget.clicked.connect(self.printDateInfo)
+        self.vlAgenda.addWidget(self.calendario)
+
+        # self.calendarWidget.setGridVisible(True)
+
+        # self.calendarWidget.clicked.connect(self.printDateInfo)
 
         # for d in (QtCore.Qt.Saturday, QtCore.Qt.Sunday,):
         #     fmt = self.weekdayTextFormat(d)
@@ -27,20 +34,7 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
 
         #if date.month() == 12 and date.day() == 20 or date == self.selectedDate():
 
-    def paintCell(self, painter, rect, date):
-        if date == self.selectedDate():
-            painter.save()
-            painter.fillRect(rect, QtGui.QColor("#D3D3D3"))
-            painter.setPen(QtCore.Qt.NoPen)
-            painter.setBrush(QtGui.QColor("#33B5E5"))
-            r = QtCore.QRect(QtCore.QPoint(), min(rect.width(), rect.height()) * QtCore.QSize(1, 1))
-            r.moveCenter(rect.center())
-            painter.drawEllipse(r)
-            painter.setPen(QtGui.QPen(QtGui.QColor("gray")))
-            painter.drawText(rect, QtCore.Qt.AlignCenter, str(date.day()))
-            painter.restore()
-        else:
-            super(AgendaPage, self).paintCell(painter, rect, date)
+
 
     def printDateInfo(self, qDate):
         # x = datetime.now().strftime("%B")
@@ -57,3 +51,9 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         pass
 
 
+if __name__ == '__main__':
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    ui = AgendaPage()
+    ui.show()
+    sys.exit(app.exec_())
