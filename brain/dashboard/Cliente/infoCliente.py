@@ -44,6 +44,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         self.tabsCliente.currentChanged.connect(self.onChange)
 
+        self.leCard1.setText(f"Clientes Ativos:\n{self.daoCliente.contaCliente('ativo=1')}/{self.daoCliente.contaCliente()}")
+        self.leCard2.setText(f"Clientes Inativos:\n{self.daoCliente.contaCliente('ativo=0')}/{self.daoCliente.contaCliente()}")
 
 
     def defineCampo(self, campo):
