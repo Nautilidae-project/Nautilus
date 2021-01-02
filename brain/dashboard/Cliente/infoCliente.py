@@ -1,12 +1,11 @@
 import base64
 
-from PyQt5 import QtCore
+from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QMessageBox, QCheckBox
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 from PyQt5.QtCore import pyqtSignal
 
 from Telas.dashCliente import Ui_wdgCliente
-from Telas.cardGrupo import Ui_Frame
 from brain.DAOs.daoCliente import DaoCliente
 from brain.delegates.alinhamento import AlinhamentoDelegate
 from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt, formasPagamento
@@ -22,7 +21,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.cliente = Cliente()
         self.daoCliente = DaoCliente()
 
-        self.pbFuncionalidade1.clicked.connect(self.atualizaTabela)
+        self.pbExportar.clicked.connect(self.atualizaTabela)
         self.atualizaTabela()
         self.frInfoCliente.hide()
         self.tblClientes.setColumnHidden(0, True)
@@ -43,14 +42,9 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leInfoBairro.textEdited.connect(lambda: self.defineCampo('bairro'))
         self.leInfoComplemento.textEdited.connect(lambda: self.defineCampo('compl'))
 
+        self.tabsCliente.currentChanged.connect(self.onChange)
 
-        # GRupos/Turmas
-        self.cardGrupo = Ui_Frame()
-        self.grid = self.gridLayout_6
-        self.pbAddGrupo.clicked.connect(lambda: self.addGrupo())
 
-    def addGrupo(self):
-        self.grid.addItem(self.cardGrupo, 0, 0)
 
     def defineCampo(self, campo):
 
@@ -97,6 +91,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
     def busca(self):
         clientes = self.daoCliente.buscaCliente(self.leSearchCliente.text())
+        print(clientes)
 
         self.atualizaTabela(clientes)
 
@@ -192,11 +187,23 @@ class brainCliente(Ui_wdgCliente, QWidget):
     def atualizaCliente(self, *args):
         if args[0].text() == "&Yes":
             self.daoCliente.atualizaInfoCliente(self.cliente)
+            self.limpaCampos()
         self.frInfoCliente.hide()
         self.atualizaTabela()
 
     def animationInfo(self):
         pass
+
+    def limpaCampos(self):
+        self.leInfoNome.clear()
+        self.leInfoSobrenome.clear()
+        self.leInfoCep.clear()
+        self.leInfoTel.clear()
+        self.leInfoCpf.clear()
+        self.leInfoComplemento.clear()
+        self.leInfoBairro.clear()
+        self.leInfoEndereco.clear()
+        self.leInfoEmail.clear()
 
     def showPopup(self, mensagem, titulo='Atenção!'):
         dialogPopup = QMessageBox()
@@ -207,3 +214,16 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         dialogPopup.buttonClicked.connect(self.atualizaCliente)
         close = dialogPopup.exec_()
+
+    def onChange(self, *args):
+        if args[0] == 0:
+            self.atualizaTabela()
+            self.limpaCampos()
+
+
+if __name__ == '__main__':
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    ui = brainCliente()
+    ui.show()
+    sys.exit(app.exec_())
