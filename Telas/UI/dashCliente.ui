@@ -144,7 +144,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tbInfosCliente">
       <property name="enabled">
@@ -460,6 +460,9 @@ QScrollBar:vertical {
             <property name="text">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Clientes Ativos/&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Clientes Totais&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
            </widget>
           </item>
           <item>
@@ -475,6 +478,9 @@ QScrollBar:vertical {
             </property>
             <property name="text">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Clientes Inativos/&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Clientes Totais&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
@@ -492,6 +498,9 @@ QScrollBar:vertical {
             <property name="text">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Novos Clientes&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
            </widget>
           </item>
           <item>
@@ -507,6 +516,9 @@ QScrollBar:vertical {
             </property>
             <property name="text">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Compromissos&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;da Semana&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
