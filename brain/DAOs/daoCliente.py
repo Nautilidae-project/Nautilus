@@ -43,13 +43,15 @@ class DaoCliente:
         finally:
             cursor.close()
 
-    def findAll(self):
+    def findAll(self, all=False):
 
         self.connection.connect()
         cursor = self.connection.cursor()
 
-        # strComando = f"SELECT * FROM {configs.tblCliente}"
-        strComando = f"SELECT clienteId, nomeCliente, telefone, meioPagamento, ativo FROM {self.configs.tblCliente} ORDER BY ativo DESC"
+        if not all:
+            strComando = f"SELECT clienteId, nomeCliente, telefone, meioPagamento, ativo FROM {self.configs.tblCliente} ORDER BY ativo DESC"
+        else:
+            strComando = f"SELECT * FROM {self.configs.tblCliente} ORDER BY ativo DESC"
 
         cursor.execute(strComando)
 
@@ -127,3 +129,25 @@ class DaoCliente:
             raise Warning(f'Erro SQL - atualizaInfoCliente({cliente.clienteId}) <UPDATE>')
         finally:
             cursor.close()
+
+    def contaTotal(self, where=None):
+
+        self.connection.connect()
+        cursor = self.connection.cursor()
+
+        if where is None:
+            strComando = f''' SELECT COUNT(*) FROM {self.configs.tblCliente} '''
+        else:
+            strComando = f''' SELECT COUNT(*) FROM {self.configs.tblCliente} {where} '''
+
+        cursor.execute(strComando)
+
+        total = cursor.fetchone()[0]
+        self.disconectBD(cursor)
+
+        return total
+
+    def disconectBD(self, cursor):
+        cursor.close()
+        self.connection.close()
+

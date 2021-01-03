@@ -28,7 +28,7 @@ class Usuario:
         }
         return dictUsuario
 
-    def fromDict(self, dictUsuario):
+    def fromDict(self, dictUsuario: dict):
         self.userId = dictUsuario['userId']
         self.nomeUsuario = dictUsuario['nomeUsuario']
         self.nomeEmpresa = dictUsuario['nomeEmpresa']
@@ -39,6 +39,22 @@ class Usuario:
         self.endereco = dictUsuario['endereco']
         self.cep = dictUsuario['cep']
         self.senha = dictUsuario['senha']
+
+        return self
+
+    def fromList(self, usuarioList: list):
+        self.userId = usuarioList[0]
+        self.nomeUsuario = usuarioList[1]
+        self.nomeEmpresa = usuarioList[2]
+        self.nomeFantasia = usuarioList[3]
+        self.cnpj = usuarioList[4]
+        self.email = usuarioList[5]
+        self.tel = usuarioList[6]
+        self.endereco = usuarioList[7]
+        self.cep = usuarioList[8]
+        self.senha = usuarioList[9]
+
+        return self
 
     def __repr__(self):
         return f'Usuario(userId: {self.userId}, nomeUsuario: {self.nomeUsuario}, nomeEmpresa: {self.nomeEmpresa}, ' \

@@ -48,7 +48,7 @@ class LoginPage(Ui_mwLogin, QMainWindow):
             print("Digite um usuário")
             self.snackBar("Digite um usuário")
             return False
-        if not self.daoConfig.buscaUsuario(strNomeUsuario):
+        if not self.daoConfig.verificaUsuario(strNomeUsuario):
             print("Não foi encontrado nenhum usuário com o nome cadastrado")
             self.snackBar("Usuário Não Cadastrado")
         else:
