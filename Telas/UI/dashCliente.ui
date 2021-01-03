@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>923</width>
+    <width>931</width>
     <height>752</height>
    </rect>
   </property>
@@ -460,6 +460,9 @@ QScrollBar:vertical {
             <property name="text">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Clientes Ativos/&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Clientes Totais&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
            </widget>
           </item>
           <item>
@@ -475,6 +478,9 @@ QScrollBar:vertical {
             </property>
             <property name="text">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Clientes Inativos/&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Clientes Totais&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
@@ -492,6 +498,9 @@ QScrollBar:vertical {
             <property name="text">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Novos Clientes&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
            </widget>
           </item>
           <item>
@@ -507,6 +516,9 @@ QScrollBar:vertical {
             </property>
             <property name="text">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Compromissos&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;da Semana&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
@@ -2399,10 +2411,101 @@ QScrollBar:vertical {
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tbCronogramaCliente">
+     <widget class="QWidget" name="tbGrupoCliente">
       <attribute name="title">
-       <string>Cronograma</string>
+       <string>Grupos</string>
       </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QFrame" name="frGruposFormados">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(108, 251, 208);</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_6"/>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frFormarGRupos">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(179, 91, 87);</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QPushButton" name="pbAddGrupo">
+          <property name="geometry">
+           <rect>
+            <x>140</x>
+            <y>240</y>
+            <width>131</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(83, 162, 193);</string>
+          </property>
+          <property name="text">
+           <string>Adicionar Card</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>90</y>
+            <width>91</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Titulo</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="leTituloGrupo">
+          <property name="geometry">
+           <rect>
+            <x>150</x>
+            <y>90</y>
+            <width>211</width>
+            <height>25</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="leDescricaoGrupo">
+          <property name="geometry">
+           <rect>
+            <x>150</x>
+            <y>140</y>
+            <width>211</width>
+            <height>25</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_2">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>140</y>
+            <width>91</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Descrição</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tbBoletoCliente">
       <attribute name="title">
