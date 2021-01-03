@@ -6,7 +6,9 @@ from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 from PyQt5.QtCore import pyqtSignal
 
 from Telas.dashCliente import Ui_wdgCliente
+from brain.DAOs.UserConfig import DaoConfiguracoes
 from brain.DAOs.daoCliente import DaoCliente
+from brain.dashboard.Cliente.relatorio import RelatorioCliente
 from brain.delegates.alinhamento import AlinhamentoDelegate
 from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt, formasPagamento
 from modelos.clienteModel import Cliente
@@ -21,13 +23,13 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.cliente = Cliente()
         self.daoCliente = DaoCliente()
 
-        self.pbExportar.clicked.connect(self.atualizaTabela)
+        self.pbExportar.clicked.connect(self.criaRelatorio)
         self.atualizaTabela()
         self.frInfoCliente.hide()
         self.tblClientes.setColumnHidden(0, True)
         self.tblClientes.setItemDelegate(AlinhamentoDelegate())
 
-        self.pbConfirmarAtualizacao.clicked.connect(lambda: self.showPopup('As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
+        self.pbConfirmarAtualizacao.clicked.connect(lambda: self.showPopupSimCancela('As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
         self.leSearchCliente.textEdited.connect(lambda: self.busca())
 
         self.tblClientes.doubleClicked.connect(self.carregaInfoCliente)
@@ -41,6 +43,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leInfoEndereco.textEdited.connect(lambda: self.defineCampo('end'))
         self.leInfoBairro.textEdited.connect(lambda: self.defineCampo('bairro'))
         self.leInfoComplemento.textEdited.connect(lambda: self.defineCampo('compl'))
+        self.cbInfoAtivo.clicked.connect(lambda: self.defineCampo('ativo'))
 
         self.tabsCliente.currentChanged.connect(self.onChange)
 
@@ -85,13 +88,13 @@ class brainCliente(Ui_wdgCliente, QWidget):
         if campo == 'compl':
             self.cliente.complemento = self.leInfoComplemento.text().capitalize()
 
-        self.cliente.ativo = self.cbInfoAtivo.isChecked()
+        if campo == 'ativo':
+            self.cliente.ativo = self.cbInfoAtivo.isChecked()
 
         self.atualizaTabela()
 
     def busca(self):
         clientes = self.daoCliente.buscaCliente(self.leSearchCliente.text())
-        print(clientes)
 
         self.atualizaTabela(clientes)
 
@@ -205,7 +208,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leInfoEndereco.clear()
         self.leInfoEmail.clear()
 
-    def showPopup(self, mensagem, titulo='Atenção!'):
+    def showPopupSimCancela(self, mensagem, titulo='Atenção!'):
         dialogPopup = QMessageBox()
         dialogPopup.setWindowTitle(titulo)
         dialogPopup.setText(mensagem)
@@ -219,6 +222,19 @@ class brainCliente(Ui_wdgCliente, QWidget):
         if args[0] == 0:
             self.atualizaTabela()
             self.limpaCampos()
+
+    def criaRelatorio(self):
+        # Busca o usuário ativo
+        # TODO: Criar um método melhor para encontrar usuário ativo
+        config = DaoConfiguracoes()
+        usuarioAtivo = config.buscaUsuarioAtivo()
+
+        # Cria relatório
+        # TODO: Criar método para escolher, por meio do browser, o local de salvamento do arquivo e o nome
+        relatorio = RelatorioCliente(nomeArquivo='Relatório', usuario=usuarioAtivo)
+        relatorio.exportaRelatorio()
+        # relatorio.exportaRelatorio(tipo='excel')
+
 
 
 if __name__ == '__main__':
