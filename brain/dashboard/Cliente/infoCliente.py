@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QMessageBox, QCheckBox
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 from PyQt5.QtCore import pyqtSignal
 
+from Telas.cardGrupo import Ui_Frame
 from Telas.dashCliente import Ui_wdgCliente
 from brain.DAOs.daoCliente import DaoCliente
 from brain.delegates.alinhamento import AlinhamentoDelegate
@@ -44,9 +45,17 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         self.tabsCliente.currentChanged.connect(self.onChange)
 
+        # Cards Tela Cliente Informações
         self.leCard1.setText(f"Clientes Ativos:\n{self.daoCliente.contaCliente('ativo=1')}/{self.daoCliente.contaCliente()}")
         self.leCard2.setText(f"Clientes Inativos:\n{self.daoCliente.contaCliente('ativo=0')}/{self.daoCliente.contaCliente()}")
 
+        # GRupos/Turmas
+        self.cardGrupo = Ui_Frame()
+        self.pbAddGrupo.clicked.connect(lambda: self.addGrupo())
+
+    def addGrupo(self):
+        self.gridLayout_6.addWidget(self.cardGrupo, 0, 0)
+        print("Chamando")
 
     def defineCampo(self, campo):
 
