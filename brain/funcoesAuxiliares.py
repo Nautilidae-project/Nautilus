@@ -1,3 +1,5 @@
+import datetime
+
 from PyQt5.QtWidgets import QMessageBox
 
 def mascaraCelular(celular):
@@ -17,6 +19,9 @@ def macaraFormaPagamento(pagamento: str):
     else:
         return 'Outras opções'
 
+def mascaraMeses(data: datetime.date):
+    return f'{data.day} de {meses[data.month]} de {data.year}'
+
 def isTrueInt(lista):
     if [bool(i) for i in lista[11]][0]:
         return 1
@@ -32,4 +37,19 @@ def isTrueBool(data):
 formasPagamento = {
     'Cartão de crédito' : 'CC',
     'Outras opções' : 'OP'
+}
+
+meses = {
+    1: 'Janeiro',
+    2: 'Fevereiro',
+    3: 'Março',
+    4: 'Abril',
+    5: 'Maio',
+    6: 'Junho',
+    7: 'Julho',
+    8: 'Agosto',
+    9: 'Setembro',
+    10: 'Outubro',
+    11: 'Novembro',
+    12: 'Dezembro'
 }

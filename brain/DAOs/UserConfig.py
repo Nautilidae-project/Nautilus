@@ -184,7 +184,7 @@ class DaoConfiguracoes:
             cursor.close()
             self.connection.close()
 
-    def buscaUsuario(self, strUsuario):
+    def verificaUsuario(self, strUsuario):
 
         self.connection.connect()
         cursor = self.connection.cursor()
@@ -210,7 +210,7 @@ class DaoConfiguracoes:
             else:
                 return True
         except:
-            raise Exception(f'Erro SQL - buscaUsuario({strUsuario}) <SELECT {self.configs.tblUsuario}>')
+            raise Exception(f'Erro SQL - verificaUsuario({strUsuario}) <SELECT {self.configs.tblUsuario}>')
         finally:
             self.disconectBD(cursor)
 
@@ -262,3 +262,18 @@ class DaoConfiguracoes:
     def disconectBD(self, cursor):
         cursor.close()
         self.connection.close()
+
+    def buscaUsuarioAtivo(self):
+
+        self.connection.connect()
+        cursor = self.connection.cursor()
+
+        strComando = f'SELECT * FROM {self.configs.tblUsuario} LIMIT 1'
+
+        try:
+            cursor.execute(strComando)
+            return cursor.fetchone()
+        except:
+            raise Exception(f'Erro SQL - buscaUsuarioAtivo()) <SELECT {self.configs.tblUsuario}>')
+        finally:
+            self.disconectBD(cursor)
