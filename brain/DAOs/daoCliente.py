@@ -130,6 +130,21 @@ class DaoCliente:
         finally:
             cursor.close()
 
+    def contaCliente(self, condicao="clienteId"):
+        self.connection.connect()
+        cursor = self.connection.cursor()
+
+        strComando = f"SELECT COUNT(clienteId) FROM cliente where {condicao}"
+
+        cursor.execute(strComando)
+
+        clientesList = cursor.fetchall()
+
+        cursor.close()
+
+        return str(clientesList[0][0])
+
+
     def contaTotal(self, where=None):
 
         self.connection.connect()
@@ -150,19 +165,4 @@ class DaoCliente:
     def disconectBD(self, cursor):
         cursor.close()
         self.connection.close()
-
-
-    def contaCliente(self, condicao="clienteId"):
-        self.connection.connect()
-        cursor = self.connection.cursor()
-
-        strComando = f"SELECT COUNT(clienteId) FROM cliente where {condicao}"
-
-        cursor.execute(strComando)
-
-        clientesList = cursor.fetchall()
-
-        cursor.close()
-
-        return str(clientesList[0][0])
 
