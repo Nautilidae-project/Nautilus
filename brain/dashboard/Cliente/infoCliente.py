@@ -13,6 +13,7 @@ from brain.dashboard.Cliente.relatorio import RelatorioCliente
 from brain.delegates.alinhamento import AlinhamentoDelegate
 from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt, formasPagamento
 from modelos.clienteModel import Cliente
+from modelos.efeitosModel import Efeitos
 
 
 class brainCliente(Ui_wdgCliente, QWidget):
@@ -23,6 +24,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.setupUi(self)
         self.cliente = Cliente()
         self.daoCliente = DaoCliente()
+        self.efeito = Efeitos()
 
         self.pbExportar.clicked.connect(self.criaRelatorio)
         self.atualizaTabela()
@@ -30,7 +32,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.tblClientes.setColumnHidden(0, True)
         self.tblClientes.setItemDelegate(AlinhamentoDelegate())
 
-        self.pbConfirmarAtualizacao.clicked.connect(lambda: self.showPopupSimCancela('As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
+        self.pbConfirmarAtualizacao.clicked.connect(
+            lambda: self.showPopupSimCancela('As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
         self.leSearchCliente.textEdited.connect(lambda: self.busca())
 
         self.tblClientes.doubleClicked.connect(self.carregaInfoCliente)
@@ -49,12 +52,19 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.tabsCliente.currentChanged.connect(self.onChange)
 
         # Cards Tela Cliente Informações
-        self.leCard1.setText(f"Clientes Ativos:\n{self.daoCliente.contaCliente('ativo=1')}/{self.daoCliente.contaCliente()}")
-        self.leCard2.setText(f"Clientes Inativos:\n{self.daoCliente.contaCliente('ativo=0')}/{self.daoCliente.contaCliente()}")
+        self.cardsInfosCliente()
+        # Adicionando Sombra nos cards
+        self.efeito.shadowCards([self.leCard1, self.leCard2, self.leCard3, self.leCard4])
 
         # GRupos/Turmas
         self.cardGrupo = Ui_Frame()
         self.pbAddGrupo.clicked.connect(lambda: self.addGrupo())
+
+    def cardsInfosCliente(self):
+        self.leCard1.setText(
+            f"Clientes Ativos:\n{self.daoCliente.contaCliente('ativo=1')}/{self.daoCliente.contaCliente()}")
+        self.leCard2.setText(
+            f"Clientes Inativos:\n{self.daoCliente.contaCliente('ativo=0')}/{self.daoCliente.contaCliente()}")
 
     def addGrupo(self):
         self.gridLayout_6.addWidget(self.cardGrupo, 0, 0)
@@ -227,10 +237,12 @@ class brainCliente(Ui_wdgCliente, QWidget):
         dialogPopup.setStandardButtons(QMessageBox.Cancel | QMessageBox.Yes)
 
         dialogPopup.buttonClicked.connect(self.atualizaCliente)
+        dialogPopup.buttonClicked.connect(self.cardsInfosCliente)
         close = dialogPopup.exec_()
 
     def onChange(self, *args):
         if args[0] == 0:
+            self.cardsInfosCliente()
             self.atualizaTabela()
             self.limpaCampos()
 
@@ -247,9 +259,9 @@ class brainCliente(Ui_wdgCliente, QWidget):
         # relatorio.exportaRelatorio(tipo='excel')
 
 
-
 if __name__ == '__main__':
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     ui = brainCliente()
     ui.show()
