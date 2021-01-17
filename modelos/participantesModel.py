@@ -1,5 +1,5 @@
 
-class Participantes:
+class Participante:
 
     def __init__(self):
         self.eventoId = None

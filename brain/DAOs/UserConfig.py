@@ -148,7 +148,8 @@ class DaoConfiguracoes:
 
         try:
             cursor.execute(strComando)
-            listaEstados = [estado[0] for estado in cursor.fetchall()]
+            estadosEncontrados = cursor.fetchall()
+            listaEstados = [estado[0] for estado in estadosEncontrados]
             return listaEstados
         except:
             raise Warning(f'Erro SQL - getEstados({self.configs.banco}) <SELECT {self.configs.tblEstados}>')

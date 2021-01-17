@@ -188,7 +188,6 @@ class brainDashboard(Ui_mwDash, QMainWindow):
         self.pgCliente.leCep.clear()
 
     def sairApp(self):
-        print(self.parent)
         self.sinais.sBackLoginPage.emit()
 
     def logoff(self):
