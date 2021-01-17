@@ -1,23 +1,24 @@
 import base64
 
-from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QMessageBox, QCheckBox
+from PyQt5 import QtCore, QtWidgets, QtGui
+from PyQt5.QtWidgets import QMessageBox, QGridLayout
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem
-from PyQt5.QtCore import pyqtSignal
 
-from Telas.cardGrupo import Ui_Frame
 from Telas.dashCliente import Ui_wdgCliente
 from brain.DAOs.UserConfig import DaoConfiguracoes
 from brain.DAOs.daoCliente import DaoCliente
+from brain.DAOs.daoGrupo import DaoGrupo
+from brain.dashboard.Cliente.localWidgets.gruposCard import GruposCard
 from brain.dashboard.Cliente.relatorio import RelatorioCliente
+from brain.dashboard.Sinais import Sinais
 from brain.delegates.alinhamento import AlinhamentoDelegate
 from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt, formasPagamento
 from modelos.clienteModel import Cliente
 from modelos.efeitosModel import Efeitos
+from modelos.grupoModel import GrupoModelo
 
 
 class brainCliente(Ui_wdgCliente, QWidget):
-    home = pyqtSignal()
 
     def __init__(self, parent=None):
         super(brainCliente, self).__init__(parent)
@@ -25,11 +26,22 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.cliente = Cliente()
         self.daoCliente = DaoCliente()
         self.efeito = Efeitos()
+        self.parent = parent
+        self.sinais = Sinais()
+
+        self.sinais.sResizeWindow.connect(self.resizedWindow)
+
+        self.vBox = QGridLayout()
 
         self.pbExportar.clicked.connect(self.criaRelatorio)
-        self.atualizaTabela()
+        self.atualizaTabelaGeral()
+        self.atualizaTabelaGrupos()
         self.frInfoCliente.hide()
+
+        # Escondendo as colunas Id das tabelas Geral e Grupo
         self.tblClientes.setColumnHidden(0, True)
+        self.tblGrupo.setColumnHidden(0, True)
+
         self.tblClientes.setItemDelegate(AlinhamentoDelegate())
 
         self.pbConfirmarAtualizacao.clicked.connect(
@@ -57,8 +69,40 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.efeito.shadowCards([self.leCard1, self.leCard2, self.leCard3, self.leCard4])
 
         # GRupos/Turmas
-        self.cardGrupo = Ui_Frame()
+        self.cardGrupo = GruposCard()
         self.pbAddGrupo.clicked.connect(lambda: self.addGrupo())
+
+        # Tentando fazer uma lista de cards de grupos
+        self.adicionaGruposCards()
+
+    def adicionaGruposCards(self):
+        daoGrupo = DaoGrupo()
+        colunas = 1
+
+        # Busca no banco de dados todos os grupos criados
+        gruposCadastrados = daoGrupo.findAll()
+
+        # Calcula quantas colunas teremos
+        if 4 < len(gruposCadastrados) <= 8:
+            colunas = 2
+        elif len(gruposCadastrados) > 8 and self.size().width() < 900:
+            colunas = 2
+        elif len(gruposCadastrados) > 8 and self.size().width() > 900:
+            colunas = 3
+
+        # Cria um lista contendo o modelo de cada grupo buscado no banco de dados
+        gruposModelos = [GrupoModelo(gruposCadastrados[i]) for i in range(0, len(gruposCadastrados))]
+
+        # Cria uma lista contendo os layouts dos cards com as informações dos modelos contidos no gruposModelos
+        listaGruposCards = [GruposCard(parent=self, grupo=gruposModelos[i]) for i in range(0, len(gruposCadastrados))]
+
+        # Cria uma matriz das posições nas quais os cards serão apresentados
+        posicoes = [(linha, coluna) for linha in range(int(len(listaGruposCards) / colunas)) for coluna in range(colunas)]
+
+        for card, posicao in zip(listaGruposCards, posicoes):
+            self.vBox.addWidget(card, *posicao)
+
+        self.scrollGrupos.setLayout(self.vBox)
 
     def cardsInfosCliente(self):
         self.leCard1.setText(
@@ -112,14 +156,14 @@ class brainCliente(Ui_wdgCliente, QWidget):
         if campo == 'ativo':
             self.cliente.ativo = self.cbInfoAtivo.isChecked()
 
-        self.atualizaTabela()
+        self.atualizaTabelaGeral()
 
     def busca(self):
         clientes = self.daoCliente.buscaCliente(self.leSearchCliente.text())
 
-        self.atualizaTabela(clientes)
+        self.atualizaTabelaGeral(clientes)
 
-    def atualizaTabela(self, clientes=None):
+    def atualizaTabelaGeral(self, clientes=None):
 
         if clientes is None:
             clientes = self.daoCliente.findAll()
@@ -151,6 +195,23 @@ class brainCliente(Ui_wdgCliente, QWidget):
                     self.tblClientes.setItem(rowCount, columnNumber, cbItemTbl)
                 else:
                     self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(data)))
+
+        self.tblClientes.resizeColumnsToContents()
+
+    def atualizaTabelaGrupos(self):
+        clientes = self.daoCliente.findAll(all='ns')
+
+        self.tblGrupo.setRowCount(0)
+        print(clientes)
+
+        for rowCount, rowData in enumerate(clientes):
+            self.tblGrupo.insertRow(rowCount)
+
+            for columnNumber, data in enumerate(rowData):
+                self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(data)))
+
+
+
 
         self.tblClientes.resizeColumnsToContents()
 
@@ -213,7 +274,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.daoCliente.atualizaInfoCliente(self.cliente)
             self.limpaCampos()
         self.frInfoCliente.hide()
-        self.atualizaTabela()
+        self.atualizaTabelaGeral()
 
     def animationInfo(self):
         pass
@@ -243,7 +304,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
     def onChange(self, *args):
         if args[0] == 0:
             self.cardsInfosCliente()
-            self.atualizaTabela()
+            self.atualizaTabelaGeral()
             self.limpaCampos()
 
     def criaRelatorio(self):
@@ -257,6 +318,13 @@ class brainCliente(Ui_wdgCliente, QWidget):
         relatorio = RelatorioCliente(nomeArquivo='Relatório', usuario=usuarioAtivo)
         relatorio.exportaRelatorio()
         # relatorio.exportaRelatorio(tipo='excel')
+
+    def resizeEvent(self, a0: QtGui.QResizeEvent) -> None:
+        self.sinais.sResizeWindow.emit()
+
+    def resizedWindow(self):
+        # self.adicionaGruposCards()
+        pass
 
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QMainWindow
 from Telas.login import Ui_mwLogin
 from brain.cadastraUser import brainCadastro
@@ -14,6 +14,9 @@ class LoginPage(Ui_mwLogin, QMainWindow):
 
         self.setupUi(self)
         self.center()
+
+        # Ao abrir a janela, dá o focus e coloca ela em primeiro plano
+        self.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
 
         # Iniciando a tela cadastro e inserindo-a no stkWidget
         self.telaCadastro = brainCadastro(self)
@@ -33,8 +36,10 @@ class LoginPage(Ui_mwLogin, QMainWindow):
         self.leSenha.returnPressed.connect(lambda: self.trataLogin())
 
         self.leUsuario.setFocus()
-        self.leUsuario.setText('renan')
-        self.leSenha.setText('123456')
+        # self.leUsuario.setText('renan')
+        # self.leSenha.setText('123456')
+        self.leUsuario.setText('israeldev')
+        self.leSenha.setText('123')
 
     def navigate(self):
         self.stkLogin.setCurrentIndex(1)

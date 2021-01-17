@@ -1,4 +1,5 @@
 from configBD import ConfigDB
+from modelos.clienteModel import Cliente
 import pymysql
 
 
@@ -14,7 +15,7 @@ class DaoCliente:
             db=self.configs.banco
         )
 
-    def cadastraCliente(self, cliente):
+    def cadastraCliente(self, cliente: Cliente):
 
         self.connection.connect()
         cursor = self.connection.cursor()
@@ -31,25 +32,28 @@ class DaoCliente:
                 '{cliente.nomeCliente}', '{cliente.sobrenomeCliente}', '{cliente.telefone}',
                 '{cliente.email}', '{cliente.cpf}', '{cliente.endereco}', '{cliente.complemento}', '{cliente.cep}',
                 '{cliente.bairro}', 'CC', {cliente.ativo}, NOW(), NOW()
-    )
+            )
             """
         try:
             cursor.execute(strComando)
             self.connection.commit()
             cursor.close()
-            # self.connection.close()
         except:
             raise Warning(f'Erro SQL - insereCliente({cliente.clienteId}) <INSERT>')
         finally:
             cursor.close()
 
-    def findAll(self, all=False):
+    def findAll(self, all='False'):
 
         self.connection.connect()
         cursor = self.connection.cursor()
 
-        if not all:
+        if all == 'False':
             strComando = f"SELECT clienteId, nomeCliente, telefone, meioPagamento, ativo FROM {self.configs.tblCliente} ORDER BY ativo DESC"
+
+        elif all.upper() == 'NS':
+            strComando = f"SELECT clienteId, nomeCliente, sobrenomeCliente, ativo FROM {self.configs.tblCliente} ORDER BY nomeCliente DESC;"
+
         else:
             strComando = f"SELECT * FROM {self.configs.tblCliente} ORDER BY ativo DESC"
 
@@ -151,11 +155,11 @@ class DaoCliente:
         cursor.close()
         self.connection.close()
 
-
     def contaCliente(self, condicao="clienteId"):
         self.connection.connect()
         cursor = self.connection.cursor()
 
+        strComando = f"SELECT COUNT(clienteId) FROM cliente where {condicao}"
 
         cursor.execute(strComando)
 
