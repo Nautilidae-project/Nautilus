@@ -3,7 +3,8 @@ from PyQt5.QtWidgets import QGraphicsDropShadowEffect
 
 class Efeitos:
 
-    def shadowCards(self, cards: list):
+    def shadowCards(self, cards: list, radius: int = 20, offset: int = 7):
+        
         for card in cards:
             # criando um QGraphicsDropShadowEffect object
             shadow = QGraphicsDropShadowEffect()
