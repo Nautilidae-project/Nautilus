@@ -11,6 +11,7 @@ from brain.DAOs.UserConfig import DaoConfiguracoes
 from brain.DAOs.daoCliente import DaoCliente
 from brain.dashboard.Cliente.relatorio import RelatorioCliente
 from brain.delegates.alinhamento import AlinhamentoDelegate
+from brain.envioDeMensagens import Mensagens
 from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt, formasPagamento
 from modelos.clienteModel import Cliente
 from modelos.efeitosModel import Efeitos
@@ -25,6 +26,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.cliente = Cliente()
         self.daoCliente = DaoCliente()
         self.efeito = Efeitos()
+        self.enviarEmail = Mensagens()
 
         self.pbExportar.clicked.connect(self.criaRelatorio)
         self.atualizaTabela()
@@ -59,6 +61,23 @@ class brainCliente(Ui_wdgCliente, QWidget):
         # GRupos/Turmas
         self.cardGrupo = Ui_Frame()
         self.pbAddGrupo.clicked.connect(lambda: self.addGrupo())
+
+        self.tblClientes.doubleClicked.connect(self.enviarUmEmail)
+
+    def enviarUmEmail(self, *args):
+
+        intClienteId = int(self.tblClientes.item(args[0].row(), 0).text())
+        listCliente = self.daoCliente.buscaPorId(intClienteId)[0]
+        print(f'Id ------->  {listCliente[0]}')
+        print(f'Nome ----->  {listCliente[1]}')
+        print(f'SobreNome -> {listCliente[2]}')
+        print(f'E-mail ----> {listCliente[4]}')
+
+        self.enviarEmail.leId.setText(str(listCliente[0]))
+        self.enviarEmail.leNome.setText(f'{listCliente[1]} {listCliente[2]}')
+        self.enviarEmail.leEmail.setText(listCliente[4])
+
+        self.enviarEmail.show()
 
     def cardsInfosCliente(self):
         self.leCard1.setText(

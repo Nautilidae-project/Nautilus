@@ -14,12 +14,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(518, 316)
-        Form.setMaximumSize(QtCore.QSize(1992, 16777215))
-        self.verticalLayout = QtWidgets.QVBoxLayout(Form)
-        self.verticalLayout.setObjectName("verticalLayout")
+        Form.resize(800, 500)
+        self.gridLayout = QtWidgets.QGridLayout(Form)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout.setHorizontalSpacing(0)
+        self.gridLayout.setObjectName("gridLayout")
         self.calendarWidget = QtWidgets.QCalendarWidget(Form)
-        self.calendarWidget.setMaximumSize(QtCore.QSize(500, 16777215))
+        self.calendarWidget.setMinimumSize(QtCore.QSize(500, 500))
+        self.calendarWidget.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.calendarWidget.setStyleSheet(" /*Tool button styles */\n"
 "QCalendarWidget QToolButton {\n"
 " \n"
@@ -39,7 +41,7 @@ class Ui_Form(object):
 "font-size:18px;\n"
 "color: #444;\n"
 "background-color: #80CCE1;\n"
-"selection-background-color:rgb(64,64,64);\n"
+"selection-background-color:rgb(128,64,64);\n"
 "selection-color:rgb(0,255,0);\n"
 "}\n"
 "\n"
@@ -50,7 +52,7 @@ class Ui_Form(object):
 " \n"
 "}")
         self.calendarWidget.setObjectName("calendarWidget")
-        self.verticalLayout.addWidget(self.calendarWidget)
+        self.gridLayout.addWidget(self.calendarWidget, 0, 0, 1, 1)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
