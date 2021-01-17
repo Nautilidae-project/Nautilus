@@ -1,6 +1,7 @@
 import base64
 
 from PyQt5 import QtCore, QtWidgets, QtGui
+from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QMessageBox, QGridLayout
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 
@@ -35,6 +36,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         self.gridBox = QGridLayout()
 
+        self.tblGrupo.clicked.connect(self.selecionaParticipante)
+
         self.pbExportar.clicked.connect(self.criaRelatorio)
         self.atualizaTabelaGeral()
         self.atualizaTabelaGrupos()
@@ -45,6 +48,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.tblGrupo.setColumnHidden(0, True)
 
         self.tblClientes.setItemDelegate(AlinhamentoDelegate())
+        self.tblGrupo.setItemDelegate(AlinhamentoDelegate())
 
         self.pbConfirmarAtualizacao.clicked.connect(
             lambda: self.showPopupSimCancela('As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
@@ -78,6 +82,11 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.adicionaGruposCards()
 
     def adicionaGruposCards(self):
+        print('Atualizou os cards')
+
+        # if not self.gridBox.isEmpty():
+        # print(self.gridBox.)
+
         daoGrupo = DaoGrupo()
         colunas = 1
 
@@ -102,8 +111,9 @@ class brainCliente(Ui_wdgCliente, QWidget):
         posicoes = [(linha, coluna) for linha in range(int(len(listaGruposCards) / colunas)) for coluna in range(colunas)]
 
         for card, posicao in zip(listaGruposCards, posicoes):
-            self.efeito.shadowCards([card])
+            self.efeito.shadowCards([card], color=(105, 210, 231, 80))
             self.gridBox.addWidget(card, *posicao)
+        self.gridBox.setSpacing(32)
 
         self.scrollGrupos.setLayout(self.gridBox)
 
@@ -227,10 +237,17 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.tblGrupo.insertRow(rowCount)
 
             for columnNumber, data in enumerate(rowData):
-                print(data)
-                self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(data)))
+                if columnNumber == 3:
+                    cbItemParticipante = QTableWidgetItem()
+                    cbItemParticipante.setFlags(QtCore.Qt.ItemIsEnabled)
+                    cbItemParticipante.setCheckState(QtCore.Qt.Unchecked)
+                    self.tblGrupo.setItem(rowCount, columnNumber, QTableWidgetItem(cbItemParticipante))
+                else:
+                    strItem = QTableWidgetItem(str(data))
+                    strItem.setFont(QFont('Ubuntu', pointSize=14, italic=True))
+                    self.tblGrupo.setItem(rowCount, columnNumber, strItem)
 
-        self.tblClientes.resizeColumnsToContents()
+        self.tblGrupo.resizeColumnsToContents()
 
     def carregaInfoCliente(self, *args):
 
@@ -342,6 +359,17 @@ class brainCliente(Ui_wdgCliente, QWidget):
     def resizedWindow(self):
         # self.adicionaGruposCards()
         pass
+
+    def selecionaParticipante(self, *args):
+
+        # Verifica o estado da chackbox na linha clicada
+        estado = self.tblGrupo.item(args[0].row(), 3).checkState()
+
+        if estado == 0:
+            self.tblGrupo.item(args[0].row(), 3).setCheckState(QtCore.Qt.Checked)
+        else:
+            self.tblGrupo.item(args[0].row(), 3).setCheckState(QtCore.Qt.Unchecked)
+
 
 
 if __name__ == '__main__':

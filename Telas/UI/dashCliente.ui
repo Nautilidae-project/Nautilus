@@ -144,7 +144,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tbInfosCliente">
       <property name="enabled">
@@ -2432,7 +2432,7 @@ QScrollBar:vertical {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>412</width>
+               <width>441</width>
                <height>595</height>
               </rect>
              </property>
@@ -2443,18 +2443,26 @@ QScrollBar:vertical {
         </widget>
        </item>
        <item>
-        <widget class="QFrame" name="frFormarGRupos">
+        <widget class="QFrame" name="frFormarGrupos">
          <property name="minimumSize">
           <size>
            <width>380</width>
            <height>0</height>
           </size>
          </property>
+         <property name="maximumSize">
+          <size>
+           <width>400</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(179, 91, 87);</string>
+          <string notr="true">#frFormarGrupos {
+	background-color: rgb(238, 238, 236)
+}</string>
          </property>
          <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
+          <enum>QFrame::NoFrame</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
@@ -2467,19 +2475,86 @@ QScrollBar:vertical {
            <number>15</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_3">
+           <widget class="QFrame" name="frCabecalhoGrupo">
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>32</height>
+              <height>50</height>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
+             <string notr="true">#frCabecalhoGrupo {
+	border: 0px;
+	background-color: transparent;
+}</string>
             </property>
-            <property name="text">
-             <string>Criar um grupo</string>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
             </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <property name="spacing">
+              <number>4</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="lbTituloGrupo">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>32</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Ubuntu</family>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <italic>false</italic>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">#lbTituloGrupo {
+	border: 0px;
+	background-color: transparent;
+	font-family: Ubuntu;
+	font-size: 14pt;
+	font-weight: bold;
+}</string>
+               </property>
+               <property name="text">
+                <string>Criar um grupo</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbDica">
+               <property name="styleSheet">
+                <string notr="true">#lbDica {
+	border: 0px;
+	background-color: transparent;
+	font-family: Ubuntu;
+	font-size: 12pt;
+	font-style: italic;
+}</string>
+               </property>
+               <property name="text">
+                <string>Criar um grupo facilita o seu trabalho de organização</string>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
           <item>
@@ -2490,6 +2565,11 @@ QScrollBar:vertical {
               <height>32</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">#frTitulo {
+	background-color: transparent;
+}</string>
+            </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
             </property>
@@ -2497,8 +2577,29 @@ QScrollBar:vertical {
              <enum>QFrame::Raised</enum>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_17">
+             <property name="spacing">
+              <number>8</number>
+             </property>
+             <property name="leftMargin">
+              <number>8</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>8</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
              <item>
               <widget class="QLabel" name="lbTitulo_2">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>32</height>
+                </size>
+               </property>
                <property name="styleSheet">
                 <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
@@ -2508,18 +2609,29 @@ QScrollBar:vertical {
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="leTituloGrupo"/>
+              <widget class="QLineEdit" name="leTituloGrupo">
+               <property name="styleSheet">
+                <string notr="true">#leTituloGrupo {
+	background-color: transparent;
+}</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
           </item>
           <item>
-           <widget class="QFrame" name="frame_2">
+           <widget class="QFrame" name="frDescricao">
             <property name="minimumSize">
              <size>
               <width>0</width>
               <height>32</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#frDescricao {
+	background-color: transparent;
+}</string>
             </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
@@ -2528,8 +2640,29 @@ QScrollBar:vertical {
              <enum>QFrame::Raised</enum>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_23">
+             <property name="spacing">
+              <number>8</number>
+             </property>
+             <property name="leftMargin">
+              <number>8</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>8</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
              <item>
               <widget class="QLabel" name="lbDescricao">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>32</height>
+                </size>
+               </property>
                <property name="styleSheet">
                 <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
@@ -2539,21 +2672,75 @@ QScrollBar:vertical {
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="leDescricaoGrupo"/>
+              <widget class="QLineEdit" name="leDescricaoGrupo">
+               <property name="styleSheet">
+                <string notr="true">#leDescricaoGrupo {
+	background-color: transparent;
+}</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
           </item>
           <item>
            <widget class="QTableWidget" name="tblGrupo">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
+              <horstretch>60</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>448</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#tblGrupo {
+	/*background-color: transparent;*/
+    border: none;
+	color: #444;
+	margin-left: 16px;
+	margin-right: 16px;
+	/*margin-bottom: 24px;
+	margin-top: 8px;*/
+}
+
+#tblGrupo::item {
+	padding: 8px;
+	padding-bottom: 4px;
+	font-family: Ubuntu;
+	font-size: 24pt;
+}</string>
+            </property>
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>
             </property>
+            <property name="sizeAdjustPolicy">
+             <enum>QAbstractScrollArea::AdjustToContents</enum>
+            </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+            </property>
+            <property name="defaultDropAction">
+             <enum>Qt::IgnoreAction</enum>
+            </property>
             <property name="alternatingRowColors">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <property name="selectionMode">
              <enum>QAbstractItemView::NoSelection</enum>
+            </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>0</width>
+              <height>24</height>
+             </size>
             </property>
             <property name="showGrid">
              <bool>false</bool>
@@ -2568,7 +2755,7 @@ QScrollBar:vertical {
              <bool>true</bool>
             </attribute>
             <attribute name="horizontalHeaderStretchLastSection">
-             <bool>true</bool>
+             <bool>false</bool>
             </attribute>
             <attribute name="verticalHeaderVisible">
              <bool>false</bool>
@@ -2606,11 +2793,11 @@ QScrollBar:vertical {
            </widget>
           </item>
          </layout>
-         <zorder>label_3</zorder>
          <zorder>frTitulo</zorder>
-         <zorder>frame_2</zorder>
+         <zorder>frDescricao</zorder>
          <zorder>pbAddGrupo</zorder>
          <zorder>tblGrupo</zorder>
+         <zorder>frCabecalhoGrupo</zorder>
         </widget>
        </item>
       </layout>
