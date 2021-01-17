@@ -50,7 +50,7 @@
     <widget class="QFrame" name="frGrupoCard">
      <property name="styleSheet">
       <string notr="true">#frGrupoCard {
-	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgba(105, 33, 140, 60), stop:1 rgba(112, 237, 255, 60));	
+	background-color: #0e90ad;
 }</string>
      </property>
      <property name="frameShape">
@@ -87,7 +87,8 @@
         </property>
         <property name="styleSheet">
          <string notr="true">#lbTituloCard{
-	background-color: rgba(211, 215, 207, 0);
+	color: #fff;
+	background-color: transparent;
 }</string>
         </property>
         <property name="text">
@@ -117,7 +118,8 @@
         </property>
         <property name="styleSheet">
          <string notr="true">#lbDescricao{
-	background-color: rgba(211, 215, 207, 0);
+	color: #fff;
+	background-color: transparent;
 }</string>
         </property>
         <property name="text">

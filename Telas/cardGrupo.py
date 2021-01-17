@@ -26,7 +26,7 @@ class Ui_wdgGrupoCard(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.frGrupoCard = QtWidgets.QFrame(wdgGrupoCard)
         self.frGrupoCard.setStyleSheet("#frGrupoCard {\n"
-"    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgba(105, 33, 140, 60), stop:1 rgba(112, 237, 255, 60));    \n"
+"    background-color: #0e90ad;\n"
 "}")
         self.frGrupoCard.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.frGrupoCard.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -44,7 +44,8 @@ class Ui_wdgGrupoCard(object):
         font.setWeight(75)
         self.lbTituloCard.setFont(font)
         self.lbTituloCard.setStyleSheet("#lbTituloCard{\n"
-"    background-color: rgba(211, 215, 207, 0);\n"
+"    color: #fff;\n"
+"    background-color: transparent;\n"
 "}")
         self.lbTituloCard.setObjectName("lbTituloCard")
         self.verticalLayout_2.addWidget(self.lbTituloCard)
@@ -56,7 +57,8 @@ class Ui_wdgGrupoCard(object):
         font.setPointSize(12)
         self.lbDescricao.setFont(font)
         self.lbDescricao.setStyleSheet("#lbDescricao{\n"
-"    background-color: rgba(211, 215, 207, 0);\n"
+"    color: #fff;\n"
+"    background-color: transparent;\n"
 "}")
         self.lbDescricao.setObjectName("lbDescricao")
         self.verticalLayout_2.addWidget(self.lbDescricao)

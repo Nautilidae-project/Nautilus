@@ -43,19 +43,30 @@ class DaoCliente:
         finally:
             cursor.close()
 
-    def findAll(self, all='False'):
+    def findAll(self, all= False):
 
         self.connection.connect()
         cursor = self.connection.cursor()
 
-        if all == 'False':
+        if not all:
             strComando = f"SELECT clienteId, nomeCliente, telefone, meioPagamento, ativo FROM {self.configs.tblCliente} ORDER BY ativo DESC"
-
-        elif all.upper() == 'NS':
-            strComando = f"SELECT clienteId, nomeCliente, sobrenomeCliente, ativo FROM {self.configs.tblCliente} ORDER BY nomeCliente DESC;"
 
         else:
             strComando = f"SELECT * FROM {self.configs.tblCliente} ORDER BY ativo DESC"
+
+        cursor.execute(strComando)
+
+        clientesList = cursor.fetchall()
+        cursor.close()
+
+        return clientesList
+
+    def findAllNomeSobrenome(self):
+
+        self.connection.connect()
+        cursor = self.connection.cursor()
+
+        strComando = f"SELECT clienteId, nomeCliente, sobrenomeCliente, ativo FROM {self.configs.tblCliente} ORDER BY nomeCliente DESC;"
 
         cursor.execute(strComando)
 

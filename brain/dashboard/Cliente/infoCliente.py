@@ -31,7 +31,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         self.sinais.sResizeWindow.connect(self.resizedWindow)
 
-        self.vBox = QGridLayout()
+        self.gridBox = QGridLayout()
 
         self.pbExportar.clicked.connect(self.criaRelatorio)
         self.atualizaTabelaGeral()
@@ -100,9 +100,10 @@ class brainCliente(Ui_wdgCliente, QWidget):
         posicoes = [(linha, coluna) for linha in range(int(len(listaGruposCards) / colunas)) for coluna in range(colunas)]
 
         for card, posicao in zip(listaGruposCards, posicoes):
-            self.vBox.addWidget(card, *posicao)
+            self.efeito.shadowCards([card])
+            self.gridBox.addWidget(card, *posicao)
 
-        self.scrollGrupos.setLayout(self.vBox)
+        self.scrollGrupos.setLayout(self.gridBox)
 
     def cardsInfosCliente(self):
         self.leCard1.setText(
@@ -199,19 +200,16 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.tblClientes.resizeColumnsToContents()
 
     def atualizaTabelaGrupos(self):
-        clientes = self.daoCliente.findAll(all='ns')
+        clientes = self.daoCliente.findAllNomeSobrenome()
 
         self.tblGrupo.setRowCount(0)
-        print(clientes)
 
         for rowCount, rowData in enumerate(clientes):
             self.tblGrupo.insertRow(rowCount)
 
             for columnNumber, data in enumerate(rowData):
+                print(data)
                 self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(data)))
-
-
-
 
         self.tblClientes.resizeColumnsToContents()
 
