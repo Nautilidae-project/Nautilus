@@ -1,0 +1,137 @@
+\documentclass{article}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{geometry}%
+\geometry{head=40pt,margin=1.5cm,tmargin=1cm,includeheadfoot=True}%
+\usepackage{tabu}%
+\usepackage{ragged2e}%
+\usepackage{longtable}%
+\usepackage[table]{xcolor}%
+\usepackage{fancyhdr}%
+\usepackage{tabularx}%
+\usepackage{graphicx}%
+%
+\fancypagestyle{firstpage}{%
+\renewcommand{\headrulewidth}{0pt}%
+\renewcommand{\footrulewidth}{0pt}%
+\fancyhead{%
+}%
+\fancyfoot{%
+}%
+\fancyhead[L]{%
+\begin{minipage}[l]{0.3\textwidth}%
+\begin{tabularx}{0.5\textwidth}{X X}%
+\multicolumn{2}{c}{}\\%
+\includegraphics[width=36px]{/home/israeldev/Projetos/Nautilus/Telas/Imagens/nautilusDash.png}&\begin{minipage}{0.6\textwidth}%
+\flushleft%
+\begin{Large}%
+\textbf{Nautilus}%
+\end{Large}%
+\linebreak%
+Navegue sem medo%
+\linebreak%
+\newline%
+%
+\end{minipage}\\%
+\end{tabularx}%
+\end{minipage}%
+}%
+\fancyhead[C]{%
+\begin{minipage}[c]{0.4\textwidth}%
+\begin{Large}%
+\textbf{Relatório geral de clientes}%
+\end{Large}%
+\end{minipage}%
+}%
+\fancyhead[R]{%
+\begin{minipage}[R]{0.3\textwidth}%
+\flushright%
+\begin{Large}%
+\textbf{Um Dois Cinco}%
+\end{Large}%
+\linebreak%
+\begin{large}%
+17 de Janeiro de 2021%
+\end{large}%
+\end{minipage}%
+}%
+}%
+%
+\begin{document}%
+\pagestyle{empty}%
+\normalsize%
+\begin{tabu}{X[l] X[r]}%
+\begin{minipage}[h]{0.49\textwidth}%
+\textbf{Nome fantasia: }%
+Tres%
+\newline%
+%
+\textbf{CNPJ: }%
+45.458.985/6236{-}95%
+\newline%
+%
+\textbf{Endereço: }%
+{-}{-}{-}%
+\end{minipage}&\begin{minipage}[t!]{0.49\textwidth}%
+\flushright%
+Total de clientes: 27%
+\linebreak%
+Total de clientes Ativos: 24%
+\linebreak%
+Média de clientes ativos: 89 \% %
+\linebreak%
+\end{minipage}\\%
+&\\%
+\end{tabu}%
+\pagestyle{firstpage}%
+\renewcommand{\arraystretch}{1.5}%
+\begin{longtabu}{X[1.5l] X[2l] X[r] X[r] X[r]}%
+\rowcolor{lightgray}%
+\textbf{Última atualização}&\textbf{Nome do cliente}&\textbf{Turma}&\textbf{credits(\$)}&\textbf{balance(\$)}\\%
+&&&&\\%
+\hline%
+\rowcolor{lightgray}%
+13 de Janeiro de 2021&Paulo Sergio&Teste 1&Teste 2&Teste 3\\%
+11 de Janeiro de 2021&Zzinaide Zeretuzza&Teste 1&Teste 2&Teste 3\\%
+\rowcolor{lightgray}%
+3 de Janeiro de 2021&Tifane Mendonsa&Teste 1&Teste 2&Teste 3\\%
+3 de Janeiro de 2021&Juninho Junior&Teste 1&Teste 2&Teste 3\\%
+\rowcolor{lightgray}%
+5 de Janeiro de 2021&Vitoria Souza&Teste 1&Teste 2&Teste 3\\%
+10 de Dezembro de 2020&Vitor Souza&Teste 1&Teste 2&Teste 3\\%
+\rowcolor{lightgray}%
+10 de Dezembro de 2020&Josefino Coelho&Teste 1&Teste 2&Teste 3\\%
+10 de Dezembro de 2020&José Mendes&Teste 1&Teste 2&Teste 3\\%
+\rowcolor{lightgray}%
+7 de Dezembro de 2020&Renan Soares&Teste 1&Teste 2&Teste 3\\%
+7 de Dezembro de 2020&Renan Soares&Teste 1&Teste 2&Teste 3\\%
+\rowcolor{lightgray}%
+7 de Dezembro de 2020&Renan Soares&Teste 1&Teste 2&Teste 3\\%
+7 de Dezembro de 2020&Renan Soares&Teste 1&Teste 2&Teste 3\\%
+\rowcolor{lightgray}%
+7 de Dezembro de 2020&Renan Soares&Teste 1&Teste 2&Teste 3\\%
+7 de Dezembro de 2020&Luciane Soares&Teste 1&Teste 2&Teste 3\\%
+\rowcolor{lightgray}%
+24 de Novembro de 2020&None None&Teste 1&Teste 2&Teste 3\\%
+3 de Janeiro de 2021&Mateus Prado&Teste 1&Teste 2&Teste 3\\%
+\rowcolor{lightgray}%
+7 de Dezembro de 2020&Flavia Prado&Teste 1&Teste 2&Teste 3\\%
+7 de Dezembro de 2020&Leticia Alves&Teste 1&Teste 2&Teste 3\\%
+\rowcolor{lightgray}%
+29 de Novembro de 2020&Israel Alves&Teste 1&Teste 2&Teste 3\\%
+29 de Novembro de 2020&Rrrere None&Teste 1&Teste 2&Teste 3\\%
+\rowcolor{lightgray}%
+29 de Novembro de 2020&Israel Alves&Teste 1&Teste 2&Teste 3\\%
+29 de Novembro de 2020&Israel Alves Lucena Gomes&Teste 1&Teste 2&Teste 3\\%
+\rowcolor{lightgray}%
+27 de Novembro de 2020&None None&Teste 1&Teste 2&Teste 3\\%
+24 de Novembro de 2020&Renan Soares&Teste 1&Teste 2&Teste 3\\%
+\rowcolor{lightgray}%
+29 de Novembro de 2020&Renan Alves&Teste 1&Teste 2&Teste 3\\%
+29 de Novembro de 2020&Israel Alves&Teste 1&Teste 2&Teste 3\\%
+\rowcolor{lightgray}%
+27 de Novembro de 2020&Teste None&Teste 1&Teste 2&Teste 3\\%
+\end{longtabu}%
+\end{document}

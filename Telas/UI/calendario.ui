@@ -6,25 +6,40 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>518</width>
-    <height>316</height>
+    <width>800</width>
+    <height>500</height>
    </rect>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>1992</width>
-    <height>16777215</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="horizontalSpacing">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
     <widget class="QCalendarWidget" name="calendarWidget">
-     <property name="maximumSize">
+     <property name="minimumSize">
       <size>
        <width>500</width>
+       <height>500</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
        <height>16777215</height>
       </size>
      </property>
@@ -48,7 +63,7 @@ QCalendarWidget QAbstractItemView:enabled {
 font-size:18px;
 color: #444;
 background-color: #80CCE1;
-selection-background-color:rgb(64,64,64);
+selection-background-color:rgb(128,64,64);
 selection-color:rgb(0,255,0);
 }
 

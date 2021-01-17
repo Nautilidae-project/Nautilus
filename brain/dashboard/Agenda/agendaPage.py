@@ -1,4 +1,7 @@
+from datetime import datetime
+
 from PyQt5 import QtWidgets
+from PyQt5.QtCore import QDate
 
 from Telas.dashAgenda import Ui_wdgAgenda
 
@@ -18,19 +21,23 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
 
         self.vlAgenda.addWidget(self.calendario)
 
+
+        self.calendario.calendarWidget.clicked.connect(self.printDateInfo)
+
+
+
     def printDateInfo(self, qDate):
-        # x = datetime.now().strftime("%B")
-        # y = datetime(year=qDate.year(), month=qDate.dayOfWeek(), day=qDate.day())
-        # print('{0}/{1}/{2}'.format(qDate.month(), qDate.day(), qDate.year()))
-        # print(f'Numero de dias do ano: {qDate.dayOfYear()}')
-        # print(f'Numero de dias do mÊs: {qDate.dayOfWeek()}')
-        # print(f'Numero do dia da semana ano: {qDate.day()}')
-        # print(x)
-        # print(y)
-        # print(y.strftime("%Y %B"))
-        # print(self.calendarWidget.selectedDate())
-        # self.lbData.setText(str(y))
-        pass
+        x = datetime.now().strftime("%B")
+        y = datetime(year=qDate.year(), month=qDate.dayOfWeek(), day=qDate.day())
+        print('{0}/{1}/{2}'.format(qDate.month(), qDate.day(), qDate.year()))
+        print(f'Numero de dias do ano: {qDate.dayOfYear()}')
+        print(f'Numero de dias do mÊs: {qDate.dayOfWeek()}')
+        print(f'Numero do dia da semana ano: {qDate.day()}')
+        print(x)
+        print(y)
+        print(y.strftime("%Y %B"))
+        print(self.calendario.calendarWidget.selectedDate())
+        self.lbData.setText(str(y))
 
 
 if __name__ == '__main__':
