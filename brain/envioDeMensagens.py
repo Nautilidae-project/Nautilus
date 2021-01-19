@@ -30,11 +30,15 @@ class Mensagens(Ui_Form, QWidget):
         arquivo = self.lbRecebeNomeArquivo.text()
 
         titulo = self.leTitulo.text()
+
         mensagem = f"""Cliente -->  ID: {id} | Nome: {nome}
         
         {self.textEdit.toPlainText()}"""
 
-        enviaEmail(titulo, mensagem, email, arquivo)
+        if arquivo:
+            enviaEmail(titulo, mensagem, email, arquivo)
+        else:
+            enviaEmail(titulo, mensagem, email)
 
     def open(self):
         op = QFileDialog.getOpenFileName()
@@ -51,6 +55,8 @@ class Mensagens(Ui_Form, QWidget):
         options |= QFileDialog.DontUseNativeDialog
         fileName, options = QFileDialog.getSaveFileName(self, "Save Image", r"/home/renansoares/Imagens",
                                                         "All Files (*)", options=options)
+        print('Esse aqui ---' + fileName)
+        print('Esse aqui -- ' + options)
 
         if fileName:
             with open(fileName, "wb") as f:
