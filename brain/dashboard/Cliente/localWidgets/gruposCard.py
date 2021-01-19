@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 from Telas.cardGrupo import Ui_wdgGrupoCard
 from brain.DAOs.daoGrupo import DaoGrupo
 from brain.dashboard.Sinais import Sinais
-from brain.delegates.alinhamento import AlinhamentoDelegate
+from brain.delegates.alinhamento import AlinhamentoEsq
 from modelos.efeitosModel import Efeitos
 from modelos.grupoModel import GrupoModelo
 
@@ -18,10 +18,20 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
         self.parent = parent
         self.sinais = Sinais()
         self.tblGrupoItem.setColumnHidden(0, True)
-        self.tblGrupoItem.setItemDelegate(AlinhamentoDelegate())
+        self.tblGrupoItem.setItemDelegate(AlinhamentoEsq())
         Efeitos().shadowCards([self.tblGrupoItem])
 
+        self.styleNormal = """
+                    #frGrupoCard {
+                        background-color: #0e90ad;
+                    }"""
+        self.styleEdicao = """
+                    #frGrupoCard {
+        	            background-color: #990100;
+                    }"""
+
         self.sinais.sAtualizarTela.connect(self.atualizarCards)
+        self.sinais.sEditarGrupo.connect(self.editarGrupo)
 
         self.pbEditar.clicked.connect(self.editarGrupo)
         self.pbExcluir.clicked.connect(self.excluirGrupo)
@@ -47,7 +57,6 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
                 self.tblGrupoItem.setItem(rowCount, columnCount, strItem)
 
     def excluirGrupo(self):
-        print(f'Você acabou de excluir o grupo: {self.grupo.titulo}')
         daoGrupo = DaoGrupo()
 
         daoGrupo.excluirGrupoEParticipantes(self.grupo.grupoId)
@@ -56,11 +65,9 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
         self.sinais.sAtualizarTela.connect(self.atualizarCards)
 
     def atualizarCards(self):
-        print('Recebi um sinaaaaal!')
         self.parent.atualizaGruposCards()
 
-
-
     def editarGrupo(self):
-        print(f'Você quer editar o grupo: {self.grupo.titulo}')
+        self.frGrupoCard.setStyleSheet(self.styleEdicao)
+        self.parent.editarGrupo(self.grupo)
 

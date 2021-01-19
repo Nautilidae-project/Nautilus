@@ -144,7 +144,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tbInfosCliente">
       <property name="enabled">
@@ -2422,7 +2422,7 @@ QScrollBar:vertical {
           <string notr="true">/*background-color: rgb(108, 251, 208);*/</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="0">
+          <item row="1" column="0">
            <widget class="QScrollArea" name="scrollArea">
             <property name="widgetResizable">
              <bool>true</bool>
@@ -2433,9 +2433,47 @@ QScrollBar:vertical {
                <x>0</x>
                <y>0</y>
                <width>441</width>
-               <height>595</height>
+               <height>489</height>
               </rect>
              </property>
+            </widget>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QFrame" name="frTopCards">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QWidget" name="">
+             <property name="geometry">
+              <rect>
+               <x>300</x>
+               <y>20</y>
+               <width>123</width>
+               <height>61</height>
+              </rect>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <widget class="QLabel" name="label">
+                <property name="text">
+                 <string>Ordenar por:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="cbxOrdenar"/>
+              </item>
+             </layout>
             </widget>
            </widget>
           </item>
@@ -2702,10 +2740,11 @@ QScrollBar:vertical {
 	/*background-color: transparent;*/
     border: none;
 	color: #444;
-	margin-left: 16px;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 4px;
+	padding-top: 4px;
 	margin-right: 16px;
-	/*margin-bottom: 24px;
-	margin-top: 8px;*/
 }
 
 #tblGrupo::item {
@@ -2767,6 +2806,11 @@ QScrollBar:vertical {
             </column>
             <column>
              <property name="text">
+              <string>Incluir</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
               <string>Nome</string>
              </property>
             </column>
@@ -2775,29 +2819,105 @@ QScrollBar:vertical {
               <string>Sobrenome</string>
              </property>
             </column>
-            <column>
-             <property name="text">
-              <string>Incluir</string>
-             </property>
-            </column>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pbAddGrupo">
+           <widget class="QFrame" name="frBottomParticipantes">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>32</height>
+             </size>
+            </property>
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(83, 162, 193);</string>
+             <string notr="true">#frBottomParticipantes{
+	background-color: transparent;
+}</string>
             </property>
-            <property name="text">
-             <string>Criar grupo</string>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
             </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_33">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="pbAddGrupo">
+               <property name="maximumSize">
+                <size>
+                 <width>100</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">#pbAddGrupo {
+	color: rgb(85, 87, 83);
+	border: 10px;
+	font-family: Ubuntu;
+	font-size: 12pt;
+	font-style: italic;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}</string>
+               </property>
+               <property name="text">
+                <string>Criar grupo</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pbCancelar">
+               <property name="maximumSize">
+                <size>
+                 <width>100</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">#pbCancelar {
+	/*color: rgb(85, 87, 83);*/
+	border: 10px;
+	font-family: Ubuntu;
+	font-size: 12pt;
+	font-style: italic;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	background-color: rgb(239, 41, 41);
+}
+
+#pbCancelar::hover{
+	background-color: rgb(114, 159, 207);
+}</string>
+               </property>
+               <property name="text">
+                <string>Cancelar</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
          </layout>
          <zorder>frTitulo</zorder>
          <zorder>frDescricao</zorder>
-         <zorder>pbAddGrupo</zorder>
          <zorder>tblGrupo</zorder>
          <zorder>frCabecalhoGrupo</zorder>
+         <zorder>frBottomParticipantes</zorder>
         </widget>
        </item>
       </layout>

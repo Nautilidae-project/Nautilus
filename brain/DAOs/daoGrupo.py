@@ -101,6 +101,28 @@ class DaoGrupo:
         finally:
             self.disconectBD(cursor)
 
+    def atualizarGrupo(self, grupo: GrupoModelo):
+
+        self.connection.connect()
+        cursor = self.connection.cursor()
+
+
+        strComando = f"""
+            UPDATE {self.configs.tblGrupo} SET 
+                titulo = '{grupo.titulo}',
+                descricao = '{grupo.descricao}',
+                dataUltAlt = NOW()
+            WHERE
+                grupoId = {grupo.grupoId}"""
+
+        try:
+            cursor.execute(strComando)
+        except:
+            raise Warning(f'Erro SQL - atualizarGrupo({self.configs.tblGrupo}) <UPDATE>')
+        finally:
+            self.disconectBD(cursor)
+
+
     def disconectBD(self, cursor):
         cursor.close()
         self.connection.close()

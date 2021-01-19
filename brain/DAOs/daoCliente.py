@@ -66,7 +66,11 @@ class DaoCliente:
         self.connection.connect()
         cursor = self.connection.cursor()
 
-        strComando = f"SELECT clienteId, nomeCliente, sobrenomeCliente, ativo FROM {self.configs.tblCliente} ORDER BY nomeCliente DESC;"
+        strComando = f"""SELECT 
+                            clienteId, nomeCliente, sobrenomeCliente, ativo
+                        FROM {self.configs.tblCliente}
+                            WHERE ativo = 1
+                            ORDER BY nomeCliente;"""
 
         cursor.execute(strComando)
 

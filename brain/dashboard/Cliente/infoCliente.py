@@ -13,7 +13,7 @@ from brain.DAOs.daoParticipantes import DaoParticipantes
 from brain.dashboard.Cliente.localWidgets.gruposCard import GruposCard
 from brain.dashboard.Cliente.relatorio import RelatorioCliente
 from brain.dashboard.Sinais import Sinais
-from brain.delegates.alinhamento import AlinhamentoDelegate
+from brain.delegates.alinhamento import AlinhamentoCentro, AlinhamentoEsq
 from brain.envioDeMensagens import Mensagens
 from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt
 from modelos.clienteModel import Cliente
@@ -36,8 +36,11 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.parent = parent
         self.sinais = Sinais()
         self.enviarEmail = Mensagens()
+        self.modoEdicao = False
+        self.grupoEdicao = GrupoModelo()
 
-        self.sinais.sResizeWindow.connect(self.resizedWindow)
+        self.pbCancelar.hide()
+        self.pbCancelar.clicked.connect(self.sairModoEdicao)
 
         self.gridBox = QGridLayout()
 
@@ -45,15 +48,15 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         self.pbExportar.clicked.connect(self.criaRelatorio)
         self.atualizaTabelaGeral()
-        self.atualizaTabelaGrupos()
+        self.atualizaTabelaParticipantes()
         self.frInfoCliente.hide()
 
         # Escondendo as colunas Id das tabelas Geral e Grupo
         self.tblClientes.setColumnHidden(0, True)
         self.tblGrupo.setColumnHidden(0, True)
 
-        self.tblClientes.setItemDelegate(AlinhamentoDelegate())
-        self.tblGrupo.setItemDelegate(AlinhamentoDelegate())
+        self.tblClientes.setItemDelegate(AlinhamentoCentro())
+        # self.tblGrupo.setItemDelegate(AlinhamentoEsq())
 
         self.pbConfirmarAtualizacao.clicked.connect(
             lambda: self.showPopupSimCancela('As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
@@ -73,6 +76,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.cbInfoAtivo.clicked.connect(lambda: self.defineCampo('ativo'))
 
         self.tabsCliente.currentChanged.connect(self.onChange)
+        self.tblClientes.doubleClicked.connect(self.enviarUmEmail)
+
 
         # Cards Tela Cliente Informações
         self.cardsInfosCliente()
@@ -81,7 +86,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         # GRupos/Turmas
         self.cardGrupo = GruposCard()
-        self.pbAddGrupo.clicked.connect(lambda: self.addGrupo())
+        self.pbAddGrupo.clicked.connect(lambda: self.criaGrupo() if not self.modoEdicao else self.updateGrupo())
 
         # Tentando fazer uma lista de cards de grupos
         self.atualizaGruposCards()
@@ -102,13 +107,12 @@ class brainCliente(Ui_wdgCliente, QWidget):
         # Calcula quantas colunas teremos
         if 4 < len(gruposCadastrados) <= 8:
             colunas = 2
-        elif len(gruposCadastrados) > 8 and self.size().width() < 900:
-            colunas = 2
-        elif len(gruposCadastrados) > 8 and self.size().width() > 900:
+        # elif len(gruposCadastrados) > 8 and self.size().width() < 900:
+        #     colunas = 2
+        elif len(gruposCadastrados) > 8:
             colunas = 3
 
         linhas = ceil(len(gruposCadastrados)/colunas)
-
 
         # Cria um lista contendo o modelo de cada grupo buscado no banco de dados
         gruposModelos = [GrupoModelo(gruposCadastrados[i]) for i in range(0, len(gruposCadastrados))]
@@ -126,8 +130,6 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         if self.gridBox.count():
             self.scrollGrupos.setLayout(self.gridBox)
-
-        self.tblClientes.doubleClicked.connect(self.enviarUmEmail)
 
     def enviarUmEmail(self, *args):
 
@@ -150,7 +152,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leCard2.setText(
             f"Clientes Inativos:\n{self.daoCliente.contaCliente('ativo=0')}/{self.daoCliente.contaCliente()}")
 
-    def addGrupo(self):
+    def criaGrupo(self):
         '''
         Função confere se é possível fazer a inserção do grupo no banco de dados e, caso afirmativo:
         - Cria uma lista com os ids dos participantes do grupo;
@@ -183,10 +185,10 @@ class brainCliente(Ui_wdgCliente, QWidget):
                             listaParticipante=[grupoId, self.tblGrupo.item(i, 0).text()]
                         ))
                 daoParticipantes.insereParticipantes(listaParticipantes)
-                
+
             self.limpaLayout()
-            self.atualizaGruposCards()
             self.limpaCampos()
+            self.atualizaGruposCards()
         else:
             print('Não pode cadastrar grupo')
 
@@ -274,7 +276,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         self.tblClientes.resizeColumnsToContents()
 
-    def atualizaTabelaGrupos(self):
+    def atualizaTabelaParticipantes(self):
         clientes = self.daoCliente.findAllNomeSobrenome()
 
         self.tblGrupo.setRowCount(0)
@@ -356,9 +358,6 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.frInfoCliente.hide()
         self.atualizaTabelaGeral()
 
-    def animationInfo(self):
-        pass
-
     def limpaCampos(self):
         self.leInfoNome.clear()
         self.leInfoSobrenome.clear()
@@ -373,7 +372,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leDescricaoGrupo.clear()
 
         for i in range(0, self.tblClientes.rowCount()):
-            self.tblGrupo.item(i, 3).setCheckState(QtCore.Qt.Unchecked)
+            if self.tblGrupo.item(i, 3) is not None:
+                self.tblGrupo.item(i, 3).setCheckState(QtCore.Qt.Unchecked)
 
     def showPopupSimCancela(self, mensagem, titulo='Atenção!'):
         dialogPopup = QMessageBox()
@@ -391,6 +391,10 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.cardsInfosCliente()
             self.atualizaTabelaGeral()
             self.limpaCampos()
+        elif args[0] == 2:
+            self.atualizaGruposCards()
+            self.limpaCampos()
+            self.atualizaTabelaParticipantes()
 
     def criaRelatorio(self):
         # Busca o usuário ativo
@@ -406,10 +410,6 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
     def resizeEvent(self, a0: QtGui.QResizeEvent) -> None:
         self.sinais.sResizeWindow.emit()
-
-    def resizedWindow(self):
-        # self.atualizaGruposCards()
-        pass
 
     def selecionaParticipante(self, *args):
 
@@ -445,8 +445,52 @@ class brainCliente(Ui_wdgCliente, QWidget):
                 return True
         return False
 
+    def editarGrupo(self, grupo: GrupoModelo):
+        self.modoEdicao = True
+        self.grupoEdicao = grupo
+        self.pbCancelar.show()
+        self.pbAddGrupo.setText('Confirmar')
 
+        daoGrupo = DaoGrupo()
+        participantes = daoGrupo.buscaParticipantesGrupo(grupo.grupoId)
 
+        self.leTituloGrupo.setText(grupo.titulo)
+        self.leDescricaoGrupo.setText(grupo.descricao)
+
+        for i in range(self.tblGrupo.rowCount()):
+            clienteTabelaId = self.tblGrupo.item(i, 0).text()
+            for j in participantes:
+                clienteCardId = j[0]
+                if int(clienteTabelaId) == int(clienteCardId):
+                    self.tblGrupo.item(i, 3).setCheckState(QtCore.Qt.Checked)
+
+    def sairModoEdicao(self):
+        self.modoEdicao = False
+        self.limpaLayout()
+        self.limpaCampos()
+        self.atualizaGruposCards()
+        self.pbCancelar.hide()
+        self.pbAddGrupo.setText("Criar grupo")
+
+    def updateGrupo(self):
+        self.grupoEdicao.titulo = self.leTituloGrupo.text()
+        self.grupoEdicao.descricao = self.leDescricaoGrupo.text()
+        listaParticipantes = list()
+
+        daoGrupo = DaoGrupo()
+        daoParticipantes = DaoParticipantes()
+
+        daoGrupo.atualizarGrupo(self.grupoEdicao)
+        daoParticipantes.deletarParticipantesEvento(self.grupoEdicao.grupoId)
+
+        for i in range(self.tblGrupo.rowCount()):
+            if self.tblGrupo.item(i, 3).checkState():
+                listaParticipantes.append(ParticipanteModel(
+                    listaParticipante=[self.grupoEdicao.grupoId, self.tblGrupo.item(i, 0).text()]
+                ))
+        daoParticipantes.insereParticipantes(listaParticipantes)
+
+        self.sairModoEdicao()
 
 if __name__ == '__main__':
     import sys

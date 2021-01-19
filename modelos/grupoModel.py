@@ -3,7 +3,7 @@ import datetime
 
 class GrupoModelo:
 
-    def __init__(self, listGrupo: list= None, dictGrupo: dict= None):
+    def __init__(self, listGrupo: list = None, dictGrupo: dict = None):
 
         self.grupoId = None
         self.titulo = None
@@ -47,5 +47,5 @@ class GrupoModelo:
         self.dataUltAlt = listGrupo[4]
 
     def __repr__(self):
-        return f'Grupo(\ngrupoId: {self.grupoId}, titulo: {self.titulo}, \n descricao: {self.descricao}' \
-               f'dataCadastro: {self.dataCadastro}, dataUltAlt: {self.dataUltAlt}'
+        return f'Grupo(\ngrupoId: {self.grupoId}, titulo: {self.titulo}, descricao: {self.descricao},  ' \
+               f'dataCadastro: {self.dataCadastro}, dataUltAlt: {self.dataUltAlt}\n)'
