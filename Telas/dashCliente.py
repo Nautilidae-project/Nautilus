@@ -930,60 +930,146 @@ class Ui_wdgCliente(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollGrupos = QtWidgets.QWidget()
-        self.scrollGrupos.setGeometry(QtCore.QRect(0, 0, 412, 595))
+        self.scrollGrupos.setGeometry(QtCore.QRect(0, 0, 441, 595))
         self.scrollGrupos.setObjectName("scrollGrupos")
         self.scrollArea.setWidget(self.scrollGrupos)
         self.gridLayout_6.addWidget(self.scrollArea, 0, 0, 1, 1)
         self.horizontalLayout_3.addWidget(self.frGruposFormados)
-        self.frFormarGRupos = QtWidgets.QFrame(self.tbGrupoCliente)
-        self.frFormarGRupos.setMinimumSize(QtCore.QSize(380, 0))
-        self.frFormarGRupos.setStyleSheet("background-color: rgb(179, 91, 87);")
-        self.frFormarGRupos.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frFormarGRupos.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frFormarGRupos.setObjectName("frFormarGRupos")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.frFormarGRupos)
+        self.frFormarGrupos = QtWidgets.QFrame(self.tbGrupoCliente)
+        self.frFormarGrupos.setMinimumSize(QtCore.QSize(380, 0))
+        self.frFormarGrupos.setMaximumSize(QtCore.QSize(400, 16777215))
+        self.frFormarGrupos.setStyleSheet("#frFormarGrupos {\n"
+"    background-color: rgb(238, 238, 236)\n"
+"}")
+        self.frFormarGrupos.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frFormarGrupos.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frFormarGrupos.setObjectName("frFormarGrupos")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.frFormarGrupos)
         self.verticalLayout.setContentsMargins(-1, -1, -1, 15)
         self.verticalLayout.setSpacing(16)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.label_3 = QtWidgets.QLabel(self.frFormarGRupos)
-        self.label_3.setMinimumSize(QtCore.QSize(0, 32))
-        self.label_3.setStyleSheet("color: rgb(255, 255, 255);")
-        self.label_3.setObjectName("label_3")
-        self.verticalLayout.addWidget(self.label_3)
-        self.frTitulo = QtWidgets.QFrame(self.frFormarGRupos)
+        self.frCabecalhoGrupo = QtWidgets.QFrame(self.frFormarGrupos)
+        self.frCabecalhoGrupo.setMinimumSize(QtCore.QSize(0, 50))
+        self.frCabecalhoGrupo.setStyleSheet("#frCabecalhoGrupo {\n"
+"    border: 0px;\n"
+"    background-color: transparent;\n"
+"}")
+        self.frCabecalhoGrupo.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frCabecalhoGrupo.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frCabecalhoGrupo.setObjectName("frCabecalhoGrupo")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frCabecalhoGrupo)
+        self.verticalLayout_2.setContentsMargins(-1, 0, -1, 0)
+        self.verticalLayout_2.setSpacing(4)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.lbTituloGrupo = QtWidgets.QLabel(self.frCabecalhoGrupo)
+        self.lbTituloGrupo.setMinimumSize(QtCore.QSize(0, 32))
+        font = QtGui.QFont()
+        font.setFamily("Ubuntu")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setWeight(75)
+        self.lbTituloGrupo.setFont(font)
+        self.lbTituloGrupo.setStyleSheet("#lbTituloGrupo {\n"
+"    border: 0px;\n"
+"    background-color: transparent;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 14pt;\n"
+"    font-weight: bold;\n"
+"}")
+        self.lbTituloGrupo.setObjectName("lbTituloGrupo")
+        self.verticalLayout_2.addWidget(self.lbTituloGrupo)
+        self.lbDica = QtWidgets.QLabel(self.frCabecalhoGrupo)
+        self.lbDica.setStyleSheet("#lbDica {\n"
+"    border: 0px;\n"
+"    background-color: transparent;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 12pt;\n"
+"    font-style: italic;\n"
+"}")
+        self.lbDica.setWordWrap(True)
+        self.lbDica.setObjectName("lbDica")
+        self.verticalLayout_2.addWidget(self.lbDica)
+        self.verticalLayout.addWidget(self.frCabecalhoGrupo)
+        self.frTitulo = QtWidgets.QFrame(self.frFormarGrupos)
         self.frTitulo.setMinimumSize(QtCore.QSize(0, 32))
+        self.frTitulo.setStyleSheet("#frTitulo {\n"
+"    background-color: transparent;\n"
+"}")
         self.frTitulo.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frTitulo.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frTitulo.setObjectName("frTitulo")
         self.horizontalLayout_17 = QtWidgets.QHBoxLayout(self.frTitulo)
+        self.horizontalLayout_17.setContentsMargins(8, 0, 8, 0)
+        self.horizontalLayout_17.setSpacing(8)
         self.horizontalLayout_17.setObjectName("horizontalLayout_17")
         self.lbTitulo_2 = QtWidgets.QLabel(self.frTitulo)
+        self.lbTitulo_2.setMinimumSize(QtCore.QSize(0, 32))
         self.lbTitulo_2.setStyleSheet("color: rgb(255, 255, 255);")
         self.lbTitulo_2.setObjectName("lbTitulo_2")
         self.horizontalLayout_17.addWidget(self.lbTitulo_2)
         self.leTituloGrupo = QtWidgets.QLineEdit(self.frTitulo)
+        self.leTituloGrupo.setStyleSheet("#leTituloGrupo {\n"
+"    background-color: transparent;\n"
+"}")
         self.leTituloGrupo.setObjectName("leTituloGrupo")
         self.horizontalLayout_17.addWidget(self.leTituloGrupo)
         self.verticalLayout.addWidget(self.frTitulo)
-        self.frame_2 = QtWidgets.QFrame(self.frFormarGRupos)
-        self.frame_2.setMinimumSize(QtCore.QSize(0, 32))
-        self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_2.setObjectName("frame_2")
-        self.horizontalLayout_23 = QtWidgets.QHBoxLayout(self.frame_2)
+        self.frDescricao = QtWidgets.QFrame(self.frFormarGrupos)
+        self.frDescricao.setMinimumSize(QtCore.QSize(0, 32))
+        self.frDescricao.setStyleSheet("#frDescricao {\n"
+"    background-color: transparent;\n"
+"}")
+        self.frDescricao.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frDescricao.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frDescricao.setObjectName("frDescricao")
+        self.horizontalLayout_23 = QtWidgets.QHBoxLayout(self.frDescricao)
+        self.horizontalLayout_23.setContentsMargins(8, 0, 8, 0)
+        self.horizontalLayout_23.setSpacing(8)
         self.horizontalLayout_23.setObjectName("horizontalLayout_23")
-        self.lbDescricao = QtWidgets.QLabel(self.frame_2)
+        self.lbDescricao = QtWidgets.QLabel(self.frDescricao)
+        self.lbDescricao.setMinimumSize(QtCore.QSize(0, 32))
         self.lbDescricao.setStyleSheet("color: rgb(255, 255, 255);")
         self.lbDescricao.setObjectName("lbDescricao")
         self.horizontalLayout_23.addWidget(self.lbDescricao)
-        self.leDescricaoGrupo = QtWidgets.QLineEdit(self.frame_2)
+        self.leDescricaoGrupo = QtWidgets.QLineEdit(self.frDescricao)
+        self.leDescricaoGrupo.setStyleSheet("#leDescricaoGrupo {\n"
+"    background-color: transparent;\n"
+"}")
         self.leDescricaoGrupo.setObjectName("leDescricaoGrupo")
         self.horizontalLayout_23.addWidget(self.leDescricaoGrupo)
-        self.verticalLayout.addWidget(self.frame_2)
-        self.tblGrupo = QtWidgets.QTableWidget(self.frFormarGRupos)
+        self.verticalLayout.addWidget(self.frDescricao)
+        self.tblGrupo = QtWidgets.QTableWidget(self.frFormarGrupos)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(60)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.tblGrupo.sizePolicy().hasHeightForWidth())
+        self.tblGrupo.setSizePolicy(sizePolicy)
+        self.tblGrupo.setMaximumSize(QtCore.QSize(448, 16777215))
+        self.tblGrupo.setStyleSheet("#tblGrupo {\n"
+"    /*background-color: transparent;*/\n"
+"    border: none;\n"
+"    color: #444;\n"
+"    margin-left: 16px;\n"
+"    margin-right: 16px;\n"
+"    /*margin-bottom: 24px;\n"
+"    margin-top: 8px;*/\n"
+"}\n"
+"\n"
+"#tblGrupo::item {\n"
+"    padding: 8px;\n"
+"    padding-bottom: 4px;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 24pt;\n"
+"}")
         self.tblGrupo.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.tblGrupo.setAlternatingRowColors(False)
+        self.tblGrupo.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.tblGrupo.setEditTriggers(QtWidgets.QAbstractItemView.DoubleClicked|QtWidgets.QAbstractItemView.EditKeyPressed)
+        self.tblGrupo.setDefaultDropAction(QtCore.Qt.IgnoreAction)
+        self.tblGrupo.setAlternatingRowColors(True)
         self.tblGrupo.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
+        self.tblGrupo.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.tblGrupo.setIconSize(QtCore.QSize(0, 24))
         self.tblGrupo.setShowGrid(False)
         self.tblGrupo.setWordWrap(True)
         self.tblGrupo.setObjectName("tblGrupo")
@@ -999,19 +1085,19 @@ class Ui_wdgCliente(object):
         self.tblGrupo.setHorizontalHeaderItem(3, item)
         self.tblGrupo.horizontalHeader().setVisible(False)
         self.tblGrupo.horizontalHeader().setCascadingSectionResizes(True)
-        self.tblGrupo.horizontalHeader().setStretchLastSection(True)
+        self.tblGrupo.horizontalHeader().setStretchLastSection(False)
         self.tblGrupo.verticalHeader().setVisible(False)
         self.verticalLayout.addWidget(self.tblGrupo)
-        self.pbAddGrupo = QtWidgets.QPushButton(self.frFormarGRupos)
+        self.pbAddGrupo = QtWidgets.QPushButton(self.frFormarGrupos)
         self.pbAddGrupo.setStyleSheet("background-color: rgb(83, 162, 193);")
         self.pbAddGrupo.setObjectName("pbAddGrupo")
         self.verticalLayout.addWidget(self.pbAddGrupo)
-        self.label_3.raise_()
         self.frTitulo.raise_()
-        self.frame_2.raise_()
+        self.frDescricao.raise_()
         self.pbAddGrupo.raise_()
         self.tblGrupo.raise_()
-        self.horizontalLayout_3.addWidget(self.frFormarGRupos)
+        self.frCabecalhoGrupo.raise_()
+        self.horizontalLayout_3.addWidget(self.frFormarGrupos)
         self.tabsCliente.addTab(self.tbGrupoCliente, "")
         self.tbBoletoCliente = QtWidgets.QWidget()
         self.tbBoletoCliente.setObjectName("tbBoletoCliente")
@@ -1019,7 +1105,7 @@ class Ui_wdgCliente(object):
         self.gridLayout.addWidget(self.tabsCliente, 0, 0, 1, 1)
 
         self.retranslateUi(wdgCliente)
-        self.tabsCliente.setCurrentIndex(2)
+        self.tabsCliente.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(wdgCliente)
 
     def retranslateUi(self, wdgCliente):
@@ -1075,7 +1161,8 @@ class Ui_wdgCliente(object):
         self.lbCompl.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">Complemento:    </p></body></html>"))
         self.leCompl.setPlaceholderText(_translate("wdgCliente", "Complemento"))
         self.tabsCliente.setTabText(self.tabsCliente.indexOf(self.tbCadastraCliente), _translate("wdgCliente", "Cadastro"))
-        self.label_3.setText(_translate("wdgCliente", "Criar um grupo"))
+        self.lbTituloGrupo.setText(_translate("wdgCliente", "Criar um grupo"))
+        self.lbDica.setText(_translate("wdgCliente", "Criar um grupo facilita o seu trabalho de organização"))
         self.lbTitulo_2.setText(_translate("wdgCliente", "Título"))
         self.lbDescricao.setText(_translate("wdgCliente", "Descrição"))
         item = self.tblGrupo.horizontalHeaderItem(0)

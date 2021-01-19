@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="Editar">
+    <file>cardEditar.png</file>
+  </qresource>
+  <qresource prefix="ExcluirW">
+    <file>cardExcluirWhite.png</file>
+  </qresource>
+  <qresource prefix="Excluir">
+    <file>cardExcluirRed.png</file>
+  </qresource>
+</RCC>

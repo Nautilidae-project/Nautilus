@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'cardGrupo1.ui'
+# Form implementation generated from reading ui file 'cardGrupo.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.2
 #
@@ -14,9 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_wdgGrupoCard(object):
     def setupUi(self, wdgGrupoCard):
         wdgGrupoCard.setObjectName("wdgGrupoCard")
-        wdgGrupoCard.resize(300, 200)
-        wdgGrupoCard.setMinimumSize(QtCore.QSize(200, 200))
-        wdgGrupoCard.setMaximumSize(QtCore.QSize(300, 200))
+        wdgGrupoCard.resize(300, 250)
+        wdgGrupoCard.setMinimumSize(QtCore.QSize(200, 250))
+        wdgGrupoCard.setMaximumSize(QtCore.QSize(300, 400))
         wdgGrupoCard.setStyleSheet("/*#wdgGrupoCard {\n"
 "    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgba(105, 33, 140, 60), stop:1 rgba(112, 237, 255, 60));    \n"
 "}*/")
@@ -32,13 +32,14 @@ class Ui_wdgGrupoCard(object):
         self.frGrupoCard.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frGrupoCard.setObjectName("frGrupoCard")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frGrupoCard)
-        self.verticalLayout_2.setSpacing(10)
+        self.verticalLayout_2.setContentsMargins(8, 4, 4, 8)
+        self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.lbTituloCard = QtWidgets.QLabel(self.frGrupoCard)
         self.lbTituloCard.setMinimumSize(QtCore.QSize(0, 50))
         self.lbTituloCard.setMaximumSize(QtCore.QSize(16777215, 50))
         font = QtGui.QFont()
-        font.setFamily("DejaVu Sans")
+        font.setFamily("Ubuntu")
         font.setPointSize(18)
         font.setBold(True)
         font.setWeight(75)
@@ -46,34 +47,127 @@ class Ui_wdgGrupoCard(object):
         self.lbTituloCard.setStyleSheet("#lbTituloCard{\n"
 "    color: #fff;\n"
 "    background-color: transparent;\n"
+"    border: 0px;\n"
+"    font-size: 18pt;\n"
+"    font-family: Ubuntu;\n"
+"    font-weight: bold;\n"
 "}")
         self.lbTituloCard.setObjectName("lbTituloCard")
         self.verticalLayout_2.addWidget(self.lbTituloCard)
         self.lbDescricao = QtWidgets.QLabel(self.frGrupoCard)
-        self.lbDescricao.setMinimumSize(QtCore.QSize(0, 24))
-        self.lbDescricao.setMaximumSize(QtCore.QSize(16777215, 24))
+        self.lbDescricao.setMinimumSize(QtCore.QSize(0, 18))
+        self.lbDescricao.setMaximumSize(QtCore.QSize(16777215, 60))
         font = QtGui.QFont()
-        font.setFamily("DejaVu Sans")
+        font.setFamily("Ubuntu")
         font.setPointSize(12)
+        font.setItalic(True)
         self.lbDescricao.setFont(font)
         self.lbDescricao.setStyleSheet("#lbDescricao{\n"
 "    color: #fff;\n"
 "    background-color: transparent;\n"
+"    border: 0px;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 12pt;\n"
+"    font-style: italic;\n"
 "}")
+        self.lbDescricao.setWordWrap(True)
         self.lbDescricao.setObjectName("lbDescricao")
         self.verticalLayout_2.addWidget(self.lbDescricao)
-        self.pb1 = QtWidgets.QPushButton(self.frGrupoCard)
-        self.pb1.setStyleSheet("#pb1{\n"
-"    background-color: rgba(211, 215, 207, 0);\n"
+        self.frBottom = QtWidgets.QFrame(self.frGrupoCard)
+        self.frBottom.setStyleSheet("#frBottom {\n"
+"    background-color: transparent;\n"
 "}")
-        self.pb1.setObjectName("pb1")
-        self.verticalLayout_2.addWidget(self.pb1)
-        self.pb2 = QtWidgets.QPushButton(self.frGrupoCard)
-        self.pb2.setStyleSheet("#pb2{\n"
-"    background-color: rgba(211, 215, 207, 0);\n"
+        self.frBottom.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frBottom.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frBottom.setObjectName("frBottom")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.frBottom)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setSpacing(0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.tblGrupoItem = QtWidgets.QTableWidget(self.frBottom)
+        self.tblGrupoItem.setStyleSheet("#tblGrupoItem {\n"
+"    background-color: rgba(233, 185, 110, 200);\n"
+"    /*border: none;*/\n"
+"    color: #444;\n"
+"    margin-bottom: 8px;\n"
+"    /*margin-right: 16px;*/\n"
+"    margin-top: 16px;\n"
+"}\n"
+"\n"
+"#tblGrupoItem::item {\n"
+"    margin-left: 16px;\n"
+"    /*padding-bottom: 4px;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 16pt;*/\n"
+"    color: #fff;\n"
 "}")
-        self.pb2.setObjectName("pb2")
-        self.verticalLayout_2.addWidget(self.pb2)
+        self.tblGrupoItem.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.tblGrupoItem.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.tblGrupoItem.setAlternatingRowColors(False)
+        self.tblGrupoItem.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
+        self.tblGrupoItem.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.tblGrupoItem.setShowGrid(False)
+        self.tblGrupoItem.setObjectName("tblGrupoItem")
+        self.tblGrupoItem.setColumnCount(3)
+        self.tblGrupoItem.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.tblGrupoItem.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tblGrupoItem.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tblGrupoItem.setHorizontalHeaderItem(2, item)
+        self.tblGrupoItem.horizontalHeader().setVisible(False)
+        self.tblGrupoItem.verticalHeader().setVisible(False)
+        self.horizontalLayout.addWidget(self.tblGrupoItem)
+        self.frBotoes = QtWidgets.QFrame(self.frBottom)
+        self.frBotoes.setMinimumSize(QtCore.QSize(24, 0))
+        self.frBotoes.setMaximumSize(QtCore.QSize(24, 16777215))
+        self.frBotoes.setStyleSheet("#frBotoes{\n"
+"    background-color: transparent;\n"
+"}")
+        self.frBotoes.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frBotoes.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frBotoes.setObjectName("frBotoes")
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.frBotoes)
+        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_3.setSpacing(32)
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.pbEditar = QtWidgets.QPushButton(self.frBotoes)
+        self.pbEditar.setMinimumSize(QtCore.QSize(24, 24))
+        self.pbEditar.setMaximumSize(QtCore.QSize(24, 24))
+        self.pbEditar.setStyleSheet("#pbEditar {\n"
+"    background-image: url(:/Editar/cardEditar.png);\n"
+"    background-position: center;\n"
+"    background-repeat: no-repeat;\n"
+"}")
+        self.pbEditar.setText("")
+        self.pbEditar.setObjectName("pbEditar")
+        self.verticalLayout_3.addWidget(self.pbEditar)
+        self.pbExcluir = QtWidgets.QPushButton(self.frBotoes)
+        self.pbExcluir.setMinimumSize(QtCore.QSize(24, 24))
+        self.pbExcluir.setMaximumSize(QtCore.QSize(24, 24))
+        self.pbExcluir.setStyleSheet("#pbExcluir {\n"
+"    background-image: url(:/Excluir/cardExcluirRed.png);\n"
+"    background-position: center;\n"
+"    background-repeat: no-repeat;\n"
+"    background-color: #fff;\n"
+"}\n"
+"\n"
+"#pbExcluir::hover {\n"
+"    background-image: url(:/ExcluirW/cardExcluirWhite.png);\n"
+"    background-position: center;\n"
+"    background-repeat: no-repeat;\n"
+"    background-color: #ff8d74;\n"
+"}")
+        self.pbExcluir.setText("")
+        self.pbExcluir.setObjectName("pbExcluir")
+        self.verticalLayout_3.addWidget(self.pbExcluir)
+        self.pbEditar.raise_()
+        self.pbExcluir.raise_()
+        self.horizontalLayout.addWidget(self.frBotoes, 0, QtCore.Qt.AlignVCenter)
+        self.frBotoes.raise_()
+        self.tblGrupoItem.raise_()
+        self.verticalLayout_2.addWidget(self.frBottom, 0, QtCore.Qt.AlignBottom)
         self.verticalLayout.addWidget(self.frGrupoCard)
 
         self.retranslateUi(wdgGrupoCard)
@@ -84,8 +178,13 @@ class Ui_wdgGrupoCard(object):
         wdgGrupoCard.setWindowTitle(_translate("wdgGrupoCard", "Form"))
         self.lbTituloCard.setText(_translate("wdgGrupoCard", "Titulo"))
         self.lbDescricao.setText(_translate("wdgGrupoCard", "Descrição"))
-        self.pb1.setText(_translate("wdgGrupoCard", "PushButton"))
-        self.pb2.setText(_translate("wdgGrupoCard", "PushButton"))
+        item = self.tblGrupoItem.horizontalHeaderItem(0)
+        item.setText(_translate("wdgGrupoCard", "Id"))
+        item = self.tblGrupoItem.horizontalHeaderItem(1)
+        item.setText(_translate("wdgGrupoCard", "Nome"))
+        item = self.tblGrupoItem.horizontalHeaderItem(2)
+        item.setText(_translate("wdgGrupoCard", "Sobrenome"))
+import Telas.Imagens.cardResources
 
 
 if __name__ == "__main__":

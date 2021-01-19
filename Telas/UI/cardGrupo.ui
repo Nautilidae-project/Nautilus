@@ -1,114 +1,364 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>frGrupoCard</class>
- <widget class="QFrame" name="frGrupoCard">
+ <class>wdgGrupoCard</class>
+ <widget class="QWidget" name="wdgGrupoCard">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>300</width>
-    <height>200</height>
+    <height>250</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>200</width>
-    <height>100</height>
+    <height>250</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>300</width>
-    <height>200</height>
+    <height>400</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>Frame</string>
+   <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#frGrupoCard {
-	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgba(105, 33, 140, 120), stop:1 rgba(112, 237, 255, 120));	
-}</string>
+   <string notr="true">/*#wdgGrupoCard {
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgba(105, 33, 140, 60), stop:1 rgba(112, 237, 255, 60));	
+}*/</string>
   </property>
-  <property name="frameShape">
-   <enum>QFrame::NoFrame</enum>
-  </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <property name="leftMargin">
-    <number>4</number>
-   </property>
-   <property name="topMargin">
-    <number>4</number>
-   </property>
-   <property name="rightMargin">
-    <number>4</number>
-   </property>
-   <property name="bottomMargin">
-    <number>4</number>
-   </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>
    </property>
-   <item row="2" column="0">
-    <widget class="QLabel" name="lbDescricao">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>100</height>
-      </size>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QFrame" name="frGrupoCard">
+     <property name="styleSheet">
+      <string notr="true">#frGrupoCard {
+	background-color: #0e90ad;
+}</string>
      </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
      </property>
-     <property name="text">
-      <string>Descrição</string>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
      </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="lbTituloCard">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>50</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>50</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>16</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Titulo</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="QPushButton" name="pushButton_2">
-     <property name="text">
-      <string>PushButton</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>PushButton</string>
-     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>8</number>
+      </property>
+      <property name="topMargin">
+       <number>4</number>
+      </property>
+      <property name="rightMargin">
+       <number>4</number>
+      </property>
+      <property name="bottomMargin">
+       <number>8</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="lbTituloCard">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Ubuntu</family>
+          <pointsize>18</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#lbTituloCard{
+	color: #fff;
+	background-color: transparent;
+	border: 0px;
+	font-size: 18pt;
+	font-family: Ubuntu;
+	font-weight: bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>Titulo</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lbDescricao">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>18</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Ubuntu</family>
+          <pointsize>12</pointsize>
+          <italic>true</italic>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#lbDescricao{
+	color: #fff;
+	background-color: transparent;
+	border: 0px;
+	font-family: Ubuntu;
+	font-size: 12pt;
+	font-style: italic;
+}</string>
+        </property>
+        <property name="text">
+         <string>Descrição</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignBottom">
+       <widget class="QFrame" name="frBottom">
+        <property name="styleSheet">
+         <string notr="true">#frBottom {
+	background-color: transparent;
+}</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QTableWidget" name="tblGrupoItem">
+           <property name="styleSheet">
+            <string notr="true">#tblGrupoItem {
+	background-color: rgba(233, 185, 110, 200);
+    /*border: none;*/
+	color: #444;
+	margin-bottom: 8px;
+	/*margin-right: 16px;*/
+	margin-top: 16px;
+}
+
+#tblGrupoItem::item {
+	margin-left: 16px;
+	/*padding-bottom: 4px;
+	font-family: Ubuntu;
+	font-size: 16pt;*/
+	color: #fff;
+}</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="editTriggers">
+            <set>QAbstractItemView::NoEditTriggers</set>
+           </property>
+           <property name="alternatingRowColors">
+            <bool>false</bool>
+           </property>
+           <property name="selectionMode">
+            <enum>QAbstractItemView::NoSelection</enum>
+           </property>
+           <property name="selectionBehavior">
+            <enum>QAbstractItemView::SelectRows</enum>
+           </property>
+           <property name="showGrid">
+            <bool>false</bool>
+           </property>
+           <attribute name="horizontalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <attribute name="verticalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <column>
+            <property name="text">
+             <string>Id</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nome</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Sobrenome</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignVCenter">
+          <widget class="QFrame" name="frBotoes">
+           <property name="minimumSize">
+            <size>
+             <width>24</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#frBotoes{
+	background-color: transparent;
+}</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <property name="spacing">
+             <number>32</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QPushButton" name="pbEditar">
+              <property name="minimumSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#pbEditar {
+	background-image: url(:/Editar/cardEditar.png);
+	background-position: center;
+	background-repeat: no-repeat;
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pbExcluir">
+              <property name="minimumSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#pbExcluir {
+	background-image: url(:/Excluir/cardExcluirRed.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #fff;
+}
+
+#pbExcluir::hover {
+	background-image: url(:/ExcluirW/cardExcluirWhite.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #ff8d74;
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+           <zorder>pbEditar</zorder>
+           <zorder>pbExcluir</zorder>
+          </widget>
+         </item>
+        </layout>
+        <zorder>frBotoes</zorder>
+        <zorder>tblGrupoItem</zorder>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../Imagens/cardResources.qrc"/>
+ </resources>
  <connections/>
 </ui>
