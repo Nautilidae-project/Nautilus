@@ -9,15 +9,20 @@ from Telas.dashCliente import Ui_wdgCliente
 from brain.DAOs.UserConfig import DaoConfiguracoes
 from brain.DAOs.daoCliente import DaoCliente
 from brain.DAOs.daoGrupo import DaoGrupo
+from brain.DAOs.daoParticipantes import DaoParticipantes
 from brain.dashboard.Cliente.localWidgets.gruposCard import GruposCard
 from brain.dashboard.Cliente.relatorio import RelatorioCliente
 from brain.dashboard.Sinais import Sinais
 from brain.delegates.alinhamento import AlinhamentoDelegate
 from brain.envioDeMensagens import Mensagens
-from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt, formasPagamento
+from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt
 from modelos.clienteModel import Cliente
 from modelos.efeitosModel import Efeitos
 from modelos.grupoModel import GrupoModelo
+
+from math import ceil
+
+from modelos.participantesModel import ParticipanteModel
 
 
 class brainCliente(Ui_wdgCliente, QWidget):
@@ -79,16 +84,17 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.pbAddGrupo.clicked.connect(lambda: self.addGrupo())
 
         # Tentando fazer uma lista de cards de grupos
-        self.adicionaGruposCards()
+        self.atualizaGruposCards()
 
-    def adicionaGruposCards(self):
-        print('Atualizou os cards')
+    def atualizaGruposCards(self):
 
-        # if not self.gridBox.isEmpty():
-        # print(self.gridBox.)
+        # Se já houverem widgets na tela, reinicia o layout
+        if self.gridBox.count():
+            self.limpaLayout()
 
         daoGrupo = DaoGrupo()
         colunas = 1
+        linhas = 1
 
         # Busca no banco de dados todos os grupos criados
         gruposCadastrados = daoGrupo.findAll()
@@ -101,6 +107,9 @@ class brainCliente(Ui_wdgCliente, QWidget):
         elif len(gruposCadastrados) > 8 and self.size().width() > 900:
             colunas = 3
 
+        linhas = ceil(len(gruposCadastrados)/colunas)
+
+
         # Cria um lista contendo o modelo de cada grupo buscado no banco de dados
         gruposModelos = [GrupoModelo(gruposCadastrados[i]) for i in range(0, len(gruposCadastrados))]
 
@@ -108,14 +117,15 @@ class brainCliente(Ui_wdgCliente, QWidget):
         listaGruposCards = [GruposCard(parent=self, grupo=gruposModelos[i]) for i in range(0, len(gruposCadastrados))]
 
         # Cria uma matriz das posições nas quais os cards serão apresentados
-        posicoes = [(linha, coluna) for linha in range(int(len(listaGruposCards) / colunas)) for coluna in range(colunas)]
+        posicoes = [(linha, coluna) for linha in range(linhas) for coluna in range(colunas)]
 
         for card, posicao in zip(listaGruposCards, posicoes):
             self.efeito.shadowCards([card], color=(105, 210, 231, 80))
             self.gridBox.addWidget(card, *posicao)
         self.gridBox.setSpacing(32)
 
-        self.scrollGrupos.setLayout(self.gridBox)
+        if self.gridBox.count():
+            self.scrollGrupos.setLayout(self.gridBox)
 
         self.tblClientes.doubleClicked.connect(self.enviarUmEmail)
 
@@ -141,8 +151,44 @@ class brainCliente(Ui_wdgCliente, QWidget):
             f"Clientes Inativos:\n{self.daoCliente.contaCliente('ativo=0')}/{self.daoCliente.contaCliente()}")
 
     def addGrupo(self):
-        self.gridLayout_6.addWidget(self.cardGrupo, 0, 0)
-        print("Chamando")
+        '''
+        Função confere se é possível fazer a inserção do grupo no banco de dados e, caso afirmativo:
+        - Cria uma lista com os ids dos participantes do grupo;
+        - Cria um grupo com o título e a descrição definidas;
+        - Pega o id do grupo;
+        - Insere a lista de participantes no banco com o id do grupo criado.
+        Caso contrário, retorna False e dá a mensagem de erro ao usuário.
+        :return: bool
+        '''
+
+        if self.confereDadosGrupo():
+            listaParticipantes = list()
+            daoGrupo = DaoGrupo()
+            daoParticipantes = DaoParticipantes()
+            dictGrupo = {
+                'grupoId': None,
+                'titulo': self.leTituloGrupo.text(),
+                'descricao': self.leDescricaoGrupo.text(),
+                'dataCadastro': None,
+                'dataUltAlt': None
+            }
+
+            grupoModel = GrupoModelo(dictGrupo=dictGrupo)
+            grupoId = daoGrupo.insereGrupo(grupoModel)
+
+            if grupoId is not None:
+                for i in range(self.tblGrupo.rowCount()):
+                    if self.tblGrupo.item(i, 3).checkState():
+                        listaParticipantes.append(ParticipanteModel(
+                            listaParticipante=[grupoId, self.tblGrupo.item(i, 0).text()]
+                        ))
+                daoParticipantes.insereParticipantes(listaParticipantes)
+                
+            self.limpaLayout()
+            self.atualizaGruposCards()
+            self.limpaCampos()
+        else:
+            print('Não pode cadastrar grupo')
 
     def defineCampo(self, campo):
 
@@ -323,6 +369,11 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leInfoBairro.clear()
         self.leInfoEndereco.clear()
         self.leInfoEmail.clear()
+        self.leTituloGrupo.clear()
+        self.leDescricaoGrupo.clear()
+
+        for i in range(0, self.tblClientes.rowCount()):
+            self.tblGrupo.item(i, 3).setCheckState(QtCore.Qt.Unchecked)
 
     def showPopupSimCancela(self, mensagem, titulo='Atenção!'):
         dialogPopup = QMessageBox()
@@ -357,7 +408,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.sinais.sResizeWindow.emit()
 
     def resizedWindow(self):
-        # self.adicionaGruposCards()
+        # self.atualizaGruposCards()
         pass
 
     def selecionaParticipante(self, *args):
@@ -369,6 +420,31 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.tblGrupo.item(args[0].row(), 3).setCheckState(QtCore.Qt.Checked)
         else:
             self.tblGrupo.item(args[0].row(), 3).setCheckState(QtCore.Qt.Unchecked)
+
+    def limpaLayout(self):
+        '''
+        Função que deleta todos os cards de grupos inseridos no gridLayout
+        :return:
+        '''
+
+        for i in reversed(range(self.gridBox.count())):
+            self.gridBox.takeAt(i).widget().setParent(None)
+
+    def confereDadosGrupo(self):
+        '''
+        Função que confere se, ao tentar criar um grupo, o campo título não está
+        vazio e se tem, pelo menos, um cliente selecionado
+        :return: bool
+        '''
+
+        if len(self.leTituloGrupo.text()) < 1:
+            return False
+
+        for i in range(self.tblGrupo.rowCount()):
+            if self.tblGrupo.item(i, 3).checkState():
+                return True
+        return False
+
 
 
 

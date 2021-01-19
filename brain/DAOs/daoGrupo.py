@@ -4,7 +4,7 @@ from configBD import ConfigDB
 from modelos.grupoModel import GrupoModelo
 
 
-class DaoGrupo():
+class DaoGrupo:
 
     def __init__(self):
         self.configs = ConfigDB()
@@ -34,7 +34,7 @@ class DaoGrupo():
         try:
             cursor.execute(strComando)
             self.connection.commit()
-            cursor.close()
+            # cursor.close()
         except:
             raise Warning(f'Erro SQL - insereGrupo({grupo.titulo}) <INSERT>')
         finally:

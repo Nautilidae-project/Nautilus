@@ -3,21 +3,22 @@ import datetime
 
 class GrupoModelo:
 
-    def __init__(self, listGrupo: list=None):
+    def __init__(self, listGrupo: list= None, dictGrupo: dict= None):
+
+        self.grupoId = None
+        self.titulo = None
+        self.descricao = None
+        self.dataCadastro = None
+        self.dataUltAlt = None
+
         if listGrupo is not None:
             self.fromList(listGrupo)
-        else:
-            self.grupoId = None
-            # self.participantesId = None
-            self.titulo = None
-            self.descricao = None
-            self.dataCadastro = None
-            self.dataUltAlt = None
+        elif dictGrupo is not None:
+            self.fromDict(dictGrupo)
 
     def toDict(self):
         dictGrupo = {
             'grupoId': self.grupoId,
-            # 'participantesId': self.participantesId,
             'titulo': self.titulo,
             'descricao': self.descricao,
             'dataCadastro': self.dataCadastro,
@@ -26,15 +27,19 @@ class GrupoModelo:
         return dictGrupo
 
     def fromDict(self, dictGrupo: dict):
-        self.grupoId = dictGrupo['grupoId']
-        # self.participantesId = dictGrupo['participantesId']
+        if dictGrupo['grupoId'] is not None:
+            self.grupoId = dictGrupo['grupoId']
+
+        if dictGrupo['dataCadastro'] is not None:
+            self.dataCadastro = dictGrupo['dataCadastro']
+
+        if dictGrupo['dataUltAlt'] is not None:
+            self.dataUltAlt = dictGrupo['dataUltAlt']
+
         self.titulo = dictGrupo['titulo']
         self.descricao = dictGrupo['descricao']
-        self.dataCadastro = dictGrupo['dataCadastro']
-        self.dataUltAlt = dictGrupo['dataUltAlt']
 
     def fromList(self, listGrupo: list):
-        # print(listGrupo)
         self.grupoId = listGrupo[0]
         self.titulo = listGrupo[1]
         self.descricao = listGrupo[2]
