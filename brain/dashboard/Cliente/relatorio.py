@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import os
 
+from PyQt5.QtWidgets import QFileDialog, QAction
 from pylatex import Document, Head, Subsection, Tabular, MultiColumn, \
     Command, NoEscape, Tabularx, MiniPage, StandAloneGraphic, Tabu, PageStyle, Foot, simple_page_number, LongTabu, \
     FlushLeft
@@ -122,11 +123,15 @@ class RelatorioCliente:
 
     def exportaRelatorio(self, tipo='pdf'):
 
+        fileName = QFileDialog.getSaveFileName(directory='/home/', options=QFileDialog.DontUseNativeDialog)
+        print(f'\033[33m{fileName[0]}')
+
         if tipo == 'pdf':
             self.constroiCabecalho()
             self.constroiCorpo()
             self.documento.preamble.append(self.firstPage)
-            self.documento.generate_pdf(f'Relatório de clientes', clean_tex=False)
+            # self.documento.generate_pdf(fileName[0], clean_tex=False)
+            self.documento.generate_pdf(fileName[0], clean_tex=False)
 
         else:
             self.exportaExcel()
