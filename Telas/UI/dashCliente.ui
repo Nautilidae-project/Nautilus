@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>999</width>
+    <width>1094</width>
     <height>721</height>
    </rect>
   </property>
@@ -2432,7 +2432,7 @@ QScrollBar:vertical {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>470</width>
+               <width>552</width>
                <height>510</height>
               </rect>
              </property>
@@ -2903,7 +2903,7 @@ QScrollBar:vertical {
           <item>
            <widget class="QTableWidget" name="tblGrupo">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
+             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>60</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -2924,6 +2924,7 @@ QScrollBar:vertical {
 	padding-bottom: 4px;
 	padding-top: 4px;
 	margin-right: 8px;
+	margin-left: 8px;
 }
 
 #tblGrupo::item {

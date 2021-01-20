@@ -122,7 +122,6 @@ class DaoCliente:
         cursor = self.connection.cursor()
 
         strComando = f""" UPDATE {self.configs.tblCliente} SET 
-                
                             nomeCliente = '{cliente.nomeCliente}', 
                             sobrenomeCliente = '{cliente.sobrenomeCliente}', 
                             telefone = '{cliente.telefone}',
@@ -135,19 +134,18 @@ class DaoCliente:
                             meioPagamento = '{cliente.meioPagamento}', 
                             ativo = {cliente.ativo},
                             dataUltAlt = NOW()
-                
                         WHERE
                             clienteId = {cliente.clienteId}
                     
                     """
-
         try:
+            print(strComando)
             cursor.execute(strComando)
             self.connection.commit()
         except:
             raise Warning(f'Erro SQL - atualizaInfoCliente({cliente.clienteId}) <UPDATE>')
         finally:
-            cursor.close()
+            self.disconectBD(cursor)
 
     def contaTotal(self, where=None):
 

@@ -44,6 +44,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.pbCancelar.clicked.connect(self.sairModoEdicao)
         self.carregaComboBoxes()
         self.cbxOrdenar.currentTextChanged.connect(self.ordenarCards)
+        self.sinais.sResizeWindow.connect(self.redimensionaTela)
 
         self.gridBox = QGridLayout()
 
@@ -101,18 +102,18 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.limpaLayout()
 
         daoGrupo = DaoGrupo()
-        colunas = 2
+        colunas = 1
         linhas = 1
+
+        widthCard = self.frGruposFormados.sizeHint().width() + 20
+        widthScreen = self.window().size().width()
 
         # Busca no banco de dados todos os grupos criados
         gruposCadastrados = daoGrupo.findAll()
 
-        # Calcula quantas colunas teremos
-        if 4 < len(gruposCadastrados) <= 8:
+        if len(gruposCadastrados) > 8 and 2*widthCard < widthScreen:
             colunas = 2
-        # elif len(gruposCadastrados) > 8 and self.size().width() < 900:
-        #     colunas = 2
-        elif len(gruposCadastrados) > 8:
+        elif len(gruposCadastrados) > 8 and 3*widthCard < widthScreen:
             colunas = 3
 
         linhas = ceil(len(gruposCadastrados)/colunas)
@@ -528,6 +529,36 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.limpaLayout()
             for i in cardsSorted:
                 self.gridBox.addWidget(i)
+            self.scrollGrupos.setLayout(self.gridBox)
+
+    def redimensionaTela(self):
+        sizeCard = GruposCard().sizeHint().width() + 20
+        sizeArea = self.frGruposFormados.size().width()
+
+        if 3*sizeCard < sizeArea:
+            colunas = 3
+        elif 2*sizeCard < sizeArea:
+            colunas = 2
+        else:
+            colunas = 1
+
+        listaCards = list()
+
+        for i in range(self.gridBox.count()):
+            listaCards.append(self.gridBox.itemAt(i).widget())
+
+        self.limpaLayout()
+
+        linhas = ceil(len(listaCards) / colunas)
+
+        posicoes = [(linha, coluna) for linha in range(linhas) for coluna in range(colunas)]
+
+        for card, posicao in zip(listaCards, posicoes):
+            self.efeito.shadowCards([card], color=(105, 210, 231, 80))
+            self.gridBox.addWidget(card, *posicao)
+        self.gridBox.setSpacing(32)
+
+        if self.gridBox.count():
             self.scrollGrupos.setLayout(self.gridBox)
 
 if __name__ == '__main__':
