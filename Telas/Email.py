@@ -14,96 +14,170 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(646, 389)
+        Form.resize(795, 450)
         Form.setMaximumSize(QtCore.QSize(16777215, 450))
         Form.setStyleSheet("#Form {\n"
-"    background-color: rgb(48, 140, 198);\n"
+"    background-color: #0E90AD;\n"
 "}\n"
 "\n"
-"#textEdit {\n"
-"    border: 2px solid;\n"
-"    border-radius: 10px;\n"
-"}\n"
+"/*-------------------------- Label --------------------------*/\n"
 "\n"
 "QLabel {\n"
-"    border: 2px tranparent;\n"
+"    border: 2px solid transparent;\n"
 "    border-radius: 10px;\n"
-"    \n"
-"    background-color: rgb(211, 215, 207);\n"
+"    background-color: #DFD880;\n"
+"    font: 14px \"monospace\";\n"
 "}\n"
 "\n"
 "#lbRecebeNomeArquivo {\n"
-"    border: 2px solid;\n"
+"    border: 2px solid transparent;\n"
 "    border-radius: 10px;\n"
 "}\n"
+"\n"
+"/*-------------------------- LineEdit --------------------------*/\n"
+"\n"
+"QLineEdit{\n"
+"    border: 2px solid transparent;\n"
+"    border-radius: 10px;\n"
+"    font: 12px \"monospace\";\n"
+"\n"
+"\n"
+"\n"
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 16px;\n"
+"    border-color: transparent;\n"
+"    font: 12px \"monospace\";\n"
+"    min-width: 1em;\n"
+"    padding:8px;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border-bottom-left-radius: 0;\n"
+"    border-top-left-radius: 0;\n"
+"    border-left: 5px solid #DFD880;\n"
+"}\n"
+"\n"
+"/*-------------------------- TextEdit --------------------------*/\n"
+"\n"
+"#textEdit {\n"
+"    color:black;\n"
+"    background-color: white;\n"
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 16px;\n"
+"    border-color: transparent;\n"
+"    font: 12px \"monospace\";\n"
+"    min-width: 1em;\n"
+"    padding:16px;\n"
+"}\n"
+"\n"
+"#textEdit:focus {\n"
+"    border-bottom-left-radius: 0;\n"
+"    border-top-left-radius: 0;\n"
+"    border-left: 10px solid #DFD880;\n"
+"}\n"
+"\n"
+"/*-------------------------- Frame --------------------------*/\n"
+"\n"
+"#frArquivosBotoes {\n"
+"    border: None;\n"
+"}\n"
+"\n"
+"/*-------------------------- Botões --------------------------*/\n"
 "\n"
 "QPushButton{\n"
-"    color: rgb(255, 255, 255);\n"
-"    background-color: rgb(174, 2, 2);\n"
-"    border: 2px solid;\n"
+"    color: #fff;\n"
+"    background-color: #24cc63;\n"
+"    border: 2px solid transparent;\n"
 "    border-radius: 10px;\n"
+"    font: 14px \"monospace\";\n"
 "}\n"
 "\n"
-"#pbEnviar {\n"
-"    background-color: rgb(64, 191, 160);\n"
-"\n"
+"#pbAnexar{\n"
+"    color: #000;\n"
+"    background-color: #eaeaea;\n"
 "}\n"
 "\n"
-"#pbEnviar:hover {\n"
-"    background-color: rgb(64, 191, 121);\n"
-"}\n"
-"\n"
-"#pbAnexar:hover {\n"
-"    background-color: rgb(173, 127, 168);\n"
-"}\n"
-"")
-        self.formLayout = QtWidgets.QFormLayout(Form)
-        self.formLayout.setHorizontalSpacing(6)
-        self.formLayout.setObjectName("formLayout")
-        self.label_3 = QtWidgets.QLabel(Form)
-        self.label_3.setMinimumSize(QtCore.QSize(60, 0))
-        self.label_3.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_3.setObjectName("label_3")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_3)
-        self.leId = QtWidgets.QLineEdit(Form)
-        self.leId.setInputMask("")
-        self.leId.setText("")
-        self.leId.setObjectName("leId")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.leId)
-        self.label = QtWidgets.QLabel(Form)
-        self.label.setMinimumSize(QtCore.QSize(60, 0))
-        self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setObjectName("label")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label)
+"#pbEnviar:hover, #pbAnexar:hover{\n"
+"    background-color: #80CCE1;\n"
+"}")
+        self.gridLayout = QtWidgets.QGridLayout(Form)
+        self.gridLayout.setContentsMargins(25, 25, 25, 25)
+        self.gridLayout.setHorizontalSpacing(15)
+        self.gridLayout.setVerticalSpacing(10)
+        self.gridLayout.setObjectName("gridLayout")
         self.leNome = QtWidgets.QLineEdit(Form)
         self.leNome.setInputMask("")
         self.leNome.setText("")
         self.leNome.setObjectName("leNome")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.leNome)
-        self.label_2 = QtWidgets.QLabel(Form)
-        self.label_2.setMinimumSize(QtCore.QSize(60, 0))
-        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_2.setObjectName("label_2")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_2)
-        self.leEmail = QtWidgets.QLineEdit(Form)
-        self.leEmail.setText("")
-        self.leEmail.setEchoMode(QtWidgets.QLineEdit.Normal)
-        self.leEmail.setObjectName("leEmail")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.leEmail)
-        self.label_4 = QtWidgets.QLabel(Form)
-        self.label_4.setMinimumSize(QtCore.QSize(60, 0))
-        self.label_4.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_4.setObjectName("label_4")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.label_4)
+        self.gridLayout.addWidget(self.leNome, 1, 1, 1, 1)
+        self.frArquivosBotoes = QtWidgets.QFrame(Form)
+        self.frArquivosBotoes.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frArquivosBotoes.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frArquivosBotoes.setObjectName("frArquivosBotoes")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.frArquivosBotoes)
+        self.gridLayout_2.setContentsMargins(50, -1, 50, -1)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.pbEnviar = QtWidgets.QPushButton(self.frArquivosBotoes)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pbEnviar.sizePolicy().hasHeightForWidth())
+        self.pbEnviar.setSizePolicy(sizePolicy)
+        self.pbEnviar.setMinimumSize(QtCore.QSize(100, 35))
+        self.pbEnviar.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.pbEnviar.setObjectName("pbEnviar")
+        self.gridLayout_2.addWidget(self.pbEnviar, 0, 2, 1, 1)
+        self.pbAnexar = QtWidgets.QPushButton(self.frArquivosBotoes)
+        self.pbAnexar.setMinimumSize(QtCore.QSize(100, 35))
+        self.pbAnexar.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.pbAnexar.setObjectName("pbAnexar")
+        self.gridLayout_2.addWidget(self.pbAnexar, 0, 0, 1, 1)
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_2.addItem(spacerItem, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.frArquivosBotoes, 6, 0, 1, 2)
+        self.lbTitulo = QtWidgets.QLabel(Form)
+        self.lbTitulo.setMinimumSize(QtCore.QSize(60, 0))
+        self.lbTitulo.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbTitulo.setObjectName("lbTitulo")
+        self.gridLayout.addWidget(self.lbTitulo, 3, 0, 1, 1)
+        self.leId = QtWidgets.QLineEdit(Form)
+        self.leId.setInputMask("")
+        self.leId.setText("")
+        self.leId.setObjectName("leId")
+        self.gridLayout.addWidget(self.leId, 0, 1, 1, 1)
         self.leTitulo = QtWidgets.QLineEdit(Form)
         self.leTitulo.setText("")
         self.leTitulo.setEchoMode(QtWidgets.QLineEdit.Normal)
         self.leTitulo.setObjectName("leTitulo")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.leTitulo)
+        self.gridLayout.addWidget(self.leTitulo, 3, 1, 1, 1)
+        self.lbId = QtWidgets.QLabel(Form)
+        self.lbId.setMinimumSize(QtCore.QSize(60, 0))
+        self.lbId.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbId.setObjectName("lbId")
+        self.gridLayout.addWidget(self.lbId, 0, 0, 1, 1)
+        self.lbNome = QtWidgets.QLabel(Form)
+        self.lbNome.setMinimumSize(QtCore.QSize(60, 0))
+        self.lbNome.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbNome.setObjectName("lbNome")
+        self.gridLayout.addWidget(self.lbNome, 1, 0, 1, 1)
+        self.lcEmail = QtWidgets.QLabel(Form)
+        self.lcEmail.setMinimumSize(QtCore.QSize(60, 0))
+        self.lcEmail.setAlignment(QtCore.Qt.AlignCenter)
+        self.lcEmail.setObjectName("lcEmail")
+        self.gridLayout.addWidget(self.lcEmail, 2, 0, 1, 1)
         self.textEdit = QtWidgets.QTextEdit(Form)
         self.textEdit.setStyleSheet("")
+        self.textEdit.setOverwriteMode(False)
+        self.textEdit.setTabStopWidth(40)
         self.textEdit.setObjectName("textEdit")
-        self.formLayout.setWidget(5, QtWidgets.QFormLayout.SpanningRole, self.textEdit)
+        self.gridLayout.addWidget(self.textEdit, 4, 0, 1, 2)
+        self.leEmail = QtWidgets.QLineEdit(Form)
+        self.leEmail.setText("")
+        self.leEmail.setEchoMode(QtWidgets.QLineEdit.Normal)
+        self.leEmail.setObjectName("leEmail")
+        self.gridLayout.addWidget(self.leEmail, 2, 1, 1, 1)
         self.lbRecebeNomeArquivo = QtWidgets.QLabel(Form)
         self.lbRecebeNomeArquivo.setMinimumSize(QtCore.QSize(0, 60))
         self.lbRecebeNomeArquivo.setStyleSheet("#lbRecebeNomeArquivo {\n"
@@ -113,39 +187,36 @@ class Ui_Form(object):
         self.lbRecebeNomeArquivo.setText("")
         self.lbRecebeNomeArquivo.setAlignment(QtCore.Qt.AlignCenter)
         self.lbRecebeNomeArquivo.setObjectName("lbRecebeNomeArquivo")
-        self.formLayout.setWidget(6, QtWidgets.QFormLayout.SpanningRole, self.lbRecebeNomeArquivo)
-        self.pbAnexar = QtWidgets.QPushButton(Form)
-        self.pbAnexar.setMinimumSize(QtCore.QSize(70, 0))
-        self.pbAnexar.setMaximumSize(QtCore.QSize(100, 16777215))
-        self.pbAnexar.setObjectName("pbAnexar")
-        self.formLayout.setWidget(8, QtWidgets.QFormLayout.LabelRole, self.pbAnexar)
-        self.pbEnviar = QtWidgets.QPushButton(Form)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pbEnviar.sizePolicy().hasHeightForWidth())
-        self.pbEnviar.setSizePolicy(sizePolicy)
-        self.pbEnviar.setMinimumSize(QtCore.QSize(70, 0))
-        self.pbEnviar.setMaximumSize(QtCore.QSize(100, 16777215))
-        self.pbEnviar.setObjectName("pbEnviar")
-        self.formLayout.setWidget(8, QtWidgets.QFormLayout.FieldRole, self.pbEnviar)
+        self.gridLayout.addWidget(self.lbRecebeNomeArquivo, 5, 0, 1, 2)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
+        Form.setTabOrder(self.leTitulo, self.textEdit)
+        Form.setTabOrder(self.textEdit, self.leId)
+        Form.setTabOrder(self.leId, self.leNome)
+        Form.setTabOrder(self.leNome, self.leEmail)
+        Form.setTabOrder(self.leEmail, self.pbAnexar)
+        Form.setTabOrder(self.pbAnexar, self.pbEnviar)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.label_3.setText(_translate("Form", "Id"))
-        self.leId.setPlaceholderText(_translate("Form", "Id"))
-        self.label.setText(_translate("Form", "Nome"))
         self.leNome.setPlaceholderText(_translate("Form", "Nome Completo"))
-        self.label_2.setText(_translate("Form", "E-mail"))
-        self.leEmail.setPlaceholderText(_translate("Form", "E-mail"))
-        self.label_4.setText(_translate("Form", "Titulo"))
-        self.leTitulo.setPlaceholderText(_translate("Form", "Título do Email"))
-        self.pbAnexar.setText(_translate("Form", "Anexar"))
         self.pbEnviar.setText(_translate("Form", "Enviar"))
+        self.pbAnexar.setText(_translate("Form", "Anexar"))
+        self.lbTitulo.setText(_translate("Form", "Titulo"))
+        self.leId.setPlaceholderText(_translate("Form", "Id"))
+        self.leTitulo.setPlaceholderText(_translate("Form", "Título do Email"))
+        self.lbId.setText(_translate("Form", "Id"))
+        self.lbNome.setText(_translate("Form", "Nome"))
+        self.lcEmail.setText(_translate("Form", "E-mail"))
+        self.textEdit.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'monospace\'; font-size:12px; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.textEdit.setPlaceholderText(_translate("Form", "Escreva o e-mail"))
+        self.leEmail.setPlaceholderText(_translate("Form", "E-mail"))
 
 
 if __name__ == "__main__":
