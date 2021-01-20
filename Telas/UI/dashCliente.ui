@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>883</width>
-    <height>720</height>
+    <width>999</width>
+    <height>721</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -2432,8 +2432,8 @@ QScrollBar:vertical {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>441</width>
-               <height>489</height>
+               <width>470</width>
+               <height>510</height>
               </rect>
              </property>
             </widget>
@@ -2444,7 +2444,7 @@ QScrollBar:vertical {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>100</height>
+              <height>80</height>
              </size>
             </property>
             <property name="frameShape">
@@ -2453,38 +2453,138 @@ QScrollBar:vertical {
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <widget class="QWidget" name="">
-             <property name="geometry">
-              <rect>
-               <x>300</x>
-               <y>20</y>
-               <width>123</width>
-               <height>61</height>
-              </rect>
+            <layout class="QHBoxLayout" name="horizontalLayout_35">
+             <property name="spacing">
+              <number>8</number>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout_5">
-              <item>
-               <widget class="QLabel" name="label">
-                <property name="text">
-                 <string>Ordenar por:</string>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QFrame" name="frame_2">
+               <property name="minimumSize">
+                <size>
+                 <width>410</width>
+                 <height>80</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>646544</width>
+                 <height>80</height>
+                </size>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_5">
+                <item>
+                 <widget class="QLabel" name="lbCabecalho">
+                  <property name="styleSheet">
+                   <string notr="true">#lbCabecalho {
+	border: 0px;
+	background-color: transparent;
+	font-family: Ubuntu;
+	font-size: 18pt;
+	font-weight: bold;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string>Grupos</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="lbCabecalhoDesc">
+                  <property name="styleSheet">
+                   <string notr="true">#lbCabecalhoDesc {
+	border: 0px;
+	background-color: transparent;
+	font-family: Ubuntu;
+	font-size: 12pt;
+	font-style: italic;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string>Dica: Ordene para favorecer sua busca</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frOrder">
+               <property name="minimumSize">
+                <size>
+                 <width>130</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>130</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_6">
+                <property name="spacing">
+                 <number>4</number>
                 </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QComboBox" name="cbxOrdenar"/>
-              </item>
-             </layout>
-            </widget>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="lbOrdenar">
+                  <property name="text">
+                   <string>Ordenar por:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="cbxOrdenar"/>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
          </layout>
         </widget>
        </item>
-       <item>
+       <item alignment="Qt::AlignHCenter">
         <widget class="QFrame" name="frFormarGrupos">
          <property name="minimumSize">
           <size>
-           <width>380</width>
+           <width>500</width>
            <height>0</height>
           </size>
          </property>
@@ -2509,8 +2609,17 @@ QScrollBar:vertical {
           <property name="spacing">
            <number>16</number>
           </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
           <property name="bottomMargin">
-           <number>15</number>
+           <number>0</number>
           </property>
           <item>
            <widget class="QFrame" name="frCabecalhoGrupo">
@@ -2527,7 +2636,7 @@ QScrollBar:vertical {
 }</string>
             </property>
             <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
+             <enum>QFrame::NoFrame</enum>
             </property>
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
@@ -2609,7 +2718,7 @@ QScrollBar:vertical {
 }</string>
             </property>
             <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
+             <enum>QFrame::NoFrame</enum>
             </property>
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
@@ -2672,7 +2781,7 @@ QScrollBar:vertical {
 }</string>
             </property>
             <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
+             <enum>QFrame::NoFrame</enum>
             </property>
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
@@ -2722,6 +2831,76 @@ QScrollBar:vertical {
            </widget>
           </item>
           <item>
+           <widget class="QFrame" name="frCategorias">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>32</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>32</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#frCategorias {
+	background-color: transparent;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_34">
+             <property name="spacing">
+              <number>16</number>
+             </property>
+             <property name="leftMargin">
+              <number>8</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>8</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="lbCategoria">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(255, 255, 255);</string>
+               </property>
+               <property name="text">
+                <string>Categoria</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="cbxCategoria">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>100</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
            <widget class="QTableWidget" name="tblGrupo">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
@@ -2741,10 +2920,10 @@ QScrollBar:vertical {
     border: none;
 	color: #444;
 	padding-left: 8px;
-	padding-right: 8px;
+	padding-right: 12px;
 	padding-bottom: 4px;
 	padding-top: 4px;
-	margin-right: 16px;
+	margin-right: 8px;
 }
 
 #tblGrupo::item {
@@ -2918,6 +3097,7 @@ QScrollBar:vertical {
          <zorder>tblGrupo</zorder>
          <zorder>frCabecalhoGrupo</zorder>
          <zorder>frBottomParticipantes</zorder>
+         <zorder>frCategorias</zorder>
         </widget>
        </item>
       </layout>

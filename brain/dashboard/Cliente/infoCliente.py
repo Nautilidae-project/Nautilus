@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 
 from Telas.dashCliente import Ui_wdgCliente
 from brain.DAOs.UserConfig import DaoConfiguracoes
+from brain.DAOs.daoCategoria import DaoCategoria
 from brain.DAOs.daoCliente import DaoCliente
 from brain.DAOs.daoGrupo import DaoGrupo
 from brain.DAOs.daoParticipantes import DaoParticipantes
@@ -41,6 +42,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         self.pbCancelar.hide()
         self.pbCancelar.clicked.connect(self.sairModoEdicao)
+        self.carregaComboBoxes()
+        self.cbxOrdenar.currentTextChanged.connect(self.ordenarCards)
 
         self.gridBox = QGridLayout()
 
@@ -60,7 +63,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         self.pbConfirmarAtualizacao.clicked.connect(
             lambda: self.showPopupSimCancela('As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
-        self.leSearchCliente.textEdited.connect(lambda: self.busca())
+        self.leSearchCliente.textEdited.connect(self.busca)
 
         self.tblClientes.doubleClicked.connect(self.carregaInfoCliente)
 
@@ -98,7 +101,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.limpaLayout()
 
         daoGrupo = DaoGrupo()
-        colunas = 1
+        colunas = 2
         linhas = 1
 
         # Busca no banco de dados todos os grupos criados
@@ -171,6 +174,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
                 'grupoId': None,
                 'titulo': self.leTituloGrupo.text(),
                 'descricao': self.leDescricaoGrupo.text(),
+                'categoria': self.cbxCategoria.currentText(),
                 'dataCadastro': None,
                 'dataUltAlt': None
             }
@@ -491,6 +495,40 @@ class brainCliente(Ui_wdgCliente, QWidget):
         daoParticipantes.insereParticipantes(listaParticipantes)
 
         self.sairModoEdicao()
+
+    def carregaComboBoxes(self):
+
+        daoCategorias = DaoCategoria()
+        listTupleCategorias = daoCategorias.getAll()
+        ordenar = ['CATEGORIA', 'A-Z', 'Z-A', 'DATA']
+
+        self.cbxOrdenar.addItems(ordenar)
+
+        listCategorias = [categoria[0] for categoria in listTupleCategorias]
+
+        self.cbxCategoria.addItems(listCategorias)
+
+    def ordenarCards(self, *args):
+        listaCards = list()
+        cardsSorted = None
+
+        for i in range(self.gridBox.count()):
+            listaCards.append(self.gridBox.itemAt(i).widget())
+
+        if args[0] == 'CATEGORIA':
+            cardsSorted = sorted(listaCards, key=lambda card: card.grupo.categoria)
+        elif args[0] == 'DATA':
+            cardsSorted = sorted(listaCards, key=lambda card: card.grupo.grupoId)
+        elif args[0] == 'A-Z':
+            cardsSorted = sorted(listaCards, key=lambda card: card.grupo.titulo)
+        elif args[0] == 'Z-A':
+            cardsSorted = reversed(sorted(listaCards, key=lambda card: card.grupo.titulo))
+
+        if cardsSorted is not None:
+            self.limpaLayout()
+            for i in cardsSorted:
+                self.gridBox.addWidget(i)
+            self.scrollGrupos.setLayout(self.gridBox)
 
 if __name__ == '__main__':
     import sys

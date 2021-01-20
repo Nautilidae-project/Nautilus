@@ -24,11 +24,11 @@ class DaoGrupo:
         strComando = f"""
             INSERT INTO {self.configs.tblGrupo}
             (
-                titulo, descricao, dataCadastro, dataUltAlt
+                titulo, descricao, categoria, dataCadastro, dataUltAlt
             )
             VALUES
             (
-                '{grupo.titulo}', '{grupo.descricao}', NOW(), NOW()
+                '{grupo.titulo}', '{grupo.descricao}', '{grupo.categoria}', NOW(), NOW()
             )
             """
         try:

@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>225</width>
-    <height>250</height>
+    <width>300</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>200</width>
-    <height>250</height>
+    <width>300</width>
+    <height>300</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>225</width>
+    <width>300</width>
     <height>300</height>
    </size>
   </property>
@@ -189,14 +189,12 @@
 	color: #444;
 	margin-bottom: 8px;
 	padding-right: 4px;
+	padding-top: 4px;
+	padding-left: 12px;
 	margin-top: 16px;
 }
 
 #tblGrupoItem::item {
-	margin-left: 8px;
-	/*padding-bottom: 4px;
-	font-family: Ubuntu;
-	font-size: 16pt;*/
 	color: #fff;
 }</string>
            </property>

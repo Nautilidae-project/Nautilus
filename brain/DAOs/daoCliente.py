@@ -166,10 +166,6 @@ class DaoCliente:
 
         return total
 
-    def disconectBD(self, cursor):
-        cursor.close()
-        self.connection.close()
-
     def contaCliente(self, condicao="clienteId"):
         self.connection.connect()
         cursor = self.connection.cursor()
@@ -184,3 +180,6 @@ class DaoCliente:
 
         return str(clientesList[0][0])
 
+    def disconectBD(self, cursor):
+        cursor.close()
+        self.connection.close()

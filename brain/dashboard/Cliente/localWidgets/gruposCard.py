@@ -53,7 +53,7 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
             self.tblGrupoItem.insertRow(rowCount)
             for columnCount, data in enumerate(rowData):
                 strItem = QTableWidgetItem(str(data))
-                strItem.setFont(QFont('Ubuntu', pointSize=14, italic=True))
+                strItem.setFont(QFont('Ubuntu', pointSize=12, italic=True))
                 self.tblGrupoItem.setItem(rowCount, columnCount, strItem)
 
     def excluirGrupo(self):
