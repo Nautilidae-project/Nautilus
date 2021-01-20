@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>646</width>
-    <height>389</height>
+    <width>795</width>
+    <height>450</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -21,53 +21,201 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#Form {
-	background-color: rgb(48, 140, 198);
+	background-color: #0E90AD;
 }
 
-#textEdit {
-	border: 2px solid;
-	border-radius: 10px;
-}
+/*-------------------------- Label --------------------------*/
 
 QLabel {
-	border: 2px tranparent;
+	border: 2px solid transparent;
 	border-radius: 10px;
-	
-	background-color: rgb(211, 215, 207);
+	background-color: #DFD880;
+	font: 14px &quot;monospace&quot;;
 }
 
 #lbRecebeNomeArquivo {
-	border: 2px solid;
+	border: 2px solid transparent;
 	border-radius: 10px;
 }
+
+/*-------------------------- LineEdit --------------------------*/
+
+QLineEdit{
+	border: 2px solid transparent;
+	border-radius: 10px;
+	font: 12px &quot;monospace&quot;;
+
+
+
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 16px;
+    border-color: transparent;
+	font: 12px &quot;monospace&quot;;
+    min-width: 1em;
+    padding:8px;
+}
+
+QLineEdit:focus {
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	border-left: 5px solid #DFD880;
+}
+
+/*-------------------------- TextEdit --------------------------*/
+
+#textEdit {
+	color:black;
+    background-color: white;
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 16px;
+    border-color: transparent;
+	font: 12px &quot;monospace&quot;;
+    min-width: 1em;
+    padding:16px;
+}
+
+#textEdit:focus {
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	border-left: 10px solid #DFD880;
+}
+
+/*-------------------------- Frame --------------------------*/
+
+#frArquivosBotoes {
+	border: None;
+}
+
+/*-------------------------- Botões --------------------------*/
 
 QPushButton{
-	color: rgb(255, 255, 255);
-	background-color: rgb(174, 2, 2);
-	border: 2px solid;
+	color: #fff;
+	background-color: #24cc63;
+	border: 2px solid transparent;
 	border-radius: 10px;
+	font: 14px &quot;monospace&quot;;
 }
 
-#pbEnviar {
-	background-color: rgb(64, 191, 160);
-
+#pbAnexar{
+	color: #000;
+	background-color: #eaeaea;
 }
 
-#pbEnviar:hover {
-	background-color: rgb(64, 191, 121);
-}
-
-#pbAnexar:hover {
-	background-color: rgb(173, 127, 168);
-}
-</string>
+#pbEnviar:hover, #pbAnexar:hover{
+	background-color: #80CCE1;
+}</string>
   </property>
-  <layout class="QFormLayout" name="formLayout">
-   <property name="horizontalSpacing">
-    <number>6</number>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>25</number>
    </property>
-   <item row="0" column="0">
-    <widget class="QLabel" name="label_3">
+   <property name="topMargin">
+    <number>25</number>
+   </property>
+   <property name="rightMargin">
+    <number>25</number>
+   </property>
+   <property name="bottomMargin">
+    <number>25</number>
+   </property>
+   <property name="horizontalSpacing">
+    <number>15</number>
+   </property>
+   <property name="verticalSpacing">
+    <number>10</number>
+   </property>
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="leNome">
+     <property name="inputMask">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="placeholderText">
+      <string>Nome Completo</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="2">
+    <widget class="QFrame" name="frArquivosBotoes">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <property name="leftMargin">
+       <number>50</number>
+      </property>
+      <property name="rightMargin">
+       <number>50</number>
+      </property>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="pbEnviar">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Enviar</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="pbAnexar">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Anexar</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="lbTitulo">
      <property name="minimumSize">
       <size>
        <width>60</width>
@@ -75,7 +223,7 @@ QPushButton{
       </size>
      </property>
      <property name="text">
-      <string>Id</string>
+      <string>Titulo</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -95,8 +243,37 @@ QPushButton{
      </property>
     </widget>
    </item>
+   <item row="3" column="1">
+    <widget class="QLineEdit" name="leTitulo">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="echoMode">
+      <enum>QLineEdit::Normal</enum>
+     </property>
+     <property name="placeholderText">
+      <string>Título do Email</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="lbId">
+     <property name="minimumSize">
+      <size>
+       <width>60</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Id</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
    <item row="1" column="0">
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="lbNome">
      <property name="minimumSize">
       <size>
        <width>60</width>
@@ -111,21 +288,8 @@ QPushButton{
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QLineEdit" name="leNome">
-     <property name="inputMask">
-      <string/>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="placeholderText">
-      <string>Nome Completo</string>
-     </property>
-    </widget>
-   </item>
    <item row="2" column="0">
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="lcEmail">
      <property name="minimumSize">
       <size>
        <width>60</width>
@@ -137,6 +301,29 @@ QPushButton{
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="QTextEdit" name="textEdit">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'monospace'; font-size:12px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="overwriteMode">
+      <bool>false</bool>
+     </property>
+     <property name="tabStopWidth">
+      <number>40</number>
+     </property>
+     <property name="placeholderText">
+      <string>Escreva o e-mail</string>
      </property>
     </widget>
    </item>
@@ -153,43 +340,7 @@ QPushButton{
      </property>
     </widget>
    </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="label_4">
-     <property name="minimumSize">
-      <size>
-       <width>60</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>Titulo</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1">
-    <widget class="QLineEdit" name="leTitulo">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="echoMode">
-      <enum>QLineEdit::Normal</enum>
-     </property>
-     <property name="placeholderText">
-      <string>Título do Email</string>
-     </property>
-    </widget>
-   </item>
    <item row="5" column="0" colspan="2">
-    <widget class="QTextEdit" name="textEdit">
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="0" colspan="2">
     <widget class="QLabel" name="lbRecebeNomeArquivo">
      <property name="minimumSize">
       <size>
@@ -211,52 +362,17 @@ QPushButton{
      </property>
     </widget>
    </item>
-   <item row="8" column="0">
-    <widget class="QPushButton" name="pbAnexar">
-     <property name="minimumSize">
-      <size>
-       <width>70</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>100</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>Anexar</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="1">
-    <widget class="QPushButton" name="pbEnviar">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>70</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>100</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>Enviar</string>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>leTitulo</tabstop>
+  <tabstop>textEdit</tabstop>
+  <tabstop>leId</tabstop>
+  <tabstop>leNome</tabstop>
+  <tabstop>leEmail</tabstop>
+  <tabstop>pbAnexar</tabstop>
+  <tabstop>pbEnviar</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
