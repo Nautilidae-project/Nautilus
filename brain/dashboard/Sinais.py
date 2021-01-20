@@ -6,3 +6,4 @@ class Sinais(QObject):
     sBackLoginPage = QtCore.pyqtSignal()
     sResizeWindow = QtCore.pyqtSignal()
     sAtualizarTela = QtCore.pyqtSignal()
+    sEditarGrupo = QtCore.pyqtSignal()

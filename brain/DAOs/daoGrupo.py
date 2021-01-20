@@ -24,11 +24,11 @@ class DaoGrupo:
         strComando = f"""
             INSERT INTO {self.configs.tblGrupo}
             (
-                titulo, descricao, dataCadastro, dataUltAlt
+                titulo, descricao, categoria, dataCadastro, dataUltAlt
             )
             VALUES
             (
-                '{grupo.titulo}', '{grupo.descricao}', NOW(), NOW()
+                '{grupo.titulo}', '{grupo.descricao}', '{grupo.categoria}', NOW(), NOW()
             )
             """
         try:
@@ -100,6 +100,28 @@ class DaoGrupo:
             raise Warning(f'Erro SQL - excluirGrupo({self.configs.tblGrupo}, {self.configs.tblParticipantes}) <DELETE>')
         finally:
             self.disconectBD(cursor)
+
+    def atualizarGrupo(self, grupo: GrupoModelo):
+
+        self.connection.connect()
+        cursor = self.connection.cursor()
+
+
+        strComando = f"""
+            UPDATE {self.configs.tblGrupo} SET 
+                titulo = '{grupo.titulo}',
+                descricao = '{grupo.descricao}',
+                dataUltAlt = NOW()
+            WHERE
+                grupoId = {grupo.grupoId}"""
+
+        try:
+            cursor.execute(strComando)
+        except:
+            raise Warning(f'Erro SQL - atualizarGrupo({self.configs.tblGrupo}) <UPDATE>')
+        finally:
+            self.disconectBD(cursor)
+
 
     def disconectBD(self, cursor):
         cursor.close()

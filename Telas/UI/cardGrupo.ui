@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>300</width>
-    <height>250</height>
+    <height>300</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>200</width>
-    <height>250</height>
+    <width>300</width>
+    <height>300</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>300</width>
-    <height>400</height>
+    <height>300</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -92,7 +92,7 @@
         <property name="font">
          <font>
           <family>Ubuntu</family>
-          <pointsize>18</pointsize>
+          <pointsize>16</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
@@ -102,7 +102,7 @@
 	color: #fff;
 	background-color: transparent;
 	border: 0px;
-	font-size: 18pt;
+	font-size: 16pt;
 	font-family: Ubuntu;
 	font-weight: bold;
 }</string>
@@ -188,15 +188,13 @@
     /*border: none;*/
 	color: #444;
 	margin-bottom: 8px;
-	/*margin-right: 16px;*/
+	padding-right: 4px;
+	padding-top: 4px;
+	padding-left: 12px;
 	margin-top: 16px;
 }
 
 #tblGrupoItem::item {
-	margin-left: 16px;
-	/*padding-bottom: 4px;
-	font-family: Ubuntu;
-	font-size: 16pt;*/
 	color: #fff;
 }</string>
            </property>
@@ -220,6 +218,9 @@
            </property>
            <attribute name="horizontalHeaderVisible">
             <bool>false</bool>
+           </attribute>
+           <attribute name="horizontalHeaderStretchLastSection">
+            <bool>true</bool>
            </attribute>
            <attribute name="verticalHeaderVisible">
             <bool>false</bool>
@@ -343,8 +344,6 @@
              </widget>
             </item>
            </layout>
-           <zorder>pbEditar</zorder>
-           <zorder>pbExcluir</zorder>
           </widget>
          </item>
         </layout>

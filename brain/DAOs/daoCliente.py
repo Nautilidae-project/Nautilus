@@ -66,7 +66,11 @@ class DaoCliente:
         self.connection.connect()
         cursor = self.connection.cursor()
 
-        strComando = f"SELECT clienteId, nomeCliente, sobrenomeCliente, ativo FROM {self.configs.tblCliente} ORDER BY nomeCliente DESC;"
+        strComando = f"""SELECT 
+                            clienteId, nomeCliente, sobrenomeCliente, ativo
+                        FROM {self.configs.tblCliente}
+                            WHERE ativo = 1
+                            ORDER BY nomeCliente;"""
 
         cursor.execute(strComando)
 
@@ -118,7 +122,6 @@ class DaoCliente:
         cursor = self.connection.cursor()
 
         strComando = f""" UPDATE {self.configs.tblCliente} SET 
-                
                             nomeCliente = '{cliente.nomeCliente}', 
                             sobrenomeCliente = '{cliente.sobrenomeCliente}', 
                             telefone = '{cliente.telefone}',
@@ -131,19 +134,18 @@ class DaoCliente:
                             meioPagamento = '{cliente.meioPagamento}', 
                             ativo = {cliente.ativo},
                             dataUltAlt = NOW()
-                
                         WHERE
                             clienteId = {cliente.clienteId}
                     
                     """
-
         try:
+            print(strComando)
             cursor.execute(strComando)
             self.connection.commit()
         except:
             raise Warning(f'Erro SQL - atualizaInfoCliente({cliente.clienteId}) <UPDATE>')
         finally:
-            cursor.close()
+            self.disconectBD(cursor)
 
     def contaTotal(self, where=None):
 
@@ -162,10 +164,6 @@ class DaoCliente:
 
         return total
 
-    def disconectBD(self, cursor):
-        cursor.close()
-        self.connection.close()
-
     def contaCliente(self, condicao="clienteId"):
         self.connection.connect()
         cursor = self.connection.cursor()
@@ -180,3 +178,6 @@ class DaoCliente:
 
         return str(clientesList[0][0])
 
+    def disconectBD(self, cursor):
+        cursor.close()
+        self.connection.close()

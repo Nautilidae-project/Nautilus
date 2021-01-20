@@ -19,6 +19,7 @@ class DaoParticipantes:
 
         self.connection.connect()
         cursor = self.connection.cursor()
+
         strComando = f" INSERT INTO {self.configs.tblParticipantes} ( eventoId, clienteId ) VALUES "
 
         for i in range(0, len(participantesList)):
@@ -29,10 +30,26 @@ class DaoParticipantes:
 
         try:
             # Insere todos os participantes de um evento no banco de dados
-            print(strComando)
             cursor.execute(strComando)
             self.connection.commit()
         except:
                 raise Warning(f'Erro SQL - insereParticipantes({participantesList[0].eventoId}) <INSERT>')
         finally:
             cursor.close()
+
+    def deletarParticipantesEvento(self, grupoId):
+
+        self.connection.connect()
+        cursor = self.connection.cursor()
+
+        strComando = f"""DELETE FROM {self.configs.tblParticipantes} WHERE eventoId = {grupoId}"""
+
+        try:
+            cursor.execute(strComando)
+            self.connection.commit()
+        except:
+            raise Warning(f'Erro SQL - deletarParticipantesEvento({grupoId}) <DELETE>')
+        finally:
+            cursor.close()
+
+

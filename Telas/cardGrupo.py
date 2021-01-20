@@ -14,9 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_wdgGrupoCard(object):
     def setupUi(self, wdgGrupoCard):
         wdgGrupoCard.setObjectName("wdgGrupoCard")
-        wdgGrupoCard.resize(300, 250)
-        wdgGrupoCard.setMinimumSize(QtCore.QSize(200, 250))
-        wdgGrupoCard.setMaximumSize(QtCore.QSize(300, 400))
+        wdgGrupoCard.resize(300, 300)
+        wdgGrupoCard.setMinimumSize(QtCore.QSize(300, 300))
+        wdgGrupoCard.setMaximumSize(QtCore.QSize(300, 300))
         wdgGrupoCard.setStyleSheet("/*#wdgGrupoCard {\n"
 "    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgba(105, 33, 140, 60), stop:1 rgba(112, 237, 255, 60));    \n"
 "}*/")
@@ -40,7 +40,7 @@ class Ui_wdgGrupoCard(object):
         self.lbTituloCard.setMaximumSize(QtCore.QSize(16777215, 50))
         font = QtGui.QFont()
         font.setFamily("Ubuntu")
-        font.setPointSize(18)
+        font.setPointSize(16)
         font.setBold(True)
         font.setWeight(75)
         self.lbTituloCard.setFont(font)
@@ -48,7 +48,7 @@ class Ui_wdgGrupoCard(object):
 "    color: #fff;\n"
 "    background-color: transparent;\n"
 "    border: 0px;\n"
-"    font-size: 18pt;\n"
+"    font-size: 16pt;\n"
 "    font-family: Ubuntu;\n"
 "    font-weight: bold;\n"
 "}")
@@ -90,15 +90,13 @@ class Ui_wdgGrupoCard(object):
 "    /*border: none;*/\n"
 "    color: #444;\n"
 "    margin-bottom: 8px;\n"
-"    /*margin-right: 16px;*/\n"
+"    padding-right: 4px;\n"
+"    padding-top: 4px;\n"
+"    padding-left: 12px;\n"
 "    margin-top: 16px;\n"
 "}\n"
 "\n"
 "#tblGrupoItem::item {\n"
-"    margin-left: 16px;\n"
-"    /*padding-bottom: 4px;\n"
-"    font-family: Ubuntu;\n"
-"    font-size: 16pt;*/\n"
 "    color: #fff;\n"
 "}")
         self.tblGrupoItem.setFrameShape(QtWidgets.QFrame.NoFrame)
@@ -117,6 +115,7 @@ class Ui_wdgGrupoCard(object):
         item = QtWidgets.QTableWidgetItem()
         self.tblGrupoItem.setHorizontalHeaderItem(2, item)
         self.tblGrupoItem.horizontalHeader().setVisible(False)
+        self.tblGrupoItem.horizontalHeader().setStretchLastSection(True)
         self.tblGrupoItem.verticalHeader().setVisible(False)
         self.horizontalLayout.addWidget(self.tblGrupoItem)
         self.frBotoes = QtWidgets.QFrame(self.frBottom)
@@ -162,8 +161,6 @@ class Ui_wdgGrupoCard(object):
         self.pbExcluir.setText("")
         self.pbExcluir.setObjectName("pbExcluir")
         self.verticalLayout_3.addWidget(self.pbExcluir)
-        self.pbEditar.raise_()
-        self.pbExcluir.raise_()
         self.horizontalLayout.addWidget(self.frBotoes, 0, QtCore.Qt.AlignVCenter)
         self.frBotoes.raise_()
         self.tblGrupoItem.raise_()

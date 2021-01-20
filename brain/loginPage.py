@@ -59,7 +59,6 @@ class LoginPage(Ui_mwLogin, QMainWindow):
         else:
             if self.daoConfig.confereSenha(strNomeUsuario, self.leSenha.text()):
                 self.snackBar('Usuário(a) confirmado(a)!')
-                print('Usuário(a) confirmado(a)!')
                 self.stkLogin.setCurrentIndex(2)
             else:
                 print('Senha inválida!')
