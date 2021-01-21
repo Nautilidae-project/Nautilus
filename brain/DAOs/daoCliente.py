@@ -61,7 +61,7 @@ class DaoCliente:
 
         return clientesList
 
-    def findAllNomeSobrenome(self):
+    def findAllNomeSobrenome(self, letra=None):
 
         self.connection.connect()
         cursor = self.connection.cursor()
@@ -69,8 +69,12 @@ class DaoCliente:
         strComando = f"""SELECT 
                             clienteId, nomeCliente, sobrenomeCliente, ativo
                         FROM {self.configs.tblCliente}
-                            WHERE ativo = 1
-                            ORDER BY nomeCliente;"""
+                            WHERE ativo = 1"""
+
+        if letra is not None:
+            strComando += f""" AND nomeCliente LIKE '{letra}%' """
+
+        strComando += """ ORDER BY nomeCliente;"""
 
         cursor.execute(strComando)
 

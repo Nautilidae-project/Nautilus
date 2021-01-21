@@ -1,36 +1,50 @@
-from datetime import datetime
-
-from PyQt5.QtGui import QPainter, QFont
-from PyQt5.QtCore import QRect, QPoint
-
-from PyQt5.QtWidgets import QWidget, QCalendarWidget
-from PyQt5 import QtGui
-from PyQt5 import QtCore
-from PyQt5 import QtWidgets
-
-from Telas.calendario import Ui_Form
+# importing libraries 
+from PyQt5.QtWidgets import *
+from PyQt5 import QtCore, QtGui
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+import sys
 
 
-class AgendaController(Ui_Form, QCalendarWidget):
+class CalendarioController(QCalendarWidget):
 
-    def __init__(self):
-        super(AgendaController, self).__init__()
-        self.setupUi(self)
+    # constructor
+    def __init__(self, parent=None):
+        super(CalendarioController, self).__init__(parent)
+        self.setStyleSheet("""
+        		 /*Tool button styles */
+        QCalendarWidget QToolButton {
 
-        # self.calendar = self.calendarWidget
+        	height:40px;
+        	width:500px;
+        	color:white;
+        	font-size:20px;
+        	icon-size:56px,56px;
+        	background-color: #DFD880;
 
-        # self.calendar.clicked.connect(self.teste)
+        }
+
+          /*normal days */
+        QCalendarWidget QAbstractItemView:enabled {
 
 
-    def teste(self, qDate):
-        print('ola')
-        painter = QPainter(self)
-        y = datetime(year=qDate.year(), month=qDate.dayOfWeek(), day=qDate.day())
+        font-size:18px;
+        color: #444;
+        background-color: #80CCE1;
+        selection-background-color:rgb(128,64,64);
+        selection-color:rgb(0,255,0);
+        }
 
-        self.calendar.dateTextFormat()
+          /* header row */
+        QCalendarWidget  QWidget{
+
+        alternate-background-color: #FAFAFA;
+
+        }
+        		""")
 
     def paintCell(self, painter, rect, date):
-        super(AgendaController, self).paintCell(painter, rect, date)
+        super(CalendarioController, self).paintCell(painter, rect, date)
 
         # checking if date is selected date
         if date == self.selectedDate():
@@ -55,16 +69,8 @@ class AgendaController(Ui_Form, QCalendarWidget):
             # drawing text
             painter.drawText(
                 rect.topLeft() + QPoint(10, 10),
-                "{}".format("Evento"),
+                "{}".format("evento hoje"),
             )
 
             # restoring the painter
             painter.restore()
-
-
-if __name__ == '__main__':
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    ui = AgendaController()
-    ui.show()
-    sys.exit(app.exec_())

@@ -81,7 +81,7 @@ class ConfigDB:
         self.__sqlCreateGrupo = f"""CREATE TABLE IF NOT EXISTS {self.tblGrupo} (
                         grupoId INT AUTO_INCREMENT,
                         titulo VARCHAR(30) NOT NULL,
-                        descricao VARCHAR(120) NULL,
+                        descricao VARCHAR(700) NULL,
                         categoria VARCHAR(30) NULL,
                         dataCadastro DATETIME NOT NULL,
                         dataUltAlt DATETIME NOT NULL,

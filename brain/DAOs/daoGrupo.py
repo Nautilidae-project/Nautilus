@@ -34,7 +34,6 @@ class DaoGrupo:
         try:
             cursor.execute(strComando)
             self.connection.commit()
-            # cursor.close()
         except:
             raise Warning(f'Erro SQL - insereGrupo({grupo.titulo}) <INSERT>')
         finally:

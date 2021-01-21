@@ -144,7 +144,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tbInfosCliente">
       <property name="enabled">
@@ -2607,7 +2607,7 @@ QScrollBar:vertical {
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
           <property name="spacing">
-           <number>16</number>
+           <number>8</number>
           </property>
           <property name="leftMargin">
            <number>0</number>
@@ -2748,7 +2748,7 @@ QScrollBar:vertical {
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(255, 255, 255);</string>
+                <string notr="true"/>
                </property>
                <property name="text">
                 <string>Título</string>
@@ -2811,7 +2811,7 @@ QScrollBar:vertical {
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(255, 255, 255);</string>
+                <string notr="true"/>
                </property>
                <property name="text">
                 <string>Descrição</string>
@@ -2874,7 +2874,7 @@ QScrollBar:vertical {
              <item>
               <widget class="QLabel" name="lbCategoria">
                <property name="styleSheet">
-                <string notr="true">color: rgb(255, 255, 255);</string>
+                <string notr="true"/>
                </property>
                <property name="text">
                 <string>Categoria</string>
@@ -2901,104 +2901,191 @@ QScrollBar:vertical {
            </widget>
           </item>
           <item>
-           <widget class="QTableWidget" name="tblGrupo">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-              <horstretch>60</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="maximumSize">
+           <widget class="QFrame" name="frAlfabeto">
+            <property name="minimumSize">
              <size>
-              <width>448</width>
-              <height>16777215</height>
+              <width>0</width>
+              <height>30</height>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">#tblGrupo {
-	/*background-color: transparent;*/
-    border: none;
-	color: #444;
-	padding-left: 8px;
-	padding-right: 12px;
-	padding-bottom: 4px;
-	padding-top: 4px;
-	margin-right: 8px;
-	margin-left: 8px;
-}
-
-#tblGrupo::item {
-	padding: 8px;
-	padding-bottom: 4px;
-	font-family: Ubuntu;
-	font-size: 24pt;
+             <string notr="true">#frAlfabeto {
+	background-color: transparent;
 }</string>
             </property>
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>
             </property>
-            <property name="sizeAdjustPolicy">
-             <enum>QAbstractScrollArea::AdjustToContents</enum>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
             </property>
-            <property name="editTriggers">
-             <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
-            </property>
-            <property name="defaultDropAction">
-             <enum>Qt::IgnoreAction</enum>
-            </property>
-            <property name="alternatingRowColors">
-             <bool>true</bool>
-            </property>
-            <property name="selectionMode">
-             <enum>QAbstractItemView::NoSelection</enum>
-            </property>
-            <property name="selectionBehavior">
-             <enum>QAbstractItemView::SelectRows</enum>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>0</width>
-              <height>24</height>
-             </size>
-            </property>
-            <property name="showGrid">
-             <bool>false</bool>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-            <attribute name="horizontalHeaderVisible">
-             <bool>false</bool>
-            </attribute>
-            <attribute name="horizontalHeaderCascadingSectionResizes">
-             <bool>true</bool>
-            </attribute>
-            <attribute name="horizontalHeaderStretchLastSection">
-             <bool>false</bool>
-            </attribute>
-            <attribute name="verticalHeaderVisible">
-             <bool>false</bool>
-            </attribute>
-            <column>
-             <property name="text">
-              <string>Id</string>
+            <layout class="QHBoxLayout" name="horizontalLayout_37">
+             <property name="spacing">
+              <number>0</number>
              </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Incluir</string>
+             <property name="leftMargin">
+              <number>0</number>
              </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Nome</string>
+             <property name="topMargin">
+              <number>0</number>
              </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Sobrenome</string>
+             <property name="rightMargin">
+              <number>0</number>
              </property>
-            </column>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <layout class="QHBoxLayout" name="hlAlfabeto">
+               <property name="spacing">
+                <number>2</number>
+               </property>
+               <property name="sizeConstraint">
+                <enum>QLayout::SetMinimumSize</enum>
+               </property>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frParticipantes">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#frParticipantes {
+	background-color: transparent;
+	border: 0px;
+	padding: 4px;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_36">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>4</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>4</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QTableWidget" name="tblParticipantes">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>448</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="sizeAdjustPolicy">
+                <enum>QAbstractScrollArea::AdjustToContents</enum>
+               </property>
+               <property name="editTriggers">
+                <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+               </property>
+               <property name="defaultDropAction">
+                <enum>Qt::IgnoreAction</enum>
+               </property>
+               <property name="alternatingRowColors">
+                <bool>true</bool>
+               </property>
+               <property name="selectionMode">
+                <enum>QAbstractItemView::NoSelection</enum>
+               </property>
+               <property name="selectionBehavior">
+                <enum>QAbstractItemView::SelectRows</enum>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>0</width>
+                 <height>24</height>
+                </size>
+               </property>
+               <property name="showGrid">
+                <bool>false</bool>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+               <attribute name="horizontalHeaderVisible">
+                <bool>false</bool>
+               </attribute>
+               <attribute name="horizontalHeaderCascadingSectionResizes">
+                <bool>true</bool>
+               </attribute>
+               <attribute name="horizontalHeaderStretchLastSection">
+                <bool>false</bool>
+               </attribute>
+               <attribute name="verticalHeaderVisible">
+                <bool>false</bool>
+               </attribute>
+               <column>
+                <property name="text">
+                 <string>Id</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Incluir</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Nome</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Sobrenome</string>
+                </property>
+               </column>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pbRefresh">
+               <property name="styleSheet">
+                <string notr="true">#pbRefresh {
+	background-color: transparent;
+	border: 0px;
+	background-image: url(:/refresh/refresh.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
           <item>
@@ -3095,10 +3182,11 @@ QScrollBar:vertical {
          </layout>
          <zorder>frTitulo</zorder>
          <zorder>frDescricao</zorder>
-         <zorder>tblGrupo</zorder>
          <zorder>frCabecalhoGrupo</zorder>
          <zorder>frBottomParticipantes</zorder>
          <zorder>frCategorias</zorder>
+         <zorder>frAlfabeto</zorder>
+         <zorder>frParticipantes</zorder>
         </widget>
        </item>
       </layout>
@@ -3112,6 +3200,8 @@ QScrollBar:vertical {
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../Imagens/dashClienteResources.qrc"/>
+ </resources>
  <connections/>
 </ui>
