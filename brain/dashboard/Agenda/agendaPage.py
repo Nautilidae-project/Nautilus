@@ -7,7 +7,7 @@ from Telas.dashAgenda import Ui_wdgAgenda
 
 from PyQt5.QtWidgets import QWidget
 
-from brain.dashboard.Agenda.agendaController import AgendaController
+from brain.dashboard.Agenda.agendaController import CalendarioController
 
 
 class AgendaPage(Ui_wdgAgenda, QWidget):
@@ -17,12 +17,12 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
 
         self.setupUi(self)
 
-        self.calendario = AgendaController()
+        self.calendario = CalendarioController()
 
         self.vlAgenda.addWidget(self.calendario)
 
 
-        self.calendario.calendarWidget.clicked.connect(self.printDateInfo)
+        # self.calendario.calendarWidget.clicked.connect(self.printDateInfo)
 
 
 

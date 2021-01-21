@@ -2,7 +2,7 @@ import base64
 
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QMessageBox, QGridLayout
+from PyQt5.QtWidgets import QMessageBox, QGridLayout, QLabel, QPushButton, QListWidget
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 
 from Telas.dashCliente import Ui_wdgCliente
@@ -40,27 +40,33 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.modoEdicao = False
         self.grupoEdicao = GrupoModelo()
 
+        self.colunas = 1
+
         self.pbCancelar.hide()
         self.pbCancelar.clicked.connect(self.sairModoEdicao)
         self.carregaComboBoxes()
         self.cbxOrdenar.currentTextChanged.connect(self.ordenarCards)
         self.sinais.sResizeWindow.connect(self.redimensionaTela)
+        self.pbRefresh.clicked.connect(lambda: self.filtroAZ(letra=None))
 
         self.gridBox = QGridLayout()
+        self.carregaFiltroAZ()
 
-        self.tblGrupo.clicked.connect(self.selecionaParticipante)
+        self.tblParticipantes.clicked.connect(self.selecionaParticipante)
 
         self.pbExportar.clicked.connect(self.criaRelatorio)
         self.atualizaTabelaGeral()
         self.atualizaTabelaParticipantes()
         self.frInfoCliente.hide()
 
+        self.efeito.shadowCards([self.tblParticipantes], color=(131, 134, 137, 90))
+
         # Escondendo as colunas Id das tabelas Geral e Grupo
         self.tblClientes.setColumnHidden(0, True)
-        self.tblGrupo.setColumnHidden(0, True)
+        self.tblParticipantes.setColumnHidden(0, True)
 
         self.tblClientes.setItemDelegate(AlinhamentoCentro())
-        # self.tblGrupo.setItemDelegate(AlinhamentoEsq())
+        # self.tblParticipantes.setItemDelegate(AlinhamentoEsq())
 
         self.pbConfirmarAtualizacao.clicked.connect(
             lambda: self.showPopupSimCancela('As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
@@ -111,10 +117,12 @@ class brainCliente(Ui_wdgCliente, QWidget):
         # Busca no banco de dados todos os grupos criados
         gruposCadastrados = daoGrupo.findAll()
 
-        if len(gruposCadastrados) > 8 and 2*widthCard < widthScreen:
+        if len(gruposCadastrados) > 4 and 2*widthCard < widthScreen:
             colunas = 2
         elif len(gruposCadastrados) > 8 and 3*widthCard < widthScreen:
             colunas = 3
+
+        self.colunas = colunas
 
         linhas = ceil(len(gruposCadastrados)/colunas)
 
@@ -184,10 +192,10 @@ class brainCliente(Ui_wdgCliente, QWidget):
             grupoId = daoGrupo.insereGrupo(grupoModel)
 
             if grupoId is not None:
-                for i in range(self.tblGrupo.rowCount()):
-                    if self.tblGrupo.item(i, 3).checkState():
+                for i in range(self.tblParticipantes.rowCount()):
+                    if self.tblParticipantes.item(i, 3).checkState():
                         listaParticipantes.append(ParticipanteModel(
-                            listaParticipante=[grupoId, self.tblGrupo.item(i, 0).text()]
+                            listaParticipante=[grupoId, self.tblParticipantes.item(i, 0).text()]
                         ))
                 daoParticipantes.insereParticipantes(listaParticipantes)
 
@@ -281,26 +289,30 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         self.tblClientes.resizeColumnsToContents()
 
-    def atualizaTabelaParticipantes(self):
-        clientes = self.daoCliente.findAllNomeSobrenome()
+    def atualizaTabelaParticipantes(self, letra=None):
 
-        self.tblGrupo.setRowCount(0)
+        if letra is None:
+            clientes = self.daoCliente.findAllNomeSobrenome()
+        else:
+            clientes = self.daoCliente.findAllNomeSobrenome(letra=letra)
+
+        self.tblParticipantes.setRowCount(0)
 
         for rowCount, rowData in enumerate(clientes):
-            self.tblGrupo.insertRow(rowCount)
+            self.tblParticipantes.insertRow(rowCount)
 
             for columnNumber, data in enumerate(rowData):
                 if columnNumber == 3:
                     cbItemParticipante = QTableWidgetItem()
                     cbItemParticipante.setFlags(QtCore.Qt.ItemIsEnabled)
                     cbItemParticipante.setCheckState(QtCore.Qt.Unchecked)
-                    self.tblGrupo.setItem(rowCount, columnNumber, QTableWidgetItem(cbItemParticipante))
+                    self.tblParticipantes.setItem(rowCount, columnNumber, QTableWidgetItem(cbItemParticipante))
                 else:
                     strItem = QTableWidgetItem(str(data))
                     strItem.setFont(QFont('Ubuntu', pointSize=14, italic=True))
-                    self.tblGrupo.setItem(rowCount, columnNumber, strItem)
+                    self.tblParticipantes.setItem(rowCount, columnNumber, strItem)
 
-        self.tblGrupo.resizeColumnsToContents()
+        self.tblParticipantes.resizeColumnsToContents()
 
     def carregaInfoCliente(self, *args):
 
@@ -377,8 +389,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leDescricaoGrupo.clear()
 
         for i in range(0, self.tblClientes.rowCount()):
-            if self.tblGrupo.item(i, 3) is not None:
-                self.tblGrupo.item(i, 3).setCheckState(QtCore.Qt.Unchecked)
+            if self.tblParticipantes.item(i, 3) is not None:
+                self.tblParticipantes.item(i, 3).setCheckState(QtCore.Qt.Unchecked)
 
     def showPopupSimCancela(self, mensagem, titulo='Atenção!'):
         dialogPopup = QMessageBox()
@@ -419,12 +431,12 @@ class brainCliente(Ui_wdgCliente, QWidget):
     def selecionaParticipante(self, *args):
 
         # Verifica o estado da chackbox na linha clicada
-        estado = self.tblGrupo.item(args[0].row(), 3).checkState()
+        estado = self.tblParticipantes.item(args[0].row(), 3).checkState()
 
         if estado == 0:
-            self.tblGrupo.item(args[0].row(), 3).setCheckState(QtCore.Qt.Checked)
+            self.tblParticipantes.item(args[0].row(), 3).setCheckState(QtCore.Qt.Checked)
         else:
-            self.tblGrupo.item(args[0].row(), 3).setCheckState(QtCore.Qt.Unchecked)
+            self.tblParticipantes.item(args[0].row(), 3).setCheckState(QtCore.Qt.Unchecked)
 
     def limpaLayout(self):
         '''
@@ -445,8 +457,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
         if len(self.leTituloGrupo.text()) < 1:
             return False
 
-        for i in range(self.tblGrupo.rowCount()):
-            if self.tblGrupo.item(i, 3).checkState():
+        for i in range(self.tblParticipantes.rowCount()):
+            if self.tblParticipantes.item(i, 3).checkState():
                 return True
         return False
 
@@ -462,12 +474,12 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leTituloGrupo.setText(grupo.titulo)
         self.leDescricaoGrupo.setText(grupo.descricao)
 
-        for i in range(self.tblGrupo.rowCount()):
-            clienteTabelaId = self.tblGrupo.item(i, 0).text()
+        for i in range(self.tblParticipantes.rowCount()):
+            clienteTabelaId = self.tblParticipantes.item(i, 0).text()
             for j in participantes:
                 clienteCardId = j[0]
                 if int(clienteTabelaId) == int(clienteCardId):
-                    self.tblGrupo.item(i, 3).setCheckState(QtCore.Qt.Checked)
+                    self.tblParticipantes.item(i, 3).setCheckState(QtCore.Qt.Checked)
 
     def sairModoEdicao(self):
         self.modoEdicao = False
@@ -488,10 +500,10 @@ class brainCliente(Ui_wdgCliente, QWidget):
         daoGrupo.atualizarGrupo(self.grupoEdicao)
         daoParticipantes.deletarParticipantesEvento(self.grupoEdicao.grupoId)
 
-        for i in range(self.tblGrupo.rowCount()):
-            if self.tblGrupo.item(i, 3).checkState():
+        for i in range(self.tblParticipantes.rowCount()):
+            if self.tblParticipantes.item(i, 3).checkState():
                 listaParticipantes.append(ParticipanteModel(
-                    listaParticipante=[self.grupoEdicao.grupoId, self.tblGrupo.item(i, 0).text()]
+                    listaParticipante=[self.grupoEdicao.grupoId, self.tblParticipantes.item(i, 0).text()]
                 ))
         daoParticipantes.insereParticipantes(listaParticipantes)
 
@@ -542,24 +554,83 @@ class brainCliente(Ui_wdgCliente, QWidget):
         else:
             colunas = 1
 
-        listaCards = list()
+        if colunas == self.colunas:
+            return True
+        else:
+            self.colunas = colunas
 
-        for i in range(self.gridBox.count()):
-            listaCards.append(self.gridBox.itemAt(i).widget())
+            listaCards = list()
 
-        self.limpaLayout()
+            for i in range(self.gridBox.count()):
+                listaCards.append(self.gridBox.itemAt(i).widget())
 
-        linhas = ceil(len(listaCards) / colunas)
+            self.limpaLayout()
 
-        posicoes = [(linha, coluna) for linha in range(linhas) for coluna in range(colunas)]
+            linhas = ceil(len(listaCards) / colunas)
 
-        for card, posicao in zip(listaCards, posicoes):
-            self.efeito.shadowCards([card], color=(105, 210, 231, 80))
-            self.gridBox.addWidget(card, *posicao)
-        self.gridBox.setSpacing(32)
+            posicoes = [(linha, coluna) for linha in range(linhas) for coluna in range(colunas)]
 
-        if self.gridBox.count():
-            self.scrollGrupos.setLayout(self.gridBox)
+            for card, posicao in zip(listaCards, posicoes):
+                self.efeito.shadowCards([card], color=(105, 210, 231, 80))
+                self.gridBox.addWidget(card, *posicao)
+            self.gridBox.setSpacing(32)
+
+            if self.gridBox.count():
+                self.scrollGrupos.setLayout(self.gridBox)
+
+    def carregaFiltroAZ(self):
+        listAlfabeto = list(' ABCDEFGHIJKLMNOPQRSTUVWXYZ ')
+        pbStrStyleSheet = """
+            QPushButton {
+                background-color: transparent;
+                border: 0px;
+                font-size: 12px;
+                font-family: Ubuntu;
+            }
+            QPushButton::hover{
+                border: 0px solid;
+                border-radius: 10px;
+                background-color: #838689;
+                color: #fff;
+                font-size: 16px;
+                font-family: Ubuntu;  
+            }"""
+        lbStyleSheet = """
+        QLabel {
+            background-color: transparent;
+            border: 0px;
+            }
+            """
+
+        for i in range(0, len(listAlfabeto)):
+
+            if i == 0 or i == len(listAlfabeto)-1:
+                label = QLabel(' ')
+                label.setFixedSize(20, 20)
+                label.setStyleSheet(lbStyleSheet)
+                self.hlAlfabeto.addWidget(label)
+            else:
+                button = QPushButton(listAlfabeto[i])
+                button.setFixedSize(20, 20)
+                button.setStyleSheet(pbStrStyleSheet)
+                button.clicked.connect(lambda state, i=i: self.filtroAZ(i))
+                self.hlAlfabeto.addWidget(button)
+
+    def filtroAZ(self, letra, *args, **kwargs):
+        listAlfabeto = list(' ABCDEFGHIJKLMNOPQRSTUVWXYZ ')
+
+        if letra is None:
+            for linha in range(self.tblParticipantes.rowCount()):
+                self.tblParticipantes.showRow(linha)
+        else:
+            for linha in range(self.tblParticipantes.rowCount()):
+                if self.tblParticipantes.item(linha, 1).text()[0] != listAlfabeto[letra]:
+                    self.tblParticipantes.hideRow(linha)
+                else:
+                    self.tblParticipantes.showRow(linha)
+
+
+
 
 if __name__ == '__main__':
     import sys

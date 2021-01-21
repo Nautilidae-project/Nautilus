@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
-    <height>300</height>
+    <width>400</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>300</width>
-    <height>300</height>
+    <width>350</width>
+    <height>350</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>300</width>
-    <height>300</height>
+    <width>400</width>
+    <height>400</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -30,10 +30,7 @@
 	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgba(105, 33, 140, 60), stop:1 rgba(112, 237, 255, 60));	
 }*/</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="spacing">
-    <number>0</number>
-   </property>
+  <layout class="QGridLayout" name="gridLayout_2">
    <property name="leftMargin">
     <number>0</number>
    </property>
@@ -46,7 +43,7 @@
    <property name="bottomMargin">
     <number>0</number>
    </property>
-   <item>
+   <item row="0" column="0">
     <widget class="QFrame" name="frGrupoCard">
      <property name="styleSheet">
       <string notr="true">#frGrupoCard {
@@ -59,99 +56,20 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <property name="spacing">
-       <number>0</number>
-      </property>
+     <layout class="QGridLayout" name="gridLayout">
       <property name="leftMargin">
-       <number>8</number>
+       <number>15</number>
       </property>
       <property name="topMargin">
-       <number>4</number>
+       <number>0</number>
       </property>
       <property name="rightMargin">
-       <number>4</number>
+       <number>15</number>
       </property>
       <property name="bottomMargin">
-       <number>8</number>
+       <number>0</number>
       </property>
-      <item>
-       <widget class="QLabel" name="lbTituloCard">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>50</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>50</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Ubuntu</family>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">#lbTituloCard{
-	color: #fff;
-	background-color: transparent;
-	border: 0px;
-	font-size: 16pt;
-	font-family: Ubuntu;
-	font-weight: bold;
-}</string>
-        </property>
-        <property name="text">
-         <string>Titulo</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="lbDescricao">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>18</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>60</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Ubuntu</family>
-          <pointsize>12</pointsize>
-          <italic>true</italic>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">#lbDescricao{
-	color: #fff;
-	background-color: transparent;
-	border: 0px;
-	font-family: Ubuntu;
-	font-size: 12pt;
-	font-style: italic;
-}</string>
-        </property>
-        <property name="text">
-         <string>Descrição</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item alignment="Qt::AlignBottom">
+      <item row="2" column="0">
        <widget class="QFrame" name="frBottom">
         <property name="styleSheet">
          <string notr="true">#frBottom {
@@ -164,10 +82,7 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <property name="spacing">
-          <number>0</number>
-         </property>
+        <layout class="QGridLayout" name="gridLayout_3">
          <property name="leftMargin">
           <number>0</number>
          </property>
@@ -180,8 +95,23 @@
          <property name="bottomMargin">
           <number>0</number>
          </property>
-         <item>
+         <property name="horizontalSpacing">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
           <widget class="QTableWidget" name="tblGrupoItem">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>150</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>200</height>
+            </size>
+           </property>
            <property name="styleSheet">
             <string notr="true">#tblGrupoItem {
 	background-color: rgba(233, 185, 110, 200);
@@ -242,18 +172,18 @@
            </column>
           </widget>
          </item>
-         <item alignment="Qt::AlignVCenter">
+         <item row="0" column="1">
           <widget class="QFrame" name="frBotoes">
            <property name="minimumSize">
             <size>
-             <width>24</width>
+             <width>0</width>
              <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>24</width>
-             <height>16777215</height>
+             <height>100</height>
             </size>
            </property>
            <property name="styleSheet">
@@ -267,9 +197,12 @@
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_3">
-            <property name="spacing">
-             <number>32</number>
+           <layout class="QFormLayout" name="formLayout">
+            <property name="horizontalSpacing">
+             <number>0</number>
+            </property>
+            <property name="verticalSpacing">
+             <number>9</number>
             </property>
             <property name="leftMargin">
              <number>0</number>
@@ -283,7 +216,7 @@
             <property name="bottomMargin">
              <number>0</number>
             </property>
-            <item>
+            <item row="3" column="1">
              <widget class="QPushButton" name="pbEditar">
               <property name="minimumSize">
                <size>
@@ -309,7 +242,7 @@
               </property>
              </widget>
             </item>
-            <item>
+            <item row="4" column="1">
              <widget class="QPushButton" name="pbExcluir">
               <property name="minimumSize">
                <size>
@@ -344,12 +277,96 @@
              </widget>
             </item>
            </layout>
+           <zorder>pbExcluir</zorder>
+           <zorder>pbEditar</zorder>
           </widget>
          </item>
         </layout>
         <zorder>frBotoes</zorder>
         <zorder>tblGrupoItem</zorder>
        </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QTextEdit" name="lbDescricao">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#lbDescricao {
+	border: 0px;
+	background-color: transparent;
+	color: #fff;
+	font-family: Ubuntu;
+	font-size: 12pt;
+	font-style: italic;
+}</string>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="placeholderText">
+         <string>DESCRIÇÃO</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="lbTituloCard">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Ubuntu</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#lbTituloCard{
+	color: #fff;
+	background-color: transparent;
+	border: 0px;
+	font-size: 16pt;
+	font-family: Ubuntu;
+	font-weight: bold;
+}</string>
+        </property>
+        <property name="text">
+         <string>Titulo</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>
