@@ -8,4 +8,7 @@
   <qresource prefix="Excluir">
     <file>cardExcluirRed.png</file>
   </qresource>
+  <qresource prefix="Email">
+    <file>cardEmail.png</file>
+  </qresource>
 </RCC>

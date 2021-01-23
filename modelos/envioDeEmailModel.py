@@ -13,6 +13,8 @@ def enviaEmail(titulo, mensagem, emailDestino, arquivo=None):
         # usuario = 'seu e-mail'
         # senha = 'sua senha do e-mail'
 
+        usuario = ''
+        senha = ''
 
         # Criando objeto
         print('Criando objeto servidor...')

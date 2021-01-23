@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1094</width>
-    <height>721</height>
+    <height>706</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -144,7 +144,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tbInfosCliente">
       <property name="enabled">
@@ -2412,6 +2412,23 @@ QScrollBar:vertical {
       </layout>
      </widget>
      <widget class="QWidget" name="tbGrupoCliente">
+      <property name="styleSheet">
+       <string notr="true">QComboBox {
+	
+	background-color: rgb(255, 255, 255);
+	border-radius: 15px;
+	border: 3px solid #DAA520;
+	color: #000000;
+	padding: 5px;
+	
+	selection-background-color: rgb(83, 162, 193);
+	selection-color: rgb(255, 255, 255);
+}
+
+QComboBox::drop-down{
+	border: 0px;
+}</string>
+      </property>
       <attribute name="title">
        <string>Grupos</string>
       </attribute>
@@ -2433,7 +2450,7 @@ QScrollBar:vertical {
                <x>0</x>
                <y>0</y>
                <width>552</width>
-               <height>510</height>
+               <height>495</height>
               </rect>
              </property>
             </widget>
@@ -2569,7 +2586,11 @@ QScrollBar:vertical {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QComboBox" name="cbxOrdenar"/>
+                 <widget class="QComboBox" name="cbxOrdenar">
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </widget>
@@ -2772,7 +2793,13 @@ QScrollBar:vertical {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>32</height>
+              <height>110</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>110</height>
              </size>
             </property>
             <property name="styleSheet">
@@ -2803,27 +2830,94 @@ QScrollBar:vertical {
               <number>0</number>
              </property>
              <item>
-              <widget class="QLabel" name="lbDescricao">
+              <widget class="QFrame" name="frInformativo">
                <property name="minimumSize">
                 <size>
-                 <width>0</width>
-                 <height>32</height>
+                 <width>100</width>
+                 <height>0</height>
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true"/>
+                <string notr="true">#frInformativo {
+background-color: transparent;
+}</string>
                </property>
-               <property name="text">
-                <string>Descrição</string>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
                </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_7">
+                <property name="leftMargin">
+                 <number>2</number>
+                </property>
+                <property name="topMargin">
+                 <number>5</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="lbDescricao">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>32</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>32</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string>Descrição</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <spacer name="verticalSpacer">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="leDescricaoGrupo">
-               <property name="styleSheet">
-                <string notr="true">#leDescricaoGrupo {
-	background-color: transparent;
-}</string>
+              <widget class="QTextEdit" name="leDescricaoGrupo">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>100</height>
+                </size>
                </property>
               </widget>
              </item>
@@ -2885,7 +2979,7 @@ QScrollBar:vertical {
               <widget class="QComboBox" name="cbxCategoria">
                <property name="minimumSize">
                 <size>
-                 <width>100</width>
+                 <width>0</width>
                  <height>0</height>
                 </size>
                </property>

@@ -182,7 +182,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
             dictGrupo = {
                 'grupoId': None,
                 'titulo': self.leTituloGrupo.text(),
-                'descricao': self.leDescricaoGrupo.text(),
+                'descricao': self.leDescricaoGrupo.toPlainText(),
                 'categoria': self.cbxCategoria.currentText(),
                 'dataCadastro': None,
                 'dataUltAlt': None
