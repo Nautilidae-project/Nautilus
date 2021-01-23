@@ -2,9 +2,11 @@ from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 
 from Telas.cardGrupo import Ui_wdgGrupoCard
+from brain.DAOs.daoCliente import DaoCliente
 from brain.DAOs.daoGrupo import DaoGrupo
 from brain.dashboard.Sinais import Sinais
 from brain.delegates.alinhamento import AlinhamentoEsq
+from brain.envioDeMensagens import Mensagens
 from modelos.efeitosModel import Efeitos
 from modelos.grupoModel import GrupoModelo
 
@@ -17,6 +19,7 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
         self.grupo = grupo
         self.parent = parent
         self.sinais = Sinais()
+        self.enviarEmail = Mensagens()
         self.tblGrupoItem.setColumnHidden(0, True)
         self.tblGrupoItem.setItemDelegate(AlinhamentoEsq())
         Efeitos().shadowCards([self.tblGrupoItem])
@@ -35,6 +38,7 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
 
         self.pbEditar.clicked.connect(self.editarGrupo)
         self.pbExcluir.clicked.connect(self.excluirGrupo)
+        self.pbEmailCard.clicked.connect(self.emailGrupo)
 
         if grupo is not None:
             self.populaTblParticipantes()
@@ -47,7 +51,7 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
         daoGrupo = DaoGrupo()
 
         listaParticipantes = daoGrupo.buscaParticipantesGrupo(self.grupo.grupoId)
-        
+
         self.tblGrupoItem.setRowCount(0)
         for rowCount, rowData in enumerate(listaParticipantes):
             self.tblGrupoItem.insertRow(rowCount)
@@ -70,4 +74,24 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
     def editarGrupo(self):
         self.frGrupoCard.setStyleSheet(self.styleEdicao)
         self.parent.editarGrupo(self.grupo)
+
+    def emailGrupo(self):
+        daoGrupo = DaoGrupo().buscaParticipantesGrupo(self.grupo.grupoId)
+        emailParticipantes = ''
+        idParticipantes = ''
+        nomeParticipantes = ''
+        for cliente in daoGrupo:
+            print(DaoCliente().buscaPorId(cliente[0])[0])  # Indexs --> [2 tuplas], [1 tupla], [campo especifico]
+
+            idParticipantes += str(DaoCliente().buscaPorId(cliente[0])[0][0]) + ', '
+
+            nomeParticipantes += f"{DaoCliente().buscaPorId(cliente[0])[0][1]} {DaoCliente().buscaPorId(cliente[0])[0][2]}, "
+
+            emailParticipantes += DaoCliente().buscaPorId(cliente[0])[0][4] + ', '
+
+        self.enviarEmail.leId.setText(idParticipantes[0:-2])
+        self.enviarEmail.leNome.setText(nomeParticipantes[0:-2])
+        self.enviarEmail.leEmail.setText(emailParticipantes[0:-2])
+
+        self.enviarEmail.show()
 

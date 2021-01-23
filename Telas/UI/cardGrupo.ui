@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>400</height>
+    <height>350</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -243,6 +243,33 @@
              </widget>
             </item>
             <item row="4" column="1">
+             <widget class="QPushButton" name="pbEmailCard">
+              <property name="minimumSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#pbEmailCard{
+	background-image: url(:/Email/cardEmail.png);
+	background-position: center;
+	background-repeat: no-repeat;
+}
+</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="1">
              <widget class="QPushButton" name="pbExcluir">
               <property name="minimumSize">
                <size>
@@ -277,8 +304,6 @@
              </widget>
             </item>
            </layout>
-           <zorder>pbExcluir</zorder>
-           <zorder>pbEditar</zorder>
           </widget>
          </item>
         </layout>
