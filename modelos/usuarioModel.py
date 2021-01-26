@@ -10,6 +10,7 @@ class Usuario:
         self.email = None
         self.tel = None
         self.endereco = None
+        self.cidade = None
         self.cep = None
         self.senha = None
 
@@ -23,6 +24,7 @@ class Usuario:
             'email': self.email,
             'tel': self.tel,
             'endereco': self.endereco,
+            'cidade': self.cidade,
             'cep': self.cep,
             'senha': self.senha
         }
@@ -37,6 +39,7 @@ class Usuario:
         self.email = dictUsuario['email']
         self.tel = dictUsuario['tel']
         self.endereco = dictUsuario['endereco']
+        self.cidade = dictUsuario['cidade']
         self.cep = dictUsuario['cep']
         self.senha = dictUsuario['senha']
 

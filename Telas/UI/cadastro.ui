@@ -722,6 +722,9 @@ QTabBar::tab:hover {
          <property name="text">
           <string/>
          </property>
+         <property name="maxLength">
+          <number>20</number>
+         </property>
          <property name="frame">
           <bool>true</bool>
          </property>
@@ -889,6 +892,9 @@ QTabBar::tab:hover {
          <property name="text">
           <string/>
          </property>
+         <property name="maxLength">
+          <number>20</number>
+         </property>
          <property name="frame">
           <bool>true</bool>
          </property>
@@ -988,6 +994,9 @@ QTabBar::tab:hover {
          </property>
          <property name="text">
           <string/>
+         </property>
+         <property name="maxLength">
+          <number>20</number>
          </property>
          <property name="frame">
           <bool>true</bool>
@@ -1203,6 +1212,9 @@ QTabBar::tab:hover {
          <property name="text">
           <string/>
          </property>
+         <property name="maxLength">
+          <number>30</number>
+         </property>
          <property name="frame">
           <bool>true</bool>
          </property>
@@ -1301,6 +1313,9 @@ QComboBox::drop-down{
          <property name="text">
           <string/>
          </property>
+         <property name="maxLength">
+          <number>10</number>
+         </property>
          <property name="frame">
           <bool>true</bool>
          </property>
@@ -1368,6 +1383,9 @@ QComboBox::drop-down{
          </property>
          <property name="text">
           <string/>
+         </property>
+         <property name="maxLength">
+          <number>30</number>
          </property>
          <property name="frame">
           <bool>true</bool>
@@ -1607,6 +1625,9 @@ QComboBox::drop-down{
          <property name="text">
           <string/>
          </property>
+         <property name="maxLength">
+          <number>25</number>
+         </property>
          <property name="frame">
           <bool>true</bool>
          </property>
@@ -1674,6 +1695,9 @@ QComboBox::drop-down{
          </property>
          <property name="text">
           <string/>
+         </property>
+         <property name="maxLength">
+          <number>30</number>
          </property>
          <property name="frame">
           <bool>true</bool>
@@ -1750,6 +1774,9 @@ QComboBox::drop-down{
          </property>
          <property name="text">
           <string/>
+         </property>
+         <property name="maxLength">
+          <number>30</number>
          </property>
          <property name="frame">
           <bool>true</bool>
@@ -1847,6 +1874,9 @@ QComboBox::drop-down{
          </property>
          <property name="text">
           <string/>
+         </property>
+         <property name="maxLength">
+          <number>30</number>
          </property>
          <property name="frame">
           <bool>true</bool>
