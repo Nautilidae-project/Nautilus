@@ -572,7 +572,7 @@ class Ui_mwLogin(object):
         self.leSenha.setPlaceholderText(_translate("mwLogin", "Senha"))
         self.pbLogin.setText(_translate("mwLogin", "Login"))
         self.pbCadastro.setText(_translate("mwLogin", "Cadastre-se"))
-import Telas.login_rc
+import Telas.Resources.loginResources
 
 
 if __name__ == "__main__":

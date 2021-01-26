@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/sh
 import os
 
 from PyQt5.QtWidgets import QFileDialog, QAction
@@ -24,7 +24,7 @@ class RelatorioCliente:
         self.nomeArquivo = nomeArquivo
         self.usuario = Usuario().fromList(usuario)
 
-        self.geometry = {'head': '40pt', 'margin': '1.5cm', 'tmargin' : '1cm', 'includeheadfoot':True}
+        self.geometry = {'head': '40pt', 'margin': '1.5cm', 'tmargin': '1cm', 'includeheadfoot': True}
         self.documento = Document(f'{self.nomeArquivo}', geometry_options=self.geometry, page_numbers=False)
         self.firstPage = None
 
@@ -46,7 +46,7 @@ class RelatorioCliente:
             with header_left.create(MiniPage(width=NoEscape(r"0.3\textwidth"), pos='l')) as logo_wrapper:
                 with logo_wrapper.create(Tabularx('X X', width_argument=NoEscape(r"0.5\textwidth"))) as logo:
                     logo.add_row([MultiColumn(2, align='c')])
-                    logo_file = '/home/israeldev/Projetos/Nautilus/Telas/Imagens/nautilusDash.png'
+                    logo_file = os.path.join(os.getcwd(), 'Telas', 'Imagens', 'nautilusDash.png')
                     imagem = StandAloneGraphic(image_options="width=36px", filename=logo_file)
                     textLogo = MiniPage(width=NoEscape(r"0.6\textwidth"), content_pos='t', align='l')
 
@@ -124,15 +124,13 @@ class RelatorioCliente:
     def exportaRelatorio(self, tipo='pdf'):
 
         fileName = QFileDialog.getSaveFileName(directory='/home/', options=QFileDialog.DontUseNativeDialog)
-        print(f'\033[33m{fileName[0]}')
+        print(f'\033[33m{fileName}')
 
         if tipo == 'pdf':
             self.constroiCabecalho()
             self.constroiCorpo()
             self.documento.preamble.append(self.firstPage)
-            # self.documento.generate_pdf(fileName[0], clean_tex=False)
             self.documento.generate_pdf(fileName[0], clean_tex=False)
-
         else:
             self.exportaExcel()
 
