@@ -179,13 +179,13 @@ class DaoConfiguracoes:
             (
                  nomeUsuario, nomeEmpresa, nomeFantasia,
                  cnpj, email, tel,
-                 endereco, cep, senha, dataCadastro
+                 endereco, cidade, cep, senha, dataCadastro
             )
             VALUES
             (
                 '{usuario.nomeUsuario}', '{usuario.nomeEmpresa}', '{usuario.nomeFantasia}',
                 '{usuario.cnpj}', '{usuario.email}', {usuario.tel},
-                '{usuario.endereco}', '{usuario.cep}', '{usuario.senha}', NOW()
+                '{usuario.endereco}', '{usuario.cidade}', '{usuario.cep}', '{usuario.senha}', NOW()
             )
             """
         try:
@@ -273,10 +273,6 @@ class DaoConfiguracoes:
             self.disconectBD(cursor)
             return True
 
-    def disconectBD(self, cursor):
-        cursor.close()
-        self.connection.close()
-
     def buscaUsuarioAtivo(self):
 
         self.connection.connect()
@@ -291,3 +287,8 @@ class DaoConfiguracoes:
             raise Exception(f'Erro SQL - buscaUsuarioAtivo()) <SELECT {self.configs.tblUsuario}>')
         finally:
             self.disconectBD(cursor)
+
+    def disconectBD(self, cursor):
+        cursor.close()
+        self.connection.close()
+

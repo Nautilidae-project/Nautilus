@@ -116,6 +116,7 @@ class DaoGrupo:
 
         try:
             cursor.execute(strComando)
+            self.connection.commit()
         except:
             raise Warning(f'Erro SQL - atualizarGrupo({self.configs.tblGrupo}) <UPDATE>')
         finally:

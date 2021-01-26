@@ -7,3 +7,5 @@ class Sinais(QObject):
     sResizeWindow = QtCore.pyqtSignal()
     sAtualizarTela = QtCore.pyqtSignal()
     sEditarGrupo = QtCore.pyqtSignal()
+    sSistemInfo = QtCore.pyqtSignal(str, name='mensagem')
+    sSistemLoading = QtCore.pyqtSignal(int, name='intLoading')
