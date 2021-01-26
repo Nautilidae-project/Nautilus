@@ -49,10 +49,10 @@ class DaoCliente:
         cursor = self.connection.cursor()
 
         if not all:
-            strComando = f"SELECT clienteId, nomeCliente, telefone, meioPagamento, ativo FROM {self.configs.tblCliente} ORDER BY ativo DESC"
+            strComando = f"SELECT clienteId, nomeCliente, sobrenomeCliente, telefone, meioPagamento, ativo FROM {self.configs.tblCliente} ORDER BY ativo DESC, nomeCliente ASC"
 
         else:
-            strComando = f"SELECT * FROM {self.configs.tblCliente} ORDER BY ativo DESC"
+            strComando = f"SELECT * FROM {self.configs.tblCliente} ORDER BY ativo DESC, nomeCliente ASC"
 
         cursor.execute(strComando)
 

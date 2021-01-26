@@ -62,11 +62,28 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
 
     def excluirGrupo(self):
         daoGrupo = DaoGrupo()
+        intLoading = 0
 
+        intLoading += 20
+        self.parent.parent.loading(intLoading)
         daoGrupo.excluirGrupoEParticipantes(self.grupo.grupoId)
+
+        intLoading += 20
+        self.parent.parent.loading(intLoading)
         self.sinais.sAtualizarTela.emit()
+
+        intLoading += 20
+        self.parent.parent.loading(intLoading)
         self.sinais.sAtualizarTela.disconnect()
+
+        intLoading += 20
+        self.parent.parent.loading(intLoading)
         self.sinais.sAtualizarTela.connect(self.atualizarCards)
+
+        intLoading += 20
+        self.parent.parent.loading(intLoading)
+
+        self.parent.parent.menssagemSistema(f'Grupo "{self.grupo.titulo}" excluído com sucesso.')
 
     def atualizarCards(self):
         self.parent.atualizaGruposCards()

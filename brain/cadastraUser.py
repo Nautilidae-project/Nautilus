@@ -33,6 +33,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
         self.leEmail.textEdited.connect(lambda: self.defineCampo('email'))
         self.leTelefone.textEdited.connect(lambda: self.defineCampo('tel'))
         self.leEndereco.textEdited.connect(lambda: self.defineCampo('end'))
+        self.leCidade.textEdited.connect(lambda: self.defineCampo('cid'))
         self.leCEP.textEdited.connect(lambda: self.defineCampo('cep'))
         self.leSenha.textEdited.connect(lambda: self.defineCampo('senha'))
         self.leSenhaConfirma.textEdited.connect(lambda: self.defineCampo('confS'))

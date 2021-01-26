@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QMainWindow
 from Telas.login import Ui_mwLogin
 from brain.cadastraUser import brainCadastro
-from brain.dashboard.dashboardStk import brainDashboard
+from brain.dashboard.mainDashboard import mainDashboard
 from brain.DAOs.UserConfig import *
 
 
@@ -15,15 +15,18 @@ class LoginPage(Ui_mwLogin, QMainWindow):
         self.setupUi(self)
         self.center()
 
-        # Ao abrir a janela, dá o focus e coloca ela em primeiro plano
-        self.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
+        # Ao abrir a janela, dá o focus, coloca ela em primeiro plano e maximizada
+        self.showMaximized()
+        self.raise_()
+        self.activateWindow()
+
 
         # Iniciando a tela cadastro e inserindo-a no stkWidget
         self.telaCadastro = brainCadastro(self)
         self.stkLogin.addWidget(self.telaCadastro)
 
         # Iniciando a tela cadastro e inserindo-a no stkWidget
-        self.telaDashboard = brainDashboard(self)
+        self.telaDashboard = mainDashboard(self)
         self.stkLogin.addWidget(self.telaDashboard)
 
         self.pbCadastro.clicked.connect(self.navigate)
@@ -38,8 +41,8 @@ class LoginPage(Ui_mwLogin, QMainWindow):
         self.leUsuario.setFocus()
         # self.leUsuario.setText('renan')
         # self.leSenha.setText('123456')
-        self.leUsuario.setText('renan')
-        self.leSenha.setText('123456')
+        self.leUsuario.setText('israeldev')
+        self.leSenha.setText('123')
 
     def navigate(self):
         self.stkLogin.setCurrentIndex(1)

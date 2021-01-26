@@ -1,5 +1,6 @@
 import base64
 
+import requests
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QMessageBox, QGridLayout, QLabel, QPushButton, QListWidget
@@ -14,12 +15,14 @@ from brain.DAOs.daoParticipantes import DaoParticipantes
 from brain.dashboard.Cliente.localWidgets.gruposCard import GruposCard
 from brain.dashboard.Cliente.relatorio import RelatorioCliente
 from brain.dashboard.Sinais import Sinais
-from brain.delegates.alinhamento import AlinhamentoCentro, AlinhamentoEsq
+from brain.delegates.alinhamento import AlinhamentoCentro
 from brain.envioDeMensagens import Mensagens
-from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt
+from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt, mascaraCep
 from modelos.clienteModel import Cliente
 from modelos.efeitosModel import Efeitos
 from modelos.grupoModel import GrupoModelo
+
+import os
 
 from math import ceil
 
@@ -31,75 +34,91 @@ class brainCliente(Ui_wdgCliente, QWidget):
     def __init__(self, parent=None):
         super(brainCliente, self).__init__(parent)
         self.setupUi(self)
+        self.parent = parent
+
+        # INICIALIZAÇÕES GERAIS =============================================
         self.cliente = Cliente()
         self.daoCliente = DaoCliente()
         self.efeito = Efeitos()
-        self.parent = parent
         self.sinais = Sinais()
         self.enviarEmail = Mensagens()
-        self.modoEdicao = False
-        self.grupoEdicao = GrupoModelo()
 
-        self.colunas = 1
-
-        self.pbCancelar.hide()
-        self.pbCancelar.clicked.connect(self.sairModoEdicao)
-        self.carregaComboBoxes()
-        self.cbxOrdenar.currentTextChanged.connect(self.ordenarCards)
-        self.sinais.sResizeWindow.connect(self.redimensionaTela)
-        self.pbRefresh.clicked.connect(lambda: self.filtroAZ(letra=None))
-
-        self.gridBox = QGridLayout()
-        self.carregaFiltroAZ()
-
-        self.tblParticipantes.clicked.connect(self.selecionaParticipante)
-
-        self.pbExportar.clicked.connect(self.criaRelatorio)
+        # INICIALIZAÇÕES DA ABA "INFORMAÇÕES" ===============================
+        self.desativaInfoCampos(True)
         self.atualizaTabelaGeral()
-        self.atualizaTabelaParticipantes()
-        self.frInfoCliente.hide()
-
-        self.efeito.shadowCards([self.tblParticipantes], color=(131, 134, 137, 90))
-
-        # Escondendo as colunas Id das tabelas Geral e Grupo
         self.tblClientes.setColumnHidden(0, True)
-        self.tblParticipantes.setColumnHidden(0, True)
-
         self.tblClientes.setItemDelegate(AlinhamentoCentro())
-        # self.tblParticipantes.setItemDelegate(AlinhamentoEsq())
 
-        self.pbConfirmarAtualizacao.clicked.connect(
-            lambda: self.showPopupSimCancela('As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
+        ## Declaração dos sinais de input
+        self.leInfoNome.textEdited.connect(lambda: self.defineInfoCampo('nome'))
+        self.leInfoSobrenome.textEdited.connect(lambda: self.defineInfoCampo('sobrenome'))
+        self.leInfoTel.textEdited.connect(lambda: self.defineInfoCampo('tel'))
+        self.leInfoEmail.textEdited.connect(lambda: self.defineInfoCampo('email'))
+        self.leInfoCep.textEdited.connect(lambda: self.defineInfoCampo('cep'))
+        self.leInfoCpf.textEdited.connect(lambda: self.defineInfoCampo('cpf'))
+        self.leInfoEndereco.textEdited.connect(lambda: self.defineInfoCampo('end'))
+        self.leInfoBairro.textEdited.connect(lambda: self.defineInfoCampo('bairro'))
+        self.leInfoComplemento.textEdited.connect(lambda: self.defineInfoCampo('compl'))
+        self.cbInfoAtivo.clicked.connect(lambda: self.defineInfoCampo('ativo'))
+
+        ## Declaração dos botões
+        self.pbConfirmarAtualizacao.clicked.connect(lambda: self.showPopupSimCancela('As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
+        self.pbEnviarEmail.clicked.connect(self.enviarUmEmail)
+
+        ## Declaração das LineEdit
+        self.leCep.editingFinished.connect(self.trataCep)
+        self.leTel.editingFinished.connect(lambda: self.insereMascara('tel'))
         self.leSearchCliente.textEdited.connect(self.busca)
 
+        ## Declaração do sinal da tabela de clientes
         self.tblClientes.doubleClicked.connect(self.carregaInfoCliente)
 
-        self.leInfoNome.textEdited.connect(lambda: self.defineCampo('nome'))
-        self.leInfoSobrenome.textEdited.connect(lambda: self.defineCampo('sobrenome'))
-        self.leInfoTel.textEdited.connect(lambda: self.defineCampo('tel'))
-        self.leInfoEmail.textEdited.connect(lambda: self.defineCampo('email'))
-        self.leInfoCep.textEdited.connect(lambda: self.defineCampo('cep'))
-        self.leInfoCpf.textEdited.connect(lambda: self.defineCampo('cpf'))
-        self.leInfoEndereco.textEdited.connect(lambda: self.defineCampo('end'))
-        self.leInfoBairro.textEdited.connect(lambda: self.defineCampo('bairro'))
-        self.leInfoComplemento.textEdited.connect(lambda: self.defineCampo('compl'))
-        self.cbInfoAtivo.clicked.connect(lambda: self.defineCampo('ativo'))
-
-        self.tabsCliente.currentChanged.connect(self.onChange)
-        self.tblClientes.doubleClicked.connect(self.enviarUmEmail)
-
-
-        # Cards Tela Cliente Informações
-        self.cardsInfosCliente()
-        # Adicionando Sombra nos cards
+        ## Declaração dos efeitos
+        self.efeito.shadowCards([self.frInfoCliente], color=(131, 134, 137, 90), offset=(-7, 4))
         self.efeito.shadowCards([self.leCard1, self.leCard2, self.leCard3, self.leCard4])
 
-        # GRupos/Turmas
-        self.cardGrupo = GruposCard()
-        self.pbAddGrupo.clicked.connect(lambda: self.criaGrupo() if not self.modoEdicao else self.updateGrupo())
+        # INICIALIZAÇÕES DA ABA "CADASTRO"    ===============================
+        ## Declaração relacionadas à aba de cadastro de clientes
+        self.leNome.textEdited.connect(lambda: self.defineCampoCadastro('nome'))
+        self.leSobrenome.textEdited.connect(lambda: self.defineCampoCadastro('sobrenome'))
+        self.leTel.textEdited.connect(lambda: self.defineCampoCadastro('tel'))
+        self.leEmail.textEdited.connect(lambda: self.defineCampoCadastro('email'))
+        self.leCep.textEdited.connect(lambda: self.defineCampoCadastro('cep'))
+        self.leEnd.textEdited.connect(lambda: self.defineCampoCadastro('end'))
+        self.leBairro.textEdited.connect(lambda: self.defineCampoCadastro('bairro'))
+        self.leCompl.textEdited.connect(lambda: self.defineCampoCadastro('compl'))
+        self.pbCadastrar.clicked.connect(lambda: self.trataCadastro(self.cliente))
 
-        # Tentando fazer uma lista de cards de grupos
+        # INICIALIZAÇÕES DA ABA "GRUPOS"      ===============================
+        self.colunas = 1
+        self.modoEdicao = False
+        self.grupoEdicao = GrupoModelo()
+        self.gridBox = QGridLayout()
+        self.cardGrupo = GruposCard()
+
         self.atualizaGruposCards()
+        self.cardsInfosCliente()
+        self.carregaComboBoxes()
+        self.cbxOrdenar.currentTextChanged.connect(self.ordenarCards)
+        self.atualizaTabelaParticipantes()
+        self.carregaFiltroAZ()
+        self.efeito.shadowCards([self.tblParticipantes], color=(131, 134, 137, 90))
+        self.tblParticipantes.setColumnHidden(0, True)
+
+
+        ## Declaração do sinal da tabela de Participantes
+        self.tblParticipantes.clicked.connect(self.selecionaParticipante)
+
+        ## Declaração dos botões
+        self.pbAddGrupo.clicked.connect(lambda: self.criaGrupo() if not self.modoEdicao else self.updateGrupo())
+        self.pbRefresh.clicked.connect(lambda: self.filtroAZ(letra=None))
+        self.pbCancelar.clicked.connect(self.sairModoEdicao)
+        self.pbExportar.clicked.connect(self.criaRelatorio)
+        self.pbCancelar.hide()
+
+        self.sinais.sResizeWindow.connect(self.redimensionaTela)
+
+        self.tabsCliente.currentChanged.connect(self.onChange)
 
     def atualizaGruposCards(self):
 
@@ -117,10 +136,11 @@ class brainCliente(Ui_wdgCliente, QWidget):
         # Busca no banco de dados todos os grupos criados
         gruposCadastrados = daoGrupo.findAll()
 
-        if len(gruposCadastrados) > 4 and 2*widthCard < widthScreen:
-            colunas = 2
-        elif len(gruposCadastrados) > 8 and 3*widthCard < widthScreen:
+
+        if len(gruposCadastrados) > 8 and 3*widthCard < widthScreen:
             colunas = 3
+        elif len(gruposCadastrados) > 2 and 2*widthCard < widthScreen:
+            colunas = 2
 
         self.colunas = colunas
 
@@ -145,18 +165,20 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
     def enviarUmEmail(self, *args):
 
-        intClienteId = int(self.tblClientes.item(args[0].row(), 0).text())
-        listCliente = self.daoCliente.buscaPorId(intClienteId)[0]
-        print(f'Id ------->  {listCliente[0]}')
-        print(f'Nome ----->  {listCliente[1]}')
-        print(f'SobreNome -> {listCliente[2]}')
-        print(f'E-mail ----> {listCliente[4]}')
+        if (self.cliente.clienteId is not None):
+            print(f'Id ------->  {self.cliente.clienteId}')
+            print(f'Nome ----->  {self.cliente.nomeCliente}')
+            print(f'SobreNome -> {self.cliente.sobrenomeCliente}')
+            print(f'E-mail ----> {self.cliente.email}')
 
-        self.enviarEmail.leId.setText(str(listCliente[0]))
-        self.enviarEmail.leNome.setText(f'{listCliente[1]} {listCliente[2]}')
-        self.enviarEmail.leEmail.setText(listCliente[4])
+            self.enviarEmail.leId.setText(str(self.cliente.clienteId))
+            self.enviarEmail.leNome.setText(f'{self.cliente.nomeCliente} {self.cliente.sobrenomeCliente}')
+            self.enviarEmail.leEmail.setText(self.cliente.email)
 
-        self.enviarEmail.show()
+            self.enviarEmail.show()
+        else:
+            # TODO: Criar popup que informa esse tipo de mensagem
+            self.parent.menssagemSistema('Não foi possível abrir janela de e-mail.')
 
     def cardsInfosCliente(self):
         self.leCard1.setText(
@@ -175,7 +197,9 @@ class brainCliente(Ui_wdgCliente, QWidget):
         :return: bool
         '''
 
+        intLoading = 0
         if self.confereDadosGrupo():
+            self.parent.loading(intLoading)
             listaParticipantes = list()
             daoGrupo = DaoGrupo()
             daoParticipantes = DaoParticipantes()
@@ -188,10 +212,17 @@ class brainCliente(Ui_wdgCliente, QWidget):
                 'dataUltAlt': None
             }
 
+            intLoading += 20
+            self.parent.loading(intLoading)
             grupoModel = GrupoModelo(dictGrupo=dictGrupo)
+
+            intLoading += 20
+            self.parent.loading(intLoading)
             grupoId = daoGrupo.insereGrupo(grupoModel)
 
             if grupoId is not None:
+                intLoading += 20
+                self.parent.loading(intLoading)
                 for i in range(self.tblParticipantes.rowCount()):
                     if self.tblParticipantes.item(i, 3).checkState():
                         listaParticipantes.append(ParticipanteModel(
@@ -201,11 +232,17 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
             self.limpaLayout()
             self.limpaCampos()
-            self.atualizaGruposCards()
-        else:
-            print('Não pode cadastrar grupo')
 
-    def defineCampo(self, campo):
+            intLoading += 20
+            self.parent.loading(intLoading)
+            self.atualizaGruposCards()
+
+            intLoading += 20
+            self.parent.loading(intLoading)
+        else:
+            self.parent.menssagemSistema('Não foi possível cadastrar grupo. Verifique se o Título foi preenchido e se há ao menos um participante.')
+
+    def defineInfoCampo(self, campo):
 
         if campo == 'nome':
             self.cliente.nomeCliente = self.leInfoNome.text().capitalize()
@@ -251,6 +288,9 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
     def busca(self):
         clientes = self.daoCliente.buscaCliente(self.leSearchCliente.text())
+        
+        if len(clientes) == 0:
+            self.parent.menssagemSistema('Não há nenhum cliente cadastrcadastrado.')
 
         self.atualizaTabelaGeral(clientes)
 
@@ -261,20 +301,24 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         self.tblClientes.setRowCount(0)
 
-        for rowCount, rowData in enumerate(clientes):
-            self.tblClientes.insertRow(rowCount)
+        for numLinha, rowData in enumerate(clientes):
+            self.tblClientes.insertRow(numLinha)
             for columnNumber, data in enumerate(rowData):
 
                 # columnNumber == 2 coluna dos telefones
-                if columnNumber == 2:
-                    self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(mascaraCelular(data))))
+                if columnNumber == 3:
+                    strItem = QTableWidgetItem(str(mascaraCelular(data)))
+                    strItem.setFont(QFont('Ubuntu', pointSize=12, italic=True, weight=25))
+                    self.tblClientes.setItem(numLinha, columnNumber, strItem)
 
                 # columnNumber == 3 coluna das formas de pagamento
-                elif columnNumber == 3:
-                    self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(macaraFormaPagamento(data))))
+                elif columnNumber == 4:
+                    strItem = QTableWidgetItem(str(macaraFormaPagamento(data)))
+                    strItem.setFont(QFont('Ubuntu', pointSize=12, italic=True, weight=25))
+                    self.tblClientes.setItem(numLinha, columnNumber, strItem)
 
                 # columnNumber == 4 coluna dos checkbox Ativo
-                elif columnNumber == 4:
+                elif columnNumber == 5:
                     cbItemTbl = QTableWidgetItem()
                     cbItemTbl.setFlags(QtCore.Qt.ItemIsEnabled)
                     cbItemTbl.setText('')
@@ -283,9 +327,11 @@ class brainCliente(Ui_wdgCliente, QWidget):
                         cbItemTbl.setCheckState(QtCore.Qt.Unchecked)
                     else:
                         cbItemTbl.setCheckState(QtCore.Qt.Checked)
-                    self.tblClientes.setItem(rowCount, columnNumber, cbItemTbl)
+                    self.tblClientes.setItem(numLinha, columnNumber, cbItemTbl)
                 else:
-                    self.tblClientes.setItem(rowCount, columnNumber, QTableWidgetItem(str(data)))
+                    strItem = QTableWidgetItem(str(data))
+                    strItem.setFont(QFont('Ubuntu', pointSize=12, italic=True, weight=25))
+                    self.tblClientes.setItem(numLinha, columnNumber, strItem)
 
         self.tblClientes.resizeColumnsToContents()
 
@@ -298,30 +344,29 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         self.tblParticipantes.setRowCount(0)
 
-        for rowCount, rowData in enumerate(clientes):
-            self.tblParticipantes.insertRow(rowCount)
+        for numLinha, conteudoLinha in enumerate(clientes):
+            self.tblParticipantes.insertRow(numLinha)
 
-            for columnNumber, data in enumerate(rowData):
+            for columnNumber, data in enumerate(conteudoLinha):
                 if columnNumber == 3:
                     cbItemParticipante = QTableWidgetItem()
                     cbItemParticipante.setFlags(QtCore.Qt.ItemIsEnabled)
                     cbItemParticipante.setCheckState(QtCore.Qt.Unchecked)
-                    self.tblParticipantes.setItem(rowCount, columnNumber, QTableWidgetItem(cbItemParticipante))
+                    self.tblParticipantes.setItem(numLinha, columnNumber, QTableWidgetItem(cbItemParticipante))
                 else:
                     strItem = QTableWidgetItem(str(data))
-                    strItem.setFont(QFont('Ubuntu', pointSize=14, italic=True))
-                    self.tblParticipantes.setItem(rowCount, columnNumber, strItem)
+                    strItem.setFont(QFont('Ubuntu', pointSize=14, italic=True, weight=25))
+                    self.tblParticipantes.setItem(numLinha, columnNumber, strItem)
 
         self.tblParticipantes.resizeColumnsToContents()
 
     def carregaInfoCliente(self, *args):
 
+        self.desativaInfoCampos(False)
         intClienteId = int(self.tblClientes.item(args[0].row(), 0).text())
         listCliente = self.daoCliente.buscaPorId(intClienteId)[0]
         if len(listCliente) == 0:
-            print('Não encontrei o cliente')
-        # elif len(listCliente) > 1:
-        #     print('O SELECT trouxe mais do que um cliente')
+            self.parent.mensagemSistema('Não encontramos o cliente procurado.')
         else:
             self.cliente.clienteId = listCliente[0]
             self.cliente.nomeCliente = listCliente[1]
@@ -366,13 +411,28 @@ class brainCliente(Ui_wdgCliente, QWidget):
             # self.leInfoMeioPag.setText(formasPagamento[self.cliente.meioPagamento])
             self.cbInfoAtivo.setChecked(self.cliente.ativo)
 
-            self.frInfoCliente.show()
-
     def atualizaCliente(self, *args):
+        intLoading = 0
         if args[0].text() == "&Yes":
+            intLoading += 20
+            self.parent.loading(intLoading)
             self.daoCliente.atualizaInfoCliente(self.cliente)
+
+            intLoading += 20
+            self.parent.loading(intLoading)
             self.limpaCampos()
-        self.frInfoCliente.hide()
+
+            intLoading += 20
+            self.parent.loading(intLoading)
+
+            intLoading += 20
+            self.parent.loading(intLoading)
+            self.desativaInfoCampos(True)
+
+            intLoading += 20
+            self.parent.loading(intLoading)
+            self.cliente = Cliente()
+            self.parent.menssagemSistema('Cliente cadastrado com sucesso!')
         self.atualizaTabelaGeral()
 
     def limpaCampos(self):
@@ -387,8 +447,16 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leInfoEmail.clear()
         self.leTituloGrupo.clear()
         self.leDescricaoGrupo.clear()
+        self.leNome.clear()
+        self.leSobrenome.clear()
+        self.leCompl.clear()
+        self.leTel.clear()
+        self.leEnd.clear()
+        self.leBairro.clear()
+        self.leEmail.clear()
+        self.leCep.clear()
 
-        for i in range(0, self.tblClientes.rowCount()):
+        for i in range(0, self.tblParticipantes.rowCount()):
             if self.tblParticipantes.item(i, 3) is not None:
                 self.tblParticipantes.item(i, 3).setCheckState(QtCore.Qt.Unchecked)
 
@@ -409,8 +477,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.atualizaTabelaGeral()
             self.limpaCampos()
         elif args[0] == 2:
-            self.atualizaGruposCards()
-            self.limpaCampos()
+            # self.atualizaGruposCards()
             self.atualizaTabelaParticipantes()
 
     def criaRelatorio(self):
@@ -488,10 +555,11 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.atualizaGruposCards()
         self.pbCancelar.hide()
         self.pbAddGrupo.setText("Criar grupo")
+        self.parent.menssagemSistema('Grupo editado com sucesso.')
 
     def updateGrupo(self):
         self.grupoEdicao.titulo = self.leTituloGrupo.text()
-        self.grupoEdicao.descricao = self.leDescricaoGrupo.text()
+        self.grupoEdicao.descricao = self.leDescricaoGrupo.toPlainText()
         listaParticipantes = list()
 
         daoGrupo = DaoGrupo()
@@ -513,7 +581,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         daoCategorias = DaoCategoria()
         listTupleCategorias = daoCategorias.getAll()
-        ordenar = ['CATEGORIA', 'A-Z', 'Z-A', 'DATA']
+        ordenar = ['DATA', 'CATEGORIA', 'A-Z', 'Z-A']
 
         self.cbxOrdenar.addItems(ordenar)
 
@@ -629,7 +697,113 @@ class brainCliente(Ui_wdgCliente, QWidget):
                 else:
                     self.tblParticipantes.showRow(linha)
 
+    def desativaInfoCampos(self, ativa: bool):
+        self.leInfoNome.setReadOnly(ativa)
+        self.leInfoSobrenome.setReadOnly(ativa)
+        self.leInfoBairro.setReadOnly(ativa)
+        self.leInfoCep.setReadOnly(ativa)
+        self.leInfoComplemento.setReadOnly(ativa)
+        self.leInfoCpf.setReadOnly(ativa)
+        self.leInfoEmail.setReadOnly(ativa)
+        self.leInfoEndereco.setReadOnly(ativa)
+        self.leInfoTel.setReadOnly(ativa)
 
+    def defineCampoCadastro(self, campo):
+
+        if campo == 'nome':
+            self.cliente.nomeCliente = self.leNome.text().capitalize()
+
+        if campo == 'sobrenome':
+            self.cliente.sobrenomeCliente = self.leSobrenome.text().title()
+
+        if campo == 'tel':
+            if self.leTel.text().isnumeric():
+                self.cliente.telefone = self.leTel.text()
+            else:
+                print('Digite apenas números')
+                self.leTel.setText("")
+                return False
+
+        if campo == 'email':
+            self.cliente.email = self.leEmail.text().lower()
+
+        if campo == 'cep':
+            if self.leCep.text().isnumeric():
+                self.cliente.cep = self.leCep.text()
+            else:
+                print('Digite apenas números')
+                self.leCep.setText("")
+
+        if campo == 'end':
+            self.cliente.endereco = self.leEnd.text().capitalize()
+
+        if campo == 'bairro':
+            self.cliente.bairro = self.leBairro.text().capitalize()
+
+        if campo == 'compl':
+            self.cliente.complemento = self.leCompl.text().capitalize()
+
+    def trataCadastro(self, cliente):
+        intLoading = 0
+
+        self.parent.loading(intLoading)
+        wdgLista = [cliente.nomeCliente, cliente.sobrenomeCliente, cliente.email, cliente.endereco, cliente.cep]
+        for wdg in wdgLista:
+            intLoading += 10
+            self.parent.loading(intLoading)
+            if wdg == "":
+                print("Informação faltante - <trataCadastro>")
+                self.parent.loading(100)
+                self.parent.menssagemSistema('Não foi possível cadastrar cliente. Alguma informação faltante.')
+                return False
+
+        intLoading += 10
+        self.parent.loading(intLoading)
+
+        # ----- Váriaveis de envio de e-mail -----
+        self.titulo = "Testando no Codigo"
+        self.msgCadastro = f"""Cliente Cadastrado Com Sucesso
+
+        --------------------- Dados Cadastrados ---------------------
+        Nome: {self.cliente.nomeCliente} {self.cliente.sobrenomeCliente}
+        E-mail: {self.cliente.email}
+        Senha: senha
+        Cep: {self.cliente.cep}
+        Enredeço: {self.cliente.endereco}
+        Bairro: {self.cliente.bairro}
+        Complemento: {self.cliente.complemento}
+"""
+        # ----------------------------------------
+
+        self.parent.loading(70)
+        self.daoCliente.cadastraCliente(self.cliente)
+        self.parent.loading(100)
+        self.limpaCampos()
+        self.parent.menssagemSistema('Cliente cadastrado com sucesso.')
+        # enviaEmail(self.titulo, self.msgCadastro, self.leEmail.text())
+
+    def trataCep(self, *args):
+        if not self.leCep.text() == "":
+            self.leCep.setText(mascaraCep(str(self.cliente.cep)))
+            response = requests.get(f'http://viacep.com.br/ws/{str(self.cliente.cep)}/json/')
+
+            # Ao enviar um cep que não é encontrado, ele retorna o status 200, mas com o json {'erro': True}
+            if response.status_code == 200 and "erro" not in response.json():
+                dictEndereco = response.json()
+                self.leEnd.setText(dictEndereco['logradouro'].title())
+                self.cliente.endereco = dictEndereco['logradouro'].title()
+                # self.leCidade.setText(dictEndereco['localidade'])
+                self.leBairro.setText(dictEndereco['bairro'].title())
+                self.cliente.bairro = dictEndereco['bairro'].title()
+            else:
+                self.parent.menssagemSistema('Não foi possível encontrar o CEP.')
+                print(f'Falha na conexão - Código de status: {response.status_code}')
+                return False
+
+    def insereMascara(self, campo: str):
+        if campo == 'tel':
+            if not self.leTel.text() == "":
+                self.leTel.setText(mascaraCelular(str(self.cliente.telefone)))
 
 
 if __name__ == '__main__':

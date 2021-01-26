@@ -7,8 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>1094</width>
-    <height>706</height>
+    <height>790</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -27,7 +33,7 @@ QFrame {
 
 /*------------------- Label ---------------------*/
 QLabel {
-	font: 200 14pt &quot;Fira Sans&quot; ;
+	font: 200 14pt &quot;Ubuntu&quot; ;
 
 	border-radius: 10px;
 	border: 2px solid  #fff;
@@ -43,27 +49,34 @@ QLabel {
 
 #lbTitulo{
 		background-color: none;
-		font: 300 22pt &quot;Fira Sans&quot; ;
+		font: 300 22pt &quot;Ubuntu&quot; ;
 }
 
 #lbCorpo{
 		background-color: none;
-		font: 200 18pt &quot;Fira Sans&quot; ;
+		font: 200 18pt &quot;Ubuntu&quot; ;
 }
 
 /*------------------- Line Edit ---------------------*/
 QLineEdit {
 	border: none;
 	background-color: #fafafa;
-	border-bottom: 2px solid #444444;
+	border-bottom: 2px solid;
+	border-color: rgb(14, 144, 173);
 	
-	font: 80 14pt &quot;Fira Sans&quot; ;
+	
+	font: 80 14pt &quot;Ubuntu&quot; ;
 
 }
 
 QLineEdit:focus{
-	border: 2px solid 444444;
-	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: rgb(223, 216, 128);
+	border-top: none;
+	border-left: none;
+	border-right: none;
+/*	border-radius: 10px;*/
 }
 
 /*------------------- Push Buttom ---------------------*/
@@ -75,12 +88,21 @@ QPushButton{
 QPushButton:hover {
 	background-color: #80CCE1;
 }
-#pbConfirmarAtualizacao{
+#pbConfirmarAtualizacao, #pbEnviarEmail{
 	border-radius: 5px;
 	padding: 10px;
 }
 
-</string>
+
+/*------------------- Table Widget ---------------------*/
+
+QTableWidget {
+	padding: 16px;
+}
+
+QTableWidget::item {
+	font-family: Ubuntu
+}</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
@@ -100,6 +122,12 @@ QPushButton:hover {
    </property>
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabsCliente">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="styleSheet">
       <string notr="true">QTabWidget::pane {
 	border-top: 3px solid;
@@ -127,7 +155,7 @@ QTabBar::tab {
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
 
-    padding: 10px;
+    padding: 8px;
 }
 
 QTabBar::tab:selected, QTabBar::tab:hover {
@@ -144,24 +172,114 @@ QTabBar::tab:selected, QTabBar::tab:hover {
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tbInfosCliente">
       <property name="enabled">
        <bool>true</bool>
       </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">/*#frInfoCliente {
+	background-color: rgba(197, 207, 198, 80);
+}*/
+
+/*-----------------------Frames------------------------------*/
+#frInfoBairro, 
+#frInfoCep, 
+#frInfoNome, 
+#frInfoTel, 
+#frInfoEndereco,
+#frInfoCep,
+#frInfoComplemento,
+#frInfoEmail,
+#frInfoCpf,
+#frInformacoes,
+#frInfoConfirmar,
+#frInfoMeioPag,
+#frInfoTitulo {
+	background-color: transparent;
+}
+
+#frInfoCliente {
+	padding: 4px;
+}
+
+
+/*-----------------------LineEdit------------------------------*/
+#leInfoBairro, 
+#leInfoCep, 
+#leInfoNome,
+#leInfoSobrenome, 
+#leInfoTel, 
+#leInfoEndereco,
+#leInfoCep,
+#leInfoComplemento,
+#leInfoEmail,
+#leInfoCpf,
+#leInformacoes {
+	background-color: transparent;
+}
+
+
+/*-----------------------CheckBox------------------------------*/
+#cbInfoAtivo::indicator:unchecked {
+	background-color: #fff;
+	border: 1px solid;
+}
+
+#cbInfoAtivo {
+	background-color: transparent;
+}
+
+
+/*-----------------------Labels------------------------------*/
+
+#lbInfoTitulo, #lbTblGeralTitulo {
+	border: 0px;
+	background-color: transparent;
+	font-family: Ubuntu;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+#lbInfoDescricao, #lbTblGeralDescricao{
+	border: 0px;
+	background-color: transparent;
+	font-family: Ubuntu;
+	font-size: 12pt;
+	font-style: italic;
+}</string>
+      </property>
       <attribute name="title">
        <string>Informações</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
+       <property name="topMargin">
+        <number>6</number>
+       </property>
        <property name="rightMargin">
         <number>18</number>
        </property>
+       <property name="bottomMargin">
+        <number>6</number>
+       </property>
        <item row="2" column="0">
         <widget class="QFrame" name="frClientsList">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="maximumSize">
           <size>
-           <width>700</width>
+           <width>900</width>
            <height>16777215</height>
           </size>
          </property>
@@ -184,7 +302,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
           <property name="bottomMargin">
            <number>0</number>
           </property>
-          <item row="0" column="0" alignment="Qt::AlignLeft">
+          <item row="2" column="0" alignment="Qt::AlignLeft">
            <widget class="QTableWidget" name="tblClientes">
             <property name="minimumSize">
              <size>
@@ -194,7 +312,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
             </property>
             <property name="maximumSize">
              <size>
-              <width>530</width>
+              <width>900</width>
               <height>16777215</height>
              </size>
             </property>
@@ -322,7 +440,7 @@ QScrollBar:vertical {
              <number>0</number>
             </property>
             <property name="columnCount">
-             <number>5</number>
+             <number>6</number>
             </property>
             <attribute name="horizontalHeaderCascadingSectionResizes">
              <bool>true</bool>
@@ -347,7 +465,18 @@ QScrollBar:vertical {
              </property>
              <property name="font">
               <font>
-               <family>Fira Sans</family>
+               <family>Ubuntu</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Sobrenome</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>Ubuntu</family>
                <pointsize>14</pointsize>
               </font>
              </property>
@@ -358,7 +487,7 @@ QScrollBar:vertical {
              </property>
              <property name="font">
               <font>
-               <family>Fira Sans</family>
+               <family>Ubuntu</family>
                <pointsize>14</pointsize>
               </font>
              </property>
@@ -369,7 +498,7 @@ QScrollBar:vertical {
              </property>
              <property name="font">
               <font>
-               <family>Fira Sans</family>
+               <family>Ubuntu</family>
                <pointsize>14</pointsize>
               </font>
              </property>
@@ -380,7 +509,7 @@ QScrollBar:vertical {
              </property>
              <property name="font">
               <font>
-               <family>Fira Sans</family>
+               <family>Ubuntu</family>
                <pointsize>14</pointsize>
               </font>
              </property>
@@ -401,6 +530,44 @@ QScrollBar:vertical {
              <property name="bottomMargin">
               <number>0</number>
              </property>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QFrame" name="frTblGeralTitulo">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <item>
+              <widget class="QLabel" name="lbTblGeralTitulo">
+               <property name="minimumSize">
+                <size>
+                 <width>60</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Clientes cadastrados</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbTblGeralDescricao">
+               <property name="text">
+                <string>Lista dos clientes cadastrados no banco de dados</string>
+               </property>
+              </widget>
+             </item>
             </layout>
            </widget>
           </item>
@@ -644,6 +811,56 @@ QScrollBar:vertical {
            <number>2</number>
           </property>
           <item>
+           <widget class="QFrame" name="frInfoTitulo">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <property name="spacing">
+              <number>4</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="lbInfoTitulo">
+               <property name="text">
+                <string>Informações pessoais</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbInfoDescricao">
+               <property name="text">
+                <string>O duplo clique na tabela de clientes (à esquerda) habilita os campos abaixo para edição das informações pessoais.</string>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
            <widget class="QFrame" name="frInformacoes">
             <property name="minimumSize">
              <size>
@@ -692,7 +909,7 @@ QScrollBar:vertical {
                </property>
                <property name="font">
                 <font>
-                 <family>Fira Sans</family>
+                 <family>Ubuntu</family>
                  <pointsize>14</pointsize>
                  <weight>25</weight>
                  <italic>false</italic>
@@ -792,27 +1009,11 @@ QScrollBar:vertical {
                  <height>30</height>
                 </size>
                </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="lbInfoSobrenome">
-               <property name="minimumSize">
-                <size>
-                 <width>130</width>
-                 <height>30</height>
-                </size>
+               <property name="maxLength">
+                <number>20</number>
                </property>
-               <property name="maximumSize">
-                <size>
-                 <width>130</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Sobrenome</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
+               <property name="placeholderText">
+                <string>Nome</string>
                </property>
               </widget>
              </item>
@@ -829,6 +1030,12 @@ QScrollBar:vertical {
                  <width>16777215</width>
                  <height>30</height>
                 </size>
+               </property>
+               <property name="maxLength">
+                <number>30</number>
+               </property>
+               <property name="placeholderText">
+                <string>Sobrenome</string>
                </property>
               </widget>
              </item>
@@ -901,6 +1108,12 @@ QScrollBar:vertical {
                  <height>30</height>
                 </size>
                </property>
+               <property name="maxLength">
+                <number>20</number>
+               </property>
+               <property name="placeholderText">
+                <string>(xx) 9.1234-5678</string>
+               </property>
               </widget>
              </item>
             </layout>
@@ -971,6 +1184,12 @@ QScrollBar:vertical {
                  <width>16777215</width>
                  <height>30</height>
                 </size>
+               </property>
+               <property name="maxLength">
+                <number>40</number>
+               </property>
+               <property name="placeholderText">
+                <string>cliente@email.com</string>
                </property>
               </widget>
              </item>
@@ -1043,6 +1262,12 @@ QScrollBar:vertical {
                  <height>30</height>
                 </size>
                </property>
+               <property name="maxLength">
+                <number>20</number>
+               </property>
+               <property name="placeholderText">
+                <string>123.456.789-00</string>
+               </property>
               </widget>
              </item>
             </layout>
@@ -1107,6 +1332,12 @@ QScrollBar:vertical {
                  <width>16777215</width>
                  <height>30</height>
                 </size>
+               </property>
+               <property name="maxLength">
+                <number>50</number>
+               </property>
+               <property name="placeholderText">
+                <string>Av. Paulista, 258</string>
                </property>
               </widget>
              </item>
@@ -1173,6 +1404,12 @@ QScrollBar:vertical {
                  <height>30</height>
                 </size>
                </property>
+               <property name="maxLength">
+                <number>30</number>
+               </property>
+               <property name="placeholderText">
+                <string>Bloco A, Apto: 504</string>
+               </property>
               </widget>
              </item>
             </layout>
@@ -1237,6 +1474,12 @@ QScrollBar:vertical {
                  <width>16777215</width>
                  <height>30</height>
                 </size>
+               </property>
+               <property name="maxLength">
+                <number>15</number>
+               </property>
+               <property name="placeholderText">
+                <string>12345-678</string>
                </property>
               </widget>
              </item>
@@ -1303,6 +1546,12 @@ QScrollBar:vertical {
                  <height>30</height>
                 </size>
                </property>
+               <property name="maxLength">
+                <number>30</number>
+               </property>
+               <property name="placeholderText">
+                <string>Centro</string>
+               </property>
               </widget>
              </item>
             </layout>
@@ -1354,7 +1603,7 @@ QScrollBar:vertical {
                </property>
                <property name="font">
                 <font>
-                 <family>Fira Sans</family>
+                 <family>Ubuntu</family>
                  <pointsize>14</pointsize>
                  <weight>25</weight>
                  <italic>false</italic>
@@ -1404,6 +1653,19 @@ QScrollBar:vertical {
               <number>16</number>
              </property>
              <item>
+              <widget class="QPushButton" name="pbEnviarEmail">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Enviar e-mail</string>
+               </property>
+              </widget>
+             </item>
+             <item>
               <spacer name="horizontalSpacer_5">
                <property name="minimumSize">
                 <size>
@@ -1446,13 +1708,13 @@ QScrollBar:vertical {
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>130</height>
+           <height>110</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>130</height>
+           <height>110</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -1562,6 +1824,12 @@ QScrollBar:vertical {
       </layout>
      </widget>
      <widget class="QWidget" name="tbCadastraCliente">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
@@ -1569,6 +1837,12 @@ QScrollBar:vertical {
        <string>Cadastro</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
+       <property name="topMargin">
+        <number>6</number>
+       </property>
+       <property name="bottomMargin">
+        <number>6</number>
+       </property>
        <item row="0" column="0">
         <widget class="QFrame" name="frCabecalho">
          <property name="minimumSize">
@@ -1603,7 +1877,7 @@ QScrollBar:vertical {
            <widget class="QLabel" name="lbTitulo">
             <property name="font">
              <font>
-              <family>Fira Sans</family>
+              <family>Ubuntu</family>
               <pointsize>22</pointsize>
               <weight>37</weight>
               <italic>false</italic>
@@ -1724,6 +1998,9 @@ QScrollBar:vertical {
                <property name="text">
                 <string/>
                </property>
+               <property name="maxLength">
+                <number>20</number>
+               </property>
                <property name="placeholderText">
                 <string>Nome</string>
                </property>
@@ -1790,6 +2067,9 @@ QScrollBar:vertical {
                </property>
                <property name="styleSheet">
                 <string notr="true"/>
+               </property>
+               <property name="maxLength">
+                <number>30</number>
                </property>
                <property name="placeholderText">
                 <string>Sobrenome</string>
@@ -1959,6 +2239,9 @@ QScrollBar:vertical {
                <property name="styleSheet">
                 <string notr="true"/>
                </property>
+               <property name="maxLength">
+                <number>19</number>
+               </property>
                <property name="placeholderText">
                 <string>Celular</string>
                </property>
@@ -2023,6 +2306,9 @@ QScrollBar:vertical {
                </property>
                <property name="styleSheet">
                 <string notr="true"/>
+               </property>
+               <property name="maxLength">
+                <number>40</number>
                </property>
                <property name="placeholderText">
                 <string>E - mail</string>
@@ -2138,6 +2424,9 @@ QScrollBar:vertical {
                <property name="styleSheet">
                 <string notr="true"/>
                </property>
+               <property name="maxLength">
+                <number>15</number>
+               </property>
                <property name="placeholderText">
                 <string>CEP</string>
                </property>
@@ -2202,6 +2491,9 @@ QScrollBar:vertical {
                </property>
                <property name="styleSheet">
                 <string notr="true"/>
+               </property>
+               <property name="maxLength">
+                <number>50</number>
                </property>
                <property name="placeholderText">
                 <string>Endereco</string>
@@ -2317,6 +2609,9 @@ QScrollBar:vertical {
                <property name="styleSheet">
                 <string notr="true"/>
                </property>
+               <property name="maxLength">
+                <number>30</number>
+               </property>
                <property name="placeholderText">
                 <string>Bairro</string>
                </property>
@@ -2382,6 +2677,9 @@ QScrollBar:vertical {
                <property name="styleSheet">
                 <string notr="true"/>
                </property>
+               <property name="maxLength">
+                <number>30</number>
+               </property>
                <property name="placeholderText">
                 <string>Complemento</string>
                </property>
@@ -2412,6 +2710,12 @@ QScrollBar:vertical {
       </layout>
      </widget>
      <widget class="QWidget" name="tbGrupoCliente">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="styleSheet">
        <string notr="true">QComboBox {
 	
@@ -2427,14 +2731,30 @@ QScrollBar:vertical {
 
 QComboBox::drop-down{
 	border: 0px;
+}
+
+#leDescricaoGrupo {
+	padding: 4px;
 }</string>
       </property>
       <attribute name="title">
        <string>Grupos</string>
       </attribute>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <property name="topMargin">
+        <number>6</number>
+       </property>
+       <property name="bottomMargin">
+        <number>6</number>
+       </property>
        <item>
         <widget class="QFrame" name="frGruposFormados">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="styleSheet">
           <string notr="true">/*background-color: rgb(108, 251, 208);*/</string>
          </property>
@@ -2450,7 +2770,7 @@ QComboBox::drop-down{
                <x>0</x>
                <y>0</y>
                <width>552</width>
-               <height>495</height>
+               <height>589</height>
               </rect>
              </property>
             </widget>
@@ -2603,6 +2923,12 @@ QComboBox::drop-down{
        </item>
        <item alignment="Qt::AlignHCenter">
         <widget class="QFrame" name="frFormarGrupos">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimumSize">
           <size>
            <width>500</width>
@@ -2783,6 +3109,9 @@ QComboBox::drop-down{
 	background-color: transparent;
 }</string>
                </property>
+               <property name="maxLength">
+                <number>30</number>
+               </property>
               </widget>
              </item>
             </layout>
@@ -2918,6 +3247,9 @@ background-color: transparent;
                  <width>16777215</width>
                  <height>100</height>
                 </size>
+               </property>
+               <property name="placeholderText">
+                <string>Grupo para alinhamento de propostas.                                                            Máx caracteres 700.</string>
                </property>
               </widget>
              </item>
@@ -3082,7 +3414,7 @@ background-color: transparent;
              <item>
               <widget class="QTableWidget" name="tblParticipantes">
                <property name="sizePolicy">
-                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
@@ -3209,13 +3541,13 @@ background-color: transparent;
               <number>0</number>
              </property>
              <property name="topMargin">
-              <number>0</number>
+              <number>4</number>
              </property>
              <property name="rightMargin">
               <number>0</number>
              </property>
              <property name="bottomMargin">
-              <number>0</number>
+              <number>4</number>
              </property>
              <item>
               <widget class="QPushButton" name="pbAddGrupo">
