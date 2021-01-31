@@ -14,40 +14,18 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_wdgAgenda(object):
     def setupUi(self, wdgAgenda):
         wdgAgenda.setObjectName("wdgAgenda")
-        wdgAgenda.resize(754, 700)
+        wdgAgenda.resize(976, 747)
+        wdgAgenda.setStyleSheet("QPushButton:hover {\n"
+"    background-color: rgb(114, 159, 207);\n"
+"}\n"
+"\n"
+"#pbCriarEvento {\n"
+"    border:2px solid;\n"
+"    border-radius: 25px;\n"
+"    \n"
+"}")
         self.gridLayout = QtWidgets.QGridLayout(wdgAgenda)
         self.gridLayout.setObjectName("gridLayout")
-        self.frCompromisso = QtWidgets.QFrame(wdgAgenda)
-        self.frCompromisso.setMinimumSize(QtCore.QSize(210, 0))
-        self.frCompromisso.setStyleSheet("#frCompromisso{\n"
-"background-color: transparent;\n"
-"border-left: 3px dashed rgb(108, 251, 208);\n"
-"border-right: 3px dashed rgb(108, 251, 208);\n"
-"}")
-        self.frCompromisso.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frCompromisso.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frCompromisso.setObjectName("frCompromisso")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.frCompromisso)
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.lbData = QtWidgets.QLabel(self.frCompromisso)
-        self.lbData.setMinimumSize(QtCore.QSize(0, 50))
-        self.lbData.setStyleSheet("background-color: rgb(233, 185, 110);")
-        self.lbData.setText("")
-        self.lbData.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbData.setObjectName("lbData")
-        self.gridLayout_2.addWidget(self.lbData, 1, 1, 1, 1)
-        self.label = QtWidgets.QLabel(self.frCompromisso)
-        font = QtGui.QFont()
-        font.setFamily("Fira Sans ExtraLight")
-        font.setPointSize(22)
-        self.label.setFont(font)
-        self.label.setStyleSheet("background-color: rgb(108, 251, 208);")
-        self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setObjectName("label")
-        self.gridLayout_2.addWidget(self.label, 0, 1, 1, 1)
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout_2.addItem(spacerItem, 2, 1, 1, 1)
-        self.gridLayout.addWidget(self.frCompromisso, 0, 3, 2, 1)
         self.frAgenda = QtWidgets.QFrame(wdgAgenda)
         self.frAgenda.setMaximumSize(QtCore.QSize(1000, 16777215))
         self.frAgenda.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -69,6 +47,85 @@ class Ui_wdgAgenda(object):
         self.vlAgenda.addWidget(self.label_2)
         self.gridLayout_3.addLayout(self.vlAgenda, 1, 0, 1, 1)
         self.gridLayout.addWidget(self.frAgenda, 0, 2, 1, 1)
+        self.frCompromisso = QtWidgets.QFrame(wdgAgenda)
+        self.frCompromisso.setMinimumSize(QtCore.QSize(210, 0))
+        self.frCompromisso.setStyleSheet("#frCompromisso{\n"
+"background-color: transparent;\n"
+"border-left: 3px dashed rgb(108, 251, 208);\n"
+"border-right: 3px dashed rgb(108, 251, 208);\n"
+"}")
+        self.frCompromisso.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frCompromisso.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frCompromisso.setObjectName("frCompromisso")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.frCompromisso)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.lbData = QtWidgets.QLabel(self.frCompromisso)
+        self.lbData.setMinimumSize(QtCore.QSize(0, 50))
+        self.lbData.setStyleSheet("background-color: rgb(233, 185, 110);")
+        self.lbData.setText("")
+        self.lbData.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbData.setObjectName("lbData")
+        self.gridLayout_2.addWidget(self.lbData, 4, 1, 1, 1)
+        self.frame = QtWidgets.QFrame(self.frCompromisso)
+        self.frame.setMinimumSize(QtCore.QSize(100, 0))
+        self.frame.setMaximumSize(QtCore.QSize(16777215, 60))
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.frame)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setSpacing(0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.pbCriarEvento = QtWidgets.QPushButton(self.frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pbCriarEvento.sizePolicy().hasHeightForWidth())
+        self.pbCriarEvento.setSizePolicy(sizePolicy)
+        self.pbCriarEvento.setMinimumSize(QtCore.QSize(50, 50))
+        self.pbCriarEvento.setMaximumSize(QtCore.QSize(50, 50))
+        self.pbCriarEvento.setText("")
+        self.pbCriarEvento.setObjectName("pbCriarEvento")
+        self.horizontalLayout.addWidget(self.pbCriarEvento)
+        self.gridLayout_2.addWidget(self.frame, 0, 1, 1, 1)
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_2.addItem(spacerItem, 5, 1, 1, 1)
+        self.label = QtWidgets.QLabel(self.frCompromisso)
+        font = QtGui.QFont()
+        font.setFamily("Fira Sans ExtraLight")
+        font.setPointSize(22)
+        self.label.setFont(font)
+        self.label.setStyleSheet("background-color: rgb(108, 251, 208);")
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setObjectName("label")
+        self.gridLayout_2.addWidget(self.label, 3, 1, 1, 1)
+        self.frInserirEvento = QtWidgets.QFrame(self.frCompromisso)
+        self.frInserirEvento.setMinimumSize(QtCore.QSize(0, 0))
+        self.frInserirEvento.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frInserirEvento.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frInserirEvento.setObjectName("frInserirEvento")
+        self.gridLayout_4 = QtWidgets.QGridLayout(self.frInserirEvento)
+        self.gridLayout_4.setObjectName("gridLayout_4")
+        self.leTituloEvento = QtWidgets.QLineEdit(self.frInserirEvento)
+        self.leTituloEvento.setObjectName("leTituloEvento")
+        self.gridLayout_4.addWidget(self.leTituloEvento, 1, 0, 1, 1)
+        self.teHoraInicioEvento = QtWidgets.QDateTimeEdit(self.frInserirEvento)
+        self.teHoraInicioEvento.setObjectName("teHoraInicioEvento")
+        self.gridLayout_4.addWidget(self.teHoraInicioEvento, 4, 0, 1, 1)
+        self.teDetalhesEvento = QtWidgets.QTextEdit(self.frInserirEvento)
+        self.teDetalhesEvento.setObjectName("teDetalhesEvento")
+        self.gridLayout_4.addWidget(self.teDetalhesEvento, 2, 0, 1, 1)
+        self.teHoraFimEvento = QtWidgets.QDateTimeEdit(self.frInserirEvento)
+        self.teHoraFimEvento.setObjectName("teHoraFimEvento")
+        self.gridLayout_4.addWidget(self.teHoraFimEvento, 5, 0, 1, 1)
+        self.pbAddEvento = QtWidgets.QPushButton(self.frInserirEvento)
+        self.pbAddEvento.setObjectName("pbAddEvento")
+        self.gridLayout_4.addWidget(self.pbAddEvento, 6, 0, 1, 1)
+        self.deDataEvento = QtWidgets.QDateTimeEdit(self.frInserirEvento)
+        self.deDataEvento.setObjectName("deDataEvento")
+        self.gridLayout_4.addWidget(self.deDataEvento, 3, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.frInserirEvento, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.frCompromisso, 0, 3, 2, 1)
 
         self.retranslateUi(wdgAgenda)
         QtCore.QMetaObject.connectSlotsByName(wdgAgenda)
@@ -76,8 +133,15 @@ class Ui_wdgAgenda(object):
     def retranslateUi(self, wdgAgenda):
         _translate = QtCore.QCoreApplication.translate
         wdgAgenda.setWindowTitle(_translate("wdgAgenda", "Form"))
-        self.label.setText(_translate("wdgAgenda", "Compromissos"))
         self.label_2.setText(_translate("wdgAgenda", "Agendamentos"))
+        self.label.setText(_translate("wdgAgenda", "Compromissos"))
+        self.leTituloEvento.setText(_translate("wdgAgenda", "Titulo"))
+        self.teDetalhesEvento.setHtml(_translate("wdgAgenda", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Fira Sans Semi-Light\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Detalhes/Descrição</p></body></html>"))
+        self.pbAddEvento.setText(_translate("wdgAgenda", "Adicionar Evento"))
 
 
 if __name__ == "__main__":

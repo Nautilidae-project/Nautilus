@@ -2,12 +2,16 @@ from datetime import datetime
 
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import QDate
+from PyQt5.QtGui import QMouseEvent
 
 from Telas.dashAgenda import Ui_wdgAgenda
 
 from PyQt5.QtWidgets import QWidget
 
 from brain.dashboard.Agenda.agendaController import CalendarioController
+from brain.DAOs.daoEvento import DaoEvento
+from modelos import eventoModel
+from modelos.eventoModel import EventoModelo
 
 
 class AgendaPage(Ui_wdgAgenda, QWidget):
@@ -21,10 +25,51 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
 
         self.vlAgenda.addWidget(self.calendario)
 
+        self.evento = EventoModelo()
+
 
         # self.calendario.calendarWidget.clicked.connect(self.printDateInfo)
 
+        self.frInserirEvento.hide()
+        self.pbCriarEvento.clicked.connect(self.chamaTelaAddEventos)
 
+        # self.calendario.mouseDoubleClickEvent.connect(self.addData)
+
+        self.pbAddEvento.clicked.connect(lambda : self.criaEvento())
+
+        self.daoEvento = DaoEvento()
+
+    def criaEvento(self):
+
+        daoEvento = DaoEvento()
+        dictEvento = {
+            'eventoId': None,
+            'titulo': self.leTituloEvento.text()[0],
+            'detalhe': self.teDetalhesEvento.toPlainText()[0],
+            'grupoId': '1',
+            'dataEvento': '2021-02-02 14:00',
+            'dataCadastro': '2021-02-02 14:00',
+            'horaInicio': '2021-02-02 14:00',
+            'horaFim': '2021-02-02 14:00',
+            'diaInteiro': False,
+        }
+
+        datas = []
+        for data in [self.deDataEvento.text(), self.teHoraInicioEvento.text(), self.teHoraFimEvento.text()]:
+            data = data.split()
+            data = f'{data[0][-4:]}-{data[0][3:5]}-{data[0][0:2]} {data[1]}'
+            datas.append(data)
+
+        self.evento.titulo = self.leTituloEvento.text()
+        self.evento.detalhe = self.teDetalhesEvento.toPlainText()
+        self.evento.grupoId = 1
+        self.evento.dataEvento = datas[0]
+        self.evento.dataCadastro = None
+        self.evento.horaInicio = datas[1]
+        self.evento.horaFim = datas[2]
+        self.evento.diaInteiro = True
+
+        daoEvento.insereEvento(self.evento)
 
     def printDateInfo(self, qDate):
         x = datetime.now().strftime("%B")
@@ -38,6 +83,9 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         print(y.strftime("%Y %B"))
         print(self.calendario.calendarWidget.selectedDate())
         self.lbData.setText(str(y))
+
+    def chamaTelaAddEventos(self):
+        self.frInserirEvento.setHidden(not self.frInserirEvento.isHidden())
 
 
 if __name__ == '__main__':
