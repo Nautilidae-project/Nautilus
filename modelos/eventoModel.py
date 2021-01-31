@@ -1,23 +1,26 @@
 
-class Evento:
+class EventoModelo:
 
-    def __init__(self):
+    def __init__(self, dictEvento: dict = None):
         self.eventoId = None
         self.titulo = None
         self.detalhe = None
-        self.turmaId = None
+        self.grupoId = None
         self.dataEvento = None
         self.dataCadastro = None
         self.horaInicio = None
         self.horaFim = None
         self.diaInteiro = None
+
+        if dictEvento is not None:
+            self.fromDict(dictEvento)
         
     def toDict(self):
         dictEvento = {
         'eventoId': self.eventoId,
         'titulo': self.titulo,
         'detalhe': self.detalhe,
-        'turmaId': self.turmaId,
+        'grupoId': self.grupoId,
         'dataEvento': self.dataEvento,
         'dataCadastro': self.dataCadastro,
         'horaInicio': self.horaInicio,
@@ -30,7 +33,7 @@ class Evento:
         self.eventoId = dictEvento['eventoId'],
         self.titulo = dictEvento['titulo'],
         self.detalhe = dictEvento['detalhe'],
-        self.turmaId = dictEvento['turmaId'],
+        self.grupoId = dictEvento['grupoId'],
         self.dataEvento = dictEvento['dataEvento'],
         self.dataCadastro = dictEvento['dataCadastro'],
         self.horaInicio = dictEvento['horaInicio'],
@@ -39,5 +42,5 @@ class Evento:
 
     def __repr__(self):
         return f'Evento(\neventoId: {self.eventoId}, titulo: {self.titulo}, detalhe: {self.detalhe}, \n' \
-               f'turmaId: {self.turmaId}, dataEvento: {self.dataEvento}, dataCadastro: {self.dataCadastro}, horaInicio: {self.horaInicio}, \n' \
+               f'grupoId: {self.grupoId}, dataEvento: {self.dataEvento}, dataCadastro: {self.dataCadastro}, horaInicio: {self.horaInicio}, \n' \
                f'horaFim: {self.horaFim}, diaInteiro: {self.diaInteiro}'

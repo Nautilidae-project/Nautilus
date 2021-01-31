@@ -122,7 +122,6 @@ class DaoGrupo:
         finally:
             self.disconectBD(cursor)
 
-
     def disconectBD(self, cursor):
         cursor.close()
         self.connection.close()
