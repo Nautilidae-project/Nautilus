@@ -51,6 +51,7 @@ class CalendarioController(QCalendarWidget):
         print(self.daoEvento.findAll()[8][4])
         print(type(self.daoEvento.findAll()[8][4]))
 
+        self.atualiza = True
 
 
     def paintCell(self, painter, rect, date):
@@ -61,8 +62,9 @@ class CalendarioController(QCalendarWidget):
         # print(f'grupos ---> {self.grupos.findAll()[2][4]}')
         # x = [self.daoEvento.findAll()]
         # print(x)
-    
         # checking if date is selected date
+
+
 
         eventos = len(self.daoEvento.findAll())
 
@@ -80,3 +82,4 @@ class CalendarioController(QCalendarWidget):
                 painter.setPen(QtGui.QPen(QtGui.QColor("gray")))
                 painter.drawText(rect, QtCore.Qt.AlignCenter, str(date.day()))
                 painter.restore()
+

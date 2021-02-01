@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>976</width>
-    <height>747</height>
+    <width>789</width>
+    <height>573</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -232,7 +232,7 @@ border-right: 3px dashed rgb(108, 251, 208);
           </widget>
          </item>
          <item row="4" column="0">
-          <widget class="QDateTimeEdit" name="teHoraInicioEvento"/>
+          <widget class="QDateTimeEdit" name="deDataEvento"/>
          </item>
          <item row="2" column="0">
           <widget class="QTextEdit" name="teDetalhesEvento">
@@ -245,18 +245,21 @@ p, li { white-space: pre-wrap; }
            </property>
           </widget>
          </item>
-         <item row="5" column="0">
+         <item row="6" column="0">
           <widget class="QDateTimeEdit" name="teHoraFimEvento"/>
          </item>
-         <item row="6" column="0">
+         <item row="7" column="0">
           <widget class="QPushButton" name="pbAddEvento">
            <property name="text">
             <string>Adicionar Evento</string>
            </property>
           </widget>
          </item>
+         <item row="5" column="0">
+          <widget class="QDateTimeEdit" name="teHoraInicioEvento"/>
+         </item>
          <item row="3" column="0">
-          <widget class="QDateTimeEdit" name="deDataEvento"/>
+          <widget class="QComboBox" name="cbxGrupos"/>
          </item>
         </layout>
        </widget>

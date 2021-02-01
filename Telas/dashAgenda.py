@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_wdgAgenda(object):
     def setupUi(self, wdgAgenda):
         wdgAgenda.setObjectName("wdgAgenda")
-        wdgAgenda.resize(976, 747)
+        wdgAgenda.resize(789, 573)
         wdgAgenda.setStyleSheet("QPushButton:hover {\n"
 "    background-color: rgb(114, 159, 207);\n"
 "}\n"
@@ -109,21 +109,24 @@ class Ui_wdgAgenda(object):
         self.leTituloEvento = QtWidgets.QLineEdit(self.frInserirEvento)
         self.leTituloEvento.setObjectName("leTituloEvento")
         self.gridLayout_4.addWidget(self.leTituloEvento, 1, 0, 1, 1)
-        self.teHoraInicioEvento = QtWidgets.QDateTimeEdit(self.frInserirEvento)
-        self.teHoraInicioEvento.setObjectName("teHoraInicioEvento")
-        self.gridLayout_4.addWidget(self.teHoraInicioEvento, 4, 0, 1, 1)
+        self.deDataEvento = QtWidgets.QDateTimeEdit(self.frInserirEvento)
+        self.deDataEvento.setObjectName("deDataEvento")
+        self.gridLayout_4.addWidget(self.deDataEvento, 4, 0, 1, 1)
         self.teDetalhesEvento = QtWidgets.QTextEdit(self.frInserirEvento)
         self.teDetalhesEvento.setObjectName("teDetalhesEvento")
         self.gridLayout_4.addWidget(self.teDetalhesEvento, 2, 0, 1, 1)
         self.teHoraFimEvento = QtWidgets.QDateTimeEdit(self.frInserirEvento)
         self.teHoraFimEvento.setObjectName("teHoraFimEvento")
-        self.gridLayout_4.addWidget(self.teHoraFimEvento, 5, 0, 1, 1)
+        self.gridLayout_4.addWidget(self.teHoraFimEvento, 6, 0, 1, 1)
         self.pbAddEvento = QtWidgets.QPushButton(self.frInserirEvento)
         self.pbAddEvento.setObjectName("pbAddEvento")
-        self.gridLayout_4.addWidget(self.pbAddEvento, 6, 0, 1, 1)
-        self.deDataEvento = QtWidgets.QDateTimeEdit(self.frInserirEvento)
-        self.deDataEvento.setObjectName("deDataEvento")
-        self.gridLayout_4.addWidget(self.deDataEvento, 3, 0, 1, 1)
+        self.gridLayout_4.addWidget(self.pbAddEvento, 7, 0, 1, 1)
+        self.teHoraInicioEvento = QtWidgets.QDateTimeEdit(self.frInserirEvento)
+        self.teHoraInicioEvento.setObjectName("teHoraInicioEvento")
+        self.gridLayout_4.addWidget(self.teHoraInicioEvento, 5, 0, 1, 1)
+        self.cbxGrupos = QtWidgets.QComboBox(self.frInserirEvento)
+        self.cbxGrupos.setObjectName("cbxGrupos")
+        self.gridLayout_4.addWidget(self.cbxGrupos, 3, 0, 1, 1)
         self.gridLayout_2.addWidget(self.frInserirEvento, 1, 1, 1, 1)
         self.gridLayout.addWidget(self.frCompromisso, 0, 3, 2, 1)
 
