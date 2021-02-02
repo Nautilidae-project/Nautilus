@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>976</width>
-    <height>747</height>
+    <width>789</width>
+    <height>573</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -113,6 +113,25 @@ border-right: 3px dashed rgb(108, 251, 208);
         </property>
        </widget>
       </item>
+      <item row="3" column="1">
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <family>Fira Sans ExtraLight</family>
+          <pointsize>22</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(108, 251, 208);</string>
+        </property>
+        <property name="text">
+         <string>Compromissos</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="1">
        <widget class="QFrame" name="frame">
         <property name="minimumSize">
@@ -177,7 +196,7 @@ border-right: 3px dashed rgb(108, 251, 208);
         </layout>
        </widget>
       </item>
-      <item row="5" column="1">
+      <item row="6" column="1">
        <spacer name="verticalSpacer">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
@@ -189,25 +208,6 @@ border-right: 3px dashed rgb(108, 251, 208);
          </size>
         </property>
        </spacer>
-      </item>
-      <item row="3" column="1">
-       <widget class="QLabel" name="label">
-        <property name="font">
-         <font>
-          <family>Fira Sans ExtraLight</family>
-          <pointsize>22</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(108, 251, 208);</string>
-        </property>
-        <property name="text">
-         <string>Compromissos</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
       </item>
       <item row="1" column="1">
        <widget class="QFrame" name="frInserirEvento">
@@ -232,7 +232,7 @@ border-right: 3px dashed rgb(108, 251, 208);
           </widget>
          </item>
          <item row="4" column="0">
-          <widget class="QDateTimeEdit" name="teHoraInicioEvento"/>
+          <widget class="QDateTimeEdit" name="deDataEvento"/>
          </item>
          <item row="2" column="0">
           <widget class="QTextEdit" name="teDetalhesEvento">
@@ -245,20 +245,40 @@ p, li { white-space: pre-wrap; }
            </property>
           </widget>
          </item>
-         <item row="5" column="0">
+         <item row="6" column="0">
           <widget class="QDateTimeEdit" name="teHoraFimEvento"/>
          </item>
-         <item row="6" column="0">
+         <item row="7" column="0">
           <widget class="QPushButton" name="pbAddEvento">
            <property name="text">
             <string>Adicionar Evento</string>
            </property>
           </widget>
          </item>
+         <item row="5" column="0">
+          <widget class="QDateTimeEdit" name="teHoraInicioEvento"/>
+         </item>
          <item row="3" column="0">
-          <widget class="QDateTimeEdit" name="deDataEvento"/>
+          <widget class="QComboBox" name="cbxGrupos"/>
          </item>
         </layout>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QScrollArea" name="saEventosCard">
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>529</width>
+           <height>68</height>
+          </rect>
+         </property>
+        </widget>
        </widget>
       </item>
      </layout>
