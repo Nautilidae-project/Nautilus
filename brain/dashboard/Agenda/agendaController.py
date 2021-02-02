@@ -48,38 +48,20 @@ class CalendarioController(QCalendarWidget):
 
         self.daoEvento = DaoEvento()
 
-        print(self.daoEvento.findAll()[8][4])
-        print(type(self.daoEvento.findAll()[8][4]))
-
-        self.atualiza = True
-
-
     def paintCell(self, painter, rect, date):
         super(CalendarioController, self).paintCell(painter, rect, date)
 
-        # if date == self.grupos.findAll()[2][4]:
-        # print(f'Selected ---> {self.selectedDate()}')
-        # print(f'grupos ---> {self.grupos.findAll()[2][4]}')
-        # x = [self.daoEvento.findAll()]
-        # print(x)
-        # checking if date is selected date
+        if date in self.daoEvento.buscaDatasEventos().values():
+            print(date)
+            painter.save()
+            # Cor do fundo da area Selecionada
+            painter.fillRect(rect, QtGui.QColor("#80CCE1"))
 
-
-
-        eventos = len(self.daoEvento.findAll())
-
-        for i in range(eventos):
-            if date == self.daoEvento.findAll()[i][4]:
-                painter.save()
-                # Cor do funda da area Selecionada
-                painter.fillRect(rect, QtGui.QColor("#80CCE1"))
-
-                painter.setPen(QtCore.Qt.NoPen)
-                painter.setBrush(QtGui.QColor("#daa520"))
-                r = QtCore.QRect(QtCore.QPoint(), min(rect.width(), rect.height()) * QtCore.QSize(1, 1))
-                r.moveCenter(rect.center())
-                painter.drawEllipse(r)
-                painter.setPen(QtGui.QPen(QtGui.QColor("gray")))
-                painter.drawText(rect, QtCore.Qt.AlignCenter, str(date.day()))
-                painter.restore()
-
+            painter.setPen(QtCore.Qt.NoPen)
+            painter.setBrush(QtGui.QColor("#daa520"))
+            r = QtCore.QRect(QtCore.QPoint(), min(rect.width(), rect.height()) * QtCore.QSize(1, 1))
+            r.moveCenter(rect.center())
+            painter.drawEllipse(r)
+            painter.setPen(QtGui.QPen(QtGui.QColor("gray")))
+            painter.drawText(rect, QtCore.Qt.AlignCenter, str(date.day()))
+            painter.restore()

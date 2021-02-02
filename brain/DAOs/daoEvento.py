@@ -1,4 +1,5 @@
 import pymysql
+from PyQt5.QtCore import QDate
 
 from configBD import ConfigDB
 from modelos.eventoModel import EventoModelo
@@ -61,7 +62,18 @@ class DaoEvento:
             self.disconectBD(cursor)
 
     def buscaDatasEventos(self):
-        pass
+        self.connection.connect()
+        cursor = self.connection.cursor()
+
+        strComando = f"""SELECT eventoId, dataEvento FROM {self.configs.tblEvento}"""
+
+        try:
+            cursor.execute(strComando)
+            return dict(cursor.fetchall())
+        except:
+            raise Warning(f'Erro SQL - buscaDatasEventos({self.configs.tblEvento}) <SELECT>')
+        finally:
+            self.disconectBD(cursor)
 
     def excluirEvento(self):
         pass

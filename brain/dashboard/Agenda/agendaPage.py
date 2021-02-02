@@ -6,11 +6,12 @@ from PyQt5.QtGui import QMouseEvent
 
 from Telas.dashAgenda import Ui_wdgAgenda
 
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget, QGridLayout
 
 from brain.DAOs.daoGrupo import DaoGrupo
 from brain.dashboard.Agenda.agendaController import CalendarioController
 from brain.DAOs.daoEvento import DaoEvento
+from brain.dashboard.Cliente.localWidgets.gruposCard import GruposCard
 from modelos import eventoModel
 from modelos.eventoModel import EventoModelo
 
@@ -27,6 +28,8 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         self.vlAgenda.addWidget(self.calendario)
 
         self.evento = EventoModelo()
+
+
 
         #Dao's
         self.daoEvento = DaoEvento()
@@ -46,20 +49,9 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         # Adiciona os Grupos na ComboBox
         self.cbxGrupos.addItems(self.dictDosGruposFormados().keys())
 
-    def criaEvento(self):
+        print(self.daoEvento.buscaDatasEventos())
 
-        daoEvento = DaoEvento()
-        dictEvento = {
-            'eventoId': None,
-            'titulo': self.leTituloEvento.text()[0],
-            'detalhe': self.teDetalhesEvento.toPlainText()[0],
-            'grupoId': '1',
-            'dataEvento': '2021-02-02 14:00',
-            'dataCadastro': '2021-02-02 14:00',
-            'horaInicio': '2021-02-02 14:00',
-            'horaFim': '2021-02-02 14:00',
-            'diaInteiro': False,
-        }
+    def criaEvento(self):
 
         datas = []
         for data in [self.deDataEvento.text(), self.teHoraInicioEvento.text(), self.teHoraFimEvento.text()]:
@@ -70,13 +62,17 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         self.evento.titulo = self.leTituloEvento.text()
         self.evento.detalhe = self.teDetalhesEvento.toPlainText()
         self.evento.grupoId = self.dictDosGruposFormados()[self.cbxGrupos.currentText()]
-        self.evento.dataEvento = datas[0]
+        # self.evento.dataEvento = datas[0]
+        self.evento.dataEvento = self.deDataEvento
+        a = self.deDataEvento.dateTime().toPyDateTime()
+        print(a)
+        print(QDate)
         self.evento.dataCadastro = None
         self.evento.horaInicio = datas[1]
         self.evento.horaFim = datas[2]
         self.evento.diaInteiro = True
 
-        # daoEvento.insereEvento(self.evento)
+        self.daoEvento.insereEvento(self.evento)
 
     def dictDosGruposFormados(self) -> dict:
         grupos = {grupo[1]: grupo[0] for grupo in self.daoGrupo.findAll()}
