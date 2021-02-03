@@ -123,16 +123,20 @@ class RelatorioCliente:
 
     def exportaRelatorio(self, tipo='pdf'):
 
-        fileName = QFileDialog.getSaveFileName(directory='/home/', options=QFileDialog.DontUseNativeDialog)
+        # Desenvolvimento
+        fileName = QFileDialog.getSaveFileName(directory='/home/', options=QFileDialog.DontUseNativeDialog, filter="Adobe Pdf (*.pdf);;Excel (*.xlsx)")
+
+        # Produção
+        # fileName = QFileDialog.getSaveFileName(directory='/home/')
         print(f'\033[33m{fileName}')
 
-        if tipo == 'pdf':
+        if '*.pdf' in fileName[1]:
             self.constroiCabecalho()
             self.constroiCorpo()
             self.documento.preamble.append(self.firstPage)
             self.documento.generate_pdf(fileName[0], clean_tex=False)
         else:
-            self.exportaExcel()
+            self.exportaExcel(fileName[0])
 
     def contaTotalClientes(self):
         self.totalClientes = self.daoClientes.contaTotal()
@@ -142,7 +146,7 @@ class RelatorioCliente:
     def carregarClientes(self):
         self.clientesList = self.daoClientes.findAll(all=True)
 
-    def exportaExcel(self):
+    def exportaExcel(self, path):
 
         colunas = ['Inscrição', 'Nome', 'Sobrenome', 'Telefone', 'E-mail', 'CPF',
                    'Endereço', 'Complemento', 'CEP', 'Bairro', 'Meio de Pagamento',
@@ -150,7 +154,7 @@ class RelatorioCliente:
 
         dataFrameClientes = pd.DataFrame(self.clientesList, columns=colunas)
 
-        excelWriter = pd.ExcelWriter(f'Relatorio {datetime.date.today()}.xlsx', endine='openpyxl')
+        excelWriter = pd.ExcelWriter(f'{path}.xlsx', endine='openpyxl')
 
         dataFrameClientes.to_excel(excel_writer=excelWriter, index=False)
         excelWriter.save()
