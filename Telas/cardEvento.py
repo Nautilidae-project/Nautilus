@@ -14,133 +14,20 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_wdgEventoCard(object):
     def setupUi(self, wdgEventoCard):
         wdgEventoCard.setObjectName("wdgEventoCard")
-        wdgEventoCard.resize(400, 350)
-        wdgEventoCard.setMinimumSize(QtCore.QSize(350, 350))
-        wdgEventoCard.setMaximumSize(QtCore.QSize(400, 400))
-        wdgEventoCard.setStyleSheet("/*#wdgGrupoCard {\n"
-"    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgba(105, 33, 140, 60), stop:1 rgba(112, 237, 255, 60));    \n"
-"}*/")
-        self.gridLayout_2 = QtWidgets.QGridLayout(wdgEventoCard)
-        self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.frGrupoCard = QtWidgets.QFrame(wdgEventoCard)
-        self.frGrupoCard.setStyleSheet("#frGrupoCard {\n"
+        wdgEventoCard.resize(200, 300)
+        wdgEventoCard.setMinimumSize(QtCore.QSize(200, 300))
+        wdgEventoCard.setMaximumSize(QtCore.QSize(400, 600))
+        wdgEventoCard.setStyleSheet("#frGrupoCard {\n"
 "    background-color: #0e90ad;\n"
 "}")
-        self.frGrupoCard.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.gridLayout = QtWidgets.QGridLayout(wdgEventoCard)
+        self.gridLayout.setObjectName("gridLayout")
+        self.frGrupoCard = QtWidgets.QFrame(wdgEventoCard)
+        self.frGrupoCard.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frGrupoCard.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frGrupoCard.setObjectName("frGrupoCard")
-        self.gridLayout = QtWidgets.QGridLayout(self.frGrupoCard)
-        self.gridLayout.setContentsMargins(15, 0, 15, 0)
-        self.gridLayout.setObjectName("gridLayout")
-        self.frBottom = QtWidgets.QFrame(self.frGrupoCard)
-        self.frBottom.setStyleSheet("#frBottom {\n"
-"    background-color: transparent;\n"
-"}")
-        self.frBottom.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.frBottom.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frBottom.setObjectName("frBottom")
-        self.gridLayout_3 = QtWidgets.QGridLayout(self.frBottom)
-        self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout_3.setHorizontalSpacing(0)
-        self.gridLayout_3.setObjectName("gridLayout_3")
-        self.tblGrupoItem = QtWidgets.QTableWidget(self.frBottom)
-        self.tblGrupoItem.setMinimumSize(QtCore.QSize(0, 150))
-        self.tblGrupoItem.setMaximumSize(QtCore.QSize(16777215, 200))
-        self.tblGrupoItem.setStyleSheet("#tblGrupoItem {\n"
-"    background-color: rgba(233, 185, 110, 200);\n"
-"    /*border: none;*/\n"
-"    color: #444;\n"
-"    margin-bottom: 8px;\n"
-"    padding-right: 4px;\n"
-"    padding-top: 4px;\n"
-"    padding-left: 12px;\n"
-"    margin-top: 16px;\n"
-"}\n"
-"\n"
-"#tblGrupoItem::item {\n"
-"    color: #fff;\n"
-"}")
-        self.tblGrupoItem.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.tblGrupoItem.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
-        self.tblGrupoItem.setAlternatingRowColors(False)
-        self.tblGrupoItem.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
-        self.tblGrupoItem.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
-        self.tblGrupoItem.setShowGrid(False)
-        self.tblGrupoItem.setObjectName("tblGrupoItem")
-        self.tblGrupoItem.setColumnCount(3)
-        self.tblGrupoItem.setRowCount(0)
-        item = QtWidgets.QTableWidgetItem()
-        self.tblGrupoItem.setHorizontalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tblGrupoItem.setHorizontalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tblGrupoItem.setHorizontalHeaderItem(2, item)
-        self.tblGrupoItem.horizontalHeader().setVisible(False)
-        self.tblGrupoItem.horizontalHeader().setStretchLastSection(True)
-        self.tblGrupoItem.verticalHeader().setVisible(False)
-        self.gridLayout_3.addWidget(self.tblGrupoItem, 0, 0, 1, 1)
-        self.frBotoes = QtWidgets.QFrame(self.frBottom)
-        self.frBotoes.setMinimumSize(QtCore.QSize(0, 0))
-        self.frBotoes.setMaximumSize(QtCore.QSize(24, 100))
-        self.frBotoes.setStyleSheet("#frBotoes{\n"
-"    background-color: transparent;\n"
-"}")
-        self.frBotoes.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.frBotoes.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frBotoes.setObjectName("frBotoes")
-        self.formLayout = QtWidgets.QFormLayout(self.frBotoes)
-        self.formLayout.setContentsMargins(0, 0, 0, 0)
-        self.formLayout.setHorizontalSpacing(0)
-        self.formLayout.setVerticalSpacing(9)
-        self.formLayout.setObjectName("formLayout")
-        self.pbEditar = QtWidgets.QPushButton(self.frBotoes)
-        self.pbEditar.setMinimumSize(QtCore.QSize(24, 24))
-        self.pbEditar.setMaximumSize(QtCore.QSize(24, 24))
-        self.pbEditar.setStyleSheet("#pbEditar {\n"
-"    background-image: url(:/Editar/cardEditar.png);\n"
-"    background-position: center;\n"
-"    background-repeat: no-repeat;\n"
-"}")
-        self.pbEditar.setText("")
-        self.pbEditar.setObjectName("pbEditar")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.pbEditar)
-        self.pbEmailCard = QtWidgets.QPushButton(self.frBotoes)
-        self.pbEmailCard.setMinimumSize(QtCore.QSize(24, 24))
-        self.pbEmailCard.setMaximumSize(QtCore.QSize(24, 24))
-        self.pbEmailCard.setStyleSheet("#pbEmailCard{\n"
-"    background-image: url(:/Email/cardEmail.png);\n"
-"    background-position: center;\n"
-"    background-repeat: no-repeat;\n"
-"}\n"
-"")
-        self.pbEmailCard.setText("")
-        self.pbEmailCard.setObjectName("pbEmailCard")
-        self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.pbEmailCard)
-        self.pbExcluir = QtWidgets.QPushButton(self.frBotoes)
-        self.pbExcluir.setMinimumSize(QtCore.QSize(24, 24))
-        self.pbExcluir.setMaximumSize(QtCore.QSize(24, 24))
-        self.pbExcluir.setStyleSheet("#pbExcluir {\n"
-"    background-image: url(:/Excluir/cardExcluirRed.png);\n"
-"    background-position: center;\n"
-"    background-repeat: no-repeat;\n"
-"    background-color: #fff;\n"
-"}\n"
-"\n"
-"#pbExcluir::hover {\n"
-"    background-image: url(:/ExcluirW/cardExcluirWhite.png);\n"
-"    background-position: center;\n"
-"    background-repeat: no-repeat;\n"
-"    background-color: #ff8d74;\n"
-"}")
-        self.pbExcluir.setText("")
-        self.pbExcluir.setObjectName("pbExcluir")
-        self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.pbExcluir)
-        self.gridLayout_3.addWidget(self.frBotoes, 0, 1, 1, 1)
-        self.frBotoes.raise_()
-        self.tblGrupoItem.raise_()
-        self.gridLayout.addWidget(self.frBottom, 2, 0, 1, 1)
         self.lbDescricao = QtWidgets.QTextEdit(self.frGrupoCard)
+        self.lbDescricao.setGeometry(QtCore.QRect(20, 76, 370, 100))
         self.lbDescricao.setMinimumSize(QtCore.QSize(0, 100))
         self.lbDescricao.setMaximumSize(QtCore.QSize(16777215, 100))
         self.lbDescricao.setStyleSheet("#lbDescricao {\n"
@@ -153,8 +40,8 @@ class Ui_wdgEventoCard(object):
 "}")
         self.lbDescricao.setReadOnly(True)
         self.lbDescricao.setObjectName("lbDescricao")
-        self.gridLayout.addWidget(self.lbDescricao, 1, 0, 1, 1)
         self.lbTituloCard = QtWidgets.QLabel(self.frGrupoCard)
+        self.lbTituloCard.setGeometry(QtCore.QRect(20, 20, 370, 50))
         self.lbTituloCard.setMinimumSize(QtCore.QSize(0, 50))
         self.lbTituloCard.setMaximumSize(QtCore.QSize(16777215, 50))
         font = QtGui.QFont()
@@ -172,10 +59,7 @@ class Ui_wdgEventoCard(object):
 "    font-weight: bold;\n"
 "}")
         self.lbTituloCard.setObjectName("lbTituloCard")
-        self.gridLayout.addWidget(self.lbTituloCard, 0, 0, 1, 1)
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem, 4, 0, 1, 1)
-        self.gridLayout_2.addWidget(self.frGrupoCard, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.frGrupoCard, 0, 0, 1, 1)
 
         self.retranslateUi(wdgEventoCard)
         QtCore.QMetaObject.connectSlotsByName(wdgEventoCard)
@@ -183,15 +67,8 @@ class Ui_wdgEventoCard(object):
     def retranslateUi(self, wdgEventoCard):
         _translate = QtCore.QCoreApplication.translate
         wdgEventoCard.setWindowTitle(_translate("wdgEventoCard", "Form"))
-        item = self.tblGrupoItem.horizontalHeaderItem(0)
-        item.setText(_translate("wdgEventoCard", "Id"))
-        item = self.tblGrupoItem.horizontalHeaderItem(1)
-        item.setText(_translate("wdgEventoCard", "Nome"))
-        item = self.tblGrupoItem.horizontalHeaderItem(2)
-        item.setText(_translate("wdgEventoCard", "Sobrenome"))
         self.lbDescricao.setPlaceholderText(_translate("wdgEventoCard", "DESCRIÇÃO"))
         self.lbTituloCard.setText(_translate("wdgEventoCard", "Titulo"))
-
 
 
 if __name__ == "__main__":

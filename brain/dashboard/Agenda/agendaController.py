@@ -52,7 +52,7 @@ class CalendarioController(QCalendarWidget):
         super(CalendarioController, self).paintCell(painter, rect, date)
 
         if date in self.daoEvento.buscaDatasEventos().values():
-            print(date)
+            # print(date)
             painter.save()
             # Cor do fundo da area Selecionada
             painter.fillRect(rect, QtGui.QColor("#80CCE1"))

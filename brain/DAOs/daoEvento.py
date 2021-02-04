@@ -76,6 +76,20 @@ class DaoEvento:
         finally:
             self.disconectBD(cursor)
 
+    def buscaPorId(self, idEvento=int):
+        self.connection.connect()
+        cursor = self.connection.cursor()
+
+        strComando = f"""SELECT * FROM {self.configs.tblEvento} WHERE eventoId = {idEvento}"""
+
+        try:
+            cursor.execute(strComando)
+            return cursor.fetchall()
+        except:
+            raise Warning(f'Erro SQL - buscaDatasEventos({self.configs.tblEvento}) <SELECT>')
+        finally:
+            self.disconectBD(cursor)
+
     def excluirEvento(self):
         pass
 
