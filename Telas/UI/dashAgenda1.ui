@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>789</width>
-    <height>573</height>
+    <width>964</width>
+    <height>582</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,53 +25,6 @@
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="2">
-    <widget class="QFrame" name="frAgenda">
-     <property name="maximumSize">
-      <size>
-       <width>1000</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_3">
-      <item row="1" column="0">
-       <layout class="QVBoxLayout" name="vlAgenda">
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>100</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Fira Sans ExtraLight</family>
-            <pointsize>22</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(108, 251, 208);</string>
-          </property>
-          <property name="text">
-           <string>Agendamentos</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-   </item>
    <item row="0" column="3" rowspan="2">
     <widget class="QFrame" name="frCompromisso">
      <property name="minimumSize">
@@ -94,44 +47,6 @@ border-right: 3px dashed rgb(108, 251, 208);
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="4" column="1">
-       <widget class="QLabel" name="lbData">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>50</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(233, 185, 110);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QLabel" name="label">
-        <property name="font">
-         <font>
-          <family>Fira Sans ExtraLight</family>
-          <pointsize>22</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(108, 251, 208);</string>
-        </property>
-        <property name="text">
-         <string>Compromissos</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="1">
        <widget class="QFrame" name="frame">
         <property name="minimumSize">
@@ -196,19 +111,6 @@ border-right: 3px dashed rgb(108, 251, 208);
         </layout>
        </widget>
       </item>
-      <item row="6" column="1">
-       <spacer name="verticalSpacer">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
       <item row="1" column="1">
        <widget class="QFrame" name="frInserirEvento">
         <property name="minimumSize">
@@ -264,24 +166,115 @@ p, li { white-space: pre-wrap; }
         </layout>
        </widget>
       </item>
-      <item row="5" column="1">
-       <widget class="QScrollArea" name="saEventosCard">
-        <property name="widgetResizable">
-         <bool>true</bool>
+      <item row="3" column="1">
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <family>Fira Sans ExtraLight</family>
+          <pointsize>22</pointsize>
+         </font>
         </property>
-        <widget class="QWidget" name="scrollAreaWidgetContents">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>529</width>
-           <height>68</height>
-          </rect>
-         </property>
-        </widget>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(108, 251, 208);</string>
+        </property>
+        <property name="text">
+         <string>Compromissos</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLabel" name="lbData">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(233, 185, 110);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
        </widget>
       </item>
      </layout>
+    </widget>
+   </item>
+   <item row="0" column="2" rowspan="3">
+    <widget class="QFrame" name="frAgenda">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>750</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="1" column="0">
+       <layout class="QVBoxLayout" name="vlAgenda">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Fira Sans ExtraLight</family>
+            <pointsize>22</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(108, 251, 208);</string>
+          </property>
+          <property name="text">
+           <string>Agendamentos</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="saEventosCard">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>724</width>
+        <height>68</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
    </item>
   </layout>
