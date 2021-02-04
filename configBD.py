@@ -1,9 +1,10 @@
 class ConfigDB:
     def __init__(self):
-        self.__host = 'localhost'
-        self.__user = 'NAUTILUS'
-        self.__passwd = '!Nautilidae2020!'
-        self.__banco = 'NAUTILIDAE'
+        self.__host = 'mysql742.umbler.com' #localhost
+        self.__user = 'nautilus' #NAUTILUS
+        self.__passwd = 'Nautilidae2020' #!Nautilidae2020!
+        self.__banco = 'nautilus' #NAUTILIDAE
+        self.__port = 41890
         self.__tblUsuario = 'usuario'
         self.__tblEstados = 'estados'
         self.__tblCliente = 'cliente'
@@ -127,6 +128,10 @@ class ConfigDB:
     @property
     def host(self):
         return self.__host
+
+    @property
+    def port(self):
+        return self.__port
 
     @property
     def user(self):

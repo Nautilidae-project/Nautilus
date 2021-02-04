@@ -12,7 +12,8 @@ class DaoParticipantes:
             host=self.configs.host,
             user=self.configs.user,
             passwd=self.configs.passwd,
-            db=self.configs.banco
+            db=self.configs.banco,
+            port=self.configs.port
         )
 
     def insereParticipantes(self, participantesList: list):
