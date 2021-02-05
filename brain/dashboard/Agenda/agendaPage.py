@@ -87,7 +87,7 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         eventoModelos = [EventoModelo(eventosCadastrados[i]) for i in range(0, len(eventosCadastrados))]
 
         # Cria uma lista contendo os layouts dos cards com as informações dos modelos contidos no eventoModelos
-        listaEventosCards = [EventosCard(parent=self, evento=eventoModelos[i]) for i in range(0, len(eventosCadastrados))]
+        listaEventosCards = [EventosCard(parent=self, evento=eventoModelos[i], db=self.db) for i in range(0, len(eventosCadastrados))]
         # print(len(listaEventosCards))
 
         # Cria uma matriz das posições nas quais os cards serão apresentados
@@ -103,12 +103,12 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
 
 
     def printDataSelecionada(self):
-        for data in DaoEvento().buscaDatasEventos().values():
+        for data in DaoEvento(self.db).buscaDatasEventos().values():
             if self.calendario.selectedDate() == data:
                 print(data, ' ---')
 
     def redimensionaTela(self):
-        sizeCard = EventosCard().sizeHint().width() + 20
+        sizeCard = EventosCard(self.db).sizeHint().width() + 20
         sizeArea = self.saEventosCard.size().width()
 
         if 3*sizeCard < sizeArea:

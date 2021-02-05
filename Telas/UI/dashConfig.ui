@@ -22,6 +22,7 @@
 	font-family: Ubuntu;
 	font-size: 14pt;
 	font-weight: bold;
+	color: rgb(46, 52, 54);
 }
 
 #lbDescricao {
@@ -30,6 +31,7 @@
 	font-family: Ubuntu;
 	font-size: 12pt;
 	font-style: italic;
+	color: rgb(85, 87, 83)
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -133,7 +135,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QTabWidget" name="tabWidget">
+    <widget class="QTabWidget" name="tabConfiguracoes">
      <property name="currentIndex">
       <number>0</number>
      </property>

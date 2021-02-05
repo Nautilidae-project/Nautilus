@@ -23,6 +23,7 @@ class Ui_wdgConfig(object):
 "    font-family: Ubuntu;\n"
 "    font-size: 14pt;\n"
 "    font-weight: bold;\n"
+"    color: rgb(46, 52, 54);\n"
 "}\n"
 "\n"
 "#lbDescricao {\n"
@@ -31,6 +32,7 @@ class Ui_wdgConfig(object):
 "    font-family: Ubuntu;\n"
 "    font-size: 12pt;\n"
 "    font-style: italic;\n"
+"    color: rgb(85, 87, 83)\n"
 "}")
         self.verticalLayout = QtWidgets.QVBoxLayout(wdgConfig)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -63,24 +65,24 @@ class Ui_wdgConfig(object):
         spacerItem = QtWidgets.QSpacerItem(524, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.verticalLayout.addWidget(self.frCabecalho)
-        self.tabWidget = QtWidgets.QTabWidget(wdgConfig)
-        self.tabWidget.setObjectName("tabWidget")
+        self.tabConfiguracoes = QtWidgets.QTabWidget(wdgConfig)
+        self.tabConfiguracoes.setObjectName("tabConfiguracoes")
         self.tabUsuario = QtWidgets.QWidget()
         self.tabUsuario.setObjectName("tabUsuario")
-        self.tabWidget.addTab(self.tabUsuario, "")
+        self.tabConfiguracoes.addTab(self.tabUsuario, "")
         self.tabClientes = QtWidgets.QWidget()
         self.tabClientes.setObjectName("tabClientes")
-        self.tabWidget.addTab(self.tabClientes, "")
+        self.tabConfiguracoes.addTab(self.tabClientes, "")
         self.tabAgenda = QtWidgets.QWidget()
         self.tabAgenda.setObjectName("tabAgenda")
-        self.tabWidget.addTab(self.tabAgenda, "")
+        self.tabConfiguracoes.addTab(self.tabAgenda, "")
         self.tabFinanceiro = QtWidgets.QWidget()
         self.tabFinanceiro.setObjectName("tabFinanceiro")
-        self.tabWidget.addTab(self.tabFinanceiro, "")
-        self.verticalLayout.addWidget(self.tabWidget)
+        self.tabConfiguracoes.addTab(self.tabFinanceiro, "")
+        self.verticalLayout.addWidget(self.tabConfiguracoes)
 
         self.retranslateUi(wdgConfig)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabConfiguracoes.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(wdgConfig)
 
     def retranslateUi(self, wdgConfig):
@@ -88,10 +90,10 @@ class Ui_wdgConfig(object):
         wdgConfig.setWindowTitle(_translate("wdgConfig", "Form"))
         self.lbTitulo.setText(_translate("wdgConfig", "Configurações do usuário"))
         self.lbDescricao.setText(_translate("wdgConfig", "Nesta página você pode alterar as configurações referentes ao seu cadastro."))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabUsuario), _translate("wdgConfig", "Usuário"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabClientes), _translate("wdgConfig", "Clientes"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabAgenda), _translate("wdgConfig", "Agenda"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabFinanceiro), _translate("wdgConfig", "Financeiro"))
+        self.tabConfiguracoes.setTabText(self.tabConfiguracoes.indexOf(self.tabUsuario), _translate("wdgConfig", "Usuário"))
+        self.tabConfiguracoes.setTabText(self.tabConfiguracoes.indexOf(self.tabClientes), _translate("wdgConfig", "Clientes"))
+        self.tabConfiguracoes.setTabText(self.tabConfiguracoes.indexOf(self.tabAgenda), _translate("wdgConfig", "Agenda"))
+        self.tabConfiguracoes.setTabText(self.tabConfiguracoes.indexOf(self.tabFinanceiro), _translate("wdgConfig", "Financeiro"))
 
 
 if __name__ == "__main__":

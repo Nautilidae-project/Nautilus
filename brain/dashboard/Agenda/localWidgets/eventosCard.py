@@ -9,9 +9,10 @@ from modelos.eventoModel import EventoModelo
 
 class EventosCard(Ui_wdgEventoCard, QWidget):
 
-    def __init__(self, parent=None, evento: EventoModelo = None):
+    def __init__(self, parent=None, evento: EventoModelo = None, db=None):
         super(EventosCard, self).__init__()
         self.setupUi(self)
+        self.db = db
         self.evento = evento
         self.parent = parent
         # self.tblGrupoItem.setColumnHidden(0, True)
@@ -37,7 +38,7 @@ class EventosCard(Ui_wdgEventoCard, QWidget):
             self.lbDescricao.setText(self.evento.detalhe[0])
 
     def popularGrid(self):
-        daoEvento = DaoEvento()
+        daoEvento = DaoEvento(self.db)
         participante = daoEvento.buscaPorId(self.evento.eventoId[0])
         # print(participante)
         return participante
