@@ -5,8 +5,9 @@ from Telas.dashHome import Ui_wdgHome
 
 
 class HomePage(Ui_wdgHome, QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, db=None):
         super(HomePage, self).__init__(parent)
+        self.db = db
 
         self.setupUi(self)
 

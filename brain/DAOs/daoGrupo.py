@@ -6,20 +6,24 @@ from modelos.grupoModel import GrupoModelo
 
 class DaoGrupo:
 
-    def __init__(self):
+    def __init__(self, db):
+        self.db = db
         self.configs = ConfigDB()
-
-        self.connection = pymysql.connect(
-            host=self.configs.host,
-            user=self.configs.user,
-            passwd=self.configs.passwd,
-            db=self.configs.banco
-        )
+        
+        # self.configs = ConfigDB()
+        # 
+        # self.db = pymysql.connect(
+        #     host=self.configs.host,
+        #     user=self.configs.user,
+        #     passwd=self.configs.passwd,
+        #     db=self.configs.banco,
+        #     port=self.configs.port
+        # )
 
     def insereGrupo(self, grupo: GrupoModelo):
 
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         strComando = f"""
             INSERT INTO {self.configs.tblGrupo}
@@ -33,7 +37,7 @@ class DaoGrupo:
             """
         try:
             cursor.execute(strComando)
-            self.connection.commit()
+            self.db.commit()
         except:
             raise Warning(f'Erro SQL - insereGrupo({grupo.titulo}) <INSERT>')
         finally:
@@ -43,8 +47,8 @@ class DaoGrupo:
 
     def findAll(self):
 
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         strComando = f"""SELECT grupoId, titulo, descricao, dataCadastro, dataUltAlt FROM {self.configs.tblGrupo};"""
 
@@ -58,8 +62,8 @@ class DaoGrupo:
 
     def buscaParticipantesGrupo(self, eventoId: int):
 
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         strComando = f"""
             SELECT 
@@ -83,8 +87,8 @@ class DaoGrupo:
 
     def excluirGrupoEParticipantes(self, eventoId: int):
 
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         strComando = f"""DELETE FROM {self.configs.tblGrupo} WHERE grupoId = {eventoId}"""
 
@@ -94,7 +98,7 @@ class DaoGrupo:
             strComando = f"""DELETE FROM {self.configs.tblParticipantes} WHERE eventoId = {eventoId}"""
 
             cursor.execute(strComando)
-            self.connection.commit()
+            self.db.commit()
         except:
             raise Warning(f'Erro SQL - excluirGrupo({self.configs.tblGrupo}, {self.configs.tblParticipantes}) <DELETE>')
         finally:
@@ -102,8 +106,8 @@ class DaoGrupo:
 
     def atualizarGrupo(self, grupo: GrupoModelo):
 
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
 
         strComando = f"""
@@ -116,7 +120,7 @@ class DaoGrupo:
 
         try:
             cursor.execute(strComando)
-            self.connection.commit()
+            self.db.commit()
         except:
             raise Warning(f'Erro SQL - atualizarGrupo({self.configs.tblGrupo}) <UPDATE>')
         finally:
@@ -124,4 +128,4 @@ class DaoGrupo:
 
     def disconectBD(self, cursor):
         cursor.close()
-        self.connection.close()
+        self.db.close()

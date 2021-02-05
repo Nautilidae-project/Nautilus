@@ -5,20 +5,22 @@ from configBD import ConfigDB
 
 class DaoCategoria:
 
-    def __init__(self):
+    def __init__(self, db):
+        self.db = db
         self.configs = ConfigDB()
-
-        self.connection = pymysql.connect(
-            host=self.configs.host,
-            user=self.configs.user,
-            passwd=self.configs.passwd,
-            db=self.configs.banco
-        )
+        
+        # self.db = pymysql.connect(
+        #     host=self.configs.host,
+        #     user=self.configs.user,
+        #     passwd=self.configs.passwd,
+        #     db=self.configs.banco,
+        #     port=self.configs.port
+        # )
 
     def getAll(self):
 
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         strComando = f"""SELECT nome FROM {self.configs.tblCategoria}"""
 
@@ -33,4 +35,4 @@ class DaoCategoria:
 
     def disconectBD(self, cursor):
         cursor.close()
-        self.connection.close()
+        self.db.close()

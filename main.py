@@ -1,9 +1,11 @@
+import pymysql
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QMainWindow
 
 from Telas.SplashScreen.splashScreen import Ui_MainWindow
 from brain.DAOs.UserConfig import DaoConfiguracoes
 from brain.loginPage import LoginPage
+from configBD import ConfigDB
 
 
 class Main(Ui_MainWindow, QMainWindow):
@@ -12,7 +14,9 @@ class Main(Ui_MainWindow, QMainWindow):
         super(Main, self).__init__()
         self.setupUi(self)
         self.contador = 0
-        self.daoConfigs = DaoConfiguracoes()
+        self.config = ConfigDB(carregaBanco=True)
+        self.db = self.getDB()
+        self.daoConfigs = DaoConfiguracoes(self.db)
         self.center()
         self.show()
 
@@ -86,7 +90,7 @@ class Main(Ui_MainWindow, QMainWindow):
 
     def iniciaNautilus(self):
         self.close()
-        LoginPage().show()
+        LoginPage(self.db).show()
 
     def center(self):
         frameGm = self.frameGeometry()
@@ -94,6 +98,17 @@ class Main(Ui_MainWindow, QMainWindow):
         centerPoint = QtWidgets.QApplication.desktop().screenGeometry(screen).center()
         frameGm.moveCenter(centerPoint)
         self.move(frameGm.topLeft())
+
+    def getDB(self):
+
+        return pymysql.connect(
+            host=self.config.host,
+            user=self.config.user,
+            passwd=self.config.passwd,
+            db=self.config.banco,
+            port=self.config.port
+            )
+
 
 if __name__ == '__main__':
     import sys

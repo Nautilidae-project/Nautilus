@@ -20,17 +20,18 @@ import requests
 
 class mainDashboard(Ui_mwDash, QMainWindow):
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, db=None):
         super(mainDashboard, self).__init__(parent)
         self.parent = parent
         self.setupUi(self)
+        self.db = db
 
         # Inicializando as telas e stacks =================================================
-        self.pgHome = HomePage(self)
-        self.pgAgenda = AgendaPage(self)
-        self.pgCliente = brainCliente(self)
-        self.pgFinanceiro = FinanceiroPage(self)
-        self.pgConfig = ConfigPage(self)
+        self.pgHome = HomePage(self, db=db)
+        self.pgAgenda = AgendaPage(self, db=db)
+        self.pgCliente = brainCliente(self, db=db)
+        self.pgFinanceiro = FinanceiroPage(self, db=db)
+        self.pgConfig = ConfigPage(self, db=db)
 
         # Iniciaizando sinais =============================================================
         self.sinais = Sinais()
@@ -42,7 +43,7 @@ class mainDashboard(Ui_mwDash, QMainWindow):
         self.pbarProgress.hide()
 
         # Iniciaizando DAOs ===============================================================
-        self.daoCliente = DaoCliente()
+        self.daoCliente = DaoCliente(db)
 
         # Adição das páginas na sacked Widget =============================================
         self.stkDash.addWidget(self.pgHome)
