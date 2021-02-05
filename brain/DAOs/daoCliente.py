@@ -5,21 +5,24 @@ import pymysql
 
 class DaoCliente:
 
-    def __init__(self):
+    def __init__(self, db):
+        self.db = db
         self.configs = ConfigDB()
 
-        self.connection = pymysql.connect(
-            host=self.configs.host,
-            user=self.configs.user,
-            passwd=self.configs.passwd,
-            db=self.configs.banco,
-            port=self.configs.port
-        )
+        # self.configs = ConfigDB()
+        # 
+        # self.db = pymysql.connect(
+        #     host=self.configs.host,
+        #     user=self.configs.user,
+        #     passwd=self.configs.passwd,
+        #     db=self.configs.banco,
+        #     port=self.configs.port
+        # )
 
     def cadastraCliente(self, cliente: Cliente):
 
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         strComando = f"""
             INSERT INTO cliente
@@ -37,7 +40,7 @@ class DaoCliente:
             """
         try:
             cursor.execute(strComando)
-            self.connection.commit()
+            self.db.commit()
             cursor.close()
         except:
             raise Warning(f'Erro SQL - insereCliente({cliente.clienteId}) <INSERT>')
@@ -46,8 +49,8 @@ class DaoCliente:
 
     def findAll(self, all= False):
 
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         if not all:
             strComando = f"SELECT clienteId, nomeCliente, sobrenomeCliente, telefone, meioPagamento, ativo FROM {self.configs.tblCliente} ORDER BY ativo DESC, nomeCliente ASC"
@@ -64,8 +67,8 @@ class DaoCliente:
 
     def findAllNomeSobrenome(self, letra=None):
 
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         strComando = f"""SELECT 
                             clienteId, nomeCliente, sobrenomeCliente, ativo
@@ -86,8 +89,8 @@ class DaoCliente:
 
     def buscaCliente(self, busca):
 
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         strComando = f"SELECT clienteId, nomeCliente, telefone, meioPagamento, ativo  FROM cliente where " \
                      f"nomeCliente LIKE '%{busca}%' OR " \
@@ -104,8 +107,8 @@ class DaoCliente:
     def buscaPorId(self, clienteId: int):
         listCliente = []
 
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         strComando = f"""SELECT * FROM {self.configs.tblCliente} WHERE clienteId = {clienteId} """
 
@@ -123,8 +126,8 @@ class DaoCliente:
 
     def atualizaInfoCliente(self, cliente):
 
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         strComando = f""" UPDATE {self.configs.tblCliente} SET 
                             nomeCliente = '{cliente.nomeCliente}', 
@@ -144,9 +147,8 @@ class DaoCliente:
                     
                     """
         try:
-            print(strComando)
             cursor.execute(strComando)
-            self.connection.commit()
+            self.db.commit()
         except:
             raise Warning(f'Erro SQL - atualizaInfoCliente({cliente.clienteId}) <UPDATE>')
         finally:
@@ -154,8 +156,8 @@ class DaoCliente:
 
     def contaTotal(self, where=None):
 
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         if where is None:
             strComando = f''' SELECT COUNT(*) FROM {self.configs.tblCliente} '''
@@ -170,8 +172,8 @@ class DaoCliente:
         return total
 
     def contaCliente(self, condicao="clienteId"):
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         strComando = f"SELECT COUNT(clienteId) FROM cliente where {condicao}"
 
@@ -185,4 +187,4 @@ class DaoCliente:
 
     def disconectBD(self, cursor):
         cursor.close()
-        self.connection.close()
+        self.db.close()

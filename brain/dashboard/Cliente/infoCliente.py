@@ -31,14 +31,15 @@ from modelos.participantesModel import ParticipanteModel
 
 class brainCliente(Ui_wdgCliente, QWidget):
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, db=None):
         super(brainCliente, self).__init__(parent)
+        self.db = db
         self.setupUi(self)
         self.parent = parent
 
         # INICIALIZAÇÕES GERAIS =============================================
         self.cliente = Cliente()
-        self.daoCliente = DaoCliente()
+        self.daoCliente = DaoCliente(self.db)
         self.efeito = Efeitos()
         self.sinais = Sinais()
         self.enviarEmail = Mensagens()
@@ -126,7 +127,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         if self.gridBox.count():
             self.limpaLayout()
 
-        daoGrupo = DaoGrupo()
+        daoGrupo = DaoGrupo(self.db)
         colunas = 1
         linhas = 1
 
@@ -150,7 +151,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         gruposModelos = [GrupoModelo(gruposCadastrados[i]) for i in range(0, len(gruposCadastrados))]
 
         # Cria uma lista contendo os layouts dos cards com as informações dos modelos contidos no gruposModelos
-        listaGruposCards = [GruposCard(parent=self, grupo=gruposModelos[i]) for i in range(0, len(gruposCadastrados))]
+        listaGruposCards = [GruposCard(parent=self, grupo=gruposModelos[i], db=self.db) for i in range(0, len(gruposCadastrados))]
 
         # Cria uma matriz das posições nas quais os cards serão apresentados
         posicoes = [(linha, coluna) for linha in range(linhas) for coluna in range(colunas)]
@@ -201,8 +202,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
         if self.confereDadosGrupo():
             self.parent.loading(intLoading)
             listaParticipantes = list()
-            daoGrupo = DaoGrupo()
-            daoParticipantes = DaoParticipantes()
+            daoGrupo = DaoGrupo(self.db)
+            daoParticipantes = DaoParticipantes(self.db)
             dictGrupo = {
                 'grupoId': None,
                 'titulo': self.leTituloGrupo.text(),
@@ -483,7 +484,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
     def criaRelatorio(self):
         # Busca o usuário ativo
         # TODO: Criar um método melhor para encontrar usuário ativo
-        config = DaoConfiguracoes()
+        config = DaoConfiguracoes(self.db)
         usuarioAtivo = config.buscaUsuarioAtivo()
 
         # Cria relatório
@@ -535,7 +536,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.pbCancelar.show()
         self.pbAddGrupo.setText('Confirmar')
 
-        daoGrupo = DaoGrupo()
+        daoGrupo = DaoGrupo(self.db)
         participantes = daoGrupo.buscaParticipantesGrupo(grupo.grupoId)
 
         self.leTituloGrupo.setText(grupo.titulo)
@@ -562,8 +563,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.grupoEdicao.descricao = self.leDescricaoGrupo.toPlainText()
         listaParticipantes = list()
 
-        daoGrupo = DaoGrupo()
-        daoParticipantes = DaoParticipantes()
+        daoGrupo = DaoGrupo(self.db)
+        daoParticipantes = DaoParticipantes(self.db)
 
         daoGrupo.atualizarGrupo(self.grupoEdicao)
         daoParticipantes.deletarParticipantesEvento(self.grupoEdicao.grupoId)
@@ -579,7 +580,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
     def carregaComboBoxes(self):
 
-        daoCategorias = DaoCategoria()
+        daoCategorias = DaoCategoria(self.db)
         listTupleCategorias = daoCategorias.getAll()
         ordenar = ['DATA', 'CATEGORIA', 'A-Z', 'Z-A']
 

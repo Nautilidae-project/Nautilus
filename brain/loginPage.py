@@ -8,9 +8,11 @@ from brain.DAOs.UserConfig import *
 
 class LoginPage(Ui_mwLogin, QMainWindow):
 
-    def __init__(self):
+    def __init__(self, db):
         super(LoginPage, self).__init__()
-        self.daoConfig = DaoConfiguracoes()
+        self.db = db
+
+        self.daoConfig = DaoConfiguracoes(self.db)
 
         self.setupUi(self)
         self.center()
@@ -22,11 +24,11 @@ class LoginPage(Ui_mwLogin, QMainWindow):
 
 
         # Iniciando a tela cadastro e inserindo-a no stkWidget
-        self.telaCadastro = brainCadastro(self)
+        self.telaCadastro = brainCadastro(self, db=db)
         self.stkLogin.addWidget(self.telaCadastro)
 
         # Iniciando a tela cadastro e inserindo-a no stkWidget
-        self.telaDashboard = mainDashboard(self)
+        self.telaDashboard = mainDashboard(self, db=db)
         self.stkLogin.addWidget(self.telaDashboard)
 
         self.pbCadastro.clicked.connect(self.navigate)
@@ -41,8 +43,8 @@ class LoginPage(Ui_mwLogin, QMainWindow):
         self.leUsuario.setFocus()
         # self.leUsuario.setText('renan')
         # self.leSenha.setText('123456')
-        self.leUsuario.setText('renan')
-        self.leSenha.setText('123456')
+        self.leUsuario.setText('israeldev')
+        self.leSenha.setText('123')
 
     def navigate(self):
         self.stkLogin.setCurrentIndex(1)

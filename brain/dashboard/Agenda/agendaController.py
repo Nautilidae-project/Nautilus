@@ -12,8 +12,9 @@ from brain.DAOs.daoEvento import DaoEvento
 class CalendarioController(QCalendarWidget):
 
     # constructor
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, db=None):
         super(CalendarioController, self).__init__(parent)
+        self.db = db
         self.setStyleSheet("""
         		 /*Tool button styles */
         QCalendarWidget QToolButton {
@@ -45,8 +46,7 @@ class CalendarioController(QCalendarWidget):
 
         }
         		""")
-
-        self.daoEvento = DaoEvento()
+        self.daoEvento = DaoEvento(db)
 
     def paintCell(self, painter, rect, date):
         super(CalendarioController, self).paintCell(painter, rect, date)

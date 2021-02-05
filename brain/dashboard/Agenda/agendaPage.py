@@ -22,12 +22,13 @@ from modelos.efeitosModel import Efeitos
 
 class AgendaPage(Ui_wdgAgenda, QWidget):
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, db=None):
         super(AgendaPage, self).__init__(parent)
+        self.db = db
 
         self.setupUi(self)
 
-        self.calendario = CalendarioController()
+        self.calendario = CalendarioController(db=db)
 
         self.vlAgenda.addWidget(self.calendario)
 
@@ -41,8 +42,8 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         self.colunas = 0
 
         #Dao's
-        self.daoEvento = DaoEvento()
-        self.daoGrupo = DaoGrupo()
+        self.daoEvento = DaoEvento(self.db)
+        self.daoGrupo = DaoGrupo(self.db)
 
         # self.calendario.calendarWidget.clicked.connect(self.printDateInfo)
 
@@ -58,17 +59,15 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         # Adiciona os Grupos na ComboBox
         self.cbxGrupos.addItems(self.dictDosGruposFormados().keys())
 
-        self.calendario.clicked[QDate].connect(self.printDataSelecionada)
+        # self.calendario.clicked[QDate].connect(self.printDataSelecionada)
 
     def atualizaGruposCards(self):
-
-        
 
         colunas = 1
 
         # Busca no banco de dados todos os grupos criados
 
-        eventosCadastrados = DaoEvento().findAll()
+        eventosCadastrados = DaoEvento(self.db).findAll()
 
         widthCard = self.saEventosCard.sizeHint().width() + 20
         widthScreen = self.window().size().width()
@@ -78,11 +77,10 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         elif len(eventosCadastrados) > 3 and 2 * widthCard < widthScreen:
             colunas = 1
 
-
         self.colunas = colunas
 
         linhas = ceil(len(eventosCadastrados) / colunas)
-        print(linhas, ' ------')
+        # print(linhas, ' ------')
 
         # Cria um lista contendo o modelo de cada grupo buscado no banco de dados
 
@@ -90,7 +88,7 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
 
         # Cria uma lista contendo os layouts dos cards com as informações dos modelos contidos no eventoModelos
         listaEventosCards = [EventosCard(parent=self, evento=eventoModelos[i]) for i in range(0, len(eventosCadastrados))]
-        print(len(listaEventosCards))
+        # print(len(listaEventosCards))
 
         # Cria uma matriz das posições nas quais os cards serão apresentados
         posicoes = [(linha, coluna) for linha in range(linhas) for coluna in range(colunas)]
@@ -175,14 +173,14 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
     def printDateInfo(self, qDate):
         x = datetime.now().strftime("%B")
         y = datetime(year=qDate.year(), month=qDate.dayOfWeek(), day=qDate.day())
-        print('{0}/{1}/{2}'.format(qDate.month(), qDate.day(), qDate.year()))
-        print(f'Numero de dias do ano: {qDate.dayOfYear()}')
-        print(f'Numero de dias do mÊs: {qDate.dayOfWeek()}')
-        print(f'Numero do dia da semana ano: {qDate.day()}')
-        print(x)
-        print(y)
-        print(y.strftime("%Y %B"))
-        print(self.calendario.calendarWidget.selectedDate())
+        # print('{0}/{1}/{2}'.format(qDate.month(), qDate.day(), qDate.year()))
+        # print(f'Numero de dias do ano: {qDate.dayOfYear()}')
+        # print(f'Numero de dias do mÊs: {qDate.dayOfWeek()}')
+        # print(f'Numero do dia da semana ano: {qDate.day()}')
+        # print(x)
+        # print(y)
+        # print(y.strftime("%Y %B"))
+        # print(self.calendario.calendarWidget.selectedDate())
         self.lbData.setText(str(y))
 
     def chamaTelaAddEventos(self):

@@ -1,10 +1,18 @@
+import json
+
 class ConfigDB:
-    def __init__(self):
-        self.__host = 'mysql742.umbler.com' #localhost
-        self.__user = 'nautilus' #NAUTILUS
-        self.__passwd = 'Nautilidae2020' #!Nautilidae2020!
-        self.__banco = 'nautilus' #NAUTILIDAE
-        self.__port = 41890
+
+    def __init__(self, carregaBanco=False):
+
+        self.__host = None
+        self.__user = None
+        self.__passwd = None
+        self.__banco = None
+        self.__port = None
+        if carregaBanco:
+            # self.getDatabase('datasources/databaseLocal.json')
+            self.getDatabase('datasources/databaseCloud.json')
+
         self.__tblUsuario = 'usuario'
         self.__tblEstados = 'estados'
         self.__tblCliente = 'cliente'
@@ -173,6 +181,16 @@ class ConfigDB:
     def tblCategoria(self):
         return self.__tblCategoria
 
+    def getDatabase(self, dbPath: str):
+
+        with open(dbPath) as arquivo:
+            config = json.load(arquivo)
+            self.__host = config['host']
+            self.__user = config['user']
+            self.__passwd = config['passwd']
+            self.__banco = config['banco']
+            self.__port = int(config['port'])
+            arquivo.close()
 
     def __repr__(self):
         return f'''

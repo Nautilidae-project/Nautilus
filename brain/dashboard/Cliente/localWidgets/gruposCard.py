@@ -13,9 +13,11 @@ from modelos.grupoModel import GrupoModelo
 
 class GruposCard(Ui_wdgGrupoCard, QWidget):
 
-    def __init__(self, parent=None, grupo: GrupoModelo = None):
+    def __init__(self, parent=None, grupo: GrupoModelo = None, db=None):
         super(GruposCard, self).__init__()
         self.setupUi(self)
+        self.db = db
+
         self.grupo = grupo
         self.parent = parent
         self.sinais = Sinais()
@@ -48,7 +50,7 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
             self.lbDescricao.setText(grupo.descricao)
 
     def populaTblParticipantes(self):
-        daoGrupo = DaoGrupo()
+        daoGrupo = DaoGrupo(self.db)
 
         listaParticipantes = daoGrupo.buscaParticipantesGrupo(self.grupo.grupoId)
 
@@ -61,7 +63,7 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
                 self.tblGrupoItem.setItem(rowCount, columnCount, strItem)
 
     def excluirGrupo(self):
-        daoGrupo = DaoGrupo()
+        daoGrupo = DaoGrupo(self.db)
         intLoading = 0
 
         intLoading += 20
@@ -93,18 +95,18 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
         self.parent.editarGrupo(self.grupo)
 
     def emailGrupo(self):
-        daoGrupo = DaoGrupo().buscaParticipantesGrupo(self.grupo.grupoId)
+        daoGrupo = DaoGrupo(self.db).buscaParticipantesGrupo(self.grupo.grupoId)
         emailParticipantes = ''
         idParticipantes = ''
         nomeParticipantes = ''
         for cliente in daoGrupo:
-            print(DaoCliente().buscaPorId(cliente[0])[0])  # Indexs --> [2 tuplas], [1 tupla], [campo especifico]
+            #print(DaoCliente().buscaPorId(cliente[0])[0])  # Indexs --> [2 tuplas], [1 tupla], [campo especifico]
 
-            idParticipantes += str(DaoCliente().buscaPorId(cliente[0])[0][0]) + ', '
+            idParticipantes += str(DaoCliente(self.db).buscaPorId(cliente[0])[0][0]) + ', '
 
-            nomeParticipantes += f"{DaoCliente().buscaPorId(cliente[0])[0][1]} {DaoCliente().buscaPorId(cliente[0])[0][2]}, "
+            nomeParticipantes += f"{DaoCliente(self.db).buscaPorId(cliente[0])[0][1]} {DaoCliente().buscaPorId(cliente[0])[0][2]}, "
 
-            emailParticipantes += DaoCliente().buscaPorId(cliente[0])[0][4] + ', '
+            emailParticipantes += DaoCliente(self.db).buscaPorId(cliente[0])[0][4] + ', '
 
         self.enviarEmail.leId.setText(idParticipantes[0:-2])
         self.enviarEmail.leNome.setText(nomeParticipantes[0:-2])

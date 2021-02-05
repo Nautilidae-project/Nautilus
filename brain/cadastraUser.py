@@ -13,10 +13,12 @@ import json
 class brainCadastro(Ui_mwCadastro, QMainWindow):
     home = pyqtSignal()
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, db=None):
         super(brainCadastro, self).__init__(parent)
         self.setupUi(self)
-        self.daoConfig = DaoConfiguracoes()
+        self.db = db
+
+        self.daoConfig = DaoConfiguracoes(self.db)
         self.pbVoltarLogin.clicked.connect(self.goHome)
         self.home.connect(self.parent().backHome)
         self.timer = QTimer()
