@@ -5,21 +5,22 @@ from configBD import ConfigDB
 
 class DaoParticipantes:
 
-    def __init__(self):
+    def __init__(self, db):
+        self.db = db
         self.configs = ConfigDB()
 
-        self.connection = pymysql.connect(
-            host=self.configs.host,
-            user=self.configs.user,
-            passwd=self.configs.passwd,
-            db=self.configs.banco,
-            port=self.configs.port
-        )
+        # self.db = pymysql.connect(
+        #     host=self.configs.host,
+        #     user=self.configs.user,
+        #     passwd=self.configs.passwd,
+        #     db=self.configs.banco,
+        #     port=self.configs.port
+        # )
 
     def insereParticipantes(self, participantesList: list):
 
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         strComando = f" INSERT INTO {self.configs.tblParticipantes} ( eventoId, clienteId ) VALUES "
 
@@ -32,7 +33,7 @@ class DaoParticipantes:
         try:
             # Insere todos os participantes de um evento no banco de dados
             cursor.execute(strComando)
-            self.connection.commit()
+            self.db.commit()
         except:
                 raise Warning(f'Erro SQL - insereParticipantes({participantesList[0].eventoId}) <INSERT>')
         finally:
@@ -40,14 +41,14 @@ class DaoParticipantes:
 
     def deletarParticipantesEvento(self, grupoId):
 
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         strComando = f"""DELETE FROM {self.configs.tblParticipantes} WHERE eventoId = {grupoId}"""
 
         try:
             cursor.execute(strComando)
-            self.connection.commit()
+            self.db.commit()
         except:
             raise Warning(f'Erro SQL - deletarParticipantesEvento({grupoId}) <DELETE>')
         finally:

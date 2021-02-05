@@ -7,21 +7,24 @@ from modelos.eventoModel import EventoModelo
 
 class DaoEvento:
 
-    def __init__(self):
+    def __init__(self, db):
+        self.db = db
         self.configs = ConfigDB()
-
-        self.connection = pymysql.connect(
-            host=self.configs.host,
-            user=self.configs.user,
-            passwd=self.configs.passwd,
-            db=self.configs.banco,
-            port=self.configs.port
-        )
+        
+        # self.configs = ConfigDB()
+        # 
+        # self.db = pymysql.connect(
+        #     host=self.configs.host,
+        #     user=self.configs.user,
+        #     passwd=self.configs.passwd,
+        #     db=self.configs.banco,
+        #     port=self.configs.port
+        # )
 
     def insereEvento(self, evento: EventoModelo):
 
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         strComando = f"""
             INSERT INTO {self.configs.tblEvento}
@@ -35,9 +38,8 @@ class DaoEvento:
             """
 
         try:
-            print(strComando)
             cursor.execute(strComando)
-            self.connection.commit()
+            self.db.commit()
         except:
             raise Warning(f'Erro SQL - insereGrupo({evento.titulo}) <INSERT>')
         finally:
@@ -48,8 +50,8 @@ class DaoEvento:
 
     def findAll(self):
 
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         strComando = f"""SELECT eventoId, titulo, detalhe, grupoId, 
         dataEvento, horaInicio, horaFim, diaInteiro, dataCadastro FROM {self.configs.tblEvento};"""
@@ -63,8 +65,8 @@ class DaoEvento:
             self.disconectBD(cursor)
 
     def buscaDatasEventos(self):
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         strComando = f"""SELECT eventoId, dataEvento FROM {self.configs.tblEvento}"""
 
@@ -77,8 +79,8 @@ class DaoEvento:
             self.disconectBD(cursor)
 
     def buscaPorId(self, idEvento=int):
-        self.connection.connect()
-        cursor = self.connection.cursor()
+        self.db.connect()
+        cursor = self.db.cursor()
 
         strComando = f"""SELECT * FROM {self.configs.tblEvento} WHERE eventoId = {idEvento}"""
 
@@ -95,4 +97,4 @@ class DaoEvento:
 
     def disconectBD(self, cursor):
         cursor.close()
-        self.connection.close()
+        self.db.close()
