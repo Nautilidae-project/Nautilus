@@ -20,7 +20,7 @@ from brain.funcoesAuxiliares import mascaraCNPJ
 
 class RelatorioCliente:
 
-    def __init__(self, nomeArquivo, usuario):
+    def __init__(self, nomeArquivo, usuario, db=None):
         self.nomeArquivo = nomeArquivo
         self.usuario = Usuario().fromList(usuario)
 
@@ -28,7 +28,7 @@ class RelatorioCliente:
         self.documento = Document(f'{self.nomeArquivo}', geometry_options=self.geometry, page_numbers=False)
         self.firstPage = None
 
-        self.daoClientes = DaoCliente()
+        self.daoClientes = DaoCliente(db=db)
 
         # Estatísticas
         self.totalClientes = 0
@@ -127,7 +127,7 @@ class RelatorioCliente:
         fileName = QFileDialog.getSaveFileName(directory='/home/', options=QFileDialog.DontUseNativeDialog, filter="Adobe Pdf (*.pdf);;Excel (*.xlsx)")
 
         # Produção
-        # fileName = QFileDialog.getSaveFileName(directory='/home/')
+        # fileName = QFileDialog.getSaveFileName(directory='/home/', filter="Adobe Pdf (*.pdf);;Excel (*.xlsx)")
         print(f'\033[33m{fileName}')
 
         if '*.pdf' in fileName[1]:
