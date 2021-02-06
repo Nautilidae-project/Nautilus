@@ -489,7 +489,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         # Cria relatório
         # TODO: Criar método para escolher, por meio do browser, o local de salvamento do arquivo e o nome
-        relatorio = RelatorioCliente(nomeArquivo='Relatório', usuario=usuarioAtivo)
+        relatorio = RelatorioCliente(nomeArquivo='Relatório', usuario=usuarioAtivo, db=self.db)
         relatorio.exportaRelatorio()
         # relatorio.exportaRelatorio(tipo='excel')
 

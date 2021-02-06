@@ -134,6 +134,7 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
             response = requests.get(f'http://viacep.com.br/ws/{str(self.usuario.cep)}/json/')
             if response.status_code == 200:
                 dictEndereco = json.loads(response.text)
+                print(self.leEndereco)
                 self.leEndereco.setText(dictEndereco['logradouro'].title())
                 self.leCidade.setText(dictEndereco['localidade'].title())
                 self.leBairro.setText(dictEndereco['bairro'].capitalize())

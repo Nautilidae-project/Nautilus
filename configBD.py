@@ -12,7 +12,7 @@ class ConfigDB:
         if carregaBanco:
             # self.getDatabase('datasources/databaseLocal.json')
             self.getDatabase('datasources/databaseCloud.json')
-
+        #
         self.__tblUsuario = 'usuario'
         self.__tblEstados = 'estados'
         self.__tblCliente = 'cliente'
@@ -27,6 +27,7 @@ class ConfigDB:
                         nomeUsuario VARCHAR(20) NOT NULL,
                         nomeEmpresa VARCHAR(30) NOT NULL,
                         nomeFantasia VARCHAR(30) NULL,
+                        caminhoLogo VARCHAR(60) NULL,
                         cnpj VARCHAR(15) NOT NULL,
                         email VARCHAR(40) NOT NULL,
                         tel VARCHAR(11) NOT NULL,
