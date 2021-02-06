@@ -127,7 +127,7 @@ class RelatorioCliente:
         # fileName = QFileDialog.getSaveFileName(directory='/home/', options=QFileDialog.DontUseNativeDialog, filter="Adobe Pdf (*.pdf);;Excel (*.xlsx)")
 
         # Produção
-        fileName = QFileDialog.getSaveFileName(directory='/home/', filter="Adobe Pdf (*.pdf);;Excel (*.xlsx)")
+        # fileName = QFileDialog.getSaveFileName(directory='/home/', filter="Adobe Pdf (*.pdf);;Excel (*.xlsx)")
         print(f'\033[33m{fileName}')
 
         if fileName[0] != '':

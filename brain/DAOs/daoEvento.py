@@ -64,6 +64,22 @@ class DaoEvento:
         finally:
             self.disconectBD(cursor)
 
+    def findAllDataSelecionada(self, dataEvento):
+
+        self.db.connect()
+        cursor = self.db.cursor()
+
+        strComando = f"""SELECT eventoId, titulo, detalhe, grupoId, 
+         dataEvento, horaInicio, horaFim, diaInteiro, dataCadastro FROM {self.configs.tblEvento} WHERE dataEvento = '{dataEvento}';"""
+
+        try:
+            cursor.execute(strComando)
+            return cursor.fetchall()
+        except:
+            raise Warning(f'Erro SQL - findAll({self.configs.tblEvento}) <INSERT>')
+        finally:
+            self.disconectBD(cursor)
+
     def buscaDatasEventos(self):
         self.db.connect()
         cursor = self.db.cursor()

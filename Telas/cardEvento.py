@@ -14,9 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_wdgEventoCard(object):
     def setupUi(self, wdgEventoCard):
         wdgEventoCard.setObjectName("wdgEventoCard")
-        wdgEventoCard.resize(200, 300)
+        wdgEventoCard.resize(200, 312)
         wdgEventoCard.setMinimumSize(QtCore.QSize(200, 300))
-        wdgEventoCard.setMaximumSize(QtCore.QSize(400, 600))
+        wdgEventoCard.setMaximumSize(QtCore.QSize(16777215, 600))
         wdgEventoCard.setStyleSheet("#frGrupoCard {\n"
 "    background-color: #0e90ad;\n"
 "}")
@@ -60,6 +60,29 @@ class Ui_wdgEventoCard(object):
 "}")
         self.lbTituloCard.setObjectName("lbTituloCard")
         self.gridLayout.addWidget(self.frGrupoCard, 0, 0, 1, 1)
+        self.frame = QtWidgets.QFrame(wdgEventoCard)
+        self.frame.setMinimumSize(QtCore.QSize(50, 0))
+        self.frame.setMaximumSize(QtCore.QSize(50, 16777215))
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.frame)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setSpacing(0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.pushButton = QtWidgets.QPushButton(self.frame)
+        self.pushButton.setMinimumSize(QtCore.QSize(0, 97))
+        self.pushButton.setObjectName("pushButton")
+        self.verticalLayout.addWidget(self.pushButton)
+        self.pushButton_2 = QtWidgets.QPushButton(self.frame)
+        self.pushButton_2.setMinimumSize(QtCore.QSize(0, 97))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.verticalLayout.addWidget(self.pushButton_2)
+        self.pushButton_3 = QtWidgets.QPushButton(self.frame)
+        self.pushButton_3.setMinimumSize(QtCore.QSize(0, 97))
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.verticalLayout.addWidget(self.pushButton_3)
+        self.gridLayout.addWidget(self.frame, 0, 1, 1, 1)
 
         self.retranslateUi(wdgEventoCard)
         QtCore.QMetaObject.connectSlotsByName(wdgEventoCard)
@@ -69,6 +92,9 @@ class Ui_wdgEventoCard(object):
         wdgEventoCard.setWindowTitle(_translate("wdgEventoCard", "Form"))
         self.lbDescricao.setPlaceholderText(_translate("wdgEventoCard", "DESCRIÇÃO"))
         self.lbTituloCard.setText(_translate("wdgEventoCard", "Titulo"))
+        self.pushButton.setText(_translate("wdgEventoCard", "PushButton"))
+        self.pushButton_2.setText(_translate("wdgEventoCard", "PushButton"))
+        self.pushButton_3.setText(_translate("wdgEventoCard", "PushButton"))
 
 
 if __name__ == "__main__":

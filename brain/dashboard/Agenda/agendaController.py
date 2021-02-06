@@ -46,12 +46,12 @@ class CalendarioController(QCalendarWidget):
 
         }
         		""")
-        self.daoEvento = DaoEvento(db)
+        self.daoEvento = DaoEvento(db).buscaDatasEventos().values()
 
     def paintCell(self, painter, rect, date):
         super(CalendarioController, self).paintCell(painter, rect, date)
 
-        if date in self.daoEvento.buscaDatasEventos().values():
+        if date in self.daoEvento:
             # print(date)
             painter.save()
             # Cor do fundo da area Selecionada

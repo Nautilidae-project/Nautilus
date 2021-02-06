@@ -15,6 +15,7 @@ class EventosCard(Ui_wdgEventoCard, QWidget):
         self.db = db
         self.evento = evento
         self.parent = parent
+        self.db = db
         # self.tblGrupoItem.setColumnHidden(0, True)
         # self.tblGrupoItem.setItemDelegate(AlinhamentoEsq())
         # Efeitos().shadowCards([self.tblGrupoItem])
@@ -28,7 +29,16 @@ class EventosCard(Ui_wdgEventoCard, QWidget):
         	            background-color: #990100;
                     }"""
 
+        # self.pbEditar.clicked.connect(self.editarGrupo)
+        # self.pbExcluir.clicked.connect(self.excluirGrupo)
+        # self.pbEmailCard.clicked.connect(self.emailGrupo)
 
+        # self.daoEvento = DaoEvento()
+        # print(self.daoEvento.findAll())
+        #
+        # if self.evento is not None:
+        #     self.lbTituloCard.setText(self.evento.titulo[0])
+        #     self.lbDescricao.setText(self.evento.detalhe[0])
 
         if self.evento is not None:
             self.popularGrid()
