@@ -11,8 +11,7 @@ from brain.dashboard.Home.homePage import HomePage
 from brain.dashboard.Cliente.infoCliente import brainCliente
 from brain.dashboard.Sinais import Sinais
 
-from modelos.clienteModel import Cliente
-from brain.funcoesAuxiliares import *
+import asyncio
 
 from brain.DAOs.daoCliente import DaoCliente
 import requests
@@ -32,6 +31,19 @@ class mainDashboard(Ui_mwDash, QMainWindow):
         self.pgCliente = brainCliente(self, db=db)
         self.pgFinanceiro = FinanceiroPage(self, db=db)
         self.pgConfig = ConfigPage(self, db=db)
+
+        # Iniciando as telas com async
+        # loopIniciandoTelas = asyncio.get_event_loop()
+        # tarefas = [loopIniciandoTelas.create_task(self.carregaLayout('home')),
+        #            loopIniciandoTelas.create_task(self.carregaLayout('agenda')),
+        #            loopIniciandoTelas.create_task(self.carregaLayout('cliente')),
+        #            loopIniciandoTelas.create_task(self.carregaLayout('financeiro')),
+        #            loopIniciandoTelas.create_task(self.carregaLayout('configuracoes'))]
+        #
+        # esperaTarefas = asyncio.wait(tarefas)
+        # loopIniciandoTelas.run_until_complete(esperaTarefas)
+        #
+        # loopIniciandoTelas.close()
 
         # Iniciaizando sinais =============================================================
         self.sinais = Sinais()
@@ -118,6 +130,31 @@ class mainDashboard(Ui_mwDash, QMainWindow):
 
         if self.pbarProgress.value() >= 100:
             self.timerLoading.start(3000)
+
+    async def carregaLayout(self, tela: str):
+        if tela is not None:
+            if tela == 'home':
+                self.pgHome = HomePage(self, db=self.db)
+                self.stkDash.addWidget(self.pgHome)
+
+            if tela == 'agenda':
+                self.pgAgenda = AgendaPage(self, db=self.db)
+                self.stkDash.addWidget(self.pgAgenda)
+
+            if tela == 'cliente':
+                self.pgCliente = brainCliente(self, db=self.db)
+                self.stkDash.addWidget(self.pgCliente)
+
+            if tela == 'financeiro':
+                self.pgFinanceiro = FinanceiroPage(self, db=self.db)
+                self.stkDash.addWidget(self.pgFinanceiro)
+
+            if tela == 'configuracao':
+                self.pgConfig = ConfigPage(self, db=self.db)
+                self.stkDash.addWidget(self.pgConfig)
+        else:
+            return None
+
 
 
 if __name__ == '__main__':
