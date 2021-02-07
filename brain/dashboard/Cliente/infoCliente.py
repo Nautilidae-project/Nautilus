@@ -3,7 +3,7 @@ import base64
 import requests
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QMessageBox, QGridLayout, QLabel, QPushButton, QListWidget
+from PyQt5.QtWidgets import QMessageBox, QGridLayout, QLabel, QPushButton, QListWidget, QGraphicsDropShadowEffect
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 
 from Telas.dashCliente import Ui_wdgCliente
@@ -66,6 +66,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
         ## Declaração dos botões
         self.pbConfirmarAtualizacao.clicked.connect(lambda: self.showPopupSimCancela('As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
         self.pbEnviarEmail.clicked.connect(self.enviarUmEmail)
+        self.pbCancelarEdicao.hide()
+        self.pbCancelarEdicao.clicked.connect(self.limpaCampos)
 
         ## Declaração das LineEdit
         self.leCep.editingFinished.connect(self.trataCep)
@@ -76,8 +78,9 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.tblClientes.doubleClicked.connect(self.carregaInfoCliente)
 
         ## Declaração dos efeitos
-        self.efeito.shadowCards([self.frInfoCliente], color=(131, 134, 137, 90), offset=(-7, 4))
-        self.efeito.shadowCards([self.leCard1, self.leCard2, self.leCard3, self.leCard4])
+        # self.efeito.shadowCards([self.frInfoCliente], color=(131, 134, 137, 90), offset=(-7, 4))
+        self.efeito.shadowCards([self.frClientesTotal], parentOnly=True)
+        # self.efeito.shadowOneParent([self.frClientesTotal])
 
         # INICIALIZAÇÕES DA ABA "CADASTRO"    ===============================
         ## Declaração relacionadas à aba de cadastro de clientes
@@ -183,10 +186,11 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.parent.menssagemSistema('Não foi possível abrir janela de e-mail.')
 
     def cardsInfosCliente(self):
-        self.leCard1.setText(
-            f"Clientes Ativos:\n{self.daoCliente.contaCliente('ativo=1')}/{self.daoCliente.contaCliente()}")
-        self.leCard2.setText(
-            f"Clientes Inativos:\n{self.daoCliente.contaCliente('ativo=0')}/{self.daoCliente.contaCliente()}")
+        self.lbValorTotal.setText(f"{self.daoCliente.contaCliente()}")
+        self.lbValorMensal.setText(f"{self.daoCliente.buscaClientesAtuaisMesAno(mesAno='mes')}")
+        self.lbValorAnual.setText(f"{self.daoCliente.buscaClientesAtuaisMesAno()}")
+        # self.leCard2.setText(
+        #     f"Clientes Inativos:\n{self.daoCliente.contaCliente('ativo=0')}/{self.daoCliente.contaCliente()}")
 
     def criaGrupo(self):
         '''
@@ -363,6 +367,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.tblParticipantes.resizeColumnsToContents()
 
     def carregaInfoCliente(self, *args):
+        self.pbCancelarEdicao.show()
+        self.efeito.shadowCards([self.frInfoCliente], color=(131, 134, 137, 90), offset=(-7, 4))
 
         self.desativaInfoCampos(False)
         intClienteId = int(self.tblClientes.item(args[0].row(), 0).text())
@@ -457,6 +463,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leBairro.clear()
         self.leEmail.clear()
         self.leCep.clear()
+        self.pbCancelarEdicao.hide()
+        self.frInfoCliente.setGraphicsEffect(None)
 
         for i in range(0, self.tblParticipantes.rowCount()):
             if self.tblParticipantes.item(i, 3) is not None:
