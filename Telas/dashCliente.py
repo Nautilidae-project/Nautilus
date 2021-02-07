@@ -41,12 +41,6 @@ class Ui_wdgCliente(object):
 "    background-color: #DFD880;\n"
 "}\n"
 "\n"
-"#leCard1, #leCard2, #leCard3, #leCard4 {\n"
-"    background-color: #fafafa;\n"
-"    border-radius: 10px;\n"
-"    border:1px solid;\n"
-"}\n"
-"\n"
 "#lbTitulo{\n"
 "        background-color: none;\n"
 "        font: 300 22pt \"Ubuntu\" ;\n"
@@ -63,6 +57,7 @@ class Ui_wdgCliente(object):
 "    background-color: #fafafa;\n"
 "    border-bottom: 2px solid;\n"
 "    border-color: rgb(14, 144, 173);\n"
+"    border-radius: 0px;\n"
 "    \n"
 "    \n"
 "    font: 80 14pt \"Ubuntu\" ;\n"
@@ -88,7 +83,42 @@ class Ui_wdgCliente(object):
 "QPushButton:hover {\n"
 "    background-color: #80CCE1;\n"
 "}\n"
-"#pbConfirmarAtualizacao, #pbEnviarEmail{\n"
+"\n"
+"#pbConfirmarAtualizacao {\n"
+"    border-radius: 5px;\n"
+"    padding: 10px;\n"
+"    background-color: rgb(90, 190, 20);\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"#pbConfirmarAtualizacao::hover {\n"
+"    border-radius: 5px;\n"
+"    padding: 10px;\n"
+"    background-color: white;\n"
+"    color: rgb(100, 200, 22);\n"
+"    border: 2px solid rgb(100, 200, 22);\n"
+"}\n"
+"\n"
+"\n"
+"#pbCancelarEdicao {\n"
+"    border-radius: 5px;\n"
+"    padding: 10px;\n"
+"    background-color: rgba(239, 41, 41, 100);\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"#pbCancelarEdicao::hover {\n"
+"    border-radius: 5px;\n"
+"    padding: 10px;\n"
+"    background-color: white;\n"
+"    color: rgba(239, 41, 41, 100);\n"
+"    border: 2px solid rgba(239, 41, 41, 100);\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"#pbEnviarEmail {\n"
 "    border-radius: 5px;\n"
 "    padding: 10px;\n"
 "}\n"
@@ -181,7 +211,17 @@ class Ui_wdgCliente(object):
 "\n"
 "#frInfoCliente {\n"
 "    padding: 4px;\n"
-"    background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0 rgba(103, 44, 132, 22), stop:1 rgba(112, 172, 255, 138))\n"
+"    background-color: rgb(14, 144, 173, 30);\n"
+"}\n"
+"\n"
+"#frClientesTotal, #frClientesMensal, #frClientesAnuais {\n"
+"    background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(96, 32, 132, 33), stop:1 rgba(128, 182, 255, 138));\n"
+"    border-radius: 12px;\n"
+"    /*border: 5px solid;\n"
+"    border-bottom-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 30), stop:1 rgba(255, 255, 255, 0)); \n"
+"    border-top-color: transparent;\n"
+"    border-left-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 30), stop:1 rgba(255, 255, 255, 0));\n"
+"    border-right-color: transparent;*/\n"
 "}\n"
 "\n"
 "\n"
@@ -223,12 +263,39 @@ class Ui_wdgCliente(object):
 "    font-weight: bold;\n"
 "}\n"
 "\n"
-"#lbInfoDescricao, #lbTblGeralDescricao{\n"
+"#lbInfoDescricao, #lbTblGeralDescricao, #lbTituloTotal {\n"
 "    border: 0px;\n"
 "    background-color: transparent;\n"
 "    font-family: Ubuntu;\n"
 "    font-size: 12pt;\n"
 "    font-style: italic;\n"
+"}\n"
+"\n"
+"#lbTituloTotal, #lbTituloMensal, #lbTituloAnual  {\n"
+"    border: 0px;\n"
+"    background-color: transparent;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 12pt;\n"
+"    font-style: italic;\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"#lbValorTotal, #lbValorMensal, #lbValorAnual  {\n"
+"    border: 0px;\n"
+"    background-color: transparent;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 32pt;\n"
+"    font-style: italic;\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"#lbEstTotal, #lbEstMensal, #lbEstAnual {\n"
+"    border: 0px;\n"
+"    background-color: transparent;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 12pt;\n"
+"    font-weight: bold;\n"
+"    color: rgb(78, 154, 6);\n"
 "}")
         self.tbInfosCliente.setObjectName("tbInfosCliente")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.tbInfosCliente)
@@ -748,6 +815,10 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_32.addWidget(self.pbEnviarEmail)
         spacerItem2 = QtWidgets.QSpacerItem(0, 30, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_32.addItem(spacerItem2)
+        self.pbCancelarEdicao = QtWidgets.QPushButton(self.frInfoConfirmar)
+        self.pbCancelarEdicao.setMinimumSize(QtCore.QSize(0, 30))
+        self.pbCancelarEdicao.setObjectName("pbCancelarEdicao")
+        self.horizontalLayout_32.addWidget(self.pbCancelarEdicao)
         self.pbConfirmarAtualizacao = QtWidgets.QPushButton(self.frInfoConfirmar)
         self.pbConfirmarAtualizacao.setMinimumSize(QtCore.QSize(0, 30))
         self.pbConfirmarAtualizacao.setObjectName("pbConfirmarAtualizacao")
@@ -755,40 +826,100 @@ class Ui_wdgCliente(object):
         self.verticalLayout_4.addWidget(self.frInfoConfirmar)
         self.gridLayout_3.addWidget(self.frInfoCliente, 1, 2, 2, 1)
         self.frTopTabMenu = QtWidgets.QFrame(self.tbInfosCliente)
-        self.frTopTabMenu.setMinimumSize(QtCore.QSize(0, 110))
+        self.frTopTabMenu.setMinimumSize(QtCore.QSize(0, 80))
         self.frTopTabMenu.setMaximumSize(QtCore.QSize(16777215, 110))
         self.frTopTabMenu.setStyleSheet("")
         self.frTopTabMenu.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frTopTabMenu.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frTopTabMenu.setObjectName("frTopTabMenu")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.frTopTabMenu)
-        self.horizontalLayout_2.setContentsMargins(9, 0, 9, 9)
+        self.horizontalLayout_2.setContentsMargins(9, 0, 150, 9)
         self.horizontalLayout_2.setSpacing(15)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.leCard1 = QtWidgets.QLabel(self.frTopTabMenu)
-        self.leCard1.setMaximumSize(QtCore.QSize(300, 110))
-        self.leCard1.setStyleSheet("")
-        self.leCard1.setAlignment(QtCore.Qt.AlignCenter)
-        self.leCard1.setObjectName("leCard1")
-        self.horizontalLayout_2.addWidget(self.leCard1)
-        self.leCard2 = QtWidgets.QLabel(self.frTopTabMenu)
-        self.leCard2.setMaximumSize(QtCore.QSize(300, 110))
-        self.leCard2.setStyleSheet("")
-        self.leCard2.setAlignment(QtCore.Qt.AlignCenter)
-        self.leCard2.setObjectName("leCard2")
-        self.horizontalLayout_2.addWidget(self.leCard2)
-        self.leCard3 = QtWidgets.QLabel(self.frTopTabMenu)
-        self.leCard3.setMaximumSize(QtCore.QSize(300, 110))
-        self.leCard3.setStyleSheet("")
-        self.leCard3.setAlignment(QtCore.Qt.AlignCenter)
-        self.leCard3.setObjectName("leCard3")
-        self.horizontalLayout_2.addWidget(self.leCard3)
-        self.leCard4 = QtWidgets.QLabel(self.frTopTabMenu)
+        self.frClientesTotal = QtWidgets.QFrame(self.frTopTabMenu)
+        self.frClientesTotal.setMaximumSize(QtCore.QSize(140, 16777215))
+        self.frClientesTotal.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frClientesTotal.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frClientesTotal.setObjectName("frClientesTotal")
+        self.lbTituloTotal = QtWidgets.QLabel(self.frClientesTotal)
+        self.lbTituloTotal.setGeometry(QtCore.QRect(10, 0, 121, 24))
+        self.lbTituloTotal.setMinimumSize(QtCore.QSize(0, 24))
+        self.lbTituloTotal.setMaximumSize(QtCore.QSize(654654, 24))
+        self.lbTituloTotal.setStyleSheet("")
+        self.lbTituloTotal.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.lbTituloTotal.setObjectName("lbTituloTotal")
+        self.lbValorTotal = QtWidgets.QLabel(self.frClientesTotal)
+        self.lbValorTotal.setGeometry(QtCore.QRect(60, 30, 81, 40))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lbValorTotal.sizePolicy().hasHeightForWidth())
+        self.lbValorTotal.setSizePolicy(sizePolicy)
+        self.lbValorTotal.setMinimumSize(QtCore.QSize(0, 40))
+        self.lbValorTotal.setMaximumSize(QtCore.QSize(16777215, 32))
+        self.lbValorTotal.setObjectName("lbValorTotal")
+        self.lbEstTotal = QtWidgets.QLabel(self.frClientesTotal)
+        self.lbEstTotal.setGeometry(QtCore.QRect(30, 50, 41, 16))
+        self.lbEstTotal.setMinimumSize(QtCore.QSize(0, 16))
+        self.lbEstTotal.setMaximumSize(QtCore.QSize(16777215, 16))
+        self.lbEstTotal.setObjectName("lbEstTotal")
+        self.horizontalLayout_2.addWidget(self.frClientesTotal)
+        self.frClientesMensal = QtWidgets.QFrame(self.frTopTabMenu)
+        self.frClientesMensal.setMaximumSize(QtCore.QSize(140, 16777215))
+        self.frClientesMensal.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frClientesMensal.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frClientesMensal.setObjectName("frClientesMensal")
+        self.lbTituloMensal = QtWidgets.QLabel(self.frClientesMensal)
+        self.lbTituloMensal.setGeometry(QtCore.QRect(10, 0, 121, 41))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lbTituloMensal.sizePolicy().hasHeightForWidth())
+        self.lbTituloMensal.setSizePolicy(sizePolicy)
+        self.lbTituloMensal.setMaximumSize(QtCore.QSize(65466, 94654))
+        self.lbTituloMensal.setStyleSheet("")
+        self.lbTituloMensal.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.lbTituloMensal.setWordWrap(True)
+        self.lbTituloMensal.setObjectName("lbTituloMensal")
+        self.lbValorMensal = QtWidgets.QLabel(self.frClientesMensal)
+        self.lbValorMensal.setGeometry(QtCore.QRect(80, 30, 64, 40))
+        self.lbValorMensal.setMinimumSize(QtCore.QSize(0, 40))
+        self.lbValorMensal.setMaximumSize(QtCore.QSize(16777215, 32))
+        self.lbValorMensal.setObjectName("lbValorMensal")
+        self.lbEstMensal = QtWidgets.QLabel(self.frClientesMensal)
+        self.lbEstMensal.setGeometry(QtCore.QRect(50, 50, 41, 17))
+        self.lbEstMensal.setObjectName("lbEstMensal")
+        self.horizontalLayout_2.addWidget(self.frClientesMensal)
+        self.frClientesAnuais = QtWidgets.QFrame(self.frTopTabMenu)
+        self.frClientesAnuais.setMaximumSize(QtCore.QSize(140, 16777215))
+        self.frClientesAnuais.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frClientesAnuais.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frClientesAnuais.setObjectName("frClientesAnuais")
+        self.lbTituloAnual = QtWidgets.QLabel(self.frClientesAnuais)
+        self.lbTituloAnual.setGeometry(QtCore.QRect(10, 0, 121, 41))
+        self.lbTituloAnual.setMaximumSize(QtCore.QSize(6544, 6546))
+        self.lbTituloAnual.setStyleSheet("")
+        self.lbTituloAnual.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.lbTituloAnual.setWordWrap(True)
+        self.lbTituloAnual.setObjectName("lbTituloAnual")
+        self.lbValorAnual = QtWidgets.QLabel(self.frClientesAnuais)
+        self.lbValorAnual.setGeometry(QtCore.QRect(80, 30, 64, 40))
+        self.lbValorAnual.setObjectName("lbValorAnual")
+        self.lbEstAnual = QtWidgets.QLabel(self.frClientesAnuais)
+        self.lbEstAnual.setGeometry(QtCore.QRect(40, 50, 64, 17))
+        self.lbEstAnual.setObjectName("lbEstAnual")
+        self.horizontalLayout_2.addWidget(self.frClientesAnuais)
+        self.frClientes = QtWidgets.QFrame(self.frTopTabMenu)
+        self.frClientes.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frClientes.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frClientes.setObjectName("frClientes")
+        self.leCard4 = QtWidgets.QLabel(self.frClientes)
+        self.leCard4.setGeometry(QtCore.QRect(20, 0, 170, 71))
         self.leCard4.setMaximumSize(QtCore.QSize(300, 110))
         self.leCard4.setStyleSheet("")
         self.leCard4.setAlignment(QtCore.Qt.AlignCenter)
         self.leCard4.setObjectName("leCard4")
-        self.horizontalLayout_2.addWidget(self.leCard4)
+        self.horizontalLayout_2.addWidget(self.frClientes)
         self.gridLayout_3.addWidget(self.frTopTabMenu, 0, 0, 1, 3)
         self.tabsCliente.addTab(self.tbInfosCliente, "")
         self.tbCadastraCliente = QtWidgets.QWidget()
@@ -1525,10 +1656,17 @@ class Ui_wdgCliente(object):
         self.leInfoBairro.setPlaceholderText(_translate("wdgCliente", "Centro"))
         self.lbInfoMeioPag.setText(_translate("wdgCliente", "Plano Ativo"))
         self.pbEnviarEmail.setText(_translate("wdgCliente", "Enviar e-mail"))
+        self.pbCancelarEdicao.setText(_translate("wdgCliente", "Cancelar"))
         self.pbConfirmarAtualizacao.setText(_translate("wdgCliente", "Atualizar"))
-        self.leCard1.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">Clientes Ativos/</p><p align=\"center\">Clientes Totais</p></body></html>"))
-        self.leCard2.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">Clientes Inativos/</p><p align=\"center\">Clientes Totais</p></body></html>"))
-        self.leCard3.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">Novos Clientes</p></body></html>"))
+        self.lbTituloTotal.setText(_translate("wdgCliente", "<html><head/><body><p>Total de clientes</p></body></html>"))
+        self.lbValorTotal.setText(_translate("wdgCliente", "123"))
+        self.lbEstTotal.setText(_translate("wdgCliente", "43%"))
+        self.lbTituloMensal.setText(_translate("wdgCliente", "<html><head/><body><p>Clientes novos neste mês</p></body></html>"))
+        self.lbValorMensal.setText(_translate("wdgCliente", "10"))
+        self.lbEstMensal.setText(_translate("wdgCliente", "32%"))
+        self.lbTituloAnual.setText(_translate("wdgCliente", "<html><head/><body><p>Clientes novos neste ano</p></body></html>"))
+        self.lbValorAnual.setText(_translate("wdgCliente", "50"))
+        self.lbEstAnual.setText(_translate("wdgCliente", "10%"))
         self.leCard4.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">Compromissos</p><p align=\"center\">da Semana</p></body></html>"))
         self.tabsCliente.setTabText(self.tabsCliente.indexOf(self.tbInfosCliente), _translate("wdgCliente", "Informações"))
         self.lbTitulo.setText(_translate("wdgCliente", "Cadastro de clientes"))

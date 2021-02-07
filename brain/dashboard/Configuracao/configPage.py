@@ -108,7 +108,6 @@ class ConfigPage(Ui_wdgConfig, QWidget):
 
     def verificaLogoSalva(self):
         logoPath = self.daoUsuario.buscaLogoPath(self.parent.usuarioModel.userId)
-        print(f'verificaLogoSalva-logoPath: {logoPath}')
         if logoPath is None or logoPath == '':
             self.carregaLogo('Telas/Imagens/addLogo.png', logo=False)
         else:
