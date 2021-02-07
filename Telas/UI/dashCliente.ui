@@ -208,6 +208,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
 
 #frInfoCliente {
 	padding: 4px;
+	background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0 rgba(103, 44, 132, 22), stop:1 rgba(112, 172, 255, 138))
 }
 
 
@@ -224,6 +225,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
 #leInfoCpf,
 #leInformacoes {
 	background-color: transparent;
+	color: black;
 }
 
 
@@ -799,16 +801,16 @@ QScrollBar:vertical {
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <property name="leftMargin">
-           <number>2</number>
+           <number>8</number>
           </property>
           <property name="topMargin">
-           <number>2</number>
+           <number>8</number>
           </property>
           <property name="rightMargin">
-           <number>2</number>
+           <number>4</number>
           </property>
           <property name="bottomMargin">
-           <number>2</number>
+           <number>4</number>
           </property>
           <item>
            <widget class="QFrame" name="frInfoTitulo">

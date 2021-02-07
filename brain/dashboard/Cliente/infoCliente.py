@@ -12,6 +12,7 @@ from brain.DAOs.daoCategoria import DaoCategoria
 from brain.DAOs.daoCliente import DaoCliente
 from brain.DAOs.daoGrupo import DaoGrupo
 from brain.DAOs.daoParticipantes import DaoParticipantes
+from brain.DAOs.daoUsuario import DaoUsuario
 from brain.dashboard.Cliente.localWidgets.gruposCard import GruposCard
 from brain.dashboard.Cliente.relatorio import RelatorioCliente
 from brain.dashboard.Sinais import Sinais
@@ -484,8 +485,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
     def criaRelatorio(self):
         # Busca o usuário ativo
         # TODO: Criar um método melhor para encontrar usuário ativo
-        config = DaoConfiguracoes(self.db)
-        usuarioAtivo = config.buscaUsuarioAtivo()
+        daoUsuario = DaoUsuario(self.db)
+        usuarioAtivo = daoUsuario.buscaUsuarioAtivo()
 
         # Cria relatório
         # TODO: Criar método para escolher, por meio do browser, o local de salvamento do arquivo e o nome

@@ -19,11 +19,12 @@ import requests
 
 class mainDashboard(Ui_mwDash, QMainWindow):
 
-    def __init__(self, parent=None, db=None):
+    def __init__(self, parent=None, db=None, usuario=None):
         super(mainDashboard, self).__init__(parent)
         self.parent = parent
         self.setupUi(self)
         self.db = db
+        self.usuarioModel = usuario
 
         # Inicializando as telas e stacks =================================================
         self.pgHome = HomePage(self, db=db)

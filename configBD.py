@@ -1,4 +1,5 @@
 import json
+import os
 
 class ConfigDB:
 
@@ -11,8 +12,8 @@ class ConfigDB:
         self.__port = None
         if carregaBanco:
             # Servidores Local e Cloud
-            # self.getDatabase('/home/renansoares/Projetos/Nautilus/datasources/databaseLocal.json')
-            self.getDatabase('/home/renansoares/Projetos/Nautilus/datasources/databaseCloud.json')
+            self.getDatabase('Cloud')
+            # self.getDatabase('Local')
 
         self.__tblUsuario = 'usuario'
         self.__tblEstados = 'estados'
@@ -28,7 +29,7 @@ class ConfigDB:
                         nomeUsuario VARCHAR(20) NOT NULL,
                         nomeEmpresa VARCHAR(30) NOT NULL,
                         nomeFantasia VARCHAR(30) NULL,
-                        caminhoLogo VARCHAR(60) NULL,
+                        caminhoLogo VARCHAR(120) NULL,
                         cnpj VARCHAR(15) NOT NULL,
                         email VARCHAR(40) NOT NULL,
                         tel VARCHAR(11) NOT NULL,
@@ -39,6 +40,7 @@ class ConfigDB:
                         bairro VARCHAR(30) NULL,
                         senha VARBINARY(80) NOT NULL,
                         dataCadastro DATETIME NOT NULL,
+                        dataUltAlt DATETIME NOT NULL,
                         PRIMARY KEY (userId)
                     );"""
 
@@ -183,7 +185,13 @@ class ConfigDB:
     def tblCategoria(self):
         return self.__tblCategoria
 
-    def getDatabase(self, dbPath: str):
+    def getDatabase(self, servidor: str):
+        dataSourcesDir = os.path.join(os.path.dirname(__file__), 'datasources')
+        if servidor == 'Local':
+            dbPath = os.path.join(dataSourcesDir, 'databaseLocal.json')
+        else:
+            dbPath = os.path.join(dataSourcesDir, 'databaseCloud.json')
+
 
         with open(dbPath) as arquivo:
             config = json.load(arquivo)

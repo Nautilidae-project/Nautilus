@@ -14,7 +14,7 @@ import pandas as pd
 from brain.DAOs.UserConfig import DaoConfiguracoes
 from brain.DAOs.daoCliente import DaoCliente
 from brain.funcoesAuxiliares import mascaraMeses
-from modelos.usuarioModel import Usuario
+from modelos.usuarioModel import UsuarioModel
 from brain.funcoesAuxiliares import mascaraCNPJ
 
 
@@ -22,7 +22,7 @@ class RelatorioCliente:
 
     def __init__(self, nomeArquivo, usuario, db=None):
         self.nomeArquivo = nomeArquivo
-        self.usuario = Usuario().fromList(usuario)
+        self.usuarioModel = UsuarioModel().fromList(usuario)
 
         self.geometry = {'head': '40pt', 'margin': '1.5cm', 'tmargin': '1cm', 'includeheadfoot': True}
         self.documento = Document(f'{self.nomeArquivo}', geometry_options=self.geometry, page_numbers=False)
@@ -65,7 +65,7 @@ class RelatorioCliente:
         # Add document title
         with self.firstPage.create(Head("R")) as right_header:
             with right_header.create(MiniPage(width=NoEscape(r"0.3\textwidth"), pos='R', align='r')) as title_wrapper:
-                title_wrapper.append(LargeText(bold(self.usuario.nomeEmpresa)))
+                title_wrapper.append(LargeText(bold(self.usuarioModel.nomeEmpresa)))
                 title_wrapper.append(LineBreak())
                 title_wrapper.append(MediumText(mascaraMeses(data=datetime.date.today())))
 
@@ -74,16 +74,16 @@ class RelatorioCliente:
         with self.documento.create(Tabu("X[l] X[r]")) as first_page_table:
             customer = MiniPage(width=NoEscape(r"0.49\textwidth"), pos='h')
             customer.append(bold("Nome fantasia: "))
-            customer.append(self.usuario.nomeFantasia)
+            customer.append(self.usuarioModel.nomeFantasia)
             customer.append("\n")
             customer.append(bold("CNPJ: "))
-            customer.append(mascaraCNPJ(self.usuario.cnpj))
+            customer.append(mascaraCNPJ(self.usuarioModel.cnpj))
             customer.append("\n")
             customer.append(bold("Endereço: "))
-            if self.usuario.endereco == 'None':
+            if self.usuarioModel.endereco == 'None':
                 customer.append('---')
             else:
-                customer.append(self.usuario.endereco)
+                customer.append(self.usuarioModel.endereco)
 
             # Add branch information
             branch = MiniPage(width=NoEscape(r"0.49\textwidth"), pos='t!', align='r')
@@ -124,7 +124,7 @@ class RelatorioCliente:
     def exportaRelatorio(self, tipo='pdf'):
 
         # Desenvolvimento
-        # fileName = QFileDialog.getSaveFileName(directory='/home/', options=QFileDialog.DontUseNativeDialog, filter="Adobe Pdf (*.pdf);;Excel (*.xlsx)")
+        fileName = QFileDialog.getSaveFileName(directory='/home/', options=QFileDialog.DontUseNativeDialog, filter="Adobe Pdf (*.pdf);;Excel (*.xlsx)")
 
         # Produção
         # fileName = QFileDialog.getSaveFileName(directory='/home/', filter="Adobe Pdf (*.pdf);;Excel (*.xlsx)")

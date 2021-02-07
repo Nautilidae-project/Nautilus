@@ -50,7 +50,7 @@
       </size>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
@@ -159,6 +159,10 @@
 
 #pbInsereImg {
 	background-color: rgb(14, 144, 173);
+	border-top-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 0px;	
 	color: white;
 	font-family: Ubuntu;
 	font-size: 12pt;
@@ -166,6 +170,12 @@
 
 #pbInsereImg::hover {
 	background-color: white;
+	border-top-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 0px;
+	border: 2px solid;
+	border-color: rgb(14, 144, 173);
 	color: rgb(14, 144, 173);
 	font-family: Ubuntu;
 	font-size: 12pt;
@@ -173,6 +183,10 @@
 
 #pbExcluiImg {
 	background-color: rgb(255, 204, 204);
+	border-top-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 0px;
 	color: rgb(80, 80, 80);
 	font-family: Ubuntu;
 	font-size: 12pt;
@@ -180,6 +194,12 @@
 
 #pbExcluiImg::hover {
 	background-color: white;
+	border-top-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 0px;
+	border: 2px solid;
+	border-color: rgb(255, 204, 204);
 	color: rgb(255, 204, 204);
 	font-family: Ubuntu;
 	font-size: 12pt;
@@ -194,15 +214,15 @@
         <rect>
          <x>20</x>
          <y>20</y>
-         <width>282</width>
+         <width>241</width>
          <height>96</height>
         </rect>
        </property>
        <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+        <enum>QFrame::Box</enum>
        </property>
        <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
+        <enum>QFrame::Sunken</enum>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <property name="spacing">
@@ -297,19 +317,25 @@
             <number>0</number>
            </property>
            <property name="leftMargin">
-            <number>0</number>
+            <number>16</number>
            </property>
            <property name="topMargin">
-            <number>0</number>
+            <number>12</number>
            </property>
            <property name="rightMargin">
-            <number>0</number>
+            <number>24</number>
            </property>
            <property name="bottomMargin">
-            <number>0</number>
+            <number>12</number>
            </property>
            <item>
             <widget class="QPushButton" name="pbInsereImg">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>24</height>
+              </size>
+             </property>
              <property name="text">
               <string>Inserir logo</string>
              </property>
@@ -317,6 +343,12 @@
            </item>
            <item>
             <widget class="QPushButton" name="pbExcluiImg">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>24</height>
+              </size>
+             </property>
              <property name="text">
               <string>Excluir logo</string>
              </property>

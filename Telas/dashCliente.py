@@ -181,6 +181,7 @@ class Ui_wdgCliente(object):
 "\n"
 "#frInfoCliente {\n"
 "    padding: 4px;\n"
+"    background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0 rgba(103, 44, 132, 22), stop:1 rgba(112, 172, 255, 138))\n"
 "}\n"
 "\n"
 "\n"
@@ -197,6 +198,7 @@ class Ui_wdgCliente(object):
 "#leInfoCpf,\n"
 "#leInformacoes {\n"
 "    background-color: transparent;\n"
+"    color: black;\n"
 "}\n"
 "\n"
 "\n"
@@ -478,7 +480,7 @@ class Ui_wdgCliente(object):
         self.frInfoCliente.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frInfoCliente.setObjectName("frInfoCliente")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.frInfoCliente)
-        self.verticalLayout_4.setContentsMargins(2, 2, 2, 2)
+        self.verticalLayout_4.setContentsMargins(8, 8, 4, 4)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.frInfoTitulo = QtWidgets.QFrame(self.frInfoCliente)
         self.frInfoTitulo.setMinimumSize(QtCore.QSize(0, 60))
