@@ -65,6 +65,7 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
 
     def AddCardEventosNoGrid(self):
 
+        # if self.calendario.selectedDate() in DaoEvento(self.db).buscaDatasEventos().values():
         if self.calendario.selectedDate() in DaoEvento(self.db).buscaDatasEventosSemRepeticao().values():
             colunas = 1
 
@@ -127,6 +128,7 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         self.eventoModelo.diaInteiro = True
 
         self.daoEvento.insereEvento(self.eventoModelo)
+
 
     def dictDosGruposFormados(self) -> dict:
         """

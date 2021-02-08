@@ -93,7 +93,7 @@ class DaoEvento:
             cursor.execute(strComando)
             return dict(cursor.fetchall())
         except:
-            raise Warning(f'Erro SQL - buscaDatasEventosTeste({self.configs.tblEvento}) <SELECT>')
+            raise Warning(f'Erro SQL - buscaDatasEventosSemRepeticao({self.configs.tblEvento}) <SELECT>')
         finally:
             self.disconectBD(cursor)
 
@@ -121,7 +121,7 @@ class DaoEvento:
             cursor.execute(strComando)
             return cursor.fetchall()
         except:
-            raise Warning(f'Erro SQL - buscaDatasEventos({self.configs.tblEvento}) <SELECT>')
+            raise Warning(f'Erro SQL - buscaPorId({self.configs.tblEvento}) <SELECT>')
         finally:
             self.disconectBD(cursor)
 
