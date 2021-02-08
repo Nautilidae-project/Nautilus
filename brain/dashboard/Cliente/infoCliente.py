@@ -78,9 +78,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.tblClientes.doubleClicked.connect(self.carregaInfoCliente)
 
         ## Declaração dos efeitos
-        # self.efeito.shadowCards([self.frInfoCliente], color=(131, 134, 137, 90), offset=(-7, 4))
-        self.efeito.shadowCards([self.frClientesTotal], parentOnly=True)
-        # self.efeito.shadowOneParent([self.frClientesTotal])
+        self.efeito.shadowCards([self.frClientesTotal, self.frClientesMensal, self.frClientesAnuais],
+                                offset=(1, 3), color=(63, 63, 63, 50), parentOnly=True)
 
         # INICIALIZAÇÕES DA ABA "CADASTRO"    ===============================
         ## Declaração relacionadas à aba de cadastro de clientes
@@ -186,9 +185,21 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.parent.menssagemSistema('Não foi possível abrir janela de e-mail.')
 
     def cardsInfosCliente(self):
-        self.lbValorTotal.setText(f"{self.daoCliente.contaCliente()}")
-        self.lbValorMensal.setText(f"{self.daoCliente.buscaClientesAtuaisMesAno(mesAno='mes')}")
-        self.lbValorAnual.setText(f"{self.daoCliente.buscaClientesAtuaisMesAno()}")
+        intTotal = self.daoCliente.contaCliente()
+        intMesAtual = self.daoCliente.buscaClientesAtuaisMesAno(mesAno='mes')
+        intMesPassado = self.daoCliente.buscaClientePeridoPassado(mesAno='m')
+        intAnoAtual = self.daoCliente.buscaClientesAtuaisMesAno()
+        intAnoPassado = self.daoCliente.buscaClientePeridoPassado()
+        #
+        # print(f'intMesAtual: {intMesAtual} - intMesPassado: {intMesPassado}')
+        # print(f'intAnoAtual: {intAnoAtual} - intAnoPassado: {intAnoPassado}')
+        # print(f'intMesAtual/intMesPassado: {(round((intMesAtual/intMesPassado), 1) - 1) * 100} %')
+        # print(f'intAnoAtual/intAnoPassado: {(round((intAnoAtual / intAnoPassado), 1) -1) * 100} %')
+        self.lbValorTotal.setText(f"{intTotal}")
+        self.lbValorMensal.setText(f"{intMesAtual}")
+        self.lbValorAnual.setText(f"{intAnoAtual}")
+        self.lbEstMensal.setText(f'{(round((intMesAtual/intMesPassado), 1) - 1) * 100} %')
+        self.lbEstAnual.setText(f'{(round((intAnoAtual / intAnoPassado), 1) - 1) * 100} %')
         # self.leCard2.setText(
         #     f"Clientes Inativos:\n{self.daoCliente.contaCliente('ativo=0')}/{self.daoCliente.contaCliente()}")
 
