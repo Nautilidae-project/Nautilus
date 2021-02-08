@@ -46,13 +46,16 @@ class CalendarioController(QCalendarWidget):
 
         }
         		""")
-        self.daoEvento = DaoEvento(db).buscaDatasEventos().values()
-        # self.daoEvento = DaoEvento(db).buscaDatasEventosSemRepeticao().values()
+        # self.daoEvento = DaoEvento(db).buscaDatasEventos().values()
+        self.daoEvento = dict(enumerate(DaoEvento(db).buscaDatasEventosSemRepeticao()))
+
+        # Atributo usado no metodo AddCardEventosNoGrid() da classe AgendaPage para verificar as datas com Eventos
+        self.datasSelecionadas = self.daoEvento
 
     def paintCell(self, painter, rect, date):
         super(CalendarioController, self).paintCell(painter, rect, date)
 
-        if date in self.daoEvento:
+        if date in self.daoEvento.values():
             # print(date)
             painter.save()
             # Cor do fundo da area Selecionada

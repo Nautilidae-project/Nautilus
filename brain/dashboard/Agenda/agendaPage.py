@@ -65,8 +65,10 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
 
     def AddCardEventosNoGrid(self):
 
+        self.removeCardsDoGrid()
+        
         # if self.calendario.selectedDate() in DaoEvento(self.db).buscaDatasEventos().values():
-        if self.calendario.selectedDate() in DaoEvento(self.db).buscaDatasEventosSemRepeticao().values():
+        if self.calendario.selectedDate() in self.calendario.datasSelecionadas.values():
             colunas = 1
 
             # Busca no banco de dados todos os eventos criados com em relação a data informada
@@ -96,8 +98,15 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
 
             if self.gridBox.count():
                 self.saEventosCard.setLayout(self.gridBox)
+
+            print('---- Tem Eventos')
+        elif self.gridBox.count() > 0:
+            self.removeCardsDoGrid()
+            print('Limpei os Cards !!!!')
+            print(self.gridBox.count())
         else:
-            self.RemoveCardsDoGrid()
+            print(')))) Passei e Não tem Nada ((((')
+            pass
 
     def dataSelecionada(self, data: QDate):
         """
@@ -106,7 +115,7 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         """
         return data.toPyDate()
 
-    def RemoveCardsDoGrid(self):
+    def removeCardsDoGrid(self):
             """
             Remove Os Cards que estão no grid layout
             """
