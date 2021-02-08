@@ -11,6 +11,7 @@ class ConfigDB:
         self.__banco = None
         self.__port = None
         if carregaBanco:
+
             # Servidores Local e Cloud
             self.getDatabase('Cloud')
             # self.getDatabase('Local')

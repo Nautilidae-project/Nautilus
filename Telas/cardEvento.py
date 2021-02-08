@@ -14,9 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_wdgEventoCard(object):
     def setupUi(self, wdgEventoCard):
         wdgEventoCard.setObjectName("wdgEventoCard")
-        wdgEventoCard.resize(200, 312)
-        wdgEventoCard.setMinimumSize(QtCore.QSize(200, 300))
-        wdgEventoCard.setMaximumSize(QtCore.QSize(16777215, 600))
+        wdgEventoCard.resize(570, 400)
+        wdgEventoCard.setMinimumSize(QtCore.QSize(200, 400))
+        wdgEventoCard.setMaximumSize(QtCore.QSize(16777215, 400))
         wdgEventoCard.setStyleSheet("#frGrupoCard {\n"
 "    background-color: #0e90ad;\n"
 "}")
@@ -26,22 +26,9 @@ class Ui_wdgEventoCard(object):
         self.frGrupoCard.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frGrupoCard.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frGrupoCard.setObjectName("frGrupoCard")
-        self.lbDescricao = QtWidgets.QTextEdit(self.frGrupoCard)
-        self.lbDescricao.setGeometry(QtCore.QRect(20, 76, 370, 100))
-        self.lbDescricao.setMinimumSize(QtCore.QSize(0, 100))
-        self.lbDescricao.setMaximumSize(QtCore.QSize(16777215, 100))
-        self.lbDescricao.setStyleSheet("#lbDescricao {\n"
-"    border: 0px;\n"
-"    background-color: transparent;\n"
-"    color: #fff;\n"
-"    font-family: Ubuntu;\n"
-"    font-size: 12pt;\n"
-"    font-style: italic;\n"
-"}")
-        self.lbDescricao.setReadOnly(True)
-        self.lbDescricao.setObjectName("lbDescricao")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.frGrupoCard)
+        self.gridLayout_2.setObjectName("gridLayout_2")
         self.lbTituloCard = QtWidgets.QLabel(self.frGrupoCard)
-        self.lbTituloCard.setGeometry(QtCore.QRect(20, 20, 370, 50))
         self.lbTituloCard.setMinimumSize(QtCore.QSize(0, 50))
         self.lbTituloCard.setMaximumSize(QtCore.QSize(16777215, 50))
         font = QtGui.QFont()
@@ -59,6 +46,21 @@ class Ui_wdgEventoCard(object):
 "    font-weight: bold;\n"
 "}")
         self.lbTituloCard.setObjectName("lbTituloCard")
+        self.gridLayout_2.addWidget(self.lbTituloCard, 0, 0, 1, 1)
+        self.lbDescricao = QtWidgets.QTextEdit(self.frGrupoCard)
+        self.lbDescricao.setMinimumSize(QtCore.QSize(0, 100))
+        self.lbDescricao.setMaximumSize(QtCore.QSize(16777215, 100))
+        self.lbDescricao.setStyleSheet("#lbDescricao {\n"
+"    border: 0px;\n"
+"    background-color: transparent;\n"
+"    color: #fff;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 12pt;\n"
+"    font-style: italic;\n"
+"}")
+        self.lbDescricao.setReadOnly(True)
+        self.lbDescricao.setObjectName("lbDescricao")
+        self.gridLayout_2.addWidget(self.lbDescricao, 1, 0, 1, 1)
         self.gridLayout.addWidget(self.frGrupoCard, 0, 0, 1, 1)
         self.frame = QtWidgets.QFrame(wdgEventoCard)
         self.frame.setMinimumSize(QtCore.QSize(50, 0))
@@ -70,18 +72,18 @@ class Ui_wdgEventoCard(object):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.pushButton = QtWidgets.QPushButton(self.frame)
-        self.pushButton.setMinimumSize(QtCore.QSize(0, 97))
-        self.pushButton.setObjectName("pushButton")
-        self.verticalLayout.addWidget(self.pushButton)
-        self.pushButton_2 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_2.setMinimumSize(QtCore.QSize(0, 97))
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.verticalLayout.addWidget(self.pushButton_2)
-        self.pushButton_3 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_3.setMinimumSize(QtCore.QSize(0, 97))
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.verticalLayout.addWidget(self.pushButton_3)
+        self.pbEditarEvento = QtWidgets.QPushButton(self.frame)
+        self.pbEditarEvento.setMinimumSize(QtCore.QSize(0, 97))
+        self.pbEditarEvento.setObjectName("pbEditarEvento")
+        self.verticalLayout.addWidget(self.pbEditarEvento)
+        self.pbEmailEvento = QtWidgets.QPushButton(self.frame)
+        self.pbEmailEvento.setMinimumSize(QtCore.QSize(0, 97))
+        self.pbEmailEvento.setObjectName("pbEmailEvento")
+        self.verticalLayout.addWidget(self.pbEmailEvento)
+        self.pbDeletarEvento = QtWidgets.QPushButton(self.frame)
+        self.pbDeletarEvento.setMinimumSize(QtCore.QSize(0, 97))
+        self.pbDeletarEvento.setObjectName("pbDeletarEvento")
+        self.verticalLayout.addWidget(self.pbDeletarEvento)
         self.gridLayout.addWidget(self.frame, 0, 1, 1, 1)
 
         self.retranslateUi(wdgEventoCard)
@@ -90,11 +92,11 @@ class Ui_wdgEventoCard(object):
     def retranslateUi(self, wdgEventoCard):
         _translate = QtCore.QCoreApplication.translate
         wdgEventoCard.setWindowTitle(_translate("wdgEventoCard", "Form"))
-        self.lbDescricao.setPlaceholderText(_translate("wdgEventoCard", "DESCRIÇÃO"))
         self.lbTituloCard.setText(_translate("wdgEventoCard", "Titulo"))
-        self.pushButton.setText(_translate("wdgEventoCard", "PushButton"))
-        self.pushButton_2.setText(_translate("wdgEventoCard", "PushButton"))
-        self.pushButton_3.setText(_translate("wdgEventoCard", "PushButton"))
+        self.lbDescricao.setPlaceholderText(_translate("wdgEventoCard", "DESCRIÇÃO"))
+        self.pbEditarEvento.setText(_translate("wdgEventoCard", "Editar"))
+        self.pbEmailEvento.setText(_translate("wdgEventoCard", "Email"))
+        self.pbDeletarEvento.setText(_translate("wdgEventoCard", "Deletar"))
 
 
 if __name__ == "__main__":

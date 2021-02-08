@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>200</width>
-    <height>312</height>
+    <width>570</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>200</width>
-    <height>300</height>
+    <height>400</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>16777215</width>
-    <height>600</height>
+    <height>400</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -39,75 +39,31 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QTextEdit" name="lbDescricao">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>76</y>
-        <width>370</width>
-        <height>100</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>100</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>100</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#lbDescricao {
-	border: 0px;
-	background-color: transparent;
-	color: #fff;
-	font-family: Ubuntu;
-	font-size: 12pt;
-	font-style: italic;
-}</string>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-      <property name="placeholderText">
-       <string>DESCRIÇÃO</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lbTituloCard">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>370</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <family>Ubuntu</family>
-        <pointsize>16</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#lbTituloCard{
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="lbTituloCard">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Ubuntu</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#lbTituloCard{
 	color: #fff;
 	background-color: transparent;
 	border: 0px;
@@ -115,11 +71,45 @@
 	font-family: Ubuntu;
 	font-weight: bold;
 }</string>
-      </property>
-      <property name="text">
-       <string>Titulo</string>
-      </property>
-     </widget>
+        </property>
+        <property name="text">
+         <string>Titulo</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QTextEdit" name="lbDescricao">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#lbDescricao {
+	border: 0px;
+	background-color: transparent;
+	color: #fff;
+	font-family: Ubuntu;
+	font-size: 12pt;
+	font-style: italic;
+}</string>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="placeholderText">
+         <string>DESCRIÇÃO</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item row="0" column="1">
@@ -159,7 +149,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="pbEditarEvento">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -167,12 +157,12 @@
          </size>
         </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>Editar</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="pbEmailEvento">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -180,12 +170,12 @@
          </size>
         </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>Email</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="pbDeletarEvento">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -193,7 +183,7 @@
          </size>
         </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>Deletar</string>
         </property>
        </widget>
       </item>

@@ -80,6 +80,25 @@ class DaoEvento:
         finally:
             self.disconectBD(cursor)
 
+    def buscaDatasEventosSemRepeticao(self):
+        self.db.connect()
+        cursor = self.db.cursor()
+
+        # strComando = f"""SELECT ROW_NUMBER() OVER(ORDER BY  dataEvento) AS numData, dataEvento
+        # FROM {self.configs.tblEvento}
+        # GROUP BY dataEvento
+        # ORDER BY dataEvento  ASC  """
+        strComando = f"""SELECT DISTINCT dataEvento FROM {self.configs.tblEvento}"""
+
+        try:
+            cursor.execute(strComando)
+            # return cursor.fetchall()
+            return [x[0] for x in cursor.fetchall()]
+        except:
+            raise Warning(f'Erro SQL - buscaDatasEventosSemRepeticao({self.configs.tblEvento}) <SELECT>')
+        finally:
+            self.disconectBD(cursor)
+
     def buscaDatasEventos(self):
         self.db.connect()
         cursor = self.db.cursor()
@@ -104,7 +123,7 @@ class DaoEvento:
             cursor.execute(strComando)
             return cursor.fetchall()
         except:
-            raise Warning(f'Erro SQL - buscaDatasEventos({self.configs.tblEvento}) <SELECT>')
+            raise Warning(f'Erro SQL - buscaPorId({self.configs.tblEvento}) <SELECT>')
         finally:
             self.disconectBD(cursor)
 

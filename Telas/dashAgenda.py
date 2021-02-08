@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_wdgAgenda(object):
     def setupUi(self, wdgAgenda):
         wdgAgenda.setObjectName("wdgAgenda")
-        wdgAgenda.resize(964, 582)
+        wdgAgenda.resize(847, 654)
         wdgAgenda.setStyleSheet("QPushButton:hover {\n"
 "    background-color: rgb(114, 159, 207);\n"
 "}\n"
@@ -70,26 +70,27 @@ class Ui_wdgAgenda(object):
         self.gridLayout_4 = QtWidgets.QGridLayout(self.frInserirEvento)
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.leTituloEvento = QtWidgets.QLineEdit(self.frInserirEvento)
+        self.leTituloEvento.setText("")
         self.leTituloEvento.setObjectName("leTituloEvento")
         self.gridLayout_4.addWidget(self.leTituloEvento, 1, 0, 1, 1)
         self.teDetalhesEvento = QtWidgets.QTextEdit(self.frInserirEvento)
         self.teDetalhesEvento.setObjectName("teDetalhesEvento")
         self.gridLayout_4.addWidget(self.teDetalhesEvento, 2, 0, 1, 1)
-        self.teHoraFimEvento = QtWidgets.QDateTimeEdit(self.frInserirEvento)
-        self.teHoraFimEvento.setObjectName("teHoraFimEvento")
-        self.gridLayout_4.addWidget(self.teHoraFimEvento, 6, 0, 1, 1)
         self.pbAddEvento = QtWidgets.QPushButton(self.frInserirEvento)
         self.pbAddEvento.setObjectName("pbAddEvento")
         self.gridLayout_4.addWidget(self.pbAddEvento, 7, 0, 1, 1)
-        self.teHoraInicioEvento = QtWidgets.QDateTimeEdit(self.frInserirEvento)
-        self.teHoraInicioEvento.setObjectName("teHoraInicioEvento")
-        self.gridLayout_4.addWidget(self.teHoraInicioEvento, 5, 0, 1, 1)
         self.cbxGrupos = QtWidgets.QComboBox(self.frInserirEvento)
         self.cbxGrupos.setObjectName("cbxGrupos")
         self.gridLayout_4.addWidget(self.cbxGrupos, 3, 0, 1, 1)
         self.deDataEvento = QtWidgets.QDateEdit(self.frInserirEvento)
         self.deDataEvento.setObjectName("deDataEvento")
         self.gridLayout_4.addWidget(self.deDataEvento, 4, 0, 1, 1)
+        self.teHoraFimEvento = QtWidgets.QTimeEdit(self.frInserirEvento)
+        self.teHoraFimEvento.setObjectName("teHoraFimEvento")
+        self.gridLayout_4.addWidget(self.teHoraFimEvento, 6, 0, 1, 1)
+        self.teHoraInicioEvento = QtWidgets.QTimeEdit(self.frInserirEvento)
+        self.teHoraInicioEvento.setObjectName("teHoraInicioEvento")
+        self.gridLayout_4.addWidget(self.teHoraInicioEvento, 5, 0, 1, 1)
         self.gridLayout_2.addWidget(self.frInserirEvento, 1, 1, 1, 1)
         self.label = QtWidgets.QLabel(self.frCompromisso)
         font = QtGui.QFont()
@@ -137,7 +138,7 @@ class Ui_wdgAgenda(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.saEventosCard = QtWidgets.QWidget()
-        self.saEventosCard.setGeometry(QtCore.QRect(0, 0, 748, 68))
+        self.saEventosCard.setGeometry(QtCore.QRect(0, 0, 631, 68))
         self.saEventosCard.setObjectName("saEventosCard")
         self.scrollArea.setWidget(self.saEventosCard)
         self.gridLayout.addWidget(self.scrollArea, 2, 3, 1, 1)
@@ -148,12 +149,13 @@ class Ui_wdgAgenda(object):
     def retranslateUi(self, wdgAgenda):
         _translate = QtCore.QCoreApplication.translate
         wdgAgenda.setWindowTitle(_translate("wdgAgenda", "Form"))
-        self.leTituloEvento.setText(_translate("wdgAgenda", "Titulo"))
+        self.leTituloEvento.setPlaceholderText(_translate("wdgAgenda", "Título do Evento"))
         self.teDetalhesEvento.setHtml(_translate("wdgAgenda", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Fira Sans Semi-Light\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Detalhes/Descrição</p></body></html>"))
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.teDetalhesEvento.setPlaceholderText(_translate("wdgAgenda", "Descrição do Evento"))
         self.pbAddEvento.setText(_translate("wdgAgenda", "Adicionar Evento"))
         self.label.setText(_translate("wdgAgenda", "Compromissos"))
         self.label_2.setText(_translate("wdgAgenda", "Agendamentos"))

@@ -498,7 +498,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.atualizaTabelaGeral()
             self.limpaCampos()
         elif args[0] == 2:
-            # self.atualizaGruposCards()
+            # self.atualizaCardEventosNoGrid()
             self.atualizaTabelaParticipantes()
 
     def criaRelatorio(self):

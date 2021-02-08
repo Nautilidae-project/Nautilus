@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>964</width>
-    <height>582</height>
+    <width>847</width>
+    <height>654</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -135,7 +135,10 @@ border-right: 3px dashed rgb(108, 251, 208);
          <item row="1" column="0">
           <widget class="QLineEdit" name="leTituloEvento">
            <property name="text">
-            <string>Titulo</string>
+            <string/>
+           </property>
+           <property name="placeholderText">
+            <string>Título do Evento</string>
            </property>
           </widget>
          </item>
@@ -146,12 +149,12 @@ border-right: 3px dashed rgb(108, 251, 208);
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Fira Sans Semi-Light'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Detalhes/Descrição&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>Descrição do Evento</string>
            </property>
           </widget>
-         </item>
-         <item row="6" column="0">
-          <widget class="QDateTimeEdit" name="teHoraFimEvento"/>
          </item>
          <item row="7" column="0">
           <widget class="QPushButton" name="pbAddEvento">
@@ -160,14 +163,17 @@ p, li { white-space: pre-wrap; }
            </property>
           </widget>
          </item>
-         <item row="5" column="0">
-          <widget class="QDateTimeEdit" name="teHoraInicioEvento"/>
-         </item>
          <item row="3" column="0">
           <widget class="QComboBox" name="cbxGrupos"/>
          </item>
          <item row="4" column="0">
           <widget class="QDateEdit" name="deDataEvento"/>
+         </item>
+         <item row="6" column="0">
+          <widget class="QTimeEdit" name="teHoraFimEvento"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QTimeEdit" name="teHoraInicioEvento"/>
          </item>
         </layout>
        </widget>
@@ -297,7 +303,7 @@ p, li { white-space: pre-wrap; }
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>748</width>
+        <width>631</width>
         <height>68</height>
        </rect>
       </property>
