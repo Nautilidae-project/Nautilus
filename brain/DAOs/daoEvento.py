@@ -80,6 +80,23 @@ class DaoEvento:
         finally:
             self.disconectBD(cursor)
 
+    def buscaDatasEventosSemRepeticao(self):
+        self.db.connect()
+        cursor = self.db.cursor()
+
+        strComando = f"""SELECT ROW_NUMBER() OVER(ORDER BY  dataEvento) AS numData, dataEvento
+        FROM {self.configs.tblEvento}
+        GROUP BY dataEvento
+        ORDER BY dataEvento  ASC  """
+
+        try:
+            cursor.execute(strComando)
+            return dict(cursor.fetchall())
+        except:
+            raise Warning(f'Erro SQL - buscaDatasEventosTeste({self.configs.tblEvento}) <SELECT>')
+        finally:
+            self.disconectBD(cursor)
+
     def buscaDatasEventos(self):
         self.db.connect()
         cursor = self.db.cursor()

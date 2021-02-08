@@ -46,7 +46,8 @@ class CalendarioController(QCalendarWidget):
 
         }
         		""")
-        self.daoEvento = DaoEvento(db).buscaDatasEventos().values()
+        # self.daoEvento = DaoEvento(db).buscaDatasEventos().values()
+        self.daoEvento = DaoEvento(db).buscaDatasEventosSemRepeticao().values()
 
     def paintCell(self, painter, rect, date):
         super(CalendarioController, self).paintCell(painter, rect, date)

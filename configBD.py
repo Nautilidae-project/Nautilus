@@ -10,9 +10,10 @@ class ConfigDB:
         self.__banco = None
         self.__port = None
         if carregaBanco:
+
             # Servidores Local e Cloud
-            # self.getDatabase('/home/renansoares/Projetos/Nautilus/datasources/databaseLocal.json')
-            self.getDatabase('/home/renansoares/Projetos/Nautilus/datasources/databaseCloud.json')
+            self.getDatabase('/home/renansoares/Projetos/Nautilus/datasources/databaseLocal.json')
+            # self.getDatabase('/home/renansoares/Projetos/Nautilus/datasources/databaseCloud.json')
 
         self.__tblUsuario = 'usuario'
         self.__tblEstados = 'estados'
