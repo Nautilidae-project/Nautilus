@@ -44,43 +44,44 @@ class ConfigPage(Ui_wdgConfig, QWidget):
 
     def carregaLogo(self, logoPath: str, logo=True) -> None:
 
-        imageBits = open(logoPath, 'rb').read()
+        if logoPath != '':
+            imageBits = open(logoPath, 'rb').read()
 
-        # qImagem = QImage(logoPath)
-        qImagem = QImage.fromData(imageBits)
-        qImagem.convertToFormat(QImage.Format_ARGB32)
+            # qImagem = QImage(logoPath)
+            qImagem = QImage.fromData(imageBits)
+            qImagem.convertToFormat(QImage.Format_ARGB32)
 
 
-        imgSize = max(qImagem.width(), qImagem.height())
-        quadroImg = QRect((qImagem.width() - imgSize)/2,
-                            (qImagem.height() - imgSize)/2,
-                            imgSize, imgSize)
+            imgSize = max(qImagem.width(), qImagem.height())
+            quadroImg = QRect((qImagem.width() - imgSize)/2,
+                                (qImagem.height() - imgSize)/2,
+                                imgSize, imgSize)
 
-        qImagem.copy(quadroImg)
+            qImagem.copy(quadroImg)
 
-        if logo:
+            if logo:
 
-            borda = QImage(imgSize, imgSize, QImage.Format_ARGB32)
-            borda.fill(Qt.transparent)
+                borda = QImage(imgSize, imgSize, QImage.Format_ARGB32)
+                borda.fill(Qt.transparent)
 
-            pincel = QBrush(qImagem)
+                pincel = QBrush(qImagem)
 
-            pintor = QPainter(borda)
-            pintor.setBrush(pincel)
-            pintor.setPen(Qt.NoPen)
-            pintor.drawEllipse(0, 0, imgSize, imgSize)
-            pintor.end()
+                pintor = QPainter(borda)
+                pintor.setBrush(pincel)
+                pintor.setPen(Qt.NoPen)
+                pintor.drawEllipse(0, 0, imgSize, imgSize)
+                pintor.end()
 
-            pixLogo = QPixmap.fromImage(borda)
-        else:
-            pixLogo = QPixmap(logoPath)
+                pixLogo = QPixmap.fromImage(borda)
+            else:
+                pixLogo = QPixmap(logoPath)
 
-        pixRatio = QWindow().devicePixelRatio()
-        pixLogo.setDevicePixelRatio(pixRatio)
-        tamanho = 77*pixRatio
-        pixLogo = pixLogo.scaled(tamanho, tamanho, Qt.KeepAspectRatio, Qt.SmoothTransformation)
-        self.lbLogo.setPixmap(pixLogo)
-        self.efeito.shadowCards([self.lbLogo], radius=5, offset=(1, 3), color=(63, 63, 63, 90))
+            pixRatio = QWindow().devicePixelRatio()
+            pixLogo.setDevicePixelRatio(pixRatio)
+            tamanho = 77*pixRatio
+            pixLogo = pixLogo.scaled(tamanho, tamanho, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+            self.lbLogo.setPixmap(pixLogo)
+            self.efeito.shadowCards([self.lbLogo], radius=5, offset=(1, 3), color=(63, 63, 63, 90))
 
     def decideLogo(self):
 
