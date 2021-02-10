@@ -1,5 +1,7 @@
 import datetime
 
+from PyQt5.QtCore import Qt, QRect
+from PyQt5.QtGui import QImage, QBrush, QPainter, QPixmap, QWindow
 from PyQt5.QtWidgets import QMessageBox
 
 def mascaraCelular(celular):
@@ -53,3 +55,42 @@ meses = {
     11: 'Novembro',
     12: 'Dezembro'
 }
+
+
+def transformaImgCirculo(logoPath: str, isLogo=True, raio: int = 39):
+    if logoPath != '':
+        imageBits = open(logoPath, 'rb').read()
+
+        qImagem = QImage.fromData(imageBits)
+        qImagem.convertToFormat(QImage.Format_ARGB32)
+
+        imgSize = min(qImagem.width(), qImagem.height())
+        quadroImg = QRect((qImagem.width() - imgSize) / 2,
+                          (qImagem.height() - imgSize) / 2,
+                          imgSize, imgSize)
+
+        qImagem.copy(quadroImg)
+
+        if isLogo:
+
+            borda = QImage(imgSize, imgSize, QImage.Format_ARGB32)
+            borda.fill(Qt.transparent)
+
+            pincel = QBrush(qImagem)
+
+            pintor = QPainter(borda)
+            pintor.setBrush(pincel)
+            pintor.setPen(Qt.NoPen)
+            pintor.setRenderHint(QPainter.Antialiasing, True)
+            pintor.setRenderHint(QPainter.HighQualityAntialiasing, True)
+            pintor.drawEllipse(0, 0, imgSize, imgSize)
+            pintor.end()
+
+            pixLogo = QPixmap.fromImage(borda)
+        else:
+            pixLogo = QPixmap(logoPath)
+
+        pixRatio = QWindow().devicePixelRatio()
+        pixLogo.setDevicePixelRatio(pixRatio)
+        tamanho = raio * 2 * pixRatio
+        return pixLogo.scaled(tamanho, tamanho, Qt.KeepAspectRatio, Qt.SmoothTransformation)

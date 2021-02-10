@@ -67,6 +67,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.pbConfirmarAtualizacao.clicked.connect(lambda: self.showPopupSimCancela('As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
         self.pbEnviarEmail.clicked.connect(self.enviarUmEmail)
         self.pbCancelarEdicao.hide()
+        self.pbConfirmarAtualizacao.hide()
         self.pbCancelarEdicao.clicked.connect(self.limpaCampos)
 
         ## Declaração das LineEdit
@@ -379,6 +380,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
     def carregaInfoCliente(self, *args):
         self.pbCancelarEdicao.show()
+        self.pbConfirmarAtualizacao.show()
         self.efeito.shadowCards([self.frInfoCliente], color=(131, 134, 137, 90), offset=(-7, 4))
 
         self.desativaInfoCampos(False)
@@ -475,6 +477,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leEmail.clear()
         self.leCep.clear()
         self.pbCancelarEdicao.hide()
+        self.pbConfirmarAtualizacao.hide()
         self.frInfoCliente.setGraphicsEffect(None)
 
         for i in range(0, self.tblParticipantes.rowCount()):

@@ -251,14 +251,23 @@ QTabBar::tab:selected, QTabBar::tab:hover {
 
 #frInfoCliente {
 	padding: 4px;
-	background-color: rgb(14, 144, 173, 30);
+	background-color: rgb(222, 248, 255);
 }
 
-#frClientesTotal, #frClientesMensal, #frClientesAnuais {
-	background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(96, 32, 132, 60), stop:1 rgba(128, 182, 255, 120));
+#frClientesTotal {
+	background-color: rgb(229, 239, 245);
 	border-radius: 12px;
 }
 
+#frClientesMensal {
+	background-color: rgb(221, 237, 238);
+	border-radius: 12px;
+}
+
+#frClientesAnuais {
+	background-color: rgb(226, 249, 244);
+	border-radius: 12px;
+}
 
 /*-----------------------LineEdit------------------------------*/
 #leInfoBairro, 
@@ -312,7 +321,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
 	font-family: Ubuntu;
 	font-size: 12pt;
 	font-style: italic;
-	color: white;
+	color: rgb(85, 87, 83);
 }
 
 #lbValorTotal, #lbValorMensal, #lbValorAnual  {
@@ -321,7 +330,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
 	font-family: Ubuntu;
 	font-size: 32pt;
 	font-style: italic;
-	color: white;
+	color: rgb(85, 87, 83);
 }
 
 #lbEstTotal, #lbEstMensal, #lbEstAnual {
@@ -330,7 +339,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
 	font-family: Ubuntu;
 	font-size: 12pt;
 	font-weight: bold;
-	color: rgb(78, 154, 6);
+	color: rgb(157, 165, 226);
 }
 
 /*---------------- CheckBox----------------------------------*/
@@ -900,7 +909,7 @@ QScrollBar:vertical {
           <item>
            <widget class="QFrame" name="frInfoTitulo">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+             <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -909,6 +918,12 @@ QScrollBar:vertical {
              <size>
               <width>0</width>
               <height>80</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>90</height>
              </size>
             </property>
             <property name="frameShape">
@@ -2042,6 +2057,12 @@ QScrollBar:vertical {
           </property>
           <item>
            <widget class="QFrame" name="frClientesTotal">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="maximumSize">
              <size>
               <width>140</width>
@@ -2122,7 +2143,7 @@ QScrollBar:vertical {
             <widget class="QLabel" name="lbEstTotal">
              <property name="geometry">
               <rect>
-               <x>30</x>
+               <x>10</x>
                <y>50</y>
                <width>41</width>
                <height>16</height>
@@ -2148,6 +2169,12 @@ QScrollBar:vertical {
           </item>
           <item>
            <widget class="QFrame" name="frClientesMensal">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="maximumSize">
              <size>
               <width>140</width>
@@ -2236,6 +2263,12 @@ QScrollBar:vertical {
           </item>
           <item>
            <widget class="QFrame" name="frClientesAnuais">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="maximumSize">
              <size>
               <width>140</width>
@@ -2305,39 +2338,17 @@ QScrollBar:vertical {
            </widget>
           </item>
           <item>
-           <widget class="QFrame" name="frClientes">
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
+           <spacer name="horizontalSpacer_8">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
             </property>
-            <widget class="QLabel" name="leCard4">
-             <property name="geometry">
-              <rect>
-               <x>20</x>
-               <y>0</y>
-               <width>170</width>
-               <height>71</height>
-              </rect>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>300</width>
-               <height>110</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Compromissos&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;da Semana&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-           </widget>
+           </spacer>
           </item>
          </layout>
         </widget>

@@ -184,6 +184,12 @@ class Ui_wdgConfig(object):
         self.tabConfiguracoes.addTab(self.tabUsuario, "")
         self.tabClientes = QtWidgets.QWidget()
         self.tabClientes.setObjectName("tabClientes")
+        self.verticalLayoutWidget = QtWidgets.QWidget(self.tabClientes)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(20, 20, 321, 201))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.vlCategorias = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.vlCategorias.setContentsMargins(0, 0, 0, 0)
+        self.vlCategorias.setObjectName("vlCategorias")
         self.tabConfiguracoes.addTab(self.tabClientes, "")
         self.tabAgenda = QtWidgets.QWidget()
         self.tabAgenda.setObjectName("tabAgenda")
@@ -194,7 +200,7 @@ class Ui_wdgConfig(object):
         self.verticalLayout.addWidget(self.tabConfiguracoes)
 
         self.retranslateUi(wdgConfig)
-        self.tabConfiguracoes.setCurrentIndex(0)
+        self.tabConfiguracoes.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(wdgConfig)
 
     def retranslateUi(self, wdgConfig):

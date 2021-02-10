@@ -1,12 +1,12 @@
 from PyQt5.QtWidgets import QWidget, QFileDialog
-from PyQt5.QtGui import QPixmap, QImage, QBrush, QPainter, QWindow
-from PyQt5.QtCore import Qt, QRect
 
 from Telas.dashConfig import Ui_wdgConfig
 from brain.DAOs.daoUsuario import DaoUsuario
+from brain.dashboard.Configuracao.localWidgets.categoriaWidget import CategoriaCard
 from brain.dashboard.Sinais import Sinais
 from modelos.efeitosModel import Efeitos
 
+from brain.funcoesAuxiliares import transformaImgCirculo
 
 class ConfigPage(Ui_wdgConfig, QWidget):
 
@@ -16,6 +16,8 @@ class ConfigPage(Ui_wdgConfig, QWidget):
         self.parent = parent
         self.daoUsuario = DaoUsuario(db=db)
         self.setupUi(self)
+
+        self.vlCategorias.addWidget(CategoriaCard(db=db))
 
         self.efeito = Efeitos()
 
@@ -46,51 +48,15 @@ class ConfigPage(Ui_wdgConfig, QWidget):
             self.lbTitulo.setText('Configurações financeiras')
             self.lbDescricao.setText('Configurações referentes à area financeira do Nautilus.')
 
-    def carregaLogo(self, logoPath: str, logo=True) -> None:
+    def carregaLogo(self, logoPath: str, isLogo=True):
+        logo = transformaImgCirculo(logoPath, isLogo=isLogo)
 
-        if logoPath != '':
-            imageBits = open(logoPath, 'rb').read()
+        self.lbLogo.setPixmap(logo)
+        self.efeito.shadowCards([self.lbLogo], radius=5, offset=(1, 3), color=(63, 63, 63, 90))
 
-            # qImagem = QImage(logoPath)
-            qImagem = QImage.fromData(imageBits)
-            qImagem.convertToFormat(QImage.Format_ARGB32)
-
-
-            imgSize = min(qImagem.width(), qImagem.height())
-            quadroImg = QRect((qImagem.width() - imgSize)/2,
-                                (qImagem.height() - imgSize)/2,
-                                imgSize, imgSize)
-
-            qImagem.copy(quadroImg)
-
-            if logo:
-
-                borda = QImage(imgSize, imgSize, QImage.Format_ARGB32)
-                borda.fill(Qt.transparent)
-
-                pincel = QBrush(qImagem)
-
-                pintor = QPainter(borda)
-                pintor.setBrush(pincel)
-                pintor.setPen(Qt.NoPen)
-                pintor.setRenderHint(QPainter.Antialiasing, True)
-                pintor.setRenderHint(QPainter.HighQualityAntialiasing, True)
-                pintor.drawEllipse(0, 0, imgSize, imgSize)
-                pintor.end()
-
-                pixLogo = QPixmap.fromImage(borda)
-            else:
-                pixLogo = QPixmap(logoPath)
-
-            pixRatio = QWindow().devicePixelRatio()
-            pixLogo.setDevicePixelRatio(pixRatio)
-            tamanho = 77*pixRatio
-            pixLogo = pixLogo.scaled(tamanho, tamanho, Qt.KeepAspectRatio, Qt.SmoothTransformation)
-            self.lbLogo.setPixmap(pixLogo)
-            self.efeito.shadowCards([self.lbLogo], radius=5, offset=(1, 3), color=(63, 63, 63, 90))
 
     def excluiLogo(self):
-        self.carregaLogo('Telas/Imagens/addLogo.png', logo=False)
+        self.carregaLogo('Telas/Imagens/addLogo.png', isLogo=False)
         self.daoUsuario.atualizaLogoPath('Telas/Imagens/addLogo.png', idUsuario=self.parent.usuarioModel.userId)
 
     def decideLogo(self):
@@ -109,7 +75,7 @@ class ConfigPage(Ui_wdgConfig, QWidget):
     def verificaLogoSalva(self):
         logoPath = self.daoUsuario.buscaLogoPath(self.parent.usuarioModel.userId)
         if logoPath is None or logoPath == '':
-            self.carregaLogo('Telas/Imagens/addLogo.png', logo=False)
+            self.carregaLogo('Telas/Imagens/addLogo.png', isLogo=False)
         else:
-            self.carregaLogo(logoPath, logo=False)
+            self.carregaLogo(logoPath, isLogo=False)
 
