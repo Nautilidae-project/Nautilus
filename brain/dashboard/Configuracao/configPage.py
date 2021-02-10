@@ -17,7 +17,7 @@ class ConfigPage(Ui_wdgConfig, QWidget):
         self.daoUsuario = DaoUsuario(db=db)
         self.setupUi(self)
 
-        self.vlCategorias.addWidget(CategoriaCard(db=db))
+        self.vlCategorias.addWidget(CategoriaCard(parent=self, db=db))
 
         self.efeito = Efeitos()
 

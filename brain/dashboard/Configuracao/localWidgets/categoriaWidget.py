@@ -13,16 +13,20 @@ class CategoriaCard(Ui_CategoriaCard, QWidget):
         super(CategoriaCard, self).__init__(parent)
         self.setupUi(self)
         self.db = db
+        self.parent = parent
         self.daoCategoria = DaoCategoria(db=db)
         self.novaCategoria = CategoriaModel()
 
         self.pbConfirmar.clicked.connect(self.insereCategoria)
-        self.leNovaCategoria.textEdited.connect(lambda: self.defineCategoria(None, campo='nome'))
+        self.leNovaCategoria.textEdited.connect(self.defineNomeCategoria)
 
         self.efeitos = Efeitos()
         self.efeitos.shadowCards([self.frTop], color=(63, 63, 63, 90), parentOnly=True)
 
         self.coloreBotoes()
+
+        print(f'self.parent: {self.parent}')
+        print(f'self.parent.parent: {self.parent.parent}')
 
     def coloreBotoes(self):
         botoes = []
@@ -32,10 +36,24 @@ class CategoriaCard(Ui_CategoriaCard, QWidget):
 
         for posicao, botao in enumerate(botoes):
             botao.setStyleSheet(botoesStyleSheet(colors[posicao]))
-            botao.clicked.connect(lambda state, posicao=posicao: self.defineCategoria(posicao, campo='cor'))
+            botao.clicked.connect(lambda state, posicao=posicao: self.defineCorCategoria(posicao))
 
-    def insereCategoria(self, posicao, campo=None):
-        if campo == 'nome':
-            self.novaCategoria.nome = self.
-        elif campo == 'cor':
+    def defineNomeCategoria(self, *args):
+        self.novaCategoria.nome = args[0]
 
+    def defineCorCategoria(self, posicao, *args):
+        self.novaCategoria.cor = colors[posicao]
+
+    def insereCategoria(self):
+        dashBoard = self.parent.parent
+        self.daoCategoria.insereCategoria(self.novaCategoria)
+        dashBoard.menssagemSistema("Categoria cadastrada com sucesso")
+        self.limpaCampos()
+
+    def limpaCampos(self):
+        self.leNovaCategoria.setText('')
+        self.novaCategoria = CategoriaModel()
+
+        for botao in self.frColors.children():
+            if isinstance(botao, QRadioButton):
+                botao.setChecked(False)
