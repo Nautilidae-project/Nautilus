@@ -2,7 +2,7 @@ from datetime import datetime
 from math import ceil
 
 from PyQt5 import QtWidgets
-from PyQt5.QtCore import QDate, Qt, QSize
+from PyQt5.QtCore import QDate, Qt, QSize, QPropertyAnimation
 from Telas.dashAgenda import Ui_wdgAgenda
 from PyQt5.QtWidgets import QWidget, QGridLayout, QVBoxLayout, QLabel
 from brain.DAOs.daoGrupo import DaoGrupo
@@ -57,6 +57,8 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
 
         # self.calendario.clicked[QDate].connect(self.printDataSelecionada)
         # self.calendario.clicked[QDate].connect(lambda: self.dataSelecionada(self.calendario.selectedDate())) # ---- Esse deu certo Eu Acho
+
+        self.enable = False
 
     def selectedDateChanged(self):
         # self.deDataEvento.setDate(self.calendario.selectedDate())

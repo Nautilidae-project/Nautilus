@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>847</width>
-    <height>654</height>
+    <width>971</width>
+    <height>764</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -132,7 +132,130 @@ border-right: 3px dashed rgb(108, 251, 208);
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QGridLayout" name="gridLayout_4">
+         <item row="4" column="1">
+          <widget class="QComboBox" name="cbxGrupos"/>
+         </item>
          <item row="1" column="0">
+          <widget class="QLabel" name="lbTituloEvento">
+           <property name="text">
+            <string>Título do Evento</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2" rowspan="5">
+          <widget class="QFrame" name="frame_2">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_5">
+            <item row="6" column="1">
+             <widget class="QTimeEdit" name="teHoraInicioEvento"/>
+            </item>
+            <item row="8" column="1">
+             <widget class="QTimeEdit" name="teHoraFimEvento"/>
+            </item>
+            <item row="1" column="1">
+             <widget class="QDateEdit" name="deDataEvento"/>
+            </item>
+            <item row="4" column="1">
+             <widget class="QComboBox" name="cbxDiaInteiro">
+              <item>
+               <property name="text">
+                <string>Não</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Sim</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="8" column="0">
+             <widget class="QLabel" name="lbHoraFimEvento">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Fim</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="0">
+             <widget class="QLabel" name="lbHoraInicioEvento">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Início</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0" colspan="2">
+             <widget class="QLabel" name="lbHoraEvento">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Horário Do Evento&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="lbDiaInteiroEvento">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Dia Inteiro</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="lbDataEvento">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Data do Evento</string>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="0" colspan="2">
+             <widget class="QPushButton" name="pbAddEvento">
+              <property name="text">
+               <string>Adicionar Evento</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="1" column="1">
           <widget class="QLineEdit" name="leTituloEvento">
            <property name="text">
             <string/>
@@ -142,7 +265,7 @@ border-right: 3px dashed rgb(108, 251, 208);
            </property>
           </widget>
          </item>
-         <item row="2" column="0">
+         <item row="3" column="1">
           <widget class="QTextEdit" name="teDetalhesEvento">
            <property name="html">
             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -156,24 +279,32 @@ p, li { white-space: pre-wrap; }
            </property>
           </widget>
          </item>
-         <item row="7" column="0">
-          <widget class="QPushButton" name="pbAddEvento">
+         <item row="3" column="0">
+          <widget class="QLabel" name="lbDrescricaoEvento">
            <property name="text">
-            <string>Adicionar Evento</string>
+            <string>Descrição do Evento</string>
            </property>
           </widget>
          </item>
-         <item row="3" column="0">
-          <widget class="QComboBox" name="cbxGrupos"/>
-         </item>
          <item row="4" column="0">
-          <widget class="QDateEdit" name="deDataEvento"/>
+          <widget class="QLabel" name="lbGrupos">
+           <property name="text">
+            <string>Grupos</string>
+           </property>
+          </widget>
          </item>
-         <item row="6" column="0">
-          <widget class="QTimeEdit" name="teHoraFimEvento"/>
-         </item>
-         <item row="5" column="0">
-          <widget class="QTimeEdit" name="teHoraInicioEvento"/>
+         <item row="0" column="0" colspan="3">
+          <widget class="QLabel" name="lbDadosDoEvento">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Adicione os dados do Evento&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -303,8 +434,8 @@ p, li { white-space: pre-wrap; }
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>631</width>
-        <height>68</height>
+        <width>755</width>
+        <height>265</height>
        </rect>
       </property>
      </widget>
