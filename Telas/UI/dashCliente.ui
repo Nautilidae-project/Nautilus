@@ -24,11 +24,11 @@
 	background-color: #80CCE1;
 }
 
-/*------------------- Frame ---------------------*/
+/*------------------- Frame ---------------------
 QFrame {
 	background-color: #fafafa;
 	border: none;
-}
+}*/
 
 
 /*------------------- Label ---------------------*/
@@ -128,9 +128,6 @@ QPushButton:hover {
 	border: 2px solid rgba(239, 41, 41, 100);
 }
 
-
-
-
 #pbEnviarEmail {
 	border-radius: 5px;
 	padding: 10px;
@@ -215,7 +212,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tbInfosCliente">
       <property name="enabled">
@@ -2363,7 +2360,26 @@ QScrollBar:vertical {
        </sizepolicy>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">/*------------------------------- Frames ----------------------------------------*/
+#frCabecalhoCadPessoa {
+	background-color: rgb(210, 210, 226);
+	border: 0px;
+}
+
+/*------------------------------ Buttons ----------------------------------------*/
+#pbMaximizaPessoa{
+	background-image: url(:/maximiza/arrowUp.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: transparent;
+}
+
+#pbMinimizaPessoa{
+	background-image: url(:/minimiza/arrowDown.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: transparent;
+}</string>
       </property>
       <attribute name="title">
        <string>Cadastro</string>
@@ -2374,6 +2390,9 @@ QScrollBar:vertical {
        </property>
        <property name="bottomMargin">
         <number>6</number>
+       </property>
+       <property name="spacing">
+        <number>0</number>
        </property>
        <item row="0" column="0">
         <widget class="QFrame" name="frCabecalho">
@@ -2438,11 +2457,11 @@ QScrollBar:vertical {
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QFrame" name="frNomeSobrenome">
-         <property name="minimumSize">
+        <widget class="QFrame" name="frCadPessoa">
+         <property name="maximumSize">
           <size>
-           <width>600</width>
-           <height>60</height>
+           <width>16777215</width>
+           <height>280</height>
           </size>
          </property>
          <property name="frameShape">
@@ -2451,9 +2470,9 @@ QScrollBar:vertical {
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <layout class="QVBoxLayout" name="verticalLayout_9">
           <property name="spacing">
-           <number>50</number>
+           <number>0</number>
           </property>
           <property name="leftMargin">
            <number>0</number>
@@ -2462,11 +2481,86 @@ QScrollBar:vertical {
            <number>0</number>
           </property>
           <property name="rightMargin">
-           <number>9</number>
+           <number>0</number>
           </property>
           <property name="bottomMargin">
            <number>0</number>
           </property>
+          <item>
+           <widget class="QFrame" name="frCabecalhoCadPessoa">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lbP13">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>101</width>
+               <height>17</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Passo 1 de 3</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lbTituloPessoa">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>161</width>
+               <height>17</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Informações pessoais</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lbDescricaoPessoa">
+             <property name="geometry">
+              <rect>
+               <x>40</x>
+               <y>49</y>
+               <width>64</width>
+               <height>17</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="pbMinimizaPessoa">
+             <property name="geometry">
+              <rect>
+               <x>920</x>
+               <y>10</y>
+               <width>83</width>
+               <height>25</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="pbMaximizaPessoa">
+             <property name="geometry">
+              <rect>
+               <x>820</x>
+               <y>10</y>
+               <width>83</width>
+               <height>25</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </widget>
+          </item>
           <item>
            <widget class="QFrame" name="frNome">
             <property name="frameShape">
@@ -2538,51 +2632,6 @@ QScrollBar:vertical {
                </property>
               </widget>
              </item>
-            </layout>
-            <zorder>leNome</zorder>
-            <zorder>lbNome</zorder>
-           </widget>
-          </item>
-          <item>
-           <widget class="QFrame" name="frSobrenome">
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_10">
-             <property name="leftMargin">
-              <number>9</number>
-             </property>
-             <item>
-              <widget class="QLabel" name="lbSobrenome">
-               <property name="minimumSize">
-                <size>
-                 <width>130</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>150</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">color: rgb(46, 52, 54)</string>
-               </property>
-               <property name="text">
-                <string>Sobrenome:    </string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::RichText</enum>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
              <item>
               <widget class="QLineEdit" name="leSobrenome">
                <property name="minimumSize">
@@ -2609,125 +2658,22 @@ QScrollBar:vertical {
               </widget>
              </item>
             </layout>
-            <zorder>leSobrenome</zorder>
-            <zorder>lbSobrenome</zorder>
            </widget>
           </item>
           <item>
-           <spacer name="horizontalSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>100</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QFrame" name="frame">
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>100</height>
-          </size>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <property name="spacing">
-           <number>6</number>
-          </property>
-          <property name="leftMargin">
-           <number>9</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <widget class="QPushButton" name="pbCadastrar">
-            <property name="minimumSize">
-             <size>
-              <width>80</width>
-              <height>50</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>200</width>
-              <height>50</height>
-             </size>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string>Cadastrar</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QFrame" name="frEmailTel">
-         <property name="minimumSize">
-          <size>
-           <width>600</width>
-           <height>60</height>
-          </size>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
-          <property name="spacing">
-           <number>50</number>
-          </property>
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>9</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <widget class="QFrame" name="frTel">
+           <widget class="QFrame" name="frCep">
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
             </property>
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_11">
+            <layout class="QHBoxLayout" name="horizontalLayout_13">
              <property name="leftMargin">
               <number>9</number>
              </property>
              <item>
-              <widget class="QLabel" name="lbTel">
+              <widget class="QLabel" name="lbEnd">
                <property name="minimumSize">
                 <size>
                  <width>130</width>
@@ -2744,7 +2690,7 @@ QScrollBar:vertical {
                 <string notr="true">color: rgb(46, 52, 54)</string>
                </property>
                <property name="text">
-                <string>Telefone:    </string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Endereço:     &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="textFormat">
                 <enum>Qt::RichText</enum>
@@ -2755,7 +2701,35 @@ QScrollBar:vertical {
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="leTel">
+              <widget class="QLabel" name="lbCep">
+               <property name="minimumSize">
+                <size>
+                 <width>130</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>150</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">color: rgb(46, 52, 54)</string>
+               </property>
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;CEP:    &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::RichText</enum>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="leCompl">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -2772,10 +2746,141 @@ QScrollBar:vertical {
                 <string notr="true"/>
                </property>
                <property name="maxLength">
-                <number>19</number>
+                <number>30</number>
                </property>
                <property name="placeholderText">
-                <string>Celular</string>
+                <string>Complemento</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbCompl">
+               <property name="minimumSize">
+                <size>
+                 <width>130</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>150</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">color: rgb(46, 52, 54)</string>
+               </property>
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Complemento:    &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::RichText</enum>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="leBairro">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>600</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="maxLength">
+                <number>30</number>
+               </property>
+               <property name="placeholderText">
+                <string>Vila das Árvores</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbBairro">
+               <property name="minimumSize">
+                <size>
+                 <width>130</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>150</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">color: rgb(46, 52, 54)</string>
+               </property>
+               <property name="text">
+                <string>Bairro:    </string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::RichText</enum>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="leEnd">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>600</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="maxLength">
+                <number>50</number>
+               </property>
+               <property name="placeholderText">
+                <string>Av. Paulista, 1445</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="leCep">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>600</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="maxLength">
+                <number>15</number>
+               </property>
+               <property name="placeholderText">
+                <string>12345-678</string>
                </property>
               </widget>
              </item>
@@ -2783,14 +2888,14 @@ QScrollBar:vertical {
            </widget>
           </item>
           <item>
-           <widget class="QFrame" name="frEmail">
+           <widget class="QFrame" name="frTel">
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
             </property>
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_12">
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
              <property name="leftMargin">
               <number>9</number>
              </property>
@@ -2843,38 +2948,75 @@ QScrollBar:vertical {
                 <number>40</number>
                </property>
                <property name="placeholderText">
-                <string>E - mail</string>
+                <string>email@conta.com.br</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbTel">
+               <property name="minimumSize">
+                <size>
+                 <width>130</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>150</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">color: rgb(46, 52, 54)</string>
+               </property>
+               <property name="text">
+                <string>Telefone:    </string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::RichText</enum>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="leTel">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>600</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="maxLength">
+                <number>19</number>
+               </property>
+               <property name="placeholderText">
+                <string>(11) 9.1234-5678</string>
                </property>
               </widget>
              </item>
             </layout>
            </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>100</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QFrame" name="frCepEnd">
-         <property name="minimumSize">
+        <widget class="QFrame" name="frame">
+         <property name="maximumSize">
           <size>
-           <width>600</width>
-           <height>60</height>
+           <width>16777215</width>
+           <height>100</height>
           </size>
          </property>
          <property name="frameShape">
@@ -2883,358 +3025,40 @@ QScrollBar:vertical {
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <layout class="QHBoxLayout" name="horizontalLayout">
           <property name="spacing">
-           <number>50</number>
+           <number>6</number>
           </property>
           <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
            <number>9</number>
           </property>
           <property name="bottomMargin">
            <number>0</number>
           </property>
           <item>
-           <widget class="QFrame" name="frCep">
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_13">
-             <property name="leftMargin">
-              <number>9</number>
-             </property>
-             <item>
-              <widget class="QLabel" name="lbCep">
-               <property name="minimumSize">
-                <size>
-                 <width>130</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>150</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">color: rgb(46, 52, 54)</string>
-               </property>
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;CEP:    &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::RichText</enum>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="leCep">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>600</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true"/>
-               </property>
-               <property name="maxLength">
-                <number>15</number>
-               </property>
-               <property name="placeholderText">
-                <string>CEP</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QFrame" name="frEndereco">
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_14">
-             <property name="leftMargin">
-              <number>9</number>
-             </property>
-             <item>
-              <widget class="QLabel" name="lbEnd">
-               <property name="minimumSize">
-                <size>
-                 <width>130</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>150</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">color: rgb(46, 52, 54)</string>
-               </property>
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Endereço:     &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::RichText</enum>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="leEnd">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>600</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true"/>
-               </property>
-               <property name="maxLength">
-                <number>50</number>
-               </property>
-               <property name="placeholderText">
-                <string>Endereco</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
+           <widget class="QPushButton" name="pbCadastrar">
+            <property name="minimumSize">
              <size>
-              <width>100</width>
-              <height>20</height>
+              <width>80</width>
+              <height>50</height>
              </size>
             </property>
-           </spacer>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QFrame" name="frBairroCompl">
-         <property name="minimumSize">
-          <size>
-           <width>600</width>
-           <height>60</height>
-          </size>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_8">
-          <property name="spacing">
-           <number>50</number>
-          </property>
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>9</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <widget class="QFrame" name="frBairro">
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_15">
-             <property name="leftMargin">
-              <number>9</number>
-             </property>
-             <item>
-              <widget class="QLabel" name="lbBairro">
-               <property name="minimumSize">
-                <size>
-                 <width>130</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>150</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">color: rgb(46, 52, 54)</string>
-               </property>
-               <property name="text">
-                <string>Bairro:    </string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::RichText</enum>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="leBairro">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>600</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true"/>
-               </property>
-               <property name="maxLength">
-                <number>30</number>
-               </property>
-               <property name="placeholderText">
-                <string>Bairro</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QFrame" name="frComplemento">
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_16">
-             <property name="leftMargin">
-              <number>9</number>
-             </property>
-             <item>
-              <widget class="QLabel" name="lbCompl">
-               <property name="minimumSize">
-                <size>
-                 <width>130</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>150</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">color: rgb(46, 52, 54)</string>
-               </property>
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Complemento:    &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::RichText</enum>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="leCompl">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>600</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true"/>
-               </property>
-               <property name="maxLength">
-                <number>30</number>
-               </property>
-               <property name="placeholderText">
-                <string>Complemento</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_4">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
+            <property name="maximumSize">
              <size>
-              <width>100</width>
-              <height>20</height>
+              <width>200</width>
+              <height>50</height>
              </size>
             </property>
-           </spacer>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string>Cadastrar</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -3301,8 +3125,8 @@ QComboBox::drop-down{
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>552</width>
-               <height>589</height>
+               <width>550</width>
+               <height>585</height>
               </rect>
              </property>
             </widget>

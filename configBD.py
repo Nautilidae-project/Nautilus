@@ -105,10 +105,9 @@ class ConfigDB:
 
         # Comando SQL para criar tabela de categorias
         self.__sqlCreateCategoria = f"""CREATE TABLE IF NOT EXISTS {self.tblCategoria} (
-                                categoriaId INT AUTO_INCREMENT,
                                 nome VARCHAR(30) NOT NULL,
                                 cor VARCHAR(7) NOT NULL,
-                                PRIMARY KEY (categoriaId)
+                                PRIMARY KEY (nome)
                             );"""
 
     @property

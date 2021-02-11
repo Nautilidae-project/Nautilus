@@ -17,13 +17,45 @@ class Ui_wdgGrupoCard(object):
         wdgGrupoCard.resize(400, 350)
         wdgGrupoCard.setMinimumSize(QtCore.QSize(350, 350))
         wdgGrupoCard.setMaximumSize(QtCore.QSize(400, 400))
-        wdgGrupoCard.setStyleSheet("/*#wdgGrupoCard {\n"
-"    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgba(105, 33, 140, 60), stop:1 rgba(112, 237, 255, 60));    \n"
-"}*/")
-        self.gridLayout_2 = QtWidgets.QGridLayout(wdgGrupoCard)
-        self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout_2.setObjectName("gridLayout_2")
+        wdgGrupoCard.setStyleSheet("/*----------------------------------- Frames ------------------------------------*/\n"
+"#frCategoria {\n"
+"    background-color: rgb(52, 101, 164);\n"
+"    \n"
+"    border-bottom-left-radius: 12px;\n"
+"    border-bottom-right-radius: 12px;\n"
+"    border-top-left-radius: 0px;\n"
+"    border-top-right-radius: 0px;    \n"
+"}\n"
+"\n"
+"/*-------------------------------- Label --------------------------------------*/\n"
+"#lbCategoria {\n"
+"    color: #fff;\n"
+"    background-color: transparent;\n"
+"    border: 0px;\n"
+"    font-size: 16pt;\n"
+"    font-family: Ubuntu;\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"/*------------------------------- Tabela --------------------------------------*/\n"
+"\n"
+"#tblGrupoItem {\n"
+"    background-color: rgba(233, 185, 110, 200);\n"
+"    /*border: none;*/\n"
+"    color: #444;\n"
+"    margin-bottom: 8px;\n"
+"    padding-right: 4px;\n"
+"    padding-top: 4px;\n"
+"    padding-left: 12px;\n"
+"    margin-top: 8px;\n"
+"}\n"
+"\n"
+"#tblGrupoItem::item {\n"
+"    color: #fff;\n"
+"}")
         self.frGrupoCard = QtWidgets.QFrame(wdgGrupoCard)
+        self.frGrupoCard.setGeometry(QtCore.QRect(0, 0, 400, 280))
+        self.frGrupoCard.setMaximumSize(QtCore.QSize(16777215, 280))
         self.frGrupoCard.setStyleSheet("#frGrupoCard {\n"
 "    background-color: #0e90ad;\n"
 "}")
@@ -32,6 +64,7 @@ class Ui_wdgGrupoCard(object):
         self.frGrupoCard.setObjectName("frGrupoCard")
         self.gridLayout = QtWidgets.QGridLayout(self.frGrupoCard)
         self.gridLayout.setContentsMargins(15, 0, 15, 0)
+        self.gridLayout.setVerticalSpacing(2)
         self.gridLayout.setObjectName("gridLayout")
         self.frBottom = QtWidgets.QFrame(self.frGrupoCard)
         self.frBottom.setStyleSheet("#frBottom {\n"
@@ -47,20 +80,7 @@ class Ui_wdgGrupoCard(object):
         self.tblGrupoItem = QtWidgets.QTableWidget(self.frBottom)
         self.tblGrupoItem.setMinimumSize(QtCore.QSize(0, 150))
         self.tblGrupoItem.setMaximumSize(QtCore.QSize(16777215, 200))
-        self.tblGrupoItem.setStyleSheet("#tblGrupoItem {\n"
-"    background-color: rgba(233, 185, 110, 200);\n"
-"    /*border: none;*/\n"
-"    color: #444;\n"
-"    margin-bottom: 8px;\n"
-"    padding-right: 4px;\n"
-"    padding-top: 4px;\n"
-"    padding-left: 12px;\n"
-"    margin-top: 16px;\n"
-"}\n"
-"\n"
-"#tblGrupoItem::item {\n"
-"    color: #fff;\n"
-"}")
+        self.tblGrupoItem.setStyleSheet("")
         self.tblGrupoItem.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.tblGrupoItem.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.tblGrupoItem.setAlternatingRowColors(False)
@@ -90,7 +110,7 @@ class Ui_wdgGrupoCard(object):
         self.frBotoes.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frBotoes.setObjectName("frBotoes")
         self.formLayout = QtWidgets.QFormLayout(self.frBotoes)
-        self.formLayout.setContentsMargins(0, 0, 0, 0)
+        self.formLayout.setContentsMargins(0, 0, 0, 4)
         self.formLayout.setHorizontalSpacing(0)
         self.formLayout.setVerticalSpacing(9)
         self.formLayout.setObjectName("formLayout")
@@ -136,12 +156,17 @@ class Ui_wdgGrupoCard(object):
         self.pbExcluir.setText("")
         self.pbExcluir.setObjectName("pbExcluir")
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.pbExcluir)
-        self.gridLayout_3.addWidget(self.frBotoes, 0, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.frBotoes, 0, 1, 1, 1, QtCore.Qt.AlignVCenter)
         self.frBotoes.raise_()
         self.tblGrupoItem.raise_()
         self.gridLayout.addWidget(self.frBottom, 2, 0, 1, 1)
         self.lbDescricao = QtWidgets.QTextEdit(self.frGrupoCard)
-        self.lbDescricao.setMinimumSize(QtCore.QSize(0, 100))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lbDescricao.sizePolicy().hasHeightForWidth())
+        self.lbDescricao.setSizePolicy(sizePolicy)
+        self.lbDescricao.setMinimumSize(QtCore.QSize(0, 70))
         self.lbDescricao.setMaximumSize(QtCore.QSize(16777215, 100))
         self.lbDescricao.setStyleSheet("#lbDescricao {\n"
 "    border: 0px;\n"
@@ -175,7 +200,28 @@ class Ui_wdgGrupoCard(object):
         self.gridLayout.addWidget(self.lbTituloCard, 0, 0, 1, 1)
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.gridLayout.addItem(spacerItem, 4, 0, 1, 1)
-        self.gridLayout_2.addWidget(self.frGrupoCard, 0, 0, 1, 1)
+        self.frCategoria = QtWidgets.QFrame(wdgGrupoCard)
+        self.frCategoria.setGeometry(QtCore.QRect(7, 270, 161, 35))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frCategoria.sizePolicy().hasHeightForWidth())
+        self.frCategoria.setSizePolicy(sizePolicy)
+        self.frCategoria.setMinimumSize(QtCore.QSize(50, 24))
+        self.frCategoria.setMaximumSize(QtCore.QSize(16777215, 36))
+        self.frCategoria.setSizeIncrement(QtCore.QSize(60, 0))
+        self.frCategoria.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frCategoria.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frCategoria.setObjectName("frCategoria")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.frCategoria)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 4)
+        self.horizontalLayout.setSpacing(0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.lbCategoria = QtWidgets.QLabel(self.frCategoria)
+        self.lbCategoria.setObjectName("lbCategoria")
+        self.horizontalLayout.addWidget(self.lbCategoria, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignBottom)
+        self.frCategoria.raise_()
+        self.frGrupoCard.raise_()
 
         self.retranslateUi(wdgGrupoCard)
         QtCore.QMetaObject.connectSlotsByName(wdgGrupoCard)
@@ -191,6 +237,7 @@ class Ui_wdgGrupoCard(object):
         item.setText(_translate("wdgGrupoCard", "Sobrenome"))
         self.lbDescricao.setPlaceholderText(_translate("wdgGrupoCard", "DESCRIÇÃO"))
         self.lbTituloCard.setText(_translate("wdgGrupoCard", "Titulo"))
+        self.lbCategoria.setText(_translate("wdgGrupoCard", "TextLabel"))
 import Telas.Resources.cardResources
 
 

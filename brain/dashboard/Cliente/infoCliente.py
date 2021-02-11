@@ -13,6 +13,7 @@ from brain.DAOs.daoCliente import DaoCliente
 from brain.DAOs.daoGrupo import DaoGrupo
 from brain.DAOs.daoParticipantes import DaoParticipantes
 from brain.DAOs.daoUsuario import DaoUsuario
+from brain.dashboard.Cliente.localStyleSheets.filtroAlfabeto import estiloBotoesFiltro, estiloLabelFiltro
 from brain.dashboard.Cliente.localWidgets.gruposCard import GruposCard
 from brain.dashboard.Cliente.relatorio import RelatorioCliente
 from brain.dashboard.Sinais import Sinais
@@ -38,20 +39,22 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.setupUi(self)
         self.parent = parent
 
-        # INICIALIZAÇÕES GERAIS =============================================
+        # =================================================================== INICIALIZAÇÕES GERAIS
         self.cliente = Cliente()
         self.daoCliente = DaoCliente(self.db)
+        self.daoCategoria = DaoCategoria(self.db)
+        self.daoGrupo = DaoGrupo(self.db)
         self.efeito = Efeitos()
         self.sinais = Sinais()
         self.enviarEmail = Mensagens()
 
-        # INICIALIZAÇÕES DA ABA "INFORMAÇÕES" ===============================
+        # ====================================================== INICIALIZAÇÕES DA ABA "INFORMAÇÕES"
         self.desativaInfoCampos(True)
         self.atualizaTabelaGeral()
         self.tblClientes.setColumnHidden(0, True)
         self.tblClientes.setItemDelegate(AlinhamentoCentro())
 
-        ## Declaração dos sinais de input
+        ## ---------------------------------------------------------- Declaração dos sinais de input
         self.leInfoNome.textEdited.connect(lambda: self.defineInfoCampo('nome'))
         self.leInfoSobrenome.textEdited.connect(lambda: self.defineInfoCampo('sobrenome'))
         self.leInfoTel.textEdited.connect(lambda: self.defineInfoCampo('tel'))
@@ -63,27 +66,27 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leInfoComplemento.textEdited.connect(lambda: self.defineInfoCampo('compl'))
         self.cbInfoAtivo.clicked.connect(lambda: self.defineInfoCampo('ativo'))
 
-        ## Declaração dos botões
+        ## -------------------------------------------------------------------- Declaração dos botões
         self.pbConfirmarAtualizacao.clicked.connect(lambda: self.showPopupSimCancela('As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
         self.pbEnviarEmail.clicked.connect(self.enviarUmEmail)
         self.pbCancelarEdicao.hide()
         self.pbConfirmarAtualizacao.hide()
         self.pbCancelarEdicao.clicked.connect(self.limpaCampos)
 
-        ## Declaração das LineEdit
+        ## ------------------------------------------------------------------- Declaração das LineEdit
         self.leCep.editingFinished.connect(self.trataCep)
         self.leTel.editingFinished.connect(lambda: self.insereMascara('tel'))
         self.leSearchCliente.textEdited.connect(self.busca)
 
-        ## Declaração do sinal da tabela de clientes
+        ## ------------------------------------------------- Declaração do sinal da tabela de clientes
         self.tblClientes.doubleClicked.connect(self.carregaInfoCliente)
 
-        ## Declaração dos efeitos
+        ## -------------------------------------------------------------------- Declaração dos efeitos
         self.efeito.shadowCards([self.frClientesTotal, self.frClientesMensal, self.frClientesAnuais],
                                 offset=(1, 3), color=(63, 63, 63, 50), parentOnly=True)
 
-        # INICIALIZAÇÕES DA ABA "CADASTRO"    ===============================
-        ## Declaração relacionadas à aba de cadastro de clientes
+        # ============================================================= INICIALIZAÇÕES DA ABA "CADASTRO"
+        ## -------------------------------------- Declaração relacionadas à aba de cadastro de clientes
         self.leNome.textEdited.connect(lambda: self.defineCampoCadastro('nome'))
         self.leSobrenome.textEdited.connect(lambda: self.defineCampoCadastro('sobrenome'))
         self.leTel.textEdited.connect(lambda: self.defineCampoCadastro('tel'))
@@ -94,7 +97,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leCompl.textEdited.connect(lambda: self.defineCampoCadastro('compl'))
         self.pbCadastrar.clicked.connect(lambda: self.trataCadastro(self.cliente))
 
-        # INICIALIZAÇÕES DA ABA "GRUPOS"      ===============================
+        # =============================================================== INICIALIZAÇÕES DA ABA "GRUPOS"
         self.colunas = 1
         self.modoEdicao = False
         self.grupoEdicao = GrupoModelo()
@@ -111,10 +114,10 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.tblParticipantes.setColumnHidden(0, True)
 
 
-        ## Declaração do sinal da tabela de Participantes
+        ## ---------------------------------------------- Declaração do sinal da tabela de Participantes
         self.tblParticipantes.clicked.connect(self.selecionaParticipante)
 
-        ## Declaração dos botões
+        ## ----------------------------------------------------------------------- Declaração dos botões
         self.pbAddGrupo.clicked.connect(lambda: self.criaGrupo() if not self.modoEdicao else self.updateGrupo())
         self.pbRefresh.clicked.connect(lambda: self.filtroAZ(letra=None))
         self.pbCancelar.clicked.connect(self.sairModoEdicao)
@@ -131,7 +134,6 @@ class brainCliente(Ui_wdgCliente, QWidget):
         if self.gridBox.count():
             self.limpaLayout()
 
-        daoGrupo = DaoGrupo(self.db)
         colunas = 1
         linhas = 1
 
@@ -139,7 +141,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
         widthScreen = self.window().size().width()
 
         # Busca no banco de dados todos os grupos criados
-        gruposCadastrados = daoGrupo.findAll()
+        gruposCadastrados = self.daoGrupo.findAll()
+        print(f'gruposCadastrados[0]: {gruposCadastrados[0]}')
 
 
         if len(gruposCadastrados) > 8 and 3*widthCard < widthScreen:
@@ -191,18 +194,12 @@ class brainCliente(Ui_wdgCliente, QWidget):
         intMesPassado = self.daoCliente.buscaClientePeridoPassado(mesAno='m')
         intAnoAtual = self.daoCliente.buscaClientesAtuaisMesAno()
         intAnoPassado = self.daoCliente.buscaClientePeridoPassado()
-        #
-        # print(f'intMesAtual: {intMesAtual} - intMesPassado: {intMesPassado}')
-        # print(f'intAnoAtual: {intAnoAtual} - intAnoPassado: {intAnoPassado}')
-        # print(f'intMesAtual/intMesPassado: {(round((intMesAtual/intMesPassado), 1) - 1) * 100} %')
-        # print(f'intAnoAtual/intAnoPassado: {(round((intAnoAtual / intAnoPassado), 1) -1) * 100} %')
+
         self.lbValorTotal.setText(f"{intTotal}")
         self.lbValorMensal.setText(f"{intMesAtual}")
         self.lbValorAnual.setText(f"{intAnoAtual}")
         self.lbEstMensal.setText(f'{(round((intMesAtual/intMesPassado), 1) - 1) * 100} %')
         self.lbEstAnual.setText(f'{(round((intAnoAtual / intAnoPassado), 1) - 1) * 100} %')
-        # self.leCard2.setText(
-        #     f"Clientes Inativos:\n{self.daoCliente.contaCliente('ativo=0')}/{self.daoCliente.contaCliente()}")
 
     def criaGrupo(self):
         '''
@@ -221,16 +218,18 @@ class brainCliente(Ui_wdgCliente, QWidget):
             listaParticipantes = list()
             daoGrupo = DaoGrupo(self.db)
             daoParticipantes = DaoParticipantes(self.db)
+            intLoading += 10
             dictGrupo = {
                 'grupoId': None,
                 'titulo': self.leTituloGrupo.text(),
                 'descricao': self.leDescricaoGrupo.toPlainText(),
-                'categoria': self.cbxCategoria.currentText(),
+                'nomeCategoria': self.cbxCategoria.currentText(),
+                'corCategoria': self.daoCategoria.buscaCorByCategoria(self.cbxCategoria.currentText()),
                 'dataCadastro': None,
                 'dataUltAlt': None
             }
 
-            intLoading += 20
+            intLoading += 10
             self.parent.loading(intLoading)
             grupoModel = GrupoModelo(dictGrupo=dictGrupo)
 
@@ -496,13 +495,19 @@ class brainCliente(Ui_wdgCliente, QWidget):
         close = dialogPopup.exec_()
 
     def onChange(self, *args):
+        """
+            Função responsável por 'escutar' as mudanças de tela ou de tabs.
+        :param args: {0: 'Informações', 1: 'Cadastro', 2: 'Grupos'}
+        :return:
+        """
+
         if args[0] == 0:
             self.cardsInfosCliente()
             self.atualizaTabelaGeral()
             self.limpaCampos()
         elif args[0] == 2:
-            # self.atualizaCardEventosNoGrid()
             self.atualizaTabelaParticipantes()
+            self.carregaComboBoxes()
 
     def criaRelatorio(self):
         # Busca o usuário ativo
@@ -602,9 +607,14 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.sairModoEdicao()
 
     def carregaComboBoxes(self):
+        if self.cbxCategoria.count() != 0:
+            self.cbxCategoria.clear()
+        if self.cbxOrdenar.count() != 0:
+            self.cbxOrdenar.clear()
+        if self.cbxInfoMeioPag.count() != 0:
+            self.cbxInfoMeioPag.clear()
 
-        daoCategorias = DaoCategoria(self.db)
-        listTupleCategorias = daoCategorias.getAll()
+        listTupleCategorias = self.daoCategoria.getAll()
         ordenar = ['DATA', 'CATEGORIA', 'A-Z', 'Z-A']
 
         self.cbxOrdenar.addItems(ordenar)
@@ -621,7 +631,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
             listaCards.append(self.gridBox.itemAt(i).widget())
 
         if args[0] == 'CATEGORIA':
-            cardsSorted = sorted(listaCards, key=lambda card: card.grupo.categoria)
+            cardsSorted = sorted(listaCards, key=lambda card: card.grupo.nomeCategoria)
         elif args[0] == 'DATA':
             cardsSorted = sorted(listaCards, key=lambda card: card.grupo.grupoId)
         elif args[0] == 'A-Z':
@@ -672,27 +682,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
     def carregaFiltroAZ(self):
         listAlfabeto = list(' ABCDEFGHIJKLMNOPQRSTUVWXYZ ')
-        pbStrStyleSheet = """
-            QPushButton {
-                background-color: transparent;
-                border: 0px;
-                font-size: 12px;
-                font-family: Ubuntu;
-            }
-            QPushButton::hover{
-                border: 0px solid;
-                border-radius: 10px;
-                background-color: #838689;
-                color: #fff;
-                font-size: 16px;
-                font-family: Ubuntu;  
-            }"""
-        lbStyleSheet = """
-        QLabel {
-            background-color: transparent;
-            border: 0px;
-            }
-            """
+        pbStrStyleSheet = estiloBotoesFiltro()
+        lbStyleSheet = estiloLabelFiltro()
 
         for i in range(0, len(listAlfabeto)):
 

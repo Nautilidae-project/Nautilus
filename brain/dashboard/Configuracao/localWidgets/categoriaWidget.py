@@ -35,11 +35,14 @@ class CategoriaCard(Ui_CategoriaCard, QWidget):
                 botoes.append(botao)
 
         for posicao, botao in enumerate(botoes):
+            if posicao == 0:
+                botao.setChecked(True)
+                self.defineCorCategoria(posicao)
             botao.setStyleSheet(botoesStyleSheet(colors[posicao]))
             botao.clicked.connect(lambda state, posicao=posicao: self.defineCorCategoria(posicao))
 
     def defineNomeCategoria(self, *args):
-        self.novaCategoria.nome = args[0]
+        self.novaCategoria.nome = args[0].strip().upper()
 
     def defineCorCategoria(self, posicao, *args):
         self.novaCategoria.cor = colors[posicao]

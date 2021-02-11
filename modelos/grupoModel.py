@@ -8,7 +8,8 @@ class GrupoModelo:
         self.grupoId = None
         self.titulo = None
         self.descricao = None
-        self.categoria = None
+        self.nomeCategoria = None
+        self.corCategoria = None
         self.dataCadastro = None
         self.dataUltAlt = None
 
@@ -22,7 +23,8 @@ class GrupoModelo:
             'grupoId': self.grupoId,
             'titulo': self.titulo,
             'descricao': self.descricao,
-            'categoria': self.categoria,
+            'nomeCategoria': self.nomeCategoria,
+            'corCategoria': self.corCategoria,
             'dataCadastro': self.dataCadastro,
             'dataUltAlt': self.dataUltAlt
         }
@@ -40,15 +42,20 @@ class GrupoModelo:
 
         self.titulo = dictGrupo['titulo']
         self.descricao = dictGrupo['descricao']
-        self.categoria = dictGrupo['categoria']
+        self.nomeCategoria = dictGrupo['nomeCategoria']
+        self.corCategoria = dictGrupo['corCategoria']
+
 
     def fromList(self, listGrupo: list):
         self.grupoId = listGrupo[0]
         self.titulo = listGrupo[1]
         self.descricao = listGrupo[2]
-        self.dataCadastro = listGrupo[3]
-        self.dataUltAlt = listGrupo[4]
+        self.nomeCategoria = listGrupo[3]
+        self.corCategoria = listGrupo[4]
+        self.dataCadastro = listGrupo[5]
+        self.dataUltAlt = listGrupo[6]
 
     def __repr__(self):
-        return f'Grupo(\n    grupoId: {self.grupoId}, titulo: {self.titulo}, descricao: {self.descricao},  ' \
-               f'dataCadastro: {self.dataCadastro}, dataUltAlt: {self.dataUltAlt}\n)'
+        return f"""Grupo(\n    grupoId: {self.grupoId}, titulo: {self.titulo}, descricao: {self.descricao}, 
+                    nomeCategoria: {self.nomeCategoria}, corCategoria: {self.corCategoria}, dataCadastro: {self.dataCadastro}, 
+                    dataUltAlt: {self.dataUltAlt}\n)"""

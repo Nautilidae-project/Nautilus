@@ -34,6 +34,33 @@
 	border-bottom-right-radius: 12px;
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;	
+}
+
+/*-------------------------------- Label --------------------------------------*/
+#lbCategoria {
+	color: #fff;
+	background-color: transparent;
+	border: 0px;
+	font-size: 16pt;
+	font-family: Ubuntu;
+	font-weight: bold;
+}
+
+/*------------------------------- Tabela --------------------------------------*/
+
+#tblGrupoItem {
+	background-color: rgba(233, 185, 110, 200);
+    /*border: none;*/
+	color: #444;
+	margin-bottom: 8px;
+	padding-right: 4px;
+	padding-top: 4px;
+	padding-left: 12px;
+	margin-top: 8px;
+}
+
+#tblGrupoItem::item {
+	color: #fff;
 }</string>
   </property>
   <widget class="QFrame" name="frGrupoCard">
@@ -74,6 +101,9 @@
     </property>
     <property name="bottomMargin">
      <number>0</number>
+    </property>
+    <property name="verticalSpacing">
+     <number>2</number>
     </property>
     <item row="2" column="0">
      <widget class="QFrame" name="frBottom">
@@ -119,20 +149,7 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">#tblGrupoItem {
-	background-color: rgba(233, 185, 110, 200);
-    /*border: none;*/
-	color: #444;
-	margin-bottom: 8px;
-	padding-right: 4px;
-	padding-top: 4px;
-	padding-left: 12px;
-	margin-top: 16px;
-}
-
-#tblGrupoItem::item {
-	color: #fff;
-}</string>
+          <string notr="true"/>
          </property>
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
@@ -178,7 +195,7 @@
          </column>
         </widget>
        </item>
-       <item row="0" column="1">
+       <item row="0" column="1" alignment="Qt::AlignVCenter">
         <widget class="QFrame" name="frBotoes">
          <property name="minimumSize">
           <size>
@@ -220,7 +237,7 @@
            <number>0</number>
           </property>
           <property name="bottomMargin">
-           <number>0</number>
+           <number>4</number>
           </property>
           <item row="3" column="1">
            <widget class="QPushButton" name="pbEditar">
@@ -410,11 +427,35 @@
   <widget class="QFrame" name="frCategoria">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>7</x>
      <y>270</y>
-     <width>82</width>
+     <width>161</width>
      <height>35</height>
     </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>50</width>
+     <height>24</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>36</height>
+    </size>
+   </property>
+   <property name="sizeIncrement">
+    <size>
+     <width>60</width>
+     <height>0</height>
+    </size>
    </property>
    <property name="frameShape">
     <enum>QFrame::NoFrame</enum>
@@ -423,7 +464,22 @@
     <enum>QFrame::Raised</enum>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>4</number>
+    </property>
+    <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
      <widget class="QLabel" name="lbCategoria">
       <property name="text">
        <string>TextLabel</string>

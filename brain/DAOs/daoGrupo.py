@@ -32,7 +32,7 @@ class DaoGrupo:
             )
             VALUES
             (
-                '{grupo.titulo}', '{grupo.descricao}', '{grupo.categoria}', NOW(), NOW()
+                '{grupo.titulo}', '{grupo.descricao}', '{grupo.nomeCategoria}', NOW(), NOW()
             )
             """
         try:
@@ -50,7 +50,10 @@ class DaoGrupo:
         self.db.connect()
         cursor = self.db.cursor()
 
-        strComando = f"""SELECT grupoId, titulo, descricao, dataCadastro, dataUltAlt FROM {self.configs.tblGrupo};"""
+        strComando = f"""SELECT g.grupoId, g.titulo, g.descricao,c.nome, c.cor, g.dataCadastro, g.dataUltAlt 
+                            FROM grupo g
+                                JOIN categoria c 
+                                    ON c.nome = g.categoria;"""
 
         try:
             cursor.execute(strComando)

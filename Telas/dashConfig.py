@@ -200,7 +200,7 @@ class Ui_wdgConfig(object):
         self.verticalLayout.addWidget(self.tabConfiguracoes)
 
         self.retranslateUi(wdgConfig)
-        self.tabConfiguracoes.setCurrentIndex(1)
+        self.tabConfiguracoes.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(wdgConfig)
 
     def retranslateUi(self, wdgConfig):
