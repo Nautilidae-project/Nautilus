@@ -15,7 +15,12 @@ class Ui_wdgAgenda(object):
     def setupUi(self, wdgAgenda):
         wdgAgenda.setObjectName("wdgAgenda")
         wdgAgenda.resize(971, 764)
-        wdgAgenda.setStyleSheet("QPushButton:hover {\n"
+        wdgAgenda.setStyleSheet("QLabel {\n"
+"    background-color: rgb(114, 159, 207);\n"
+"    color: #fafafa    \n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
 "    background-color: rgb(114, 159, 207);\n"
 "}\n"
 "\n"

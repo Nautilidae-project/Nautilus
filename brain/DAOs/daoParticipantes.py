@@ -22,20 +22,20 @@ class DaoParticipantes:
         self.db.connect()
         cursor = self.db.cursor()
 
-        strComando = f" INSERT INTO {self.configs.tblParticipantes} ( eventoId, clienteId ) VALUES "
+        strComando = f" INSERT INTO {self.configs.tblParticipantes} ( grupoId, clienteId ) VALUES "
 
         for i in range(0, len(participantesList)):
             if i == 0:
-                strComando += f"""( '{participantesList[i].eventoId}', '{participantesList[i].clienteId}' )"""
+                strComando += f"""( '{participantesList[i].grupoId}', '{participantesList[i].clienteId}' )"""
             else:
-                strComando += f""",( '{participantesList[i].eventoId}', '{participantesList[i].clienteId}' )"""
+                strComando += f""",( '{participantesList[i].grupoId}', '{participantesList[i].clienteId}' )"""
 
         try:
             # Insere todos os participantes de um evento no banco de dados
             cursor.execute(strComando)
             self.db.commit()
         except:
-                raise Warning(f'Erro SQL - insereParticipantes({participantesList[0].eventoId}) <INSERT>')
+                raise Warning(f'Erro SQL - insereParticipantes({participantesList[0].grupoId}) <INSERT>')
         finally:
             cursor.close()
 
@@ -44,13 +44,13 @@ class DaoParticipantes:
         self.db.connect()
         cursor = self.db.cursor()
 
-        strComando = f"""DELETE FROM {self.configs.tblParticipantes} WHERE eventoId = {grupoId}"""
+        strComando = f"""DELETE FROM {self.configs.tblParticipantes} WHERE grupoId = {grupoId}"""
 
         try:
             cursor.execute(strComando)
             self.db.commit()
         except:
-            raise Warning(f'Erro SQL - deletarParticipantesEvento({grupoId}) <DELETE>')
+            raise Warning(f'Erro SQL - deletarParticipantesGrupo({grupoId}) <DELETE>')
         finally:
             cursor.close()
 

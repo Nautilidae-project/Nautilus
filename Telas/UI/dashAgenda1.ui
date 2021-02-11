@@ -14,7 +14,12 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QPushButton:hover {
+   <string notr="true">QLabel {
+	background-color: rgb(114, 159, 207);
+	color: #fafafa	
+}
+
+QPushButton:hover {
 	background-color: rgb(114, 159, 207);
 }
 

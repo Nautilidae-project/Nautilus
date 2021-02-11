@@ -12,8 +12,8 @@ class ConfigDB:
         if carregaBanco:
 
             # Servidores Local e Cloud
-            # self.getDatabase('/home/renansoares/Projetos/Nautilus/datasources/databaseLocal.json')
-            self.getDatabase('/home/renansoares/Projetos/Nautilus/datasources/databaseCloud.json')
+            self.getDatabase('/home/renansoares/Projetos/Nautilus/datasources/databaseLocal.json')
+            # self.getDatabase('/home/renansoares/Projetos/Nautilus/datasources/databaseCloud.json')
 
         self.__tblUsuario = 'usuario'
         self.__tblEstados = 'estados'
@@ -85,7 +85,8 @@ class ConfigDB:
         # Comando SQL para criar tabela de participantes de um evento
         self.__sqlCreateParticipantes = f"""CREATE TABLE IF NOT EXISTS {self.tblParticipantes} (
                         Id INT AUTO_INCREMENT,
-                        eventoId INT NOT NULL,
+                        eventoId INT NULL,
+                        grupoId INT NULL,
                         clienteId INT NOT NULL,
                         PRIMARY KEY (Id)
                     );"""
