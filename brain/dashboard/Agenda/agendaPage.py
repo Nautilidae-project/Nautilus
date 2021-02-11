@@ -58,7 +58,7 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         # self.calendario.clicked[QDate].connect(self.printDataSelecionada)
         # self.calendario.clicked[QDate].connect(lambda: self.dataSelecionada(self.calendario.selectedDate())) # ---- Esse deu certo Eu Acho
 
-        self.enable = False
+        # self.enable = False
 
     def selectedDateChanged(self):
         # self.deDataEvento.setDate(self.calendario.selectedDate())
@@ -136,7 +136,7 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         self.eventoModelo.dataCadastro = None
         self.eventoModelo.horaInicio = self.teHoraInicioEvento.dateTime().toPyDateTime()
         self.eventoModelo.horaFim = self.teHoraFimEvento.dateTime().toPyDateTime()
-        self.eventoModelo.diaInteiro = True
+        self.eventoModelo.diaInteiro = False if self.cbxDiaInteiro.currentText() == "Não" else True
 
         self.daoEvento.insereEvento(self.eventoModelo)
 
@@ -156,7 +156,7 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         """
         self.frInserirEvento.setHidden(not self.frInserirEvento.isHidden())
 
-
+      
 if __name__ == '__main__':
     import sys
     import pymysql
