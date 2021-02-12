@@ -22,7 +22,7 @@ class DaoParticipantes:
         self.db.connect()
         cursor = self.db.cursor()
 
-        strComando = f" INSERT INTO {self.configs.tblParticipantes} ( eventoId, clienteId ) VALUES "
+        strComando = f" INSERT INTO {self.configs.tblParticipantes} ( grupoId, clienteId ) VALUES "
 
         for i in range(0, len(participantesList)):
             if i == 0:

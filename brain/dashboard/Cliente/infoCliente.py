@@ -597,6 +597,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
     def updateGrupo(self):
         self.grupoEdicao.titulo = self.leTituloGrupo.text()
         self.grupoEdicao.descricao = self.leDescricaoGrupo.toPlainText()
+        self.grupoEdicao.nomeCategoria = self.cbxCategoria.currentText()
+        self.grupoEdicao.corCategoria = self.daoCategoria.buscaCorByCategoria(self.grupoEdicao.nomeCategoria)
         listaParticipantes = list()
 
         daoGrupo = DaoGrupo(self.db)

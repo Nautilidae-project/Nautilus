@@ -87,7 +87,8 @@ class ConfigDB:
         # Comando SQL para criar tabela de participantes de um evento
         self.__sqlCreateParticipantes = f"""CREATE TABLE IF NOT EXISTS {self.tblParticipantes} (
                         Id INT AUTO_INCREMENT,
-                        eventoId INT NOT NULL,
+                        eventoId INT NULL,
+                        grupoId INT NULL,
                         clienteId INT NOT NULL,
                         PRIMARY KEY (Id)
                     );"""

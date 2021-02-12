@@ -75,10 +75,10 @@ class DaoGrupo:
                 c.sobrenomeCliente
             FROM {self.configs.tblParticipantes} p
                 JOIN {self.configs.tblGrupo} g 
-                    ON p.eventoId = g.grupoId
+                    ON p.grupoId = g.grupoId
                 JOIN {self.configs.tblCliente} c
                     ON c.clienteId = p.clienteId
-                WHERE p.eventoId = {eventoId}"""
+                WHERE p.grupoId = {eventoId}"""
 
         try:
             cursor.execute(strComando)
@@ -117,6 +117,7 @@ class DaoGrupo:
             UPDATE {self.configs.tblGrupo} SET 
                 titulo = '{grupo.titulo}',
                 descricao = '{grupo.descricao}',
+                categoria = '{grupo.nomeCategoria}',                
                 dataUltAlt = NOW()
             WHERE
                 grupoId = {grupo.grupoId}"""
