@@ -613,6 +613,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
                     listaParticipante=[self.grupoEdicao.grupoId, self.tblParticipantes.item(i, 0).text()]
                 ))
         daoParticipantes.insereParticipantes(listaParticipantes)
+        self.grupoEdicao = GrupoModelo()
 
         self.sairModoEdicao()
 
