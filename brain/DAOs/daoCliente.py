@@ -177,13 +177,59 @@ class DaoCliente:
 
         strComando = f"SELECT COUNT(clienteId) FROM cliente where {condicao}"
 
-        cursor.execute(strComando)
+        try:
+            cursor.execute(strComando)
 
-        clientesList = cursor.fetchall()
+            clientesList = cursor.fetchall()
+            return str(clientesList[0][0])
+        except:
+            raise Warning(f'Erro SQL - contaCliente({self.configs.tblCliente}) <SELECT>')
+        finally:
+            self.disconectBD(cursor)
 
-        cursor.close()
+    def buscaClientesAtuaisMesAno(self, mesAno='ano') -> int:
+        self.db.connect()
+        cursor = self.db.cursor()
 
-        return str(clientesList[0][0])
+        strComando = f"""SELECT COUNT(*) FROM cliente WHERE YEAR(dataCadastro) = YEAR(NOW())"""
+
+        if mesAno.upper() == 'MES' or mesAno.upper() == 'M' or mesAno.upper() == 'MENSAL':
+            strComando += f""" AND MONTH(dataCadastro) = MONTH(NOW());"""
+        else:
+            strComando += ';'
+
+        try:
+            print(strComando)
+            cursor.execute(strComando)
+            intClientes = cursor.fetchone()
+            if intClientes is not None:
+                return int(intClientes[0])
+            else:
+                return -1
+        except:
+            raise Warning(f'Erro SQL - buscaClientesAtuaisMesAno({self.configs.tblCliente}) <SELECT>')
+        finally:
+            self.disconectBD(cursor)
+
+    def buscaClientePeridoPassado(self, mesAno='ano'):
+        self.db.connect()
+        cursor = self.db.cursor()
+
+        if mesAno.upper() == 'MES' or mesAno.upper() == 'M' or mesAno.upper() == 'MENSAL':
+            strComando = f"""SELECT COUNT(*) FROM cliente WHERE MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH)) = MONTH(dataCadastro);"""
+        else:
+            strComando = f"""SELECT COUNT(*) FROM cliente WHERE YEAR(DATE_SUB(NOW(), INTERVAL 1 YEAR)) = YEAR(dataCadastro);"""
+        try:
+            cursor.execute(strComando)
+            intClientes = cursor.fetchone()
+            if intClientes is not None:
+                return int(intClientes[0])
+            else:
+                return -1
+        except:
+            raise Warning(f'Erro SQL - buscaClientePeridoPassado({self.configs.tblCliente}) <SELECT>')
+        finally:
+            self.disconectBD(cursor)
 
     def disconectBD(self, cursor):
         cursor.close()

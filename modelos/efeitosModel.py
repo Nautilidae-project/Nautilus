@@ -4,9 +4,10 @@ from PyQt5.QtWidgets import QGraphicsDropShadowEffect
 
 class Efeitos:
 
-    def shadowCards(self, cards: list, radius: int = 20, offset: tuple = (1, 7), color: tuple = (63, 63, 63, 180)):
-        
-        for card in cards:
+    def shadowCards(self, widgets: list, radius: int = 20, offset: tuple = (1, 7), color: tuple = (63, 63, 63, 180),
+                    parentOnly=False):
+
+        for widget in widgets:
             # criando um QGraphicsDropShadowEffect object
             shadow = QGraphicsDropShadowEffect()
 
@@ -21,4 +22,8 @@ class Efeitos:
             shadow.setYOffset(offset[1])
 
             # adicionando sombra na label
-            card.setGraphicsEffect(shadow)
+            widget.setGraphicsEffect(shadow)
+
+            if parentOnly:
+                for widget in widget.children():
+                    widget.setGraphicsEffect(None)

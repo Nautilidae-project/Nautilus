@@ -18,97 +18,44 @@ class Ui_wdgFinanceiro(object):
         wdgFinanceiro.setStyleSheet("")
         self.gridLayout = QtWidgets.QGridLayout(wdgFinanceiro)
         self.gridLayout.setObjectName("gridLayout")
-        self.frInfors = QtWidgets.QFrame(wdgFinanceiro)
-        self.frInfors.setStyleSheet("background-color: rgb(252, 233, 79);")
-        self.frInfors.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frInfors.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frInfors.setObjectName("frInfors")
-        self.label = QtWidgets.QLabel(self.frInfors)
-        self.label.setGeometry(QtCore.QRect(60, 190, 351, 221))
-        self.label.setStyleSheet("background-color: rgb(196, 160, 0);")
-        self.label.setObjectName("label")
-        self.gridLayout.addWidget(self.frInfors, 0, 1, 2, 1)
-        self.frCards = QtWidgets.QFrame(wdgFinanceiro)
-        self.frCards.setMinimumSize(QtCore.QSize(0, 200))
-        self.frCards.setMaximumSize(QtCore.QSize(16777215, 200))
-        self.frCards.setStyleSheet("#frCards {\n"
-"    background-color: rgb(252, 175, 62);\n"
+        self.frCabecalho = QtWidgets.QFrame(wdgFinanceiro)
+        self.frCabecalho.setMaximumSize(QtCore.QSize(16777215, 80))
+        self.frCabecalho.setStyleSheet("/********************* Labels *************************/\n"
+"\n"
+"#lbTitulo {\n"
+"    border: 0px;\n"
+"    background-color: transparent;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 14pt;\n"
+"    font-weight: bold;\n"
+"    color: black;\n"
 "}\n"
 "\n"
-"#leCard1, #leCard2, #leCard3 {\n"
-"    background-color: rgb(186, 120, 0);\n"
-"    color: rgb(255, 255, 255);\n"
+"#lbDescricao {\n"
+"    border: 0px;\n"
+"    background-color: transparent;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 12pt;\n"
+"    font-style: italic;\n"
+"    color: black;\n"
 "}")
-        self.frCards.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frCards.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frCards.setObjectName("frCards")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.frCards)
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.leCard1 = QtWidgets.QLabel(self.frCards)
-        self.leCard1.setMaximumSize(QtCore.QSize(16777215, 150))
-        self.leCard1.setStyleSheet("")
-        self.leCard1.setObjectName("leCard1")
-        self.gridLayout_2.addWidget(self.leCard1, 0, 0, 1, 1)
-        self.leCard2 = QtWidgets.QLabel(self.frCards)
-        self.leCard2.setMaximumSize(QtCore.QSize(16777215, 150))
-        self.leCard2.setStyleSheet("")
-        self.leCard2.setObjectName("leCard2")
-        self.gridLayout_2.addWidget(self.leCard2, 0, 1, 1, 1)
-        self.leCard3 = QtWidgets.QLabel(self.frCards)
-        self.leCard3.setMaximumSize(QtCore.QSize(16777215, 150))
-        self.leCard3.setStyleSheet("")
-        self.leCard3.setObjectName("leCard3")
-        self.gridLayout_2.addWidget(self.leCard3, 0, 2, 1, 1)
-        self.gridLayout.addWidget(self.frCards, 0, 0, 1, 1)
-        self.frAtalhos = QtWidgets.QFrame(wdgFinanceiro)
-        self.frAtalhos.setMinimumSize(QtCore.QSize(450, 0))
-        self.frAtalhos.setMaximumSize(QtCore.QSize(450, 16777215))
-        self.frAtalhos.setStyleSheet("#frAtalhos{\n"
-"background-color: rgb(239, 41, 41);\n"
-"}\n"
-"\n"
-"#pb1,#pb2,#pb3,#pb4,#pb5,#pb6 {\n"
-"    \n"
-"    background-color: rgb(140, 0, 0);\n"
-"    color: rgb(255, 255, 255);\n"
-"}")
-        self.frAtalhos.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frAtalhos.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frAtalhos.setObjectName("frAtalhos")
-        self.gridLayout_3 = QtWidgets.QGridLayout(self.frAtalhos)
-        self.gridLayout_3.setObjectName("gridLayout_3")
-        self.pb2 = QtWidgets.QPushButton(self.frAtalhos)
-        self.pb2.setMinimumSize(QtCore.QSize(140, 150))
-        self.pb2.setMaximumSize(QtCore.QSize(200, 210))
-        self.pb2.setObjectName("pb2")
-        self.gridLayout_3.addWidget(self.pb2, 0, 1, 1, 1)
-        self.pb6 = QtWidgets.QPushButton(self.frAtalhos)
-        self.pb6.setMinimumSize(QtCore.QSize(140, 150))
-        self.pb6.setMaximumSize(QtCore.QSize(200, 210))
-        self.pb6.setStyleSheet("")
-        self.pb6.setObjectName("pb6")
-        self.gridLayout_3.addWidget(self.pb6, 2, 1, 1, 1)
-        self.pb1 = QtWidgets.QPushButton(self.frAtalhos)
-        self.pb1.setMinimumSize(QtCore.QSize(140, 150))
-        self.pb1.setMaximumSize(QtCore.QSize(200, 210))
-        self.pb1.setObjectName("pb1")
-        self.gridLayout_3.addWidget(self.pb1, 0, 0, 1, 1)
-        self.pb5 = QtWidgets.QPushButton(self.frAtalhos)
-        self.pb5.setMinimumSize(QtCore.QSize(140, 150))
-        self.pb5.setMaximumSize(QtCore.QSize(200, 210))
-        self.pb5.setObjectName("pb5")
-        self.gridLayout_3.addWidget(self.pb5, 2, 0, 1, 1)
-        self.pb4 = QtWidgets.QPushButton(self.frAtalhos)
-        self.pb4.setMinimumSize(QtCore.QSize(140, 150))
-        self.pb4.setMaximumSize(QtCore.QSize(200, 210))
-        self.pb4.setObjectName("pb4")
-        self.gridLayout_3.addWidget(self.pb4, 1, 1, 1, 1)
-        self.pb3 = QtWidgets.QPushButton(self.frAtalhos)
-        self.pb3.setMinimumSize(QtCore.QSize(140, 150))
-        self.pb3.setMaximumSize(QtCore.QSize(200, 210))
-        self.pb3.setObjectName("pb3")
-        self.gridLayout_3.addWidget(self.pb3, 1, 0, 1, 1)
-        self.gridLayout.addWidget(self.frAtalhos, 1, 0, 1, 1)
+        self.frCabecalho.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frCabecalho.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frCabecalho.setObjectName("frCabecalho")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.frCabecalho)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.lbTitulo = QtWidgets.QLabel(self.frCabecalho)
+        self.lbTitulo.setObjectName("lbTitulo")
+        self.verticalLayout.addWidget(self.lbTitulo)
+        self.lbDescricao = QtWidgets.QLabel(self.frCabecalho)
+        self.lbDescricao.setObjectName("lbDescricao")
+        self.verticalLayout.addWidget(self.lbDescricao)
+        self.gridLayout.addWidget(self.frCabecalho, 0, 0, 1, 1)
+        self.frBody = QtWidgets.QFrame(wdgFinanceiro)
+        self.frBody.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frBody.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frBody.setObjectName("frBody")
+        self.gridLayout.addWidget(self.frBody, 1, 0, 1, 1)
 
         self.retranslateUi(wdgFinanceiro)
         QtCore.QMetaObject.connectSlotsByName(wdgFinanceiro)
@@ -116,52 +63,8 @@ class Ui_wdgFinanceiro(object):
     def retranslateUi(self, wdgFinanceiro):
         _translate = QtCore.QCoreApplication.translate
         wdgFinanceiro.setWindowTitle(_translate("wdgFinanceiro", "Form"))
-        self.label.setText(_translate("wdgFinanceiro", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\">Informações </span></p><p align=\"center\"><span style=\" font-size:16pt;\">Chamadas </span></p><p align=\"center\"><span style=\" font-size:16pt;\">pelos </span></p><p align=\"center\"><span style=\" font-size:16pt;\">Botões</span></p></body></html>"))
-        self.leCard1.setText(_translate("wdgFinanceiro", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt;\">Cards</span></p></body></html>"))
-        self.leCard2.setText(_translate("wdgFinanceiro", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt;\">Cards</span></p></body></html>"))
-        self.leCard3.setText(_translate("wdgFinanceiro", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt;\">Cards</span></p></body></html>"))
-        self.pb2.setToolTip(_translate("wdgFinanceiro", "<html><head/><body><p><br/></p></body></html>"))
-        self.pb2.setWhatsThis(_translate("wdgFinanceiro", "<html><head/><body><p><br/></p></body></html>"))
-        self.pb2.setText(_translate("wdgFinanceiro", "Botão \n"
-"que \n"
-"chama\n"
-"informação\n"
-"[icone]"))
-        self.pb6.setToolTip(_translate("wdgFinanceiro", "<html><head/><body><p><br/></p></body></html>"))
-        self.pb6.setWhatsThis(_translate("wdgFinanceiro", "<html><head/><body><p><br/></p></body></html>"))
-        self.pb6.setText(_translate("wdgFinanceiro", "Botão \n"
-"que \n"
-"chama\n"
-"informação\n"
-"[icone]"))
-        self.pb1.setToolTip(_translate("wdgFinanceiro", "<html><head/><body><p><br/></p></body></html>"))
-        self.pb1.setWhatsThis(_translate("wdgFinanceiro", "<html><head/><body><p><br/></p></body></html>"))
-        self.pb1.setText(_translate("wdgFinanceiro", "Botão \n"
-"que \n"
-"chama\n"
-"informação\n"
-"[icone]"))
-        self.pb5.setToolTip(_translate("wdgFinanceiro", "<html><head/><body><p><br/></p></body></html>"))
-        self.pb5.setWhatsThis(_translate("wdgFinanceiro", "<html><head/><body><p><br/></p></body></html>"))
-        self.pb5.setText(_translate("wdgFinanceiro", "Botão \n"
-"que \n"
-"chama\n"
-"informação\n"
-"[icone]"))
-        self.pb4.setToolTip(_translate("wdgFinanceiro", "<html><head/><body><p><br/></p></body></html>"))
-        self.pb4.setWhatsThis(_translate("wdgFinanceiro", "<html><head/><body><p><br/></p></body></html>"))
-        self.pb4.setText(_translate("wdgFinanceiro", "Botão \n"
-"que \n"
-"chama\n"
-"informação\n"
-"[icone]"))
-        self.pb3.setToolTip(_translate("wdgFinanceiro", "<html><head/><body><p><br/></p></body></html>"))
-        self.pb3.setWhatsThis(_translate("wdgFinanceiro", "<html><head/><body><p><br/></p></body></html>"))
-        self.pb3.setText(_translate("wdgFinanceiro", "Botão \n"
-"que \n"
-"chama\n"
-"informação\n"
-"[icone]"))
+        self.lbTitulo.setText(_translate("wdgFinanceiro", "Financeiro"))
+        self.lbDescricao.setText(_translate("wdgFinanceiro", "Por aqui você gerencia suas finanças"))
 
 
 if __name__ == "__main__":
