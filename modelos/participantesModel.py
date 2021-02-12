@@ -25,9 +25,8 @@ class ParticipanteModel:
         self.grupoId = dictParticipantes['grupoId']
 
     def fromList(self, participante:list):
-        self.eventoId = participante[0]
+        self.grupoId = participante[0]
         self.clienteId = participante[1]
-        self.grupoId = participante[2]
 
     def __repr__(self):
-        return f'Participantes(\neventoId: {self.eventoId}, clienteId: {self.clienteId}, grupoId: {self.grupoId}'
+        return f'Participantes(\neventoId: {self.eventoId}, clienteId: {self.clienteId}, grupoId: {self.grupoId}\n)'
