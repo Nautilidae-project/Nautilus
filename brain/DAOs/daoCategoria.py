@@ -2,6 +2,8 @@ import pymysql
 
 from configBD import ConfigDB
 
+from modelos.categoriaModel import CategoriaModel
+
 
 class DaoCategoria:
 
@@ -30,6 +32,34 @@ class DaoCategoria:
             return cursor.fetchall()
         except:
             raise Warning(f'Erro SQL - getAll({self.configs.tblCategoria}) <SELECT>')
+        finally:
+            self.disconectBD(cursor)
+
+    def insereCategoria(self, categoria: CategoriaModel):
+        self.db.connect()
+        cursor = self.db.cursor()
+
+        strComando = f"""INSERT INTO {self.configs.tblCategoria} (nome, cor) VALUES ('{categoria.nome}', '{categoria.cor}')"""
+
+        try:
+            cursor.execute(strComando)
+        except:
+            raise Warning(f'Erro SQL - insereCategoria({self.configs.tblCategoria}) <INSERT>')
+        finally:
+            self.db.commit()
+            self.disconectBD(cursor)
+
+    def buscaCorByCategoria(self, nomeCategoria):
+        self.db.connect()
+        cursor = self.db.cursor()
+
+        strComando = f"""SELECT cor FROM {self.configs.tblCategoria} WHERE nome = '{nomeCategoria}'"""
+
+        try:
+            cursor.execute(strComando)
+            return cursor.fetchone()
+        except:
+            raise Warning(f'Erro SQL - buscaCorByCategoria({self.configs.tblCategoria}) <SELECT>')
         finally:
             self.disconectBD(cursor)
 

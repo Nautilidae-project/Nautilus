@@ -32,7 +32,7 @@ class DaoGrupo:
             )
             VALUES
             (
-                '{grupo.titulo}', '{grupo.descricao}', '{grupo.categoria}', NOW(), NOW()
+                '{grupo.titulo}', '{grupo.descricao}', '{grupo.nomeCategoria}', NOW(), NOW()
             )
             """
         try:
@@ -50,7 +50,10 @@ class DaoGrupo:
         self.db.connect()
         cursor = self.db.cursor()
 
-        strComando = f"""SELECT grupoId, titulo, descricao, dataCadastro, dataUltAlt FROM {self.configs.tblGrupo};"""
+        strComando = f"""SELECT g.grupoId, g.titulo, g.descricao,c.nome, c.cor, g.dataCadastro, g.dataUltAlt 
+                            FROM grupo g
+                                JOIN categoria c 
+                                    ON c.nome = g.categoria;"""
 
         try:
             cursor.execute(strComando)
@@ -72,10 +75,10 @@ class DaoGrupo:
                 c.sobrenomeCliente
             FROM {self.configs.tblParticipantes} p
                 JOIN {self.configs.tblGrupo} g 
-                    ON p.eventoId = g.grupoId
+                    ON p.grupoId = g.grupoId
                 JOIN {self.configs.tblCliente} c
                     ON c.clienteId = p.clienteId
-                WHERE p.eventoId = {eventoId}"""
+                WHERE p.grupoId = {eventoId}"""
 
         try:
             cursor.execute(strComando)
@@ -114,6 +117,7 @@ class DaoGrupo:
             UPDATE {self.configs.tblGrupo} SET 
                 titulo = '{grupo.titulo}',
                 descricao = '{grupo.descricao}',
+                categoria = '{grupo.nomeCategoria}',                
                 dataUltAlt = NOW()
             WHERE
                 grupoId = {grupo.grupoId}"""

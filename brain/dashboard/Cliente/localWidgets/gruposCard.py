@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 from Telas.cardGrupo import Ui_wdgGrupoCard
 from brain.DAOs.daoCliente import DaoCliente
 from brain.DAOs.daoGrupo import DaoGrupo
+from brain.dashboard.Cliente.localStyleSheets.grupoCards import frameCategoriaCard, labelCard
 from brain.dashboard.Sinais import Sinais
 from brain.delegates.alinhamento import AlinhamentoEsq
 from brain.envioDeMensagens import Mensagens
@@ -44,10 +45,13 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
 
         if grupo is not None:
             self.populaTblParticipantes()
-
-        if grupo is not None:
+            self.defineCategoriaNomeStyle()
             self.lbTituloCard.setText(grupo.titulo)
             self.lbDescricao.setText(grupo.descricao)
+
+        # if grupo is not None:
+        #     self.lbTituloCard.setText(grupo.titulo)
+        #     self.lbDescricao.setText(grupo.descricao)
 
     def populaTblParticipantes(self):
         daoGrupo = DaoGrupo(self.db)
@@ -113,4 +117,9 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
         self.enviarEmail.leEmail.setText(emailParticipantes[0:-2])
 
         self.enviarEmail.show()
+
+    def defineCategoriaNomeStyle(self):
+        self.lbCategoria.setText(self.grupo.nomeCategoria)
+        self.lbCategoria.setStyleSheet(labelCard(categoriaColor="black"))
+        self.frCategoria.setStyleSheet(frameCategoriaCard(categoriaColor=self.grupo.corCategoria))
 

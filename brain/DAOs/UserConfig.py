@@ -171,91 +171,106 @@ class DaoConfiguracoes:
         finally:
             self.disconectBD(cursor)
 
-    def cadastreUsuario(self, usuario):
-
-        self.db.connect()
-        cursor = self.db.cursor()
-
-        strComando = f"""
-            INSERT INTO usuario
-            (
-                 nomeUsuario, nomeEmpresa, nomeFantasia,
-                 cnpj, email, tel,
-                 endereco, cidade, cep, senha, dataCadastro
-            )
-            VALUES
-            (
-                '{usuario.nomeUsuario}', '{usuario.nomeEmpresa}', '{usuario.nomeFantasia}',
-                '{usuario.cnpj}', '{usuario.email}', {usuario.tel},
-                '{usuario.endereco}', '{usuario.cidade}', '{usuario.cep}', '{usuario.senha}', NOW()
-            )
-            """
-        try:
-            cursor.execute(strComando)
-            self.db.commit()
-            return True
-        except:
-            raise Exception(f'Erro SQL - cadastreUsuario({usuario.userId}) <CREATE TABLE>')
-        finally:
-            cursor.close()
-            self.db.close()
-
-    def verificaUsuario(self, strUsuario):
-
-        self.db.connect()
-        cursor = self.db.cursor()
-
-        strComando = f"""
-                    SELECT * 
-                    FROM {self.configs.tblUsuario}
-                    WHERE 
-                        nomeUsuario = '{strUsuario}'
-                    OR
-                        email = '{strUsuario}'
-                    OR
-                        nomeEmpresa = '{strUsuario}'
-                    OR
-                        cnpj = '{strUsuario}'
-                    """
-
-        try:
-            cursor.execute(strComando)
-
-            if cursor.fetchone() is None:
-                return False
-            else:
-                return True
-        except:
-            raise Exception(f'Erro SQL - verificaUsuario({strUsuario}) <SELECT {self.configs.tblUsuario}>')
-        finally:
-            self.disconectBD(cursor)
-
-    def confereSenha(self, strUsuario, password):
-
-        self.db.connect()
-        cursor = self.db.cursor()
-
-        strComando = f'''
-                    SELECT senha 
-                    FROM {self.configs.tblUsuario}
-                    WHERE 
-                        nomeUsuario = '{strUsuario}'
-                    OR
-                        email = '{strUsuario}'
-                    OR
-                        nomeEmpresa = '{strUsuario}'
-                    OR
-                        cnpj = '{strUsuario}'
-        '''
-        try:
-            cursor.execute(strComando)
-            senha = cursor.fetchall()[0][0]
-            strPassword = str(password)
-            return checkpw(strPassword.encode('utf-8'), senha)
-        except:
-            raise Exception(f'Erro SQL - confereSenha({self.configs.tblUsuario}) <SELECT>')
-        finally:
-            self.disconectBD(cursor)
+    # def cadastreUsuario(self, usuario):
+    #
+    #     self.db.connect()
+    #     cursor = self.db.cursor()
+    #
+    #     strComando = f"""
+    #         INSERT INTO usuario
+    #         (
+    #              nomeUsuario, nomeEmpresa, nomeFantasia,
+    #              cnpj, email, tel,
+    #              endereco, cidade, cep, senha, dataCadastro
+    #         )
+    #         VALUES
+    #         (
+    #             '{usuario.nomeUsuario}', '{usuario.nomeEmpresa}', '{usuario.nomeFantasia}',
+    #             '{usuario.cnpj}', '{usuario.email}', {usuario.tel},
+    #             '{usuario.endereco}', '{usuario.cidade}', '{usuario.cep}', '{usuario.senha}', NOW()
+    #         )
+    #         """
+    #     try:
+    #         cursor.execute(strComando)
+    #         self.db.commit()
+    #         return True
+    #     except:
+    #         raise Exception(f'Erro SQL - cadastreUsuario({usuario.userId}) <CREATE TABLE>')
+    #     finally:
+    #         cursor.close()
+    #         self.db.close()
+    #
+    # def verificaUsuario(self, strUsuario):
+    #
+    #     self.db.connect()
+    #     cursor = self.db.cursor()
+    #
+    #     strComando = f"""
+    #                    SELECT *
+    #                    FROM {self.configs.tblUsuario}
+    #                    WHERE
+    #                        nomeUsuario = '{strUsuario}'
+    #                    OR
+    #                        email = '{strUsuario}'
+    #                    OR
+    #                        nomeEmpresa = '{strUsuario}'
+    #                    OR
+    #                        cnpj = '{strUsuario}'
+    #                    """
+    #
+    #     try:
+    #         cursor.execute(strComando)
+    #
+    #         if cursor.fetchone() is None:
+    #             return False
+    #         else:
+    #             return True
+    #     except:
+    #         raise Exception(f'Erro SQL - verificaUsuario({strUsuario}) <SELECT {self.configs.tblUsuario}>')
+    #     finally:
+    #         self.disconectBD(cursor)
+    #
+    # def confereSenha(self, strUsuario, password):
+    #
+    #     self.db.connect()
+    #     cursor = self.db.cursor()
+    #
+    #     strComando = f'''
+    #                    SELECT senha
+    #                    FROM {self.configs.tblUsuario}
+    #                    WHERE
+    #                        nomeUsuario = '{strUsuario}'
+    #                    OR
+    #                        email = '{strUsuario}'
+    #                    OR
+    #                        nomeEmpresa = '{strUsuario}'
+    #                    OR
+    #                        cnpj = '{strUsuario}'
+    #        '''
+    #     try:
+    #         cursor.execute(strComando)
+    #         senha = cursor.fetchall()[0][0]
+    #         strPassword = str(password)
+    #         return checkpw(strPassword.encode('utf-8'), senha)
+    #     except:
+    #         raise Exception(f'Erro SQL - confereSenha({self.configs.tblUsuario}) <SELECT>')
+    #     finally:
+    #         self.disconectBD(cursor)
+    #
+    # def buscaUsuarioAtivo(self):
+    #
+    #     self.db.connect()
+    #     cursor = self.db.cursor()
+    #
+    #     strComando = f'SELECT * FROM {self.configs.tblUsuario} LIMIT 1'
+    #
+    #     try:
+    #         cursor.execute(strComando)
+    #         return cursor.fetchone()
+    #     except:
+    #         raise Exception(f'Erro SQL - buscaUsuarioAtivo()) <SELECT {self.configs.tblUsuario}>')
+    #     finally:
+    #         self.disconectBD(cursor)
 
     def verificaEstados(self):
 
@@ -274,21 +289,6 @@ class DaoConfiguracoes:
         else:
             self.disconectBD(cursor)
             return True
-
-    def buscaUsuarioAtivo(self):
-
-        self.db.connect()
-        cursor = self.db.cursor()
-
-        strComando = f'SELECT * FROM {self.configs.tblUsuario} LIMIT 1'
-
-        try:
-            cursor.execute(strComando)
-            return cursor.fetchone()
-        except:
-            raise Exception(f'Erro SQL - buscaUsuarioAtivo()) <SELECT {self.configs.tblUsuario}>')
-        finally:
-            self.disconectBD(cursor)
 
     def disconectBD(self, cursor):
         cursor.close()

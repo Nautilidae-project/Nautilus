@@ -1,5 +1,5 @@
 
-class Usuario:
+class UsuarioModel:
 
     def __init__(self):
         self.userId = None
@@ -12,6 +12,8 @@ class Usuario:
         self.endereco = None
         self.cidade = None
         self.cep = None
+        self.bairro = None
+        self.complemento = None
         self.senha = None
 
     def toDict(self):
@@ -50,16 +52,17 @@ class Usuario:
         self.nomeUsuario = usuarioList[1]
         self.nomeEmpresa = usuarioList[2]
         self.nomeFantasia = usuarioList[3]
-        self.cnpj = usuarioList[4]
-        self.email = usuarioList[5]
-        self.tel = usuarioList[6]
-        self.endereco = usuarioList[7]
-        self.cep = usuarioList[8]
-        self.senha = usuarioList[9]
+        self.caminhoLogo = usuarioList[4]
+        self.cnpj = usuarioList[5]
+        self.email = usuarioList[6]
+        self.tel = usuarioList[7]
+        self.endereco = usuarioList[8]
+        self.cep = usuarioList[9]
+        self.senha = usuarioList[10]
 
         return self
 
     def __repr__(self):
-        return f'Usuario(userId: {self.userId}, nomeUsuario: {self.nomeUsuario}, nomeEmpresa: {self.nomeEmpresa}, ' \
-               f'nomeFantasia: {self.nomeFantasia}, cnpj: {self.cnpj}, email: {self.email}, tel: {self.tel}, ' \
-               f'endereco: {self.endereco}, cep: {self.cep}, senha: {self.senha}'
+        return f"""Usuario(userId: {self.userId}, nomeUsuario: {self.nomeUsuario}, nomeEmpresa: {self.nomeEmpresa}, 
+                    nomeFantasia: {self.nomeFantasia}, caminhoLogo: {self.caminhoLogo}, cnpj: {self.cnpj}, 
+                    email: {self.email}, tel: {self.tel}, endereco: {self.endereco}, cep: {self.cep}, senha: {self.senha})"""

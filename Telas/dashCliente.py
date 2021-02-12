@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_wdgCliente(object):
     def setupUi(self, wdgCliente):
         wdgCliente.setObjectName("wdgCliente")
-        wdgCliente.resize(1094, 790)
+        wdgCliente.resize(1096, 972)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -24,16 +24,16 @@ class Ui_wdgCliente(object):
 "    background-color: #80CCE1;\n"
 "}\n"
 "\n"
-"/*------------------- Frame ---------------------*/\n"
+"/*------------------- Frame ---------------------\n"
 "QFrame {\n"
 "    background-color: #fafafa;\n"
 "    border: none;\n"
-"}\n"
+"}*/\n"
 "\n"
 "\n"
 "/*------------------- Label ---------------------*/\n"
 "QLabel {\n"
-"    font: 200 14pt \"Ubuntu\" ;\n"
+"    font: 200 12pt \"Ubuntu\" ;\n"
 "\n"
 "    border-radius: 10px;\n"
 "    border: 2px solid  #fff;\n"
@@ -41,32 +41,37 @@ class Ui_wdgCliente(object):
 "    background-color: #DFD880;\n"
 "}\n"
 "\n"
-"#leCard1, #leCard2, #leCard3, #leCard4 {\n"
-"    background-color: #fafafa;\n"
+"#lbInfoComplemento {\n"
+"    font: 200 10pt \"Ubuntu\" ;\n"
+"\n"
 "    border-radius: 10px;\n"
-"    border:1px solid;\n"
+"    border: 2px solid  #fff;\n"
+"    color: rgb(100, 100, 100);\n"
+"    background-color: #DFD880;\n"
 "}\n"
 "\n"
 "#lbTitulo{\n"
-"        background-color: none;\n"
-"        font: 300 22pt \"Ubuntu\" ;\n"
+"    background-color: none;\n"
+"    font: 300 22pt \"Ubuntu\" ;\n"
+"    border: 0px;\n"
 "}\n"
 "\n"
 "#lbCorpo{\n"
-"        background-color: none;\n"
-"        font: 200 18pt \"Ubuntu\" ;\n"
+"    background-color: none;\n"
+"    font: 200 18pt \"Ubuntu\" ;\n"
+"    border: 0px;\n"
 "}\n"
 "\n"
 "/*------------------- Line Edit ---------------------*/\n"
 "QLineEdit {\n"
 "    border: none;\n"
-"    background-color: #fafafa;\n"
+"/*    background-color: #fafafa;*/\n"
+"    background-color: transparent;\n"
 "    border-bottom: 2px solid;\n"
 "    border-color: rgb(14, 144, 173);\n"
-"    \n"
+"    border-radius: 0px;\n"
 "    \n"
 "    font: 80 14pt \"Ubuntu\" ;\n"
-"\n"
 "}\n"
 "\n"
 "QLineEdit:focus{\n"
@@ -76,6 +81,7 @@ class Ui_wdgCliente(object):
 "    border-top: none;\n"
 "    border-left: none;\n"
 "    border-right: none;\n"
+"    color: black;\n"
 "/*    border-radius: 10px;*/\n"
 "}\n"
 "\n"
@@ -83,12 +89,48 @@ class Ui_wdgCliente(object):
 "QPushButton{\n"
 "    background-color: #DFD880;\n"
 "    border: 0px solid;\n"
+"    margin: 0px;\n"
+"    padding: 0px;\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
 "    background-color: #80CCE1;\n"
+"    margin: 0px;\n"
+"    padding: 0px;\n"
 "}\n"
-"#pbConfirmarAtualizacao, #pbEnviarEmail{\n"
+"\n"
+"#pbConfirmarAtualizacao {\n"
+"    border-radius: 5px;\n"
+"    padding: 10px;\n"
+"    background-color: rgb(90, 190, 20);\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"#pbConfirmarAtualizacao::hover {\n"
+"    border-radius: 5px;\n"
+"    padding: 10px;\n"
+"    background-color: white;\n"
+"    color: rgb(100, 200, 22);\n"
+"    border: 2px solid rgb(100, 200, 22);\n"
+"}\n"
+"\n"
+"\n"
+"#pbCancelarEdicao {\n"
+"    border-radius: 5px;\n"
+"    padding: 10px;\n"
+"    background-color: rgba(239, 41, 41, 100);\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"#pbCancelarEdicao::hover {\n"
+"    border-radius: 5px;\n"
+"    padding: 10px;\n"
+"    background-color: white;\n"
+"    color: rgba(239, 41, 41, 100);\n"
+"    border: 2px solid rgba(239, 41, 41, 100);\n"
+"}\n"
+"\n"
+"#pbEnviarEmail {\n"
 "    border-radius: 5px;\n"
 "    padding: 10px;\n"
 "}\n"
@@ -181,8 +223,23 @@ class Ui_wdgCliente(object):
 "\n"
 "#frInfoCliente {\n"
 "    padding: 4px;\n"
+"    background-color: rgb(222, 248, 255);\n"
 "}\n"
 "\n"
+"#frClientesTotal {\n"
+"    background-color: rgb(229, 239, 245);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"\n"
+"#frClientesMensal {\n"
+"    background-color: rgb(221, 237, 238);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"\n"
+"#frClientesAnuais {\n"
+"    background-color: rgb(226, 249, 244);\n"
+"    border-radius: 12px;\n"
+"}\n"
 "\n"
 "/*-----------------------LineEdit------------------------------*/\n"
 "#leInfoBairro, \n"
@@ -197,6 +254,7 @@ class Ui_wdgCliente(object):
 "#leInfoCpf,\n"
 "#leInformacoes {\n"
 "    background-color: transparent;\n"
+"    color: black;\n"
 "}\n"
 "\n"
 "\n"
@@ -221,12 +279,46 @@ class Ui_wdgCliente(object):
 "    font-weight: bold;\n"
 "}\n"
 "\n"
-"#lbInfoDescricao, #lbTblGeralDescricao{\n"
+"#lbInfoDescricao, #lbTblGeralDescricao, #lbTituloTotal {\n"
 "    border: 0px;\n"
 "    background-color: transparent;\n"
 "    font-family: Ubuntu;\n"
 "    font-size: 12pt;\n"
 "    font-style: italic;\n"
+"}\n"
+"\n"
+"#lbTituloTotal, #lbTituloMensal, #lbTituloAnual  {\n"
+"    border: 0px;\n"
+"    background-color: transparent;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 12pt;\n"
+"    font-style: italic;\n"
+"    color: rgb(85, 87, 83);\n"
+"}\n"
+"\n"
+"#lbValorTotal, #lbValorMensal, #lbValorAnual  {\n"
+"    border: 0px;\n"
+"    background-color: transparent;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 32pt;\n"
+"    font-style: italic;\n"
+"    color: rgb(85, 87, 83);\n"
+"}\n"
+"\n"
+"#lbEstTotal, #lbEstMensal, #lbEstAnual {\n"
+"    border: 0px;\n"
+"    background-color: transparent;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 12pt;\n"
+"    font-weight: bold;\n"
+"    color: rgb(157, 165, 226);\n"
+"}\n"
+"\n"
+"/*---------------- CheckBox----------------------------------*/\n"
+"\n"
+"#cbInfoAtivo {\n"
+"    font: 200 12pt \"Ubuntu\" ;\n"
+"    color: rgb(85, 87, 83);\n"
 "}")
         self.tbInfosCliente.setObjectName("tbInfosCliente")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.tbInfosCliente)
@@ -478,10 +570,17 @@ class Ui_wdgCliente(object):
         self.frInfoCliente.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frInfoCliente.setObjectName("frInfoCliente")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.frInfoCliente)
-        self.verticalLayout_4.setContentsMargins(2, 2, 2, 2)
+        self.verticalLayout_4.setContentsMargins(8, 0, 4, 4)
+        self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.frInfoTitulo = QtWidgets.QFrame(self.frInfoCliente)
-        self.frInfoTitulo.setMinimumSize(QtCore.QSize(0, 60))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frInfoTitulo.sizePolicy().hasHeightForWidth())
+        self.frInfoTitulo.setSizePolicy(sizePolicy)
+        self.frInfoTitulo.setMinimumSize(QtCore.QSize(0, 80))
+        self.frInfoTitulo.setMaximumSize(QtCore.QSize(16777215, 90))
         self.frInfoTitulo.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.frInfoTitulo.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frInfoTitulo.setObjectName("frInfoTitulo")
@@ -498,7 +597,13 @@ class Ui_wdgCliente(object):
         self.verticalLayout_7.addWidget(self.lbInfoDescricao)
         self.verticalLayout_4.addWidget(self.frInfoTitulo)
         self.frInformacoes = QtWidgets.QFrame(self.frInfoCliente)
-        self.frInformacoes.setMinimumSize(QtCore.QSize(0, 36))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frInformacoes.sizePolicy().hasHeightForWidth())
+        self.frInformacoes.setSizePolicy(sizePolicy)
+        self.frInformacoes.setMinimumSize(QtCore.QSize(0, 32))
+        self.frInformacoes.setMaximumSize(QtCore.QSize(16777215, 40))
         self.frInformacoes.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frInformacoes.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frInformacoes.setObjectName("frInformacoes")
@@ -508,11 +613,11 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_21.setSpacing(16)
         self.horizontalLayout_21.setObjectName("horizontalLayout_21")
         self.lbInformacoes = QtWidgets.QLabel(self.frInformacoes)
-        self.lbInformacoes.setMinimumSize(QtCore.QSize(130, 30))
-        self.lbInformacoes.setMaximumSize(QtCore.QSize(130, 30))
+        self.lbInformacoes.setMinimumSize(QtCore.QSize(100, 24))
+        self.lbInformacoes.setMaximumSize(QtCore.QSize(100, 24))
         font = QtGui.QFont()
         font.setFamily("Ubuntu")
-        font.setPointSize(14)
+        font.setPointSize(12)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(25)
@@ -521,13 +626,20 @@ class Ui_wdgCliente(object):
         self.lbInformacoes.setObjectName("lbInformacoes")
         self.horizontalLayout_21.addWidget(self.lbInformacoes)
         self.cbInfoAtivo = QtWidgets.QCheckBox(self.frInformacoes)
-        self.cbInfoAtivo.setMinimumSize(QtCore.QSize(0, 30))
+        self.cbInfoAtivo.setMinimumSize(QtCore.QSize(100, 24))
+        self.cbInfoAtivo.setMaximumSize(QtCore.QSize(64654, 24))
         self.cbInfoAtivo.setTristate(False)
         self.cbInfoAtivo.setObjectName("cbInfoAtivo")
         self.horizontalLayout_21.addWidget(self.cbInfoAtivo)
         self.verticalLayout_4.addWidget(self.frInformacoes)
         self.frInfoNome = QtWidgets.QFrame(self.frInfoCliente)
-        self.frInfoNome.setMinimumSize(QtCore.QSize(0, 36))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frInfoNome.sizePolicy().hasHeightForWidth())
+        self.frInfoNome.setSizePolicy(sizePolicy)
+        self.frInfoNome.setMinimumSize(QtCore.QSize(0, 32))
+        self.frInfoNome.setMaximumSize(QtCore.QSize(16777215, 40))
         self.frInfoNome.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.frInfoNome.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frInfoNome.setObjectName("frInfoNome")
@@ -536,26 +648,32 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_22.setSpacing(16)
         self.horizontalLayout_22.setObjectName("horizontalLayout_22")
         self.lbInfoNome = QtWidgets.QLabel(self.frInfoNome)
-        self.lbInfoNome.setMinimumSize(QtCore.QSize(130, 30))
-        self.lbInfoNome.setMaximumSize(QtCore.QSize(130, 30))
+        self.lbInfoNome.setMinimumSize(QtCore.QSize(100, 24))
+        self.lbInfoNome.setMaximumSize(QtCore.QSize(100, 24))
         self.lbInfoNome.setAlignment(QtCore.Qt.AlignCenter)
         self.lbInfoNome.setObjectName("lbInfoNome")
         self.horizontalLayout_22.addWidget(self.lbInfoNome)
         self.leInfoNome = QtWidgets.QLineEdit(self.frInfoNome)
-        self.leInfoNome.setMinimumSize(QtCore.QSize(0, 30))
-        self.leInfoNome.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.leInfoNome.setMinimumSize(QtCore.QSize(0, 24))
+        self.leInfoNome.setMaximumSize(QtCore.QSize(16777215, 24))
         self.leInfoNome.setMaxLength(20)
         self.leInfoNome.setObjectName("leInfoNome")
         self.horizontalLayout_22.addWidget(self.leInfoNome)
         self.leInfoSobrenome = QtWidgets.QLineEdit(self.frInfoNome)
-        self.leInfoSobrenome.setMinimumSize(QtCore.QSize(0, 30))
-        self.leInfoSobrenome.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.leInfoSobrenome.setMinimumSize(QtCore.QSize(0, 24))
+        self.leInfoSobrenome.setMaximumSize(QtCore.QSize(16777215, 24))
         self.leInfoSobrenome.setMaxLength(30)
         self.leInfoSobrenome.setObjectName("leInfoSobrenome")
         self.horizontalLayout_22.addWidget(self.leInfoSobrenome)
         self.verticalLayout_4.addWidget(self.frInfoNome)
         self.frInfoTel = QtWidgets.QFrame(self.frInfoCliente)
-        self.frInfoTel.setMinimumSize(QtCore.QSize(0, 36))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frInfoTel.sizePolicy().hasHeightForWidth())
+        self.frInfoTel.setSizePolicy(sizePolicy)
+        self.frInfoTel.setMinimumSize(QtCore.QSize(0, 32))
+        self.frInfoTel.setMaximumSize(QtCore.QSize(16777215, 40))
         self.frInfoTel.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frInfoTel.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frInfoTel.setObjectName("frInfoTel")
@@ -564,8 +682,8 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_24.setSpacing(16)
         self.horizontalLayout_24.setObjectName("horizontalLayout_24")
         self.lbInfoTel = QtWidgets.QLabel(self.frInfoTel)
-        self.lbInfoTel.setMinimumSize(QtCore.QSize(130, 30))
-        self.lbInfoTel.setMaximumSize(QtCore.QSize(130, 30))
+        self.lbInfoTel.setMinimumSize(QtCore.QSize(100, 24))
+        self.lbInfoTel.setMaximumSize(QtCore.QSize(100, 24))
         self.lbInfoTel.setAlignment(QtCore.Qt.AlignCenter)
         self.lbInfoTel.setObjectName("lbInfoTel")
         self.horizontalLayout_24.addWidget(self.lbInfoTel)
@@ -577,7 +695,13 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_24.addWidget(self.leInfoTel)
         self.verticalLayout_4.addWidget(self.frInfoTel)
         self.frInfoEmail = QtWidgets.QFrame(self.frInfoCliente)
-        self.frInfoEmail.setMinimumSize(QtCore.QSize(0, 36))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frInfoEmail.sizePolicy().hasHeightForWidth())
+        self.frInfoEmail.setSizePolicy(sizePolicy)
+        self.frInfoEmail.setMinimumSize(QtCore.QSize(0, 32))
+        self.frInfoEmail.setMaximumSize(QtCore.QSize(16777215, 40))
         self.frInfoEmail.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frInfoEmail.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frInfoEmail.setObjectName("frInfoEmail")
@@ -586,8 +710,8 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_25.setSpacing(16)
         self.horizontalLayout_25.setObjectName("horizontalLayout_25")
         self.lbInfoEmail = QtWidgets.QLabel(self.frInfoEmail)
-        self.lbInfoEmail.setMinimumSize(QtCore.QSize(130, 30))
-        self.lbInfoEmail.setMaximumSize(QtCore.QSize(130, 30))
+        self.lbInfoEmail.setMinimumSize(QtCore.QSize(100, 24))
+        self.lbInfoEmail.setMaximumSize(QtCore.QSize(100, 24))
         self.lbInfoEmail.setAlignment(QtCore.Qt.AlignCenter)
         self.lbInfoEmail.setObjectName("lbInfoEmail")
         self.horizontalLayout_25.addWidget(self.lbInfoEmail)
@@ -599,7 +723,13 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_25.addWidget(self.leInfoEmail)
         self.verticalLayout_4.addWidget(self.frInfoEmail)
         self.frInfoCpf = QtWidgets.QFrame(self.frInfoCliente)
-        self.frInfoCpf.setMinimumSize(QtCore.QSize(0, 36))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frInfoCpf.sizePolicy().hasHeightForWidth())
+        self.frInfoCpf.setSizePolicy(sizePolicy)
+        self.frInfoCpf.setMinimumSize(QtCore.QSize(0, 32))
+        self.frInfoCpf.setMaximumSize(QtCore.QSize(16777215, 40))
         self.frInfoCpf.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frInfoCpf.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frInfoCpf.setObjectName("frInfoCpf")
@@ -608,19 +738,26 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_26.setSpacing(16)
         self.horizontalLayout_26.setObjectName("horizontalLayout_26")
         self.lbInfoCpf = QtWidgets.QLabel(self.frInfoCpf)
-        self.lbInfoCpf.setMinimumSize(QtCore.QSize(130, 30))
-        self.lbInfoCpf.setMaximumSize(QtCore.QSize(130, 30))
+        self.lbInfoCpf.setMinimumSize(QtCore.QSize(100, 24))
+        self.lbInfoCpf.setMaximumSize(QtCore.QSize(100, 24))
         self.lbInfoCpf.setAlignment(QtCore.Qt.AlignCenter)
         self.lbInfoCpf.setObjectName("lbInfoCpf")
         self.horizontalLayout_26.addWidget(self.lbInfoCpf)
         self.leInfoCpf = QtWidgets.QLineEdit(self.frInfoCpf)
-        self.leInfoCpf.setMinimumSize(QtCore.QSize(0, 30))
-        self.leInfoCpf.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.leInfoCpf.setMinimumSize(QtCore.QSize(0, 24))
+        self.leInfoCpf.setMaximumSize(QtCore.QSize(16777215, 24))
         self.leInfoCpf.setMaxLength(20)
         self.leInfoCpf.setObjectName("leInfoCpf")
         self.horizontalLayout_26.addWidget(self.leInfoCpf)
         self.verticalLayout_4.addWidget(self.frInfoCpf)
         self.frInfoEndereco = QtWidgets.QFrame(self.frInfoCliente)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frInfoEndereco.sizePolicy().hasHeightForWidth())
+        self.frInfoEndereco.setSizePolicy(sizePolicy)
+        self.frInfoEndereco.setMinimumSize(QtCore.QSize(0, 32))
+        self.frInfoEndereco.setMaximumSize(QtCore.QSize(16777215, 40))
         self.frInfoEndereco.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frInfoEndereco.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frInfoEndereco.setObjectName("frInfoEndereco")
@@ -629,8 +766,8 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_27.setSpacing(16)
         self.horizontalLayout_27.setObjectName("horizontalLayout_27")
         self.lbInfoEndereco = QtWidgets.QLabel(self.frInfoEndereco)
-        self.lbInfoEndereco.setMinimumSize(QtCore.QSize(130, 30))
-        self.lbInfoEndereco.setMaximumSize(QtCore.QSize(130, 30))
+        self.lbInfoEndereco.setMinimumSize(QtCore.QSize(100, 24))
+        self.lbInfoEndereco.setMaximumSize(QtCore.QSize(100, 24))
         self.lbInfoEndereco.setAlignment(QtCore.Qt.AlignCenter)
         self.lbInfoEndereco.setObjectName("lbInfoEndereco")
         self.horizontalLayout_27.addWidget(self.lbInfoEndereco)
@@ -642,6 +779,13 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_27.addWidget(self.leInfoEndereco)
         self.verticalLayout_4.addWidget(self.frInfoEndereco)
         self.frInfoComplemento = QtWidgets.QFrame(self.frInfoCliente)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frInfoComplemento.sizePolicy().hasHeightForWidth())
+        self.frInfoComplemento.setSizePolicy(sizePolicy)
+        self.frInfoComplemento.setMinimumSize(QtCore.QSize(0, 32))
+        self.frInfoComplemento.setMaximumSize(QtCore.QSize(16777215, 40))
         self.frInfoComplemento.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frInfoComplemento.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frInfoComplemento.setObjectName("frInfoComplemento")
@@ -650,8 +794,8 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_28.setSpacing(16)
         self.horizontalLayout_28.setObjectName("horizontalLayout_28")
         self.lbInfoComplemento = QtWidgets.QLabel(self.frInfoComplemento)
-        self.lbInfoComplemento.setMinimumSize(QtCore.QSize(130, 30))
-        self.lbInfoComplemento.setMaximumSize(QtCore.QSize(130, 30))
+        self.lbInfoComplemento.setMinimumSize(QtCore.QSize(100, 24))
+        self.lbInfoComplemento.setMaximumSize(QtCore.QSize(100, 24))
         self.lbInfoComplemento.setAlignment(QtCore.Qt.AlignCenter)
         self.lbInfoComplemento.setObjectName("lbInfoComplemento")
         self.horizontalLayout_28.addWidget(self.lbInfoComplemento)
@@ -663,6 +807,13 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_28.addWidget(self.leInfoComplemento)
         self.verticalLayout_4.addWidget(self.frInfoComplemento)
         self.frInfoCep = QtWidgets.QFrame(self.frInfoCliente)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frInfoCep.sizePolicy().hasHeightForWidth())
+        self.frInfoCep.setSizePolicy(sizePolicy)
+        self.frInfoCep.setMinimumSize(QtCore.QSize(0, 32))
+        self.frInfoCep.setMaximumSize(QtCore.QSize(16777215, 40))
         self.frInfoCep.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.frInfoCep.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frInfoCep.setObjectName("frInfoCep")
@@ -671,20 +822,27 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_31.setSpacing(16)
         self.horizontalLayout_31.setObjectName("horizontalLayout_31")
         self.lbInfoCep = QtWidgets.QLabel(self.frInfoCep)
-        self.lbInfoCep.setMinimumSize(QtCore.QSize(130, 30))
-        self.lbInfoCep.setMaximumSize(QtCore.QSize(130, 30))
+        self.lbInfoCep.setMinimumSize(QtCore.QSize(100, 24))
+        self.lbInfoCep.setMaximumSize(QtCore.QSize(100, 24))
         self.lbInfoCep.setAlignment(QtCore.Qt.AlignCenter)
         self.lbInfoCep.setObjectName("lbInfoCep")
         self.horizontalLayout_31.addWidget(self.lbInfoCep)
         self.leInfoCep = QtWidgets.QLineEdit(self.frInfoCep)
-        self.leInfoCep.setMinimumSize(QtCore.QSize(0, 30))
-        self.leInfoCep.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.leInfoCep.setMinimumSize(QtCore.QSize(0, 24))
+        self.leInfoCep.setMaximumSize(QtCore.QSize(16777215, 24))
         self.leInfoCep.setMaxLength(15)
         self.leInfoCep.setObjectName("leInfoCep")
         self.horizontalLayout_31.addWidget(self.leInfoCep)
         self.verticalLayout_4.addWidget(self.frInfoCep)
         self.frInfoBairro = QtWidgets.QFrame(self.frInfoCliente)
-        self.frInfoBairro.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frInfoBairro.sizePolicy().hasHeightForWidth())
+        self.frInfoBairro.setSizePolicy(sizePolicy)
+        self.frInfoBairro.setMinimumSize(QtCore.QSize(0, 32))
+        self.frInfoBairro.setMaximumSize(QtCore.QSize(16777215, 40))
+        self.frInfoBairro.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.frInfoBairro.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frInfoBairro.setObjectName("frInfoBairro")
         self.horizontalLayout_29 = QtWidgets.QHBoxLayout(self.frInfoBairro)
@@ -692,20 +850,26 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_29.setSpacing(16)
         self.horizontalLayout_29.setObjectName("horizontalLayout_29")
         self.lbInfoBairro = QtWidgets.QLabel(self.frInfoBairro)
-        self.lbInfoBairro.setMinimumSize(QtCore.QSize(130, 30))
-        self.lbInfoBairro.setMaximumSize(QtCore.QSize(130, 30))
+        self.lbInfoBairro.setMinimumSize(QtCore.QSize(100, 24))
+        self.lbInfoBairro.setMaximumSize(QtCore.QSize(100, 24))
         self.lbInfoBairro.setAlignment(QtCore.Qt.AlignCenter)
         self.lbInfoBairro.setObjectName("lbInfoBairro")
         self.horizontalLayout_29.addWidget(self.lbInfoBairro)
         self.leInfoBairro = QtWidgets.QLineEdit(self.frInfoBairro)
-        self.leInfoBairro.setMinimumSize(QtCore.QSize(0, 30))
-        self.leInfoBairro.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.leInfoBairro.setMinimumSize(QtCore.QSize(0, 24))
+        self.leInfoBairro.setMaximumSize(QtCore.QSize(16777215, 24))
         self.leInfoBairro.setMaxLength(30)
         self.leInfoBairro.setObjectName("leInfoBairro")
         self.horizontalLayout_29.addWidget(self.leInfoBairro)
         self.verticalLayout_4.addWidget(self.frInfoBairro)
         self.frInfoMeioPag = QtWidgets.QFrame(self.frInfoCliente)
-        self.frInfoMeioPag.setMaximumSize(QtCore.QSize(359, 16777215))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frInfoMeioPag.sizePolicy().hasHeightForWidth())
+        self.frInfoMeioPag.setSizePolicy(sizePolicy)
+        self.frInfoMeioPag.setMinimumSize(QtCore.QSize(0, 32))
+        self.frInfoMeioPag.setMaximumSize(QtCore.QSize(359, 40))
         self.frInfoMeioPag.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frInfoMeioPag.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frInfoMeioPag.setObjectName("frInfoMeioPag")
@@ -714,11 +878,11 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_30.setSpacing(16)
         self.horizontalLayout_30.setObjectName("horizontalLayout_30")
         self.lbInfoMeioPag = QtWidgets.QLabel(self.frInfoMeioPag)
-        self.lbInfoMeioPag.setMinimumSize(QtCore.QSize(130, 30))
-        self.lbInfoMeioPag.setMaximumSize(QtCore.QSize(130, 30))
+        self.lbInfoMeioPag.setMinimumSize(QtCore.QSize(100, 24))
+        self.lbInfoMeioPag.setMaximumSize(QtCore.QSize(100, 24))
         font = QtGui.QFont()
         font.setFamily("Ubuntu")
-        font.setPointSize(14)
+        font.setPointSize(12)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(25)
@@ -728,11 +892,18 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_30.addWidget(self.lbInfoMeioPag)
         self.cbxInfoMeioPag = QtWidgets.QComboBox(self.frInfoMeioPag)
         self.cbxInfoMeioPag.setMinimumSize(QtCore.QSize(0, 30))
-        self.cbxInfoMeioPag.setMaximumSize(QtCore.QSize(200, 30))
+        self.cbxInfoMeioPag.setMaximumSize(QtCore.QSize(6546545, 30))
         self.cbxInfoMeioPag.setObjectName("cbxInfoMeioPag")
         self.horizontalLayout_30.addWidget(self.cbxInfoMeioPag)
         self.verticalLayout_4.addWidget(self.frInfoMeioPag)
         self.frInfoConfirmar = QtWidgets.QFrame(self.frInfoCliente)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frInfoConfirmar.sizePolicy().hasHeightForWidth())
+        self.frInfoConfirmar.setSizePolicy(sizePolicy)
+        self.frInfoConfirmar.setMinimumSize(QtCore.QSize(0, 32))
+        self.frInfoConfirmar.setMaximumSize(QtCore.QSize(16777215, 40))
         self.frInfoConfirmar.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frInfoConfirmar.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frInfoConfirmar.setObjectName("frInfoConfirmar")
@@ -746,47 +917,118 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_32.addWidget(self.pbEnviarEmail)
         spacerItem2 = QtWidgets.QSpacerItem(0, 30, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_32.addItem(spacerItem2)
+        self.pbCancelarEdicao = QtWidgets.QPushButton(self.frInfoConfirmar)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pbCancelarEdicao.sizePolicy().hasHeightForWidth())
+        self.pbCancelarEdicao.setSizePolicy(sizePolicy)
+        self.pbCancelarEdicao.setMinimumSize(QtCore.QSize(0, 30))
+        self.pbCancelarEdicao.setMaximumSize(QtCore.QSize(16777215, 40))
+        self.pbCancelarEdicao.setObjectName("pbCancelarEdicao")
+        self.horizontalLayout_32.addWidget(self.pbCancelarEdicao)
         self.pbConfirmarAtualizacao = QtWidgets.QPushButton(self.frInfoConfirmar)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pbConfirmarAtualizacao.sizePolicy().hasHeightForWidth())
+        self.pbConfirmarAtualizacao.setSizePolicy(sizePolicy)
         self.pbConfirmarAtualizacao.setMinimumSize(QtCore.QSize(0, 30))
+        self.pbConfirmarAtualizacao.setMaximumSize(QtCore.QSize(16777215, 30))
         self.pbConfirmarAtualizacao.setObjectName("pbConfirmarAtualizacao")
         self.horizontalLayout_32.addWidget(self.pbConfirmarAtualizacao)
         self.verticalLayout_4.addWidget(self.frInfoConfirmar)
         self.gridLayout_3.addWidget(self.frInfoCliente, 1, 2, 2, 1)
         self.frTopTabMenu = QtWidgets.QFrame(self.tbInfosCliente)
-        self.frTopTabMenu.setMinimumSize(QtCore.QSize(0, 110))
+        self.frTopTabMenu.setMinimumSize(QtCore.QSize(0, 80))
         self.frTopTabMenu.setMaximumSize(QtCore.QSize(16777215, 110))
         self.frTopTabMenu.setStyleSheet("")
         self.frTopTabMenu.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frTopTabMenu.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frTopTabMenu.setObjectName("frTopTabMenu")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.frTopTabMenu)
-        self.horizontalLayout_2.setContentsMargins(9, 0, 9, 9)
+        self.horizontalLayout_2.setContentsMargins(9, 0, 150, 9)
         self.horizontalLayout_2.setSpacing(15)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.leCard1 = QtWidgets.QLabel(self.frTopTabMenu)
-        self.leCard1.setMaximumSize(QtCore.QSize(300, 110))
-        self.leCard1.setStyleSheet("")
-        self.leCard1.setAlignment(QtCore.Qt.AlignCenter)
-        self.leCard1.setObjectName("leCard1")
-        self.horizontalLayout_2.addWidget(self.leCard1)
-        self.leCard2 = QtWidgets.QLabel(self.frTopTabMenu)
-        self.leCard2.setMaximumSize(QtCore.QSize(300, 110))
-        self.leCard2.setStyleSheet("")
-        self.leCard2.setAlignment(QtCore.Qt.AlignCenter)
-        self.leCard2.setObjectName("leCard2")
-        self.horizontalLayout_2.addWidget(self.leCard2)
-        self.leCard3 = QtWidgets.QLabel(self.frTopTabMenu)
-        self.leCard3.setMaximumSize(QtCore.QSize(300, 110))
-        self.leCard3.setStyleSheet("")
-        self.leCard3.setAlignment(QtCore.Qt.AlignCenter)
-        self.leCard3.setObjectName("leCard3")
-        self.horizontalLayout_2.addWidget(self.leCard3)
-        self.leCard4 = QtWidgets.QLabel(self.frTopTabMenu)
-        self.leCard4.setMaximumSize(QtCore.QSize(300, 110))
-        self.leCard4.setStyleSheet("")
-        self.leCard4.setAlignment(QtCore.Qt.AlignCenter)
-        self.leCard4.setObjectName("leCard4")
-        self.horizontalLayout_2.addWidget(self.leCard4)
+        self.frClientesTotal = QtWidgets.QFrame(self.frTopTabMenu)
+        self.frClientesTotal.setMinimumSize(QtCore.QSize(150, 0))
+        self.frClientesTotal.setMaximumSize(QtCore.QSize(140, 16777215))
+        self.frClientesTotal.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frClientesTotal.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frClientesTotal.setObjectName("frClientesTotal")
+        self.lbTituloTotal = QtWidgets.QLabel(self.frClientesTotal)
+        self.lbTituloTotal.setGeometry(QtCore.QRect(10, 0, 121, 24))
+        self.lbTituloTotal.setMinimumSize(QtCore.QSize(0, 24))
+        self.lbTituloTotal.setMaximumSize(QtCore.QSize(654654, 24))
+        self.lbTituloTotal.setStyleSheet("")
+        self.lbTituloTotal.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.lbTituloTotal.setObjectName("lbTituloTotal")
+        self.lbValorTotal = QtWidgets.QLabel(self.frClientesTotal)
+        self.lbValorTotal.setGeometry(QtCore.QRect(45, 30, 91, 40))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lbValorTotal.sizePolicy().hasHeightForWidth())
+        self.lbValorTotal.setSizePolicy(sizePolicy)
+        self.lbValorTotal.setMinimumSize(QtCore.QSize(0, 40))
+        self.lbValorTotal.setMaximumSize(QtCore.QSize(16777215, 32))
+        self.lbValorTotal.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbValorTotal.setObjectName("lbValorTotal")
+        self.lbEstTotal = QtWidgets.QLabel(self.frClientesTotal)
+        self.lbEstTotal.setGeometry(QtCore.QRect(10, 50, 41, 16))
+        self.lbEstTotal.setMinimumSize(QtCore.QSize(0, 16))
+        self.lbEstTotal.setMaximumSize(QtCore.QSize(16777215, 16))
+        self.lbEstTotal.setObjectName("lbEstTotal")
+        self.horizontalLayout_2.addWidget(self.frClientesTotal)
+        self.frClientesMensal = QtWidgets.QFrame(self.frTopTabMenu)
+        self.frClientesMensal.setMinimumSize(QtCore.QSize(150, 0))
+        self.frClientesMensal.setMaximumSize(QtCore.QSize(140, 16777215))
+        self.frClientesMensal.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frClientesMensal.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frClientesMensal.setObjectName("frClientesMensal")
+        self.lbTituloMensal = QtWidgets.QLabel(self.frClientesMensal)
+        self.lbTituloMensal.setGeometry(QtCore.QRect(10, 0, 121, 41))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lbTituloMensal.sizePolicy().hasHeightForWidth())
+        self.lbTituloMensal.setSizePolicy(sizePolicy)
+        self.lbTituloMensal.setMaximumSize(QtCore.QSize(65466, 94654))
+        self.lbTituloMensal.setStyleSheet("")
+        self.lbTituloMensal.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.lbTituloMensal.setWordWrap(True)
+        self.lbTituloMensal.setObjectName("lbTituloMensal")
+        self.lbValorMensal = QtWidgets.QLabel(self.frClientesMensal)
+        self.lbValorMensal.setGeometry(QtCore.QRect(75, 30, 61, 40))
+        self.lbValorMensal.setMinimumSize(QtCore.QSize(0, 40))
+        self.lbValorMensal.setMaximumSize(QtCore.QSize(16777215, 32))
+        self.lbValorMensal.setObjectName("lbValorMensal")
+        self.lbEstMensal = QtWidgets.QLabel(self.frClientesMensal)
+        self.lbEstMensal.setGeometry(QtCore.QRect(10, 50, 61, 20))
+        self.lbEstMensal.setObjectName("lbEstMensal")
+        self.horizontalLayout_2.addWidget(self.frClientesMensal)
+        self.frClientesAnuais = QtWidgets.QFrame(self.frTopTabMenu)
+        self.frClientesAnuais.setMinimumSize(QtCore.QSize(150, 0))
+        self.frClientesAnuais.setMaximumSize(QtCore.QSize(140, 16777215))
+        self.frClientesAnuais.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frClientesAnuais.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frClientesAnuais.setObjectName("frClientesAnuais")
+        self.lbTituloAnual = QtWidgets.QLabel(self.frClientesAnuais)
+        self.lbTituloAnual.setGeometry(QtCore.QRect(10, 0, 121, 41))
+        self.lbTituloAnual.setMaximumSize(QtCore.QSize(6544, 6546))
+        self.lbTituloAnual.setStyleSheet("")
+        self.lbTituloAnual.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.lbTituloAnual.setWordWrap(True)
+        self.lbTituloAnual.setObjectName("lbTituloAnual")
+        self.lbValorAnual = QtWidgets.QLabel(self.frClientesAnuais)
+        self.lbValorAnual.setGeometry(QtCore.QRect(75, 30, 61, 40))
+        self.lbValorAnual.setObjectName("lbValorAnual")
+        self.lbEstAnual = QtWidgets.QLabel(self.frClientesAnuais)
+        self.lbEstAnual.setGeometry(QtCore.QRect(10, 50, 61, 20))
+        self.lbEstAnual.setObjectName("lbEstAnual")
+        self.horizontalLayout_2.addWidget(self.frClientesAnuais)
+        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_2.addItem(spacerItem3)
         self.gridLayout_3.addWidget(self.frTopTabMenu, 0, 0, 1, 3)
         self.tabsCliente.addTab(self.tbInfosCliente, "")
         self.tbCadastraCliente = QtWidgets.QWidget()
@@ -795,15 +1037,97 @@ class Ui_wdgCliente(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.tbCadastraCliente.sizePolicy().hasHeightForWidth())
         self.tbCadastraCliente.setSizePolicy(sizePolicy)
-        self.tbCadastraCliente.setStyleSheet("")
+        self.tbCadastraCliente.setStyleSheet("/*------------------------------- Frames ----------------------------------------*/\n"
+"#frCabecalhoCadPessoa, #frCabecalhoCadPlano {\n"
+"    border-radius: 0px;\n"
+"    background-color: rgb(210, 210, 226);\n"
+"    border: 0px;\n"
+"}\n"
+"\n"
+"#frAreaPlano, frCadPessoa {\n"
+"    border-radius: 0px;\n"
+"    border: 0px;\n"
+"}\n"
+"\n"
+"#frame_3, #frame_4, #frame_5, #frame_6 {\n"
+"    background-color: transparent;    \n"
+"    border: 0px solid transparent;\n"
+"} \n"
+"\n"
+"#frPessoaBody, #frPlanoBody{\n"
+"    background-color: rgb(238, 238, 236);\n"
+"    border-bottom: 2px solid rgb(46, 52, 54);\n"
+"    border-left: 2px solid rgb(46, 52, 54);\n"
+"    border-right: 2px solid rgb(46, 52, 54);\n"
+"    border-top: 1px solid rgb(211, 215, 207);\n"
+"    border-radius: 0px;\n"
+"}\n"
+"\n"
+"/*------------------------------ Buttons ----------------------------------------*/\n"
+"#pbMaximizaPessoa, #pbMaximizaPlano{\n"
+"    background-image: url(:/maximiza/arrowDown.png);\n"
+"    background-repeat: no-repeat;\n"
+"    background-position: center;\n"
+"    background-color: transparent;\n"
+"}\n"
+"\n"
+"#pbMinimizaPessoa, #pbMinimizaPlano{\n"
+"    background-image: url(:/minimiza/arrowUp.png);\n"
+"    background-repeat: no-repeat;\n"
+"    background-position: center;\n"
+"    background-color: transparent;\n"
+"}\n"
+"\n"
+"/*------------------------------- Labels ----------------------------------------*/\n"
+"#lbPasso1de3, #lbPasso2de3 {\n"
+"    background-color: transparent;\n"
+"    font-family: Ubuntu;\n"
+"    font-style: italic;\n"
+"    font-size: 12px;\n"
+"    border: 0px;\n"
+"}\n"
+"\n"
+"#lbTituloPessoa, #lbTituloPlano {\n"
+"    background-color: transparent;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 24px;\n"
+"    font-weight: 200;\n"
+"    border: 0px;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"#lbDescricaoPessoa, #lbDescricaoPlano {\n"
+"    background-color: transparent;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 14px;\n"
+"    border: 0px;\n"
+"}")
         self.tbCadastraCliente.setObjectName("tbCadastraCliente")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.tbCadastraCliente)
-        self.gridLayout_2.setContentsMargins(-1, 6, -1, 6)
+        self.gridLayout_2.setContentsMargins(9, 0, -1, 6)
+        self.gridLayout_2.setSpacing(0)
         self.gridLayout_2.setObjectName("gridLayout_2")
+        self.frame = QtWidgets.QFrame(self.tbCadastraCliente)
+        self.frame.setMaximumSize(QtCore.QSize(16777215, 100))
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.frame)
+        self.horizontalLayout.setContentsMargins(8, 8, 8, 8)
+        self.horizontalLayout.setSpacing(0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.pbCadastrar = QtWidgets.QPushButton(self.frame)
+        self.pbCadastrar.setMinimumSize(QtCore.QSize(80, 50))
+        self.pbCadastrar.setMaximumSize(QtCore.QSize(100, 50))
+        self.pbCadastrar.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.pbCadastrar.setStyleSheet("")
+        self.pbCadastrar.setObjectName("pbCadastrar")
+        self.horizontalLayout.addWidget(self.pbCadastrar)
+        self.gridLayout_2.addWidget(self.frame, 4, 0, 1, 1, QtCore.Qt.AlignRight)
         self.frCabecalho = QtWidgets.QFrame(self.tbCadastraCliente)
         self.frCabecalho.setMinimumSize(QtCore.QSize(600, 100))
-        self.frCabecalho.setMaximumSize(QtCore.QSize(16777215, 60))
-        self.frCabecalho.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frCabecalho.setMaximumSize(QtCore.QSize(1078, 100))
+        self.frCabecalho.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.frCabecalho.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frCabecalho.setObjectName("frCabecalho")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.frCabecalho)
@@ -826,31 +1150,103 @@ class Ui_wdgCliente(object):
         self.lbCorpo.setObjectName("lbCorpo")
         self.verticalLayout_3.addWidget(self.lbCorpo)
         self.gridLayout_2.addWidget(self.frCabecalho, 0, 0, 1, 1)
-        self.frNomeSobrenome = QtWidgets.QFrame(self.tbCadastraCliente)
-        self.frNomeSobrenome.setMinimumSize(QtCore.QSize(600, 60))
-        self.frNomeSobrenome.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frNomeSobrenome.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frNomeSobrenome.setObjectName("frNomeSobrenome")
-        self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.frNomeSobrenome)
-        self.horizontalLayout_5.setContentsMargins(0, 0, 9, 0)
-        self.horizontalLayout_5.setSpacing(50)
+        self.scrollClienteCadastro = QtWidgets.QScrollArea(self.tbCadastraCliente)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.scrollClienteCadastro.sizePolicy().hasHeightForWidth())
+        self.scrollClienteCadastro.setSizePolicy(sizePolicy)
+        self.scrollClienteCadastro.setMinimumSize(QtCore.QSize(0, 0))
+        self.scrollClienteCadastro.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.scrollClienteCadastro.setWidgetResizable(True)
+        self.scrollClienteCadastro.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.scrollClienteCadastro.setObjectName("scrollClienteCadastro")
+        self.scrollClienteContents = QtWidgets.QWidget()
+        self.scrollClienteContents.setGeometry(QtCore.QRect(0, -370, 1064, 1083))
+        self.scrollClienteContents.setObjectName("scrollClienteContents")
+        self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.scrollClienteContents)
+        self.verticalLayout_10.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
+        self.verticalLayout_10.setContentsMargins(16, 16, 16, -1)
+        self.verticalLayout_10.setSpacing(18)
+        self.verticalLayout_10.setObjectName("verticalLayout_10")
+        self.frCadPessoa = QtWidgets.QFrame(self.scrollClienteContents)
+        self.frCadPessoa.setMaximumSize(QtCore.QSize(16777215, 500))
+        self.frCadPessoa.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frCadPessoa.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frCadPessoa.setObjectName("frCadPessoa")
+        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.frCadPessoa)
+        self.verticalLayout_9.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_9.setSpacing(0)
+        self.verticalLayout_9.setObjectName("verticalLayout_9")
+        self.frCabecalhoCadPessoa = QtWidgets.QFrame(self.frCadPessoa)
+        self.frCabecalhoCadPessoa.setMinimumSize(QtCore.QSize(0, 90))
+        self.frCabecalhoCadPessoa.setMaximumSize(QtCore.QSize(16777215, 100))
+        self.frCabecalhoCadPessoa.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frCabecalhoCadPessoa.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frCabecalhoCadPessoa.setObjectName("frCabecalhoCadPessoa")
+        self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.frCabecalhoCadPessoa)
+        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_5.setSpacing(0)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        self.frNome = QtWidgets.QFrame(self.frNomeSobrenome)
-        self.frNome.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frNome.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frNome.setObjectName("frNome")
-        self.horizontalLayout_9 = QtWidgets.QHBoxLayout(self.frNome)
-        self.horizontalLayout_9.setContentsMargins(9, -1, -1, -1)
-        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
-        self.lbNome = QtWidgets.QLabel(self.frNome)
+        self.frame_3 = QtWidgets.QFrame(self.frCabecalhoCadPessoa)
+        self.frame_3.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_3.setObjectName("frame_3")
+        self.lbDescricaoPessoa = QtWidgets.QLabel(self.frame_3)
+        self.lbDescricaoPessoa.setGeometry(QtCore.QRect(20, 60, 421, 17))
+        self.lbDescricaoPessoa.setObjectName("lbDescricaoPessoa")
+        self.lbPasso1de3 = QtWidgets.QLabel(self.frame_3)
+        self.lbPasso1de3.setGeometry(QtCore.QRect(10, 8, 71, 17))
+        self.lbPasso1de3.setObjectName("lbPasso1de3")
+        self.lbTituloPessoa = QtWidgets.QLabel(self.frame_3)
+        self.lbTituloPessoa.setGeometry(QtCore.QRect(20, 28, 241, 31))
+        self.lbTituloPessoa.setObjectName("lbTituloPessoa")
+        self.horizontalLayout_5.addWidget(self.frame_3)
+        self.frame_4 = QtWidgets.QFrame(self.frCabecalhoCadPessoa)
+        self.frame_4.setMinimumSize(QtCore.QSize(0, 24))
+        self.frame_4.setMaximumSize(QtCore.QSize(58, 24))
+        self.frame_4.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_4.setObjectName("frame_4")
+        self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.frame_4)
+        self.horizontalLayout_6.setContentsMargins(0, 8, 8, 0)
+        self.horizontalLayout_6.setSpacing(0)
+        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
+        self.pbMaximizaPessoa = QtWidgets.QPushButton(self.frame_4)
+        self.pbMaximizaPessoa.setText("")
+        self.pbMaximizaPessoa.setObjectName("pbMaximizaPessoa")
+        self.horizontalLayout_6.addWidget(self.pbMaximizaPessoa)
+        self.pbMinimizaPessoa = QtWidgets.QPushButton(self.frame_4)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pbMinimizaPessoa.sizePolicy().hasHeightForWidth())
+        self.pbMinimizaPessoa.setSizePolicy(sizePolicy)
+        self.pbMinimizaPessoa.setText("")
+        self.pbMinimizaPessoa.setObjectName("pbMinimizaPessoa")
+        self.horizontalLayout_6.addWidget(self.pbMinimizaPessoa)
+        self.horizontalLayout_5.addWidget(self.frame_4, 0, QtCore.Qt.AlignTop)
+        self.verticalLayout_9.addWidget(self.frCabecalhoCadPessoa)
+        self.frPessoaBody = QtWidgets.QFrame(self.frCadPessoa)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frPessoaBody.sizePolicy().hasHeightForWidth())
+        self.frPessoaBody.setSizePolicy(sizePolicy)
+        self.frPessoaBody.setMinimumSize(QtCore.QSize(0, 360))
+        self.frPessoaBody.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frPessoaBody.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frPessoaBody.setObjectName("frPessoaBody")
+        self.lbNome = QtWidgets.QLabel(self.frPessoaBody)
+        self.lbNome.setGeometry(QtCore.QRect(20, 10, 130, 30))
         self.lbNome.setMinimumSize(QtCore.QSize(130, 0))
         self.lbNome.setMaximumSize(QtCore.QSize(150, 30))
         self.lbNome.setStyleSheet("color: rgb(46, 52, 54)")
         self.lbNome.setTextFormat(QtCore.Qt.RichText)
         self.lbNome.setAlignment(QtCore.Qt.AlignCenter)
         self.lbNome.setObjectName("lbNome")
-        self.horizontalLayout_9.addWidget(self.lbNome)
-        self.leNome = QtWidgets.QLineEdit(self.frNome)
+        self.leNome = QtWidgets.QLineEdit(self.frPessoaBody)
+        self.leNome.setGeometry(QtCore.QRect(20, 50, 157, 30))
         self.leNome.setMinimumSize(QtCore.QSize(0, 30))
         self.leNome.setMaximumSize(QtCore.QSize(600, 16777215))
         self.leNome.setStyleSheet("")
@@ -858,229 +1254,248 @@ class Ui_wdgCliente(object):
         self.leNome.setText("")
         self.leNome.setMaxLength(20)
         self.leNome.setObjectName("leNome")
-        self.horizontalLayout_9.addWidget(self.leNome)
-        self.leNome.raise_()
-        self.lbNome.raise_()
-        self.horizontalLayout_5.addWidget(self.frNome)
-        self.frSobrenome = QtWidgets.QFrame(self.frNomeSobrenome)
-        self.frSobrenome.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frSobrenome.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frSobrenome.setObjectName("frSobrenome")
-        self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.frSobrenome)
-        self.horizontalLayout_10.setContentsMargins(9, -1, -1, -1)
-        self.horizontalLayout_10.setObjectName("horizontalLayout_10")
-        self.lbSobrenome = QtWidgets.QLabel(self.frSobrenome)
-        self.lbSobrenome.setMinimumSize(QtCore.QSize(130, 30))
-        self.lbSobrenome.setMaximumSize(QtCore.QSize(150, 30))
-        self.lbSobrenome.setStyleSheet("color: rgb(46, 52, 54)")
-        self.lbSobrenome.setTextFormat(QtCore.Qt.RichText)
-        self.lbSobrenome.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbSobrenome.setObjectName("lbSobrenome")
-        self.horizontalLayout_10.addWidget(self.lbSobrenome)
-        self.leSobrenome = QtWidgets.QLineEdit(self.frSobrenome)
+        self.leSobrenome = QtWidgets.QLineEdit(self.frPessoaBody)
+        self.leSobrenome.setGeometry(QtCore.QRect(186, 50, 241, 30))
         self.leSobrenome.setMinimumSize(QtCore.QSize(0, 30))
         self.leSobrenome.setMaximumSize(QtCore.QSize(600, 16777215))
         self.leSobrenome.setStyleSheet("")
         self.leSobrenome.setMaxLength(30)
         self.leSobrenome.setObjectName("leSobrenome")
-        self.horizontalLayout_10.addWidget(self.leSobrenome)
-        self.leSobrenome.raise_()
-        self.lbSobrenome.raise_()
-        self.horizontalLayout_5.addWidget(self.frSobrenome)
-        spacerItem3 = QtWidgets.QSpacerItem(100, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_5.addItem(spacerItem3)
-        self.gridLayout_2.addWidget(self.frNomeSobrenome, 1, 0, 1, 1)
-        self.frame = QtWidgets.QFrame(self.tbCadastraCliente)
-        self.frame.setMaximumSize(QtCore.QSize(16777215, 100))
-        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame.setObjectName("frame")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.frame)
-        self.horizontalLayout.setContentsMargins(9, -1, -1, 0)
-        self.horizontalLayout.setSpacing(6)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.pbCadastrar = QtWidgets.QPushButton(self.frame)
-        self.pbCadastrar.setMinimumSize(QtCore.QSize(80, 50))
-        self.pbCadastrar.setMaximumSize(QtCore.QSize(200, 50))
-        self.pbCadastrar.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.pbCadastrar.setStyleSheet("")
-        self.pbCadastrar.setObjectName("pbCadastrar")
-        self.horizontalLayout.addWidget(self.pbCadastrar)
-        self.gridLayout_2.addWidget(self.frame, 5, 0, 1, 1)
-        self.frEmailTel = QtWidgets.QFrame(self.tbCadastraCliente)
-        self.frEmailTel.setMinimumSize(QtCore.QSize(600, 60))
-        self.frEmailTel.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frEmailTel.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frEmailTel.setObjectName("frEmailTel")
-        self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.frEmailTel)
-        self.horizontalLayout_6.setContentsMargins(0, 0, 9, 0)
-        self.horizontalLayout_6.setSpacing(50)
-        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        self.frTel = QtWidgets.QFrame(self.frEmailTel)
-        self.frTel.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frTel.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frTel.setObjectName("frTel")
-        self.horizontalLayout_11 = QtWidgets.QHBoxLayout(self.frTel)
-        self.horizontalLayout_11.setContentsMargins(9, -1, -1, -1)
-        self.horizontalLayout_11.setObjectName("horizontalLayout_11")
-        self.lbTel = QtWidgets.QLabel(self.frTel)
-        self.lbTel.setMinimumSize(QtCore.QSize(130, 0))
-        self.lbTel.setMaximumSize(QtCore.QSize(150, 30))
-        self.lbTel.setStyleSheet("color: rgb(46, 52, 54)")
-        self.lbTel.setTextFormat(QtCore.Qt.RichText)
-        self.lbTel.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbTel.setObjectName("lbTel")
-        self.horizontalLayout_11.addWidget(self.lbTel)
-        self.leTel = QtWidgets.QLineEdit(self.frTel)
-        self.leTel.setMinimumSize(QtCore.QSize(0, 30))
-        self.leTel.setMaximumSize(QtCore.QSize(600, 16777215))
-        self.leTel.setStyleSheet("")
-        self.leTel.setMaxLength(19)
-        self.leTel.setObjectName("leTel")
-        self.horizontalLayout_11.addWidget(self.leTel)
-        self.horizontalLayout_6.addWidget(self.frTel)
-        self.frEmail = QtWidgets.QFrame(self.frEmailTel)
-        self.frEmail.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frEmail.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frEmail.setObjectName("frEmail")
-        self.horizontalLayout_12 = QtWidgets.QHBoxLayout(self.frEmail)
-        self.horizontalLayout_12.setContentsMargins(9, -1, -1, -1)
-        self.horizontalLayout_12.setObjectName("horizontalLayout_12")
-        self.lbEmail = QtWidgets.QLabel(self.frEmail)
-        self.lbEmail.setMinimumSize(QtCore.QSize(130, 0))
-        self.lbEmail.setMaximumSize(QtCore.QSize(150, 30))
-        self.lbEmail.setStyleSheet("color: rgb(46, 52, 54)")
-        self.lbEmail.setTextFormat(QtCore.Qt.RichText)
-        self.lbEmail.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbEmail.setObjectName("lbEmail")
-        self.horizontalLayout_12.addWidget(self.lbEmail)
-        self.leEmail = QtWidgets.QLineEdit(self.frEmail)
-        self.leEmail.setMinimumSize(QtCore.QSize(0, 30))
-        self.leEmail.setMaximumSize(QtCore.QSize(600, 16777215))
-        self.leEmail.setStyleSheet("")
-        self.leEmail.setMaxLength(40)
-        self.leEmail.setObjectName("leEmail")
-        self.horizontalLayout_12.addWidget(self.leEmail)
-        self.horizontalLayout_6.addWidget(self.frEmail)
-        spacerItem4 = QtWidgets.QSpacerItem(100, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_6.addItem(spacerItem4)
-        self.gridLayout_2.addWidget(self.frEmailTel, 2, 0, 1, 1)
-        self.frCepEnd = QtWidgets.QFrame(self.tbCadastraCliente)
-        self.frCepEnd.setMinimumSize(QtCore.QSize(600, 60))
-        self.frCepEnd.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frCepEnd.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frCepEnd.setObjectName("frCepEnd")
-        self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.frCepEnd)
-        self.horizontalLayout_7.setContentsMargins(0, 0, 9, 0)
-        self.horizontalLayout_7.setSpacing(50)
-        self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-        self.frCep = QtWidgets.QFrame(self.frCepEnd)
-        self.frCep.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frCep.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frCep.setObjectName("frCep")
-        self.horizontalLayout_13 = QtWidgets.QHBoxLayout(self.frCep)
-        self.horizontalLayout_13.setContentsMargins(9, -1, -1, -1)
-        self.horizontalLayout_13.setObjectName("horizontalLayout_13")
-        self.lbCep = QtWidgets.QLabel(self.frCep)
-        self.lbCep.setMinimumSize(QtCore.QSize(130, 0))
-        self.lbCep.setMaximumSize(QtCore.QSize(150, 30))
-        self.lbCep.setStyleSheet("color: rgb(46, 52, 54)")
-        self.lbCep.setTextFormat(QtCore.Qt.RichText)
-        self.lbCep.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbCep.setObjectName("lbCep")
-        self.horizontalLayout_13.addWidget(self.lbCep)
-        self.leCep = QtWidgets.QLineEdit(self.frCep)
-        self.leCep.setMinimumSize(QtCore.QSize(0, 30))
-        self.leCep.setMaximumSize(QtCore.QSize(600, 16777215))
-        self.leCep.setStyleSheet("")
-        self.leCep.setMaxLength(15)
-        self.leCep.setObjectName("leCep")
-        self.horizontalLayout_13.addWidget(self.leCep)
-        self.horizontalLayout_7.addWidget(self.frCep)
-        self.frEndereco = QtWidgets.QFrame(self.frCepEnd)
-        self.frEndereco.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frEndereco.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frEndereco.setObjectName("frEndereco")
-        self.horizontalLayout_14 = QtWidgets.QHBoxLayout(self.frEndereco)
-        self.horizontalLayout_14.setContentsMargins(9, -1, -1, -1)
-        self.horizontalLayout_14.setObjectName("horizontalLayout_14")
-        self.lbEnd = QtWidgets.QLabel(self.frEndereco)
+        self.lbEnd = QtWidgets.QLabel(self.frPessoaBody)
+        self.lbEnd.setGeometry(QtCore.QRect(20, 100, 130, 30))
         self.lbEnd.setMinimumSize(QtCore.QSize(130, 0))
         self.lbEnd.setMaximumSize(QtCore.QSize(150, 30))
         self.lbEnd.setStyleSheet("color: rgb(46, 52, 54)")
         self.lbEnd.setTextFormat(QtCore.Qt.RichText)
         self.lbEnd.setAlignment(QtCore.Qt.AlignCenter)
         self.lbEnd.setObjectName("lbEnd")
-        self.horizontalLayout_14.addWidget(self.lbEnd)
-        self.leEnd = QtWidgets.QLineEdit(self.frEndereco)
-        self.leEnd.setMinimumSize(QtCore.QSize(0, 30))
-        self.leEnd.setMaximumSize(QtCore.QSize(600, 16777215))
-        self.leEnd.setStyleSheet("")
-        self.leEnd.setMaxLength(50)
-        self.leEnd.setObjectName("leEnd")
-        self.horizontalLayout_14.addWidget(self.leEnd)
-        self.horizontalLayout_7.addWidget(self.frEndereco)
-        spacerItem5 = QtWidgets.QSpacerItem(100, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_7.addItem(spacerItem5)
-        self.gridLayout_2.addWidget(self.frCepEnd, 3, 0, 1, 1)
-        self.frBairroCompl = QtWidgets.QFrame(self.tbCadastraCliente)
-        self.frBairroCompl.setMinimumSize(QtCore.QSize(600, 60))
-        self.frBairroCompl.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frBairroCompl.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frBairroCompl.setObjectName("frBairroCompl")
-        self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.frBairroCompl)
-        self.horizontalLayout_8.setContentsMargins(0, 0, 9, 0)
-        self.horizontalLayout_8.setSpacing(50)
-        self.horizontalLayout_8.setObjectName("horizontalLayout_8")
-        self.frBairro = QtWidgets.QFrame(self.frBairroCompl)
-        self.frBairro.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frBairro.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frBairro.setObjectName("frBairro")
-        self.horizontalLayout_15 = QtWidgets.QHBoxLayout(self.frBairro)
-        self.horizontalLayout_15.setContentsMargins(9, -1, -1, -1)
-        self.horizontalLayout_15.setObjectName("horizontalLayout_15")
-        self.lbBairro = QtWidgets.QLabel(self.frBairro)
+        self.lbCep = QtWidgets.QLabel(self.frPessoaBody)
+        self.lbCep.setGeometry(QtCore.QRect(20, 190, 130, 30))
+        self.lbCep.setMinimumSize(QtCore.QSize(130, 0))
+        self.lbCep.setMaximumSize(QtCore.QSize(150, 30))
+        self.lbCep.setStyleSheet("color: rgb(46, 52, 54)")
+        self.lbCep.setTextFormat(QtCore.Qt.RichText)
+        self.lbCep.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbCep.setObjectName("lbCep")
+        self.lbBairro = QtWidgets.QLabel(self.frPessoaBody)
+        self.lbBairro.setGeometry(QtCore.QRect(20, 280, 130, 30))
         self.lbBairro.setMinimumSize(QtCore.QSize(130, 0))
         self.lbBairro.setMaximumSize(QtCore.QSize(150, 30))
         self.lbBairro.setStyleSheet("color: rgb(46, 52, 54)")
         self.lbBairro.setTextFormat(QtCore.Qt.RichText)
         self.lbBairro.setAlignment(QtCore.Qt.AlignCenter)
         self.lbBairro.setObjectName("lbBairro")
-        self.horizontalLayout_15.addWidget(self.lbBairro)
-        self.leBairro = QtWidgets.QLineEdit(self.frBairro)
-        self.leBairro.setMinimumSize(QtCore.QSize(0, 30))
-        self.leBairro.setMaximumSize(QtCore.QSize(600, 16777215))
-        self.leBairro.setStyleSheet("")
-        self.leBairro.setMaxLength(30)
-        self.leBairro.setObjectName("leBairro")
-        self.horizontalLayout_15.addWidget(self.leBairro)
-        self.horizontalLayout_8.addWidget(self.frBairro)
-        self.frComplemento = QtWidgets.QFrame(self.frBairroCompl)
-        self.frComplemento.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frComplemento.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frComplemento.setObjectName("frComplemento")
-        self.horizontalLayout_16 = QtWidgets.QHBoxLayout(self.frComplemento)
-        self.horizontalLayout_16.setContentsMargins(9, -1, -1, -1)
-        self.horizontalLayout_16.setObjectName("horizontalLayout_16")
-        self.lbCompl = QtWidgets.QLabel(self.frComplemento)
+        self.lbCompl = QtWidgets.QLabel(self.frPessoaBody)
+        self.lbCompl.setGeometry(QtCore.QRect(610, 110, 130, 30))
         self.lbCompl.setMinimumSize(QtCore.QSize(130, 0))
         self.lbCompl.setMaximumSize(QtCore.QSize(150, 30))
         self.lbCompl.setStyleSheet("color: rgb(46, 52, 54)")
         self.lbCompl.setTextFormat(QtCore.Qt.RichText)
         self.lbCompl.setAlignment(QtCore.Qt.AlignCenter)
         self.lbCompl.setObjectName("lbCompl")
-        self.horizontalLayout_16.addWidget(self.lbCompl)
-        self.leCompl = QtWidgets.QLineEdit(self.frComplemento)
+        self.leCompl = QtWidgets.QLineEdit(self.frPessoaBody)
+        self.leCompl.setGeometry(QtCore.QRect(610, 150, 301, 30))
         self.leCompl.setMinimumSize(QtCore.QSize(0, 30))
         self.leCompl.setMaximumSize(QtCore.QSize(600, 16777215))
         self.leCompl.setStyleSheet("")
         self.leCompl.setMaxLength(30)
         self.leCompl.setObjectName("leCompl")
-        self.horizontalLayout_16.addWidget(self.leCompl)
-        self.horizontalLayout_8.addWidget(self.frComplemento)
-        spacerItem6 = QtWidgets.QSpacerItem(100, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_8.addItem(spacerItem6)
-        self.gridLayout_2.addWidget(self.frBairroCompl, 4, 0, 1, 1)
+        self.leCep = QtWidgets.QLineEdit(self.frPessoaBody)
+        self.leCep.setGeometry(QtCore.QRect(20, 230, 348, 30))
+        self.leCep.setMinimumSize(QtCore.QSize(0, 30))
+        self.leCep.setMaximumSize(QtCore.QSize(600, 16777215))
+        self.leCep.setStyleSheet("")
+        self.leCep.setMaxLength(15)
+        self.leCep.setObjectName("leCep")
+        self.leBairro = QtWidgets.QLineEdit(self.frPessoaBody)
+        self.leBairro.setGeometry(QtCore.QRect(20, 320, 411, 30))
+        self.leBairro.setMinimumSize(QtCore.QSize(0, 30))
+        self.leBairro.setMaximumSize(QtCore.QSize(600, 16777215))
+        self.leBairro.setStyleSheet("")
+        self.leBairro.setMaxLength(30)
+        self.leBairro.setObjectName("leBairro")
+        self.lbEmail = QtWidgets.QLabel(self.frPessoaBody)
+        self.lbEmail.setGeometry(QtCore.QRect(610, 210, 130, 30))
+        self.lbEmail.setMinimumSize(QtCore.QSize(130, 0))
+        self.lbEmail.setMaximumSize(QtCore.QSize(150, 30))
+        self.lbEmail.setStyleSheet("color: rgb(46, 52, 54)")
+        self.lbEmail.setTextFormat(QtCore.Qt.RichText)
+        self.lbEmail.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbEmail.setObjectName("lbEmail")
+        self.leEmail = QtWidgets.QLineEdit(self.frPessoaBody)
+        self.leEmail.setGeometry(QtCore.QRect(610, 250, 301, 30))
+        self.leEmail.setMinimumSize(QtCore.QSize(0, 30))
+        self.leEmail.setMaximumSize(QtCore.QSize(600, 16777215))
+        self.leEmail.setStyleSheet("")
+        self.leEmail.setMaxLength(40)
+        self.leEmail.setObjectName("leEmail")
+        self.leTel = QtWidgets.QLineEdit(self.frPessoaBody)
+        self.leTel.setGeometry(QtCore.QRect(610, 50, 161, 30))
+        self.leTel.setMinimumSize(QtCore.QSize(0, 30))
+        self.leTel.setMaximumSize(QtCore.QSize(600, 16777215))
+        self.leTel.setStyleSheet("")
+        self.leTel.setMaxLength(19)
+        self.leTel.setObjectName("leTel")
+        self.lbTel = QtWidgets.QLabel(self.frPessoaBody)
+        self.lbTel.setGeometry(QtCore.QRect(610, 10, 150, 30))
+        self.lbTel.setMinimumSize(QtCore.QSize(130, 0))
+        self.lbTel.setMaximumSize(QtCore.QSize(150, 30))
+        self.lbTel.setStyleSheet("color: rgb(46, 52, 54)")
+        self.lbTel.setTextFormat(QtCore.Qt.RichText)
+        self.lbTel.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbTel.setObjectName("lbTel")
+        self.leEnd = QtWidgets.QLineEdit(self.frPessoaBody)
+        self.leEnd.setGeometry(QtCore.QRect(20, 140, 351, 30))
+        self.leEnd.setMinimumSize(QtCore.QSize(0, 30))
+        self.leEnd.setMaximumSize(QtCore.QSize(600, 16777215))
+        self.leEnd.setStyleSheet("")
+        self.leEnd.setMaxLength(50)
+        self.leEnd.setObjectName("leEnd")
+        self.verticalLayout_9.addWidget(self.frPessoaBody)
+        self.verticalLayout_10.addWidget(self.frCadPessoa, 0, QtCore.Qt.AlignTop)
+        self.frAreaPlano = QtWidgets.QFrame(self.scrollClienteContents)
+        self.frAreaPlano.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frAreaPlano.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frAreaPlano.setObjectName("frAreaPlano")
+        self.verticalLayout_11 = QtWidgets.QVBoxLayout(self.frAreaPlano)
+        self.verticalLayout_11.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_11.setSpacing(0)
+        self.verticalLayout_11.setObjectName("verticalLayout_11")
+        self.frCabecalhoCadPlano = QtWidgets.QFrame(self.frAreaPlano)
+        self.frCabecalhoCadPlano.setMinimumSize(QtCore.QSize(0, 90))
+        self.frCabecalhoCadPlano.setMaximumSize(QtCore.QSize(16777215, 100))
+        self.frCabecalhoCadPlano.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frCabecalhoCadPlano.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frCabecalhoCadPlano.setObjectName("frCabecalhoCadPlano")
+        self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.frCabecalhoCadPlano)
+        self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_7.setSpacing(0)
+        self.horizontalLayout_7.setObjectName("horizontalLayout_7")
+        self.frame_5 = QtWidgets.QFrame(self.frCabecalhoCadPlano)
+        self.frame_5.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_5.setObjectName("frame_5")
+        self.lbDescricaoPlano = QtWidgets.QLabel(self.frame_5)
+        self.lbDescricaoPlano.setGeometry(QtCore.QRect(20, 62, 461, 17))
+        self.lbDescricaoPlano.setObjectName("lbDescricaoPlano")
+        self.lbPasso2de3 = QtWidgets.QLabel(self.frame_5)
+        self.lbPasso2de3.setGeometry(QtCore.QRect(10, 10, 71, 17))
+        self.lbPasso2de3.setObjectName("lbPasso2de3")
+        self.lbTituloPlano = QtWidgets.QLabel(self.frame_5)
+        self.lbTituloPlano.setGeometry(QtCore.QRect(20, 30, 241, 31))
+        self.lbTituloPlano.setObjectName("lbTituloPlano")
+        self.horizontalLayout_7.addWidget(self.frame_5)
+        self.frame_6 = QtWidgets.QFrame(self.frCabecalhoCadPlano)
+        self.frame_6.setMinimumSize(QtCore.QSize(0, 24))
+        self.frame_6.setMaximumSize(QtCore.QSize(58, 24))
+        self.frame_6.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_6.setObjectName("frame_6")
+        self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.frame_6)
+        self.horizontalLayout_8.setContentsMargins(0, 8, 8, 0)
+        self.horizontalLayout_8.setSpacing(0)
+        self.horizontalLayout_8.setObjectName("horizontalLayout_8")
+        self.pbMaximizaPlano = QtWidgets.QPushButton(self.frame_6)
+        self.pbMaximizaPlano.setText("")
+        self.pbMaximizaPlano.setObjectName("pbMaximizaPlano")
+        self.horizontalLayout_8.addWidget(self.pbMaximizaPlano)
+        self.pbMinimizaPlano = QtWidgets.QPushButton(self.frame_6)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pbMinimizaPlano.sizePolicy().hasHeightForWidth())
+        self.pbMinimizaPlano.setSizePolicy(sizePolicy)
+        self.pbMinimizaPlano.setText("")
+        self.pbMinimizaPlano.setObjectName("pbMinimizaPlano")
+        self.horizontalLayout_8.addWidget(self.pbMinimizaPlano)
+        self.horizontalLayout_7.addWidget(self.frame_6, 0, QtCore.Qt.AlignTop)
+        self.verticalLayout_11.addWidget(self.frCabecalhoCadPlano)
+        self.frPlanoBody = QtWidgets.QFrame(self.frAreaPlano)
+        self.frPlanoBody.setMinimumSize(QtCore.QSize(0, 500))
+        self.frPlanoBody.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frPlanoBody.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frPlanoBody.setObjectName("frPlanoBody")
+        self.verticalLayout_12 = QtWidgets.QVBoxLayout(self.frPlanoBody)
+        self.verticalLayout_12.setObjectName("verticalLayout_12")
+        self.lbTel_2 = QtWidgets.QLabel(self.frPlanoBody)
+        self.lbTel_2.setMinimumSize(QtCore.QSize(130, 0))
+        self.lbTel_2.setMaximumSize(QtCore.QSize(150, 30))
+        self.lbTel_2.setStyleSheet("color: rgb(46, 52, 54)")
+        self.lbTel_2.setTextFormat(QtCore.Qt.RichText)
+        self.lbTel_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbTel_2.setObjectName("lbTel_2")
+        self.verticalLayout_12.addWidget(self.lbTel_2)
+        self.leEmail_3 = QtWidgets.QLineEdit(self.frPlanoBody)
+        self.leEmail_3.setMinimumSize(QtCore.QSize(0, 30))
+        self.leEmail_3.setMaximumSize(QtCore.QSize(600, 16777215))
+        self.leEmail_3.setStyleSheet("")
+        self.leEmail_3.setMaxLength(40)
+        self.leEmail_3.setObjectName("leEmail_3")
+        self.verticalLayout_12.addWidget(self.leEmail_3)
+        self.leTel_2 = QtWidgets.QLineEdit(self.frPlanoBody)
+        self.leTel_2.setMinimumSize(QtCore.QSize(0, 30))
+        self.leTel_2.setMaximumSize(QtCore.QSize(600, 16777215))
+        self.leTel_2.setStyleSheet("")
+        self.leTel_2.setMaxLength(19)
+        self.leTel_2.setObjectName("leTel_2")
+        self.verticalLayout_12.addWidget(self.leTel_2)
+        self.leCompl_3 = QtWidgets.QLineEdit(self.frPlanoBody)
+        self.leCompl_3.setMinimumSize(QtCore.QSize(0, 30))
+        self.leCompl_3.setMaximumSize(QtCore.QSize(600, 16777215))
+        self.leCompl_3.setStyleSheet("")
+        self.leCompl_3.setMaxLength(30)
+        self.leCompl_3.setObjectName("leCompl_3")
+        self.verticalLayout_12.addWidget(self.leCompl_3)
+        self.lbEmail_3 = QtWidgets.QLabel(self.frPlanoBody)
+        self.lbEmail_3.setMinimumSize(QtCore.QSize(130, 0))
+        self.lbEmail_3.setMaximumSize(QtCore.QSize(150, 30))
+        self.lbEmail_3.setStyleSheet("color: rgb(46, 52, 54)")
+        self.lbEmail_3.setTextFormat(QtCore.Qt.RichText)
+        self.lbEmail_3.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbEmail_3.setObjectName("lbEmail_3")
+        self.verticalLayout_12.addWidget(self.lbEmail_3)
+        self.lbCompl_3 = QtWidgets.QLabel(self.frPlanoBody)
+        self.lbCompl_3.setMinimumSize(QtCore.QSize(130, 0))
+        self.lbCompl_3.setMaximumSize(QtCore.QSize(150, 30))
+        self.lbCompl_3.setStyleSheet("color: rgb(46, 52, 54)")
+        self.lbCompl_3.setTextFormat(QtCore.Qt.RichText)
+        self.lbCompl_3.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbCompl_3.setObjectName("lbCompl_3")
+        self.verticalLayout_12.addWidget(self.lbCompl_3)
+        self.lbCompl_2 = QtWidgets.QLabel(self.frPlanoBody)
+        self.lbCompl_2.setMinimumSize(QtCore.QSize(130, 0))
+        self.lbCompl_2.setMaximumSize(QtCore.QSize(150, 30))
+        self.lbCompl_2.setStyleSheet("color: rgb(46, 52, 54)")
+        self.lbCompl_2.setTextFormat(QtCore.Qt.RichText)
+        self.lbCompl_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbCompl_2.setObjectName("lbCompl_2")
+        self.verticalLayout_12.addWidget(self.lbCompl_2)
+        self.leCompl_2 = QtWidgets.QLineEdit(self.frPlanoBody)
+        self.leCompl_2.setMinimumSize(QtCore.QSize(0, 30))
+        self.leCompl_2.setMaximumSize(QtCore.QSize(600, 16777215))
+        self.leCompl_2.setStyleSheet("")
+        self.leCompl_2.setMaxLength(30)
+        self.leCompl_2.setObjectName("leCompl_2")
+        self.verticalLayout_12.addWidget(self.leCompl_2)
+        self.lbEmail_2 = QtWidgets.QLabel(self.frPlanoBody)
+        self.lbEmail_2.setMinimumSize(QtCore.QSize(130, 0))
+        self.lbEmail_2.setMaximumSize(QtCore.QSize(150, 30))
+        self.lbEmail_2.setStyleSheet("color: rgb(46, 52, 54)")
+        self.lbEmail_2.setTextFormat(QtCore.Qt.RichText)
+        self.lbEmail_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbEmail_2.setObjectName("lbEmail_2")
+        self.verticalLayout_12.addWidget(self.lbEmail_2)
+        self.leEmail_2 = QtWidgets.QLineEdit(self.frPlanoBody)
+        self.leEmail_2.setMinimumSize(QtCore.QSize(0, 30))
+        self.leEmail_2.setMaximumSize(QtCore.QSize(600, 16777215))
+        self.leEmail_2.setStyleSheet("")
+        self.leEmail_2.setMaxLength(40)
+        self.leEmail_2.setObjectName("leEmail_2")
+        self.verticalLayout_12.addWidget(self.leEmail_2)
+        self.verticalLayout_11.addWidget(self.frPlanoBody)
+        self.verticalLayout_10.addWidget(self.frAreaPlano, 0, QtCore.Qt.AlignTop)
+        self.scrollClienteCadastro.setWidget(self.scrollClienteContents)
+        self.gridLayout_2.addWidget(self.scrollClienteCadastro, 3, 0, 1, 1)
         self.tabsCliente.addTab(self.tbCadastraCliente, "")
         self.tbGrupoCliente = QtWidgets.QWidget()
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
@@ -1125,7 +1540,7 @@ class Ui_wdgCliente(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollGrupos = QtWidgets.QWidget()
-        self.scrollGrupos.setGeometry(QtCore.QRect(0, 0, 552, 589))
+        self.scrollGrupos.setGeometry(QtCore.QRect(0, 0, 552, 767))
         self.scrollGrupos.setObjectName("scrollGrupos")
         self.scrollArea.setWidget(self.scrollGrupos)
         self.gridLayout_6.addWidget(self.scrollArea, 1, 0, 1, 1)
@@ -1305,8 +1720,8 @@ class Ui_wdgCliente(object):
         self.lbDescricao.setAlignment(QtCore.Qt.AlignCenter)
         self.lbDescricao.setObjectName("lbDescricao")
         self.gridLayout_7.addWidget(self.lbDescricao, 0, 0, 1, 1)
-        spacerItem7 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout_7.addItem(spacerItem7, 1, 0, 1, 1)
+        spacerItem4 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_7.addItem(spacerItem4, 1, 0, 1, 1)
         self.horizontalLayout_23.addWidget(self.frInformativo)
         self.leDescricaoGrupo = QtWidgets.QTextEdit(self.frDescricao)
         self.leDescricaoGrupo.setMinimumSize(QtCore.QSize(0, 0))
@@ -1478,7 +1893,7 @@ class Ui_wdgCliente(object):
         self.gridLayout.addWidget(self.tabsCliente, 0, 0, 1, 1)
 
         self.retranslateUi(wdgCliente)
-        self.tabsCliente.setCurrentIndex(0)
+        self.tabsCliente.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(wdgCliente)
 
     def retranslateUi(self, wdgCliente):
@@ -1523,31 +1938,52 @@ class Ui_wdgCliente(object):
         self.leInfoBairro.setPlaceholderText(_translate("wdgCliente", "Centro"))
         self.lbInfoMeioPag.setText(_translate("wdgCliente", "Plano Ativo"))
         self.pbEnviarEmail.setText(_translate("wdgCliente", "Enviar e-mail"))
+        self.pbCancelarEdicao.setText(_translate("wdgCliente", "Cancelar"))
         self.pbConfirmarAtualizacao.setText(_translate("wdgCliente", "Atualizar"))
-        self.leCard1.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">Clientes Ativos/</p><p align=\"center\">Clientes Totais</p></body></html>"))
-        self.leCard2.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">Clientes Inativos/</p><p align=\"center\">Clientes Totais</p></body></html>"))
-        self.leCard3.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">Novos Clientes</p></body></html>"))
-        self.leCard4.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">Compromissos</p><p align=\"center\">da Semana</p></body></html>"))
+        self.lbTituloTotal.setText(_translate("wdgCliente", "<html><head/><body><p>Total de clientes</p></body></html>"))
+        self.lbValorTotal.setText(_translate("wdgCliente", "123"))
+        self.lbEstTotal.setText(_translate("wdgCliente", "43%"))
+        self.lbTituloMensal.setText(_translate("wdgCliente", "<html><head/><body><p>Clientes novos neste mês</p></body></html>"))
+        self.lbValorMensal.setText(_translate("wdgCliente", "10"))
+        self.lbEstMensal.setText(_translate("wdgCliente", "32%"))
+        self.lbTituloAnual.setText(_translate("wdgCliente", "<html><head/><body><p>Clientes novos neste ano</p></body></html>"))
+        self.lbValorAnual.setText(_translate("wdgCliente", "50"))
+        self.lbEstAnual.setText(_translate("wdgCliente", "10%"))
         self.tabsCliente.setTabText(self.tabsCliente.indexOf(self.tbInfosCliente), _translate("wdgCliente", "Informações"))
+        self.pbCadastrar.setText(_translate("wdgCliente", "Cadastrar"))
         self.lbTitulo.setText(_translate("wdgCliente", "Cadastro de clientes"))
         self.lbCorpo.setText(_translate("wdgCliente", "Cadastre seus clientes para poder gerenciar seus créditos, débitos e grupos."))
+        self.lbDescricaoPessoa.setText(_translate("wdgCliente", "Informações importantes para cobrança e propaganda"))
+        self.lbPasso1de3.setText(_translate("wdgCliente", "Passo 1 de 3"))
+        self.lbTituloPessoa.setText(_translate("wdgCliente", "Informações pessoais"))
         self.lbNome.setText(_translate("wdgCliente", "Nome:    "))
         self.leNome.setPlaceholderText(_translate("wdgCliente", "Nome"))
-        self.lbSobrenome.setText(_translate("wdgCliente", "Sobrenome:    "))
         self.leSobrenome.setPlaceholderText(_translate("wdgCliente", "Sobrenome"))
-        self.pbCadastrar.setText(_translate("wdgCliente", "Cadastrar"))
-        self.lbTel.setText(_translate("wdgCliente", "Telefone:    "))
-        self.leTel.setPlaceholderText(_translate("wdgCliente", "Celular"))
-        self.lbEmail.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">E-mail:    </p></body></html>"))
-        self.leEmail.setPlaceholderText(_translate("wdgCliente", "E - mail"))
-        self.lbCep.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">CEP:    </p></body></html>"))
-        self.leCep.setPlaceholderText(_translate("wdgCliente", "CEP"))
         self.lbEnd.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">Endereço:     </p></body></html>"))
-        self.leEnd.setPlaceholderText(_translate("wdgCliente", "Endereco"))
+        self.lbCep.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">CEP:    </p></body></html>"))
         self.lbBairro.setText(_translate("wdgCliente", "Bairro:    "))
-        self.leBairro.setPlaceholderText(_translate("wdgCliente", "Bairro"))
         self.lbCompl.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">Complemento:    </p></body></html>"))
-        self.leCompl.setPlaceholderText(_translate("wdgCliente", "Complemento"))
+        self.leCompl.setPlaceholderText(_translate("wdgCliente", "Apto. 120, Bloco B"))
+        self.leCep.setPlaceholderText(_translate("wdgCliente", "12345-678"))
+        self.leBairro.setPlaceholderText(_translate("wdgCliente", "Vila das Árvores"))
+        self.lbEmail.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">E-mail:    </p></body></html>"))
+        self.leEmail.setPlaceholderText(_translate("wdgCliente", "email@conta.com.br"))
+        self.leTel.setPlaceholderText(_translate("wdgCliente", "(11) 9.1234-5678"))
+        self.lbTel.setText(_translate("wdgCliente", "Telefone:    "))
+        self.leEnd.setPlaceholderText(_translate("wdgCliente", "Av. Paulista, 1445"))
+        self.lbDescricaoPlano.setText(_translate("wdgCliente", "Informações importantes para a gerenciar a saúde financeira do negócio"))
+        self.lbPasso2de3.setText(_translate("wdgCliente", "Passo 2 de 3"))
+        self.lbTituloPlano.setText(_translate("wdgCliente", "Informações do plano"))
+        self.lbTel_2.setText(_translate("wdgCliente", "Telefone:    "))
+        self.leEmail_3.setPlaceholderText(_translate("wdgCliente", "email@conta.com.br"))
+        self.leTel_2.setPlaceholderText(_translate("wdgCliente", "(11) 9.1234-5678"))
+        self.leCompl_3.setPlaceholderText(_translate("wdgCliente", "Apto. 120, Bloco B"))
+        self.lbEmail_3.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">E-mail:    </p></body></html>"))
+        self.lbCompl_3.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">Complemento:    </p></body></html>"))
+        self.lbCompl_2.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">Complemento:    </p></body></html>"))
+        self.leCompl_2.setPlaceholderText(_translate("wdgCliente", "Apto. 120, Bloco B"))
+        self.lbEmail_2.setText(_translate("wdgCliente", "<html><head/><body><p align=\"center\">E-mail:    </p></body></html>"))
+        self.leEmail_2.setPlaceholderText(_translate("wdgCliente", "email@conta.com.br"))
         self.tabsCliente.setTabText(self.tabsCliente.indexOf(self.tbCadastraCliente), _translate("wdgCliente", "Cadastro"))
         self.lbCabecalho.setText(_translate("wdgCliente", "Grupos"))
         self.lbCabecalhoDesc.setText(_translate("wdgCliente", "Dica: Ordene para favorecer sua busca"))

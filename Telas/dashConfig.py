@@ -39,7 +39,7 @@ class Ui_wdgConfig(object):
         self.frCabecalho = QtWidgets.QFrame(wdgConfig)
         self.frCabecalho.setMinimumSize(QtCore.QSize(0, 60))
         self.frCabecalho.setMaximumSize(QtCore.QSize(16777215, 75))
-        self.frCabecalho.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frCabecalho.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.frCabecalho.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frCabecalho.setObjectName("frCabecalho")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.frCabecalho)
@@ -86,6 +86,10 @@ class Ui_wdgConfig(object):
 "\n"
 "#pbInsereImg {\n"
 "    background-color: rgb(14, 144, 173);\n"
+"    border-top-left-radius: 10px;\n"
+"    border-bottom-right-radius: 10px;\n"
+"    border-top-right-radius: 10px;\n"
+"    border-bottom-left-radius: 0px;    \n"
 "    color: white;\n"
 "    font-family: Ubuntu;\n"
 "    font-size: 12pt;\n"
@@ -93,6 +97,12 @@ class Ui_wdgConfig(object):
 "\n"
 "#pbInsereImg::hover {\n"
 "    background-color: white;\n"
+"    border-top-left-radius: 10px;\n"
+"    border-bottom-right-radius: 10px;\n"
+"    border-top-right-radius: 10px;\n"
+"    border-bottom-left-radius: 0px;\n"
+"    border: 2px solid;\n"
+"    border-color: rgb(14, 144, 173);\n"
 "    color: rgb(14, 144, 173);\n"
 "    font-family: Ubuntu;\n"
 "    font-size: 12pt;\n"
@@ -100,6 +110,10 @@ class Ui_wdgConfig(object):
 "\n"
 "#pbExcluiImg {\n"
 "    background-color: rgb(255, 204, 204);\n"
+"    border-top-left-radius: 10px;\n"
+"    border-bottom-right-radius: 10px;\n"
+"    border-top-right-radius: 10px;\n"
+"    border-bottom-left-radius: 0px;\n"
 "    color: rgb(80, 80, 80);\n"
 "    font-family: Ubuntu;\n"
 "    font-size: 12pt;\n"
@@ -107,6 +121,12 @@ class Ui_wdgConfig(object):
 "\n"
 "#pbExcluiImg::hover {\n"
 "    background-color: white;\n"
+"    border-top-left-radius: 10px;\n"
+"    border-bottom-right-radius: 10px;\n"
+"    border-top-right-radius: 10px;\n"
+"    border-bottom-left-radius: 0px;\n"
+"    border: 2px solid;\n"
+"    border-color: rgb(255, 204, 204);\n"
 "    color: rgb(255, 204, 204);\n"
 "    font-family: Ubuntu;\n"
 "    font-size: 12pt;\n"
@@ -114,9 +134,9 @@ class Ui_wdgConfig(object):
 "")
         self.tabUsuario.setObjectName("tabUsuario")
         self.frInfoLogo = QtWidgets.QFrame(self.tabUsuario)
-        self.frInfoLogo.setGeometry(QtCore.QRect(20, 20, 282, 96))
-        self.frInfoLogo.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frInfoLogo.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frInfoLogo.setGeometry(QtCore.QRect(20, 20, 241, 96))
+        self.frInfoLogo.setFrameShape(QtWidgets.QFrame.Box)
+        self.frInfoLogo.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.frInfoLogo.setObjectName("frInfoLogo")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.frInfoLogo)
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -149,19 +169,27 @@ class Ui_wdgConfig(object):
         self.frBotoes.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frBotoes.setObjectName("frBotoes")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.frBotoes)
-        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_3.setContentsMargins(16, 12, 24, 12)
         self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.pbInsereImg = QtWidgets.QPushButton(self.frBotoes)
+        self.pbInsereImg.setMinimumSize(QtCore.QSize(0, 24))
         self.pbInsereImg.setObjectName("pbInsereImg")
         self.verticalLayout_3.addWidget(self.pbInsereImg)
         self.pbExcluiImg = QtWidgets.QPushButton(self.frBotoes)
+        self.pbExcluiImg.setMinimumSize(QtCore.QSize(0, 24))
         self.pbExcluiImg.setObjectName("pbExcluiImg")
         self.verticalLayout_3.addWidget(self.pbExcluiImg)
         self.horizontalLayout_3.addWidget(self.frBotoes)
         self.tabConfiguracoes.addTab(self.tabUsuario, "")
         self.tabClientes = QtWidgets.QWidget()
         self.tabClientes.setObjectName("tabClientes")
+        self.verticalLayoutWidget = QtWidgets.QWidget(self.tabClientes)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(20, 20, 321, 201))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.vlCategorias = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.vlCategorias.setContentsMargins(0, 0, 0, 0)
+        self.vlCategorias.setObjectName("vlCategorias")
         self.tabConfiguracoes.addTab(self.tabClientes, "")
         self.tabAgenda = QtWidgets.QWidget()
         self.tabAgenda.setObjectName("tabAgenda")
