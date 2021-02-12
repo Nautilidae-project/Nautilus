@@ -67,7 +67,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.cbInfoAtivo.clicked.connect(lambda: self.defineInfoCampo('ativo'))
 
         ## -------------------------------------------------------------------- Declaração dos botões
-        self.pbConfirmarAtualizacao.clicked.connect(lambda: self.showPopupSimCancela('As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
+        self.pbConfirmarAtualizacao.clicked.connect(lambda: self.showPopupSimCancela(
+            'As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
         self.pbEnviarEmail.clicked.connect(self.enviarUmEmail)
         self.pbCancelarEdicao.hide()
         self.pbConfirmarAtualizacao.hide()
@@ -96,6 +97,13 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leBairro.textEdited.connect(lambda: self.defineCampoCadastro('bairro'))
         self.leCompl.textEdited.connect(lambda: self.defineCampoCadastro('compl'))
         self.pbCadastrar.clicked.connect(lambda: self.trataCadastro(self.cliente))
+
+        self.frPessoaBody.hide()
+        self.frPlanoBody.hide()
+        self.pbMaximizaPlano.clicked.connect(self.frPlanoBody.show)
+        self.pbMaximizaPessoa.clicked.connect(self.frPessoaBody.show)
+        self.pbMinimizaPlano.clicked.connect(self.frPlanoBody.hide)
+        self.pbMinimizaPessoa.clicked.connect(self.frPessoaBody.hide)
 
         # =============================================================== INICIALIZAÇÕES DA ABA "GRUPOS"
         self.colunas = 1
@@ -766,7 +774,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         for wdg in wdgLista:
             intLoading += 10
             self.parent.loading(intLoading)
-            if wdg == "":
+            if wdg == "" or wdg is None:
                 print("Informação faltante - <trataCadastro>")
                 self.parent.loading(100)
                 self.parent.menssagemSistema('Não foi possível cadastrar cliente. Alguma informação faltante.')

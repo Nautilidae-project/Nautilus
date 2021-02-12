@@ -3,9 +3,9 @@
     <file>refresh.png</file>
   </qresource>
   <qresource prefix="maximiza">
-    <file>arrowUp.png</file>
+    <file>arrowDown.png</file>
   </qresource>
   <qresource prefix="minimiza">
-    <file>arrowDown.png</file>
+    <file>arrowUp.png</file>
   </qresource>
 </RCC>
