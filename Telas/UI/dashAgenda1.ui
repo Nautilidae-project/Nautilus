@@ -138,7 +138,13 @@ border-right: 3px dashed rgb(108, 251, 208);
         </property>
         <layout class="QGridLayout" name="gridLayout_4">
          <item row="4" column="1">
-          <widget class="QComboBox" name="cbxGrupos"/>
+          <widget class="QComboBox" name="cbxGrupos">
+           <item>
+            <property name="text">
+             <string>Selecione um grupo</string>
+            </property>
+           </item>
+          </widget>
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="lbTituloEvento">

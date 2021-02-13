@@ -76,6 +76,7 @@ class Ui_wdgAgenda(object):
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.cbxGrupos = QtWidgets.QComboBox(self.frInserirEvento)
         self.cbxGrupos.setObjectName("cbxGrupos")
+        self.cbxGrupos.addItem("")
         self.gridLayout_4.addWidget(self.cbxGrupos, 4, 1, 1, 1)
         self.lbTituloEvento = QtWidgets.QLabel(self.frInserirEvento)
         self.lbTituloEvento.setObjectName("lbTituloEvento")
@@ -200,6 +201,7 @@ class Ui_wdgAgenda(object):
     def retranslateUi(self, wdgAgenda):
         _translate = QtCore.QCoreApplication.translate
         wdgAgenda.setWindowTitle(_translate("wdgAgenda", "Form"))
+        self.cbxGrupos.setItemText(0, _translate("wdgAgenda", "Selecione um grupo"))
         self.lbTituloEvento.setText(_translate("wdgAgenda", "Título do Evento"))
         self.cbxDiaInteiro.setItemText(0, _translate("wdgAgenda", "Não"))
         self.cbxDiaInteiro.setItemText(1, _translate("wdgAgenda", "Sim"))

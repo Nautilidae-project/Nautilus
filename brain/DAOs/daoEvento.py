@@ -10,7 +10,7 @@ class DaoEvento:
     def __init__(self, db):
         self.db = db
         self.configs = ConfigDB()
-        
+
         # self.configs = ConfigDB()
         # 
         # self.db = pymysql.connect(
@@ -21,21 +21,33 @@ class DaoEvento:
         #     port=self.configs.port
         # )
 
-    def insereEvento(self, evento: EventoModelo):
+    def insereEvento(self, evento: EventoModelo, grupo=True):
 
         self.db.connect()
         cursor = self.db.cursor()
 
-        strComando = f"""
-            INSERT INTO {self.configs.tblEvento}
-            (
-                titulo, detalhe, grupoId, dataEvento, dataCadastro, horaInicio, horaFim, diaInteiro
-            )
-            VALUES
-            (
-                '{evento.titulo}', '{evento.detalhe}', {evento.grupoId}, '{evento.dataEvento}', NOW(), '{evento.horaInicio}', '{evento.horaFim}', {evento.diaInteiro}
-            )
-            """
+        if grupo:
+            strComando = f"""
+                INSERT INTO {self.configs.tblEvento}
+                (
+                    titulo, detalhe, grupoId, dataEvento, dataCadastro, horaInicio, horaFim, diaInteiro
+                )
+                VALUES
+                (
+                    '{evento.titulo}', '{evento.detalhe}', {evento.grupoId}, '{evento.dataEvento}', NOW(), '{evento.horaInicio}', '{evento.horaFim}', {evento.diaInteiro}
+                )
+                """
+        else:
+            strComando = f"""
+                INSERT INTO {self.configs.tblEvento}
+                (
+                    titulo, detalhe, dataEvento, dataCadastro, horaInicio, horaFim, diaInteiro
+                )
+                VALUES
+                (
+                    '{evento.titulo}', '{evento.detalhe}', '{evento.dataEvento}', NOW(), '{evento.horaInicio}', '{evento.horaFim}', {evento.diaInteiro}
+                )
+                """
 
         try:
             cursor.execute(strComando)
@@ -47,14 +59,15 @@ class DaoEvento:
             self.disconectBD(cursor)
             return eventoId
 
-
-    def findAll(self):
+    def findAll(self, select="*", where= None, filter= None):
 
         self.db.connect()
         cursor = self.db.cursor()
 
-        strComando = f"""SELECT eventoId, titulo, detalhe, grupoId, 
-        dataEvento, horaInicio, horaFim, diaInteiro, dataCadastro FROM {self.configs.tblEvento};"""
+        if where and filter:
+            strComando = f"""SELECT {select} FROM {self.configs.tblEvento} WHERE {where} = {filter};"""
+        else:
+            strComando = f"""SELECT {select} FROM {self.configs.tblEvento};"""
 
         try:
             cursor.execute(strComando)
@@ -126,6 +139,16 @@ class DaoEvento:
             raise Warning(f'Erro SQL - buscaPorId({self.configs.tblEvento}) <SELECT>')
         finally:
             self.disconectBD(cursor)
+
+    def editarEvento(self):
+        pass
+
+    def editarParticipantesDoEvento(self):
+        # # for indexId in range(len(participantesEventoList)):
+        # #     strComando = f" UPDATE {self.configs.tblParticipantes} SET eventoId = {eventoId} WHERE grupoId = {grupoId} and clienteId = {participantesEventoList[indexId][0]} "
+        # strComando = f" UPDATE {self.configs.tblParticipantes} SET eventoId = {eventoId} WHERE grupoId = {grupoId} and clienteId = {participantesEventoList} "
+        pass
+
 
     def excluirEvento(self):
         pass

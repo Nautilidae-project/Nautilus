@@ -6,8 +6,9 @@ from PyQt5.QtCore import QDate, Qt, QSize, QPropertyAnimation
 from Telas.dashAgenda import Ui_wdgAgenda
 from PyQt5.QtWidgets import QWidget, QGridLayout, QVBoxLayout, QLabel
 from brain.DAOs.daoGrupo import DaoGrupo
-from brain.dashboard.Agenda.agendaController import CalendarioController
 from brain.DAOs.daoEvento import DaoEvento
+from brain.DAOs.daoParticipantes import DaoParticipantes
+from brain.dashboard.Agenda.agendaController import CalendarioController
 from brain.dashboard.Agenda.localWidgets.eventosCard import EventosCard
 from modelos.eventoModel import EventoModelo
 from modelos.efeitosModel import Efeitos
@@ -29,6 +30,7 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         # Dao's
         self.daoEvento = DaoEvento(self.db)
         self.daoGrupo = DaoGrupo(self.db)
+        self.daoParticipantes = DaoParticipantes(self.db)
 
         self.gridBox = QGridLayout()
         self.efeito = Efeitos()
@@ -40,6 +42,7 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         self.pbCriarEvento.clicked.connect(self.chamaTelaAddEventos)
 
         # Adiciona os Grupos na ComboBox
+        # self.cbxGrupos.addItem('Nenhum grupo')
         self.cbxGrupos.addItems(self.dictDosGruposFormados().keys())
 
         # Atualiza e Adiciona os Cards dos Eventos No GridLayout
@@ -68,7 +71,7 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
     def AddCardEventosNoGrid(self):
 
         self.removeCardsDoGrid()
-        
+
         # if self.calendario.selectedDate() in DaoEvento(self.db).buscaDatasEventos().values():
         if self.calendario.selectedDate() in self.calendario.datasSelecionadas.values():
             colunas = 1
@@ -77,18 +80,15 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
             dataSelecionada = self.dataSelecionada(self.calendario.selectedDate())
 
             eventosCadastrados = DaoEvento(self.db).findAllDataSelecionada(dataSelecionada)
-            # print(eventosCadastrados)
 
             linhas = ceil(len(eventosCadastrados) / colunas)
-            # print(linhas, ' ------')
 
             # Cria um lista contendo o modelo de cada grupo buscado no banco de dados
             eventoModelos = [EventoModelo(eventosCadastrados[i]) for i in range(0, len(eventosCadastrados))]
-            # print(eventoModelos)
 
             # Cria uma lista contendo os layouts dos cards com as informações dos modelos contidos no eventoModelos
-            listaEventosCards = [EventosCard(parent=self, evento=eventoModelos[i], db=self.db) for i in range(0, len(eventosCadastrados))]
-            # listaEventosCards = (EventosCard(parent=self, evento=eventoModelos[i], db=self.db) for i in range(0, len(eventosCadastrados)))
+            listaEventosCards = [EventosCard(parent=self, evento=eventoModelos[i], db=self.db) for i in
+                                 range(0, len(eventosCadastrados))]
 
             # Cria uma matriz das posições nas quais os cards serão apresentados
             posicoes = [(linha, coluna) for linha in range(linhas) for coluna in range(colunas)]
@@ -118,11 +118,11 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         return data.toPyDate()
 
     def removeCardsDoGrid(self):
-            """
+        """
             Remove Os Cards que estão no grid layout
             """
-            for i in reversed(range(self.gridBox.count())):
-                self.gridBox.itemAt(i).widget().deleteLater()
+        for i in reversed(range(self.gridBox.count())):
+            self.gridBox.itemAt(i).widget().deleteLater()
 
     def criaEvento(self):
         """
@@ -131,15 +131,31 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
 
         self.eventoModelo.titulo = self.leTituloEvento.text()
         self.eventoModelo.detalhe = self.teDetalhesEvento.toPlainText()
-        self.eventoModelo.grupoId = self.dictDosGruposFormados()[self.cbxGrupos.currentText()]
+
+        self.eventoModelo.grupoId = self.dictDosGruposFormados()[self.cbxGrupos.currentText()]\
+            if self.cbxGrupos.currentIndex() != 0 else None
+        #     TODO: Implementar Inserção de participantes sem grupo
+
         self.eventoModelo.dataEvento = self.deDataEvento.date().toPyDate()
         self.eventoModelo.dataCadastro = None
         self.eventoModelo.horaInicio = self.teHoraInicioEvento.dateTime().toPyDateTime()
         self.eventoModelo.horaFim = self.teHoraFimEvento.dateTime().toPyDateTime()
         self.eventoModelo.diaInteiro = False if self.cbxDiaInteiro.currentText() == "Não" else True
 
-        self.daoEvento.insereEvento(self.eventoModelo)
+        # Add Participantes
+        if self.eventoModelo.grupoId:
+            eventoId = self.daoEvento.insereEvento(self.eventoModelo)
+            particiopantesSelecionados = list(self.daoGrupo.buscaParticipantesGrupo(self.eventoModelo.grupoId))
+            self.daoParticipantes.insereParticipantesEvento(eventoId, self.eventoModelo.grupoId, particiopantesSelecionados)
 
+            # TODO Esse código abaixo é referente a editar o evento de um grupo de participantes
+            # for idCliente in range(len(particiopantesSelecionados)):
+            #     self.daoParticipantes.insereParticipantesEvento(
+            #         particiopantesSelecionados[idCliente][0], eventoId, self.eventoModelo.grupoId)
+        else:
+            # eventoId = self.daoEvento.insereEvento(self.eventoModelo, grupo=False)
+            # self.daoParticipantes.insereParticipantesEvento(eventoId)
+            pass
 
     def dictDosGruposFormados(self) -> dict:
         """
@@ -156,7 +172,7 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         """
         self.frInserirEvento.setHidden(not self.frInserirEvento.isHidden())
 
-      
+
 if __name__ == '__main__':
     import sys
     import pymysql
@@ -166,12 +182,12 @@ if __name__ == '__main__':
     # db = getDB()
     config = ConfigDB(carregaBanco=True)
     db = pymysql.connect(
-            host=config.host,
-            user=config.user,
-            passwd=config.passwd,
-            db=config.banco,
-            port=config.port
-            )
+        host=config.host,
+        user=config.user,
+        passwd=config.passwd,
+        db=config.banco,
+        port=config.port
+    )
     ui = AgendaPage(db=db)
     ui.show()
     sys.exit(app.exec_())
