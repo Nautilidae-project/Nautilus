@@ -47,7 +47,6 @@ class DaoEvento:
             self.disconectBD(cursor)
             return eventoId
 
-
     def findAll(self):
 
         self.db.connect()

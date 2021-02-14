@@ -199,7 +199,6 @@ class DaoCliente:
             strComando += ';'
 
         try:
-            print(strComando)
             cursor.execute(strComando)
             intClientes = cursor.fetchone()
             if intClientes is not None:

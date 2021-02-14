@@ -15,7 +15,7 @@ class Ui_CategoriaCard(object):
     def setupUi(self, CategoriaCard):
         CategoriaCard.setObjectName("CategoriaCard")
         CategoriaCard.setEnabled(True)
-        CategoriaCard.resize(280, 185)
+        CategoriaCard.resize(394, 185)
         CategoriaCard.setStyleSheet("/*-------------------------------- Buttons --------------------------------------*/\n"
 "\n"
 "QPushButton {\n"
@@ -25,42 +25,88 @@ class Ui_CategoriaCard(object):
 "\n"
 "#pbConfirmar {\n"
 "    font-family: Ubuntu;\n"
+"    font-weight: bold;\n"
 "\n"
-"    background-color: rgba(115, 210, 22, 180);\n"
+"    background-color: rgb(198, 229, 217);\n"
 "    border-radius: 6px;\n"
-"    color: white;\n"
+"    color: rgb(85, 87, 83);;\n"
 "}\n"
 "\n"
 "#pbConfirmar:hover {\n"
 "    font-family: Ubuntu;\n"
+"    font-weight: bold;\n"
 "\n"
 "    background-color: rgb(255, 253, 235);\n"
 "    border-radius: 6px;\n"
-"    border: 2px solid rgba(115, 210, 22, 180);\n"
+"    border: 2px solid rgb(198, 229, 217);\n"
 "    color: rgb(85, 87, 83);\n"
+"}\n"
+"\n"
+"#pbInserir {\n"
+"    background-image: url(:/incluirBlack/addBlack.png);\n"
+"    background-position: center;\n"
+"    background-repeat: no-repeat;\n"
+"\n"
+"    background-color: rgba(237, 201, 81, 255);\n"
+"    border-radius: 6px;\n"
+"    color: rgb(85, 87, 83);\n"
+"}\n"
+"\n"
+"#pbInserir:hover {\n"
+"    background-image: url(:/incluirBeje/addBeje.png);\n"
+"    background-position: center;\n"
+"    background-repeat: no-repeat;\n"
+"\n"
+"    background-color: white;\n"
+"    border-radius: 6px;\n"
+"    border: 2px solid rgba(237, 201, 81, 255);\n"
+"    color: rgb(85, 87, 83);\n"
+"}\n"
+"\n"
+"#pbExcluir {\n"
+"    background-image: url(:/deleteWhite/cardExcluirWhite.png);\n"
+"    background-position: center;\n"
+"    background-repeat: no-repeat;\n"
+"\n"
+"    background-color: rgb(235, 114, 75);\n"
+"    border-radius: 6px;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"#pbExcluir:hover {\n"
+"    background-image: url(:/deleteRed/cardExcluirRed.png);\n"
+"    background-position: center;\n"
+"    background-repeat: no-repeat;\n"
+"\n"
+"    background-color: rgb(255, 253, 235);\n"
+"    border-radius: 6px;\n"
+"    border: 2px solid rgb(235, 114, 75);\n"
+"    color: black;\n"
 "}\n"
 "\n"
 "#pbCancelar{\n"
 "    font-family: Ubuntu;\n"
+"    font-weight: bold;\n"
 "\n"
-"    background-color: rgb(255, 120, 120);\n"
+"    background-color: rgb(214, 129, 137);\n"
 "    border-radius: 6px;\n"
 "    color: white;\n"
 "}\n"
 "\n"
 "#pbCancelar:hover {\n"
 "    font-family: Ubuntu;\n"
+"    font-weight: bold;\n"
 "\n"
 "    background-color: rgb(255, 253, 235);\n"
 "    border-radius: 6px;\n"
-"    border: 2px solid rgb(255, 120, 120);\n"
+"    border: 2px solid rgb(214, 129, 137);\n"
 "    color: rgb(85, 87, 83);\n"
 "}\n"
 "\n"
 "/*--------------------------- Labels ---------------------------*/\n"
 "\n"
 "#lbTitulo {\n"
-"    color: rgb(85, 87, 83);\n"
+"    color: rgb(238, 238, 236);\n"
 "/*    color: white;*/\n"
 "    background-color: transparent;\n"
 "    border: 0px;\n"
@@ -73,7 +119,7 @@ class Ui_CategoriaCard(object):
 "\n"
 "/*------------------------- Frames -----------------------------------*/\n"
 "#frTop {\n"
-"    background-color: rgb(198, 179, 255);\n"
+"    background-color: rgb(0, 170, 186);\n"
 "    \n"
 "    border-top-left-radius: 12px;\n"
 "    border-bottom-right-radius: 12px;\n"
@@ -82,12 +128,21 @@ class Ui_CategoriaCard(object):
 "}\n"
 "\n"
 "#frColors {\n"
-"    background-color: rgb(174, 159, 221);\n"
+"    background-color: rgb(0, 130, 146);\n"
 "    \n"
 "    border-bottom-left-radius: 12px;\n"
 "    border-bottom-right-radius: 12px;\n"
 "    border-top-left-radius: 0px;\n"
 "    border-top-right-radius: 0px;    \n"
+"}\n"
+"\n"
+"#frTopBg {\n"
+"    background-color: rgba(136, 138, 133, 170);\n"
+"    \n"
+"    border-top-left-radius: 12px;\n"
+"    border-bottom-right-radius: 12px;\n"
+"    border-top-right-radius: 12px;\n"
+"    border-bottom-left-radius: 2px;\n"
 "}\n"
 "\n"
 "/*------------------------ Radio Button ----------------------------------\n"
@@ -102,7 +157,7 @@ class Ui_CategoriaCard(object):
 "    border: 3px solid white;\n"
 "}*/")
         self.frTop = QtWidgets.QFrame(CategoriaCard)
-        self.frTop.setGeometry(QtCore.QRect(0, 0, 280, 150))
+        self.frTop.setGeometry(QtCore.QRect(28, 0, 280, 150))
         self.frTop.setMinimumSize(QtCore.QSize(280, 150))
         self.frTop.setMaximumSize(QtCore.QSize(150, 16777215))
         self.frTop.setFrameShape(QtWidgets.QFrame.NoFrame)
@@ -114,14 +169,14 @@ class Ui_CategoriaCard(object):
         self.leNovaCategoria = QtWidgets.QLineEdit(self.frTop)
         self.leNovaCategoria.setGeometry(QtCore.QRect(10, 50, 221, 25))
         self.leNovaCategoria.setObjectName("leNovaCategoria")
-        self.pbConfirmar = QtWidgets.QPushButton(self.frTop)
-        self.pbConfirmar.setGeometry(QtCore.QRect(180, 100, 83, 25))
-        self.pbConfirmar.setObjectName("pbConfirmar")
         self.pbCancelar = QtWidgets.QPushButton(self.frTop)
-        self.pbCancelar.setGeometry(QtCore.QRect(80, 100, 83, 25))
+        self.pbCancelar.setGeometry(QtCore.QRect(10, 100, 83, 25))
         self.pbCancelar.setObjectName("pbCancelar")
+        self.pbConfirmar = QtWidgets.QPushButton(self.frTop)
+        self.pbConfirmar.setGeometry(QtCore.QRect(172, 100, 91, 25))
+        self.pbConfirmar.setObjectName("pbConfirmar")
         self.frColors = QtWidgets.QFrame(CategoriaCard)
-        self.frColors.setGeometry(QtCore.QRect(2, 150, 250, 35))
+        self.frColors.setGeometry(QtCore.QRect(30, 150, 250, 35))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -201,7 +256,29 @@ class Ui_CategoriaCard(object):
         self.rbCor10.setText("")
         self.rbCor10.setObjectName("rbCor10")
         self.horizontalLayout.addWidget(self.rbCor10)
+        self.pbInserir = QtWidgets.QPushButton(CategoriaCard)
+        self.pbInserir.setGeometry(QtCore.QRect(300, 30, 50, 35))
+        self.pbInserir.setMinimumSize(QtCore.QSize(50, 35))
+        self.pbInserir.setMaximumSize(QtCore.QSize(30, 30))
+        self.pbInserir.setText("")
+        self.pbInserir.setObjectName("pbInserir")
+        self.pbExcluir = QtWidgets.QPushButton(CategoriaCard)
+        self.pbExcluir.setGeometry(QtCore.QRect(300, 70, 50, 35))
+        self.pbExcluir.setMinimumSize(QtCore.QSize(50, 35))
+        self.pbExcluir.setMaximumSize(QtCore.QSize(30, 30))
+        self.pbExcluir.setText("")
+        self.pbExcluir.setObjectName("pbExcluir")
+        self.frTopBg = QtWidgets.QFrame(CategoriaCard)
+        self.frTopBg.setGeometry(QtCore.QRect(20, 0, 280, 150))
+        self.frTopBg.setMinimumSize(QtCore.QSize(280, 150))
+        self.frTopBg.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.frTopBg.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frTopBg.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frTopBg.setObjectName("frTopBg")
+        self.frTopBg.raise_()
+        self.pbExcluir.raise_()
         self.frColors.raise_()
+        self.pbInserir.raise_()
         self.frTop.raise_()
 
         self.retranslateUi(CategoriaCard)
@@ -210,10 +287,11 @@ class Ui_CategoriaCard(object):
     def retranslateUi(self, CategoriaCard):
         _translate = QtCore.QCoreApplication.translate
         CategoriaCard.setWindowTitle(_translate("CategoriaCard", "Form"))
-        self.lbTitulo.setText(_translate("CategoriaCard", "Crie uma categoria"))
+        self.lbTitulo.setText(_translate("CategoriaCard", "Crie/Exclua uma categoria"))
         self.leNovaCategoria.setPlaceholderText(_translate("CategoriaCard", "Nerds"))
-        self.pbConfirmar.setText(_translate("CategoriaCard", "CRIAR"))
         self.pbCancelar.setText(_translate("CategoriaCard", "CANCELAR"))
+        self.pbConfirmar.setText(_translate("CategoriaCard", "CONFIRMAR"))
+import Telas.Resources.cardCategoriaResource
 
 
 if __name__ == "__main__":

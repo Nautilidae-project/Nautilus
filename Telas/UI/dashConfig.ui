@@ -137,7 +137,7 @@
    <item>
     <widget class="QTabWidget" name="tabConfiguracoes">
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tabUsuario">
       <property name="styleSheet">
@@ -369,7 +369,7 @@
         <rect>
          <x>20</x>
          <y>20</y>
-         <width>321</width>
+         <width>361</width>
          <height>201</height>
         </rect>
        </property>
@@ -385,6 +385,26 @@
       <attribute name="title">
        <string>Financeiro</string>
       </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>4</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <layout class="QVBoxLayout" name="vlFinanceiro"/>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>

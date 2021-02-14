@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>280</width>
+    <width>394</width>
     <height>185</height>
    </rect>
   </property>
@@ -26,42 +26,88 @@ QPushButton {
 
 #pbConfirmar {
 	font-family: Ubuntu;
+	font-weight: bold;
 
-	background-color: rgba(115, 210, 22, 180);
+	background-color: rgb(198, 229, 217);
 	border-radius: 6px;
-	color: white;
+	color: rgb(85, 87, 83);;
 }
 
 #pbConfirmar:hover {
 	font-family: Ubuntu;
+	font-weight: bold;
 
 	background-color: rgb(255, 253, 235);
 	border-radius: 6px;
-	border: 2px solid rgba(115, 210, 22, 180);
+	border: 2px solid rgb(198, 229, 217);
 	color: rgb(85, 87, 83);
+}
+
+#pbInserir {
+	background-image: url(:/incluirBlack/addBlack.png);
+	background-position: center;
+	background-repeat: no-repeat;
+
+	background-color: rgba(237, 201, 81, 255);
+	border-radius: 6px;
+	color: rgb(85, 87, 83);
+}
+
+#pbInserir:hover {
+	background-image: url(:/incluirBeje/addBeje.png);
+	background-position: center;
+	background-repeat: no-repeat;
+
+	background-color: white;
+	border-radius: 6px;
+	border: 2px solid rgba(237, 201, 81, 255);
+	color: rgb(85, 87, 83);
+}
+
+#pbExcluir {
+	background-image: url(:/deleteWhite/cardExcluirWhite.png);
+	background-position: center;
+	background-repeat: no-repeat;
+
+	background-color: rgb(235, 114, 75);
+	border-radius: 6px;
+	color: black;
+}
+
+#pbExcluir:hover {
+	background-image: url(:/deleteRed/cardExcluirRed.png);
+	background-position: center;
+	background-repeat: no-repeat;
+
+	background-color: rgb(255, 253, 235);
+	border-radius: 6px;
+	border: 2px solid rgb(235, 114, 75);
+	color: black;
 }
 
 #pbCancelar{
 	font-family: Ubuntu;
+	font-weight: bold;
 
-	background-color: rgb(255, 120, 120);
+	background-color: rgb(214, 129, 137);
 	border-radius: 6px;
 	color: white;
 }
 
 #pbCancelar:hover {
 	font-family: Ubuntu;
+	font-weight: bold;
 
 	background-color: rgb(255, 253, 235);
 	border-radius: 6px;
-	border: 2px solid rgb(255, 120, 120);
+	border: 2px solid rgb(214, 129, 137);
 	color: rgb(85, 87, 83);
 }
 
 /*--------------------------- Labels ---------------------------*/
 
 #lbTitulo {
-	color: rgb(85, 87, 83);
+	color: rgb(238, 238, 236);
 /*	color: white;*/
 	background-color: transparent;
 	border: 0px;
@@ -74,7 +120,7 @@ QPushButton {
 
 /*------------------------- Frames -----------------------------------*/
 #frTop {
-	background-color: rgb(198, 179, 255);
+	background-color: rgb(0, 170, 186);
 	
 	border-top-left-radius: 12px;
 	border-bottom-right-radius: 12px;
@@ -83,12 +129,21 @@ QPushButton {
 }
 
 #frColors {
-	background-color: rgb(174, 159, 221);
+	background-color: rgb(0, 130, 146);
 	
 	border-bottom-left-radius: 12px;
 	border-bottom-right-radius: 12px;
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;	
+}
+
+#frTopBg {
+	background-color: rgba(136, 138, 133, 170);
+	
+	border-top-left-radius: 12px;
+	border-bottom-right-radius: 12px;
+	border-top-right-radius: 12px;
+	border-bottom-left-radius: 2px;
 }
 
 /*------------------------ Radio Button ----------------------------------
@@ -106,7 +161,7 @@ QRadioButton::indicator::checked {
   <widget class="QFrame" name="frTop">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>28</x>
      <y>0</y>
      <width>280</width>
      <height>150</height>
@@ -140,7 +195,7 @@ QRadioButton::indicator::checked {
      </rect>
     </property>
     <property name="text">
-     <string>Crie uma categoria</string>
+     <string>Crie/Exclua uma categoria</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="leNovaCategoria">
@@ -156,23 +211,10 @@ QRadioButton::indicator::checked {
      <string>Nerds</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pbConfirmar">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>100</y>
-      <width>83</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>CRIAR</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pbCancelar">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>10</x>
       <y>100</y>
       <width>83</width>
       <height>25</height>
@@ -182,11 +224,24 @@ QRadioButton::indicator::checked {
      <string>CANCELAR</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pbConfirmar">
+    <property name="geometry">
+     <rect>
+      <x>172</x>
+      <y>100</y>
+      <width>91</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CONFIRMAR</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QFrame" name="frColors">
    <property name="geometry">
     <rect>
-     <x>2</x>
+     <x>30</x>
      <y>150</y>
      <width>250</width>
      <height>35</height>
@@ -430,9 +485,92 @@ QRadioButton::indicator::checked {
     </item>
    </layout>
   </widget>
+  <widget class="QPushButton" name="pbInserir">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>30</y>
+     <width>50</width>
+     <height>35</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>50</width>
+     <height>35</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbExcluir">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>70</y>
+     <width>50</width>
+     <height>35</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>50</width>
+     <height>35</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frTopBg">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>0</y>
+     <width>280</width>
+     <height>150</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>280</width>
+     <height>150</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>150</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+  </widget>
+  <zorder>frTopBg</zorder>
+  <zorder>pbExcluir</zorder>
   <zorder>frColors</zorder>
+  <zorder>pbInserir</zorder>
   <zorder>frTop</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../Imagens/cardCategoriaResource.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -1,0 +1,14 @@
+<RCC>
+  <qresource prefix="incluirBlack">
+    <file>addBlack.png</file>
+  </qresource>
+  <qresource prefix="deleteWhite">
+    <file>cardExcluirWhite.png</file>
+  </qresource>
+  <qresource prefix="deleteRed">
+    <file>cardExcluirRed.png</file>
+  </qresource>
+  <qresource prefix="incluirBeje">
+    <file>addBeje.png</file>
+  </qresource>
+</RCC>
