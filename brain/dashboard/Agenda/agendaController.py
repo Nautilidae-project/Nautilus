@@ -47,7 +47,7 @@ class CalendarioController(QCalendarWidget):
         }
         		""")
         # self.daoEvento = DaoEvento(db).buscaDatasEventos().values()
-        self.daoEvento = dict(enumerate(DaoEvento(db).buscaDatasEventosSemRepeticao()))
+        self.daoEvento = dict(enumerate(DaoEvento(self.db).buscaDatasEventosSemRepeticao()))
 
         # Atributo usado no metodo AddCardEventosNoGrid() da classe AgendaPage para verificar as datas com Eventos
         self.datasSelecionadas = self.daoEvento

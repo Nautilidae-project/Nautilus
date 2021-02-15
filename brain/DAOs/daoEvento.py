@@ -150,8 +150,25 @@ class DaoEvento:
         pass
 
 
-    def excluirEvento(self):
-        pass
+    def excluirEventoEParticipantes(self, eventoId):
+        self.db.connect()
+        cursor = self.db.cursor()
+        print(eventoId)
+        print(type(eventoId))
+
+        strComando = f"""DELETE FROM {self.configs.tblEvento} WHERE eventoId = {eventoId}"""
+
+        try:
+            cursor.execute(strComando)
+
+            strComando = f"""DELETE FROM {self.configs.tblParticipantes} WHERE eventoId = {eventoId}"""
+
+            cursor.execute(strComando)
+            self.db.commit()
+        except:
+            raise Warning(f'Erro SQL - excluirEvento({self.configs.tblEvento}) <SELECT>')
+        finally:
+            self.disconectBD(cursor)
 
     def disconectBD(self, cursor):
         cursor.close()

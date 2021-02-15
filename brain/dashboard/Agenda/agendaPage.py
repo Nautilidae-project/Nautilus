@@ -47,6 +47,7 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
 
         # Atualiza e Adiciona os Cards dos Eventos No GridLayout
         # self.AddCardEventosNoGrid()
+        self.AddCardEventosNoGrid()
         self.calendario.clicked.connect(lambda: self.AddCardEventosNoGrid())
 
         # Ajustando as datas da seleção de datas
@@ -58,15 +59,21 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         # Criando um Evento
         self.pbAddEvento.clicked.connect(self.criaEvento)
 
+        # Botões de manipulação do CardEvento ????????????????????????????????????????
+
         # self.calendario.clicked[QDate].connect(self.printDataSelecionada)
         # self.calendario.clicked[QDate].connect(lambda: self.dataSelecionada(self.calendario.selectedDate())) # ---- Esse deu certo Eu Acho
 
         # self.enable = False
+        self.x = False
 
     def selectedDateChanged(self):
-        # self.deDataEvento.setDate(self.calendario.selectedDate())
-        self.teHoraInicioEvento.setDate(self.calendario.selectedDate())
-        self.teHoraFimEvento.setDate(self.calendario.selectedDate())
+        self.deDataEvento.setDate(self.calendario.selectedDate())
+        # self.teHoraInicioEvento.setDate(self.calendario.selectedDate())
+        # self.teHoraFimEvento.setDate(self.calendario.selectedDate())
+
+        self.leTituloEvento.setText(f"{self.calendario.selectedDate().toPyDate()}")
+        self.teDetalhesEvento.setPlainText(f"{self.calendario.selectedDate().toPyDate()}")
 
     def AddCardEventosNoGrid(self):
 
@@ -101,6 +108,8 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
             if self.gridBox.count():
                 self.saEventosCard.setLayout(self.gridBox)
 
+            # self.atualizaMarcacoesNoCalendario()
+
             print('---- Tem Eventos')
         elif self.gridBox.count() > 0:
             self.removeCardsDoGrid()
@@ -109,6 +118,8 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         else:
             print(')))) Passei e Não tem Nada ((((')
             pass
+
+
 
     def dataSelecionada(self, data: QDate):
         """
@@ -148,6 +159,8 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
             particiopantesSelecionados = list(self.daoGrupo.buscaParticipantesGrupo(self.eventoModelo.grupoId))
             self.daoParticipantes.insereParticipantesEvento(eventoId, self.eventoModelo.grupoId, particiopantesSelecionados)
 
+            self.atualizaMarcacoesNoCalendario()
+
             # TODO Esse código abaixo é referente a editar o evento de um grupo de participantes
             # for idCliente in range(len(particiopantesSelecionados)):
             #     self.daoParticipantes.insereParticipantesEvento(
@@ -172,6 +185,12 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         """
         self.frInserirEvento.setHidden(not self.frInserirEvento.isHidden())
 
+    def atualizaMarcacoesNoCalendario(self):
+        self.calendario.daoEvento = dict(enumerate(DaoEvento(self.db).buscaDatasEventosSemRepeticao()))
+        self.calendario.datasSelecionadas = self.calendario.daoEvento
+        self.AddCardEventosNoGrid()
+        # print(self.calendario.daoEvento)
+        # print(self.calendario.datasSelecionadas)
 
 if __name__ == '__main__':
     import sys

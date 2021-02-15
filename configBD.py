@@ -13,8 +13,8 @@ class ConfigDB:
         if carregaBanco:
 
             # Servidores Local e Cloud
-            self.getDatabase('Cloud')
-            # self.getDatabase('Local')
+            # self.getDatabase('Cloud')
+            self.getDatabase('Local')
 
         self.__tblUsuario = 'usuario'
         self.__tblEstados = 'estados'
