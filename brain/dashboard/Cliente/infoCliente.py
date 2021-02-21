@@ -126,7 +126,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.tblParticipantes.clicked.connect(self.selecionaParticipante)
 
         ## ----------------------------------------------------------------------- Declaração dos botões
-        self.pbAddGrupo.clicked.connect(lambda: self.criaGrupo() if not self.modoEdicao else self.updateGrupo())
+        self.pbAddGrupo.clicked.connect(lambda: self.criaGrupo() if not self.modoEdicao else self.updateEvento())
         self.pbRefresh.clicked.connect(lambda: self.filtroAZ(letra=None))
         self.pbCancelar.clicked.connect(self.sairModoEdicao)
         self.pbExportar.clicked.connect(self.criaRelatorio)
@@ -594,7 +594,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.pbAddGrupo.setText("Criar grupo")
         self.parent.menssagemSistema('Grupo editado com sucesso.')
 
-    def updateGrupo(self):
+    def updateEvento(self):
         self.grupoEdicao.titulo = self.leTituloGrupo.text()
         self.grupoEdicao.descricao = self.leDescricaoGrupo.toPlainText()
         self.grupoEdicao.nomeCategoria = self.cbxCategoria.currentText()

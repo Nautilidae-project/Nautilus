@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="ManitulaAddEvento">
+    <file>007-pen.png</file>
+    <file>002-draw.png</file>
+  </qresource>
+</RCC>
