@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_wdgEventoCard(object):
     def setupUi(self, wdgEventoCard):
         wdgEventoCard.setObjectName("wdgEventoCard")
-        wdgEventoCard.resize(570, 400)
+        wdgEventoCard.resize(568, 400)
         wdgEventoCard.setMinimumSize(QtCore.QSize(200, 400))
         wdgEventoCard.setMaximumSize(QtCore.QSize(16777215, 400))
         wdgEventoCard.setStyleSheet("#frGrupoCard {\n"
@@ -22,12 +22,63 @@ class Ui_wdgEventoCard(object):
 "}")
         self.gridLayout = QtWidgets.QGridLayout(wdgEventoCard)
         self.gridLayout.setObjectName("gridLayout")
+        self.frInfosEdicoes = QtWidgets.QFrame(wdgEventoCard)
+        self.frInfosEdicoes.setMinimumSize(QtCore.QSize(120, 0))
+        self.frInfosEdicoes.setMaximumSize(QtCore.QSize(120, 16777215))
+        self.frInfosEdicoes.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frInfosEdicoes.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frInfosEdicoes.setObjectName("frInfosEdicoes")
+        self.lbHoraFimEvento = QtWidgets.QLabel(self.frInfosEdicoes)
+        self.lbHoraFimEvento.setGeometry(QtCore.QRect(10, 210, 101, 25))
+        self.lbHoraFimEvento.setMaximumSize(QtCore.QSize(16777215, 25))
+        self.lbHoraFimEvento.setObjectName("lbHoraFimEvento")
+        self.lbDiaInteiroEvento = QtWidgets.QLabel(self.frInfosEdicoes)
+        self.lbDiaInteiroEvento.setGeometry(QtCore.QRect(10, 69, 101, 25))
+        self.lbDiaInteiroEvento.setMaximumSize(QtCore.QSize(16777215, 25))
+        self.lbDiaInteiroEvento.setObjectName("lbDiaInteiroEvento")
+        self.lbDataEvento = QtWidgets.QLabel(self.frInfosEdicoes)
+        self.lbDataEvento.setGeometry(QtCore.QRect(10, 10, 101, 25))
+        self.lbDataEvento.setMaximumSize(QtCore.QSize(16777215, 25))
+        self.lbDataEvento.setObjectName("lbDataEvento")
+        self.lbHoraInicioEvento = QtWidgets.QLabel(self.frInfosEdicoes)
+        self.lbHoraInicioEvento.setGeometry(QtCore.QRect(10, 137, 101, 25))
+        self.lbHoraInicioEvento.setMaximumSize(QtCore.QSize(16777215, 25))
+        self.lbHoraInicioEvento.setObjectName("lbHoraInicioEvento")
+        self.teHoraInicioEvento = QtWidgets.QTimeEdit(self.frInfosEdicoes)
+        self.teHoraInicioEvento.setGeometry(QtCore.QRect(10, 160, 103, 25))
+        self.teHoraInicioEvento.setObjectName("teHoraInicioEvento")
+        self.cbxDiaInteiro = QtWidgets.QComboBox(self.frInfosEdicoes)
+        self.cbxDiaInteiro.setGeometry(QtCore.QRect(0, 90, 103, 25))
+        self.cbxDiaInteiro.setObjectName("cbxDiaInteiro")
+        self.cbxDiaInteiro.addItem("")
+        self.cbxDiaInteiro.addItem("")
+        self.teHoraFimEvento = QtWidgets.QTimeEdit(self.frInfosEdicoes)
+        self.teHoraFimEvento.setGeometry(QtCore.QRect(10, 250, 103, 25))
+        self.teHoraFimEvento.setObjectName("teHoraFimEvento")
+        self.deDataEvento = QtWidgets.QDateEdit(self.frInfosEdicoes)
+        self.deDataEvento.setGeometry(QtCore.QRect(0, 30, 103, 25))
+        self.deDataEvento.setObjectName("deDataEvento")
+        self.gridLayout.addWidget(self.frInfosEdicoes, 0, 1, 1, 1)
         self.frGrupoCard = QtWidgets.QFrame(wdgEventoCard)
         self.frGrupoCard.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frGrupoCard.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frGrupoCard.setObjectName("frGrupoCard")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.frGrupoCard)
         self.gridLayout_2.setObjectName("gridLayout_2")
+        self.lbDescricao = QtWidgets.QTextEdit(self.frGrupoCard)
+        self.lbDescricao.setMinimumSize(QtCore.QSize(0, 100))
+        self.lbDescricao.setMaximumSize(QtCore.QSize(16777215, 100))
+        self.lbDescricao.setStyleSheet("#lbDescricao {\n"
+"    border: 0px;\n"
+"    background-color: transparent;\n"
+"    color: #fff;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 12pt;\n"
+"    font-style: italic;\n"
+"}")
+        self.lbDescricao.setReadOnly(True)
+        self.lbDescricao.setObjectName("lbDescricao")
+        self.gridLayout_2.addWidget(self.lbDescricao, 1, 0, 1, 1)
         self.lbTituloCard = QtWidgets.QLabel(self.frGrupoCard)
         self.lbTituloCard.setMinimumSize(QtCore.QSize(0, 50))
         self.lbTituloCard.setMaximumSize(QtCore.QSize(16777215, 50))
@@ -47,20 +98,6 @@ class Ui_wdgEventoCard(object):
 "}")
         self.lbTituloCard.setObjectName("lbTituloCard")
         self.gridLayout_2.addWidget(self.lbTituloCard, 0, 0, 1, 1)
-        self.lbDescricao = QtWidgets.QTextEdit(self.frGrupoCard)
-        self.lbDescricao.setMinimumSize(QtCore.QSize(0, 100))
-        self.lbDescricao.setMaximumSize(QtCore.QSize(16777215, 100))
-        self.lbDescricao.setStyleSheet("#lbDescricao {\n"
-"    border: 0px;\n"
-"    background-color: transparent;\n"
-"    color: #fff;\n"
-"    font-family: Ubuntu;\n"
-"    font-size: 12pt;\n"
-"    font-style: italic;\n"
-"}")
-        self.lbDescricao.setReadOnly(True)
-        self.lbDescricao.setObjectName("lbDescricao")
-        self.gridLayout_2.addWidget(self.lbDescricao, 1, 0, 1, 1)
         self.gridLayout.addWidget(self.frGrupoCard, 0, 0, 1, 1)
         self.frame = QtWidgets.QFrame(wdgEventoCard)
         self.frame.setMinimumSize(QtCore.QSize(50, 0))
@@ -84,7 +121,7 @@ class Ui_wdgEventoCard(object):
         self.pbDeletarEvento.setMinimumSize(QtCore.QSize(0, 97))
         self.pbDeletarEvento.setObjectName("pbDeletarEvento")
         self.verticalLayout.addWidget(self.pbDeletarEvento)
-        self.gridLayout.addWidget(self.frame, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.frame, 0, 2, 1, 1)
 
         self.retranslateUi(wdgEventoCard)
         QtCore.QMetaObject.connectSlotsByName(wdgEventoCard)
@@ -92,8 +129,14 @@ class Ui_wdgEventoCard(object):
     def retranslateUi(self, wdgEventoCard):
         _translate = QtCore.QCoreApplication.translate
         wdgEventoCard.setWindowTitle(_translate("wdgEventoCard", "Form"))
-        self.lbTituloCard.setText(_translate("wdgEventoCard", "Titulo"))
+        self.lbHoraFimEvento.setText(_translate("wdgEventoCard", "Fim"))
+        self.lbDiaInteiroEvento.setText(_translate("wdgEventoCard", "Dia Inteiro"))
+        self.lbDataEvento.setText(_translate("wdgEventoCard", "Data do Evento"))
+        self.lbHoraInicioEvento.setText(_translate("wdgEventoCard", "Início"))
+        self.cbxDiaInteiro.setItemText(0, _translate("wdgEventoCard", "Não"))
+        self.cbxDiaInteiro.setItemText(1, _translate("wdgEventoCard", "Sim"))
         self.lbDescricao.setPlaceholderText(_translate("wdgEventoCard", "DESCRIÇÃO"))
+        self.lbTituloCard.setText(_translate("wdgEventoCard", "Titulo"))
         self.pbEditarEvento.setText(_translate("wdgEventoCard", "Editar"))
         self.pbEmailEvento.setText(_translate("wdgEventoCard", "Email"))
         self.pbDeletarEvento.setText(_translate("wdgEventoCard", "Deletar"))

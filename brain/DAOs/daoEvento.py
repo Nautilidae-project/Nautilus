@@ -83,7 +83,7 @@ class DaoEvento:
         cursor = self.db.cursor()
 
         strComando = f"""SELECT eventoId, titulo, detalhe, grupoId, 
-         dataEvento, horaInicio, horaFim, diaInteiro, dataCadastro FROM {self.configs.tblEvento} WHERE dataEvento = '{dataEvento}';"""
+         dataEvento, dataCadastro, horaInicio, horaFim, diaInteiro FROM {self.configs.tblEvento} WHERE dataEvento = '{dataEvento}';"""
 
         try:
             cursor.execute(strComando)

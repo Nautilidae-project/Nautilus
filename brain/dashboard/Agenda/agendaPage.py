@@ -2,7 +2,7 @@ from datetime import datetime
 from math import ceil
 
 from PyQt5 import QtWidgets
-from PyQt5.QtCore import QDate, Qt, QSize, QPropertyAnimation
+from PyQt5.QtCore import QDate, Qt, QSize, QPropertyAnimation, QDateTime
 from Telas.dashAgenda import Ui_wdgAgenda
 from PyQt5.QtWidgets import QWidget, QGridLayout, QVBoxLayout, QLabel
 from brain.DAOs.daoGrupo import DaoGrupo
@@ -62,7 +62,12 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         self.calendario.selectionChanged.connect(self.selectedDateChanged)
 
         # ........................................................................................... Criando um Evento
-        self.pbAddEvento.clicked.connect(lambda: self.criaEvento() if not self.modoEdicao else self.updateEvento)
+        self.pbAddEvento.clicked.connect(lambda: self.criaEvento() if not self.modoEdicao else self.updateEvento())
+        # if not self.modoEdicao:
+        #     self.pbAddEvento.clicked.connect(self.criaEvento)
+        # if self.modoEdicao:
+        #     self.pbAddEvento.clicked.connect(self.updateEvento)
+
 
         # Botões de manipulação do CardEvento ????????????????????????????????????????
 
@@ -170,15 +175,31 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         self.pbAddEvento.setText('Confirmar')
         self.frInserirEvento.show()
 
+        print(evento)
+
+        # .............................. Atribuindo as informações dos eventos cadastradso na frame de criaão de Evento
+
+        horaInicio = datetime.time(evento.horaInicio[0])
+        horaFim = datetime.time(evento.horaFim[0])
+
+        self.leTituloEvento.setText(evento.titulo[0])
+        self.teDetalhesEvento.setPlainText(evento.detalhe[0])
+
+        self.deDataEvento.setDate(evento.dataEvento[0])
+        self.cbxDiaInteiro.setCurrentIndex(int(evento.diaInteiro))
+
+        self.teHoraInicioEvento.setTime(horaInicio)
+        self.teHoraFimEvento.setTime(horaFim)
+
     def updateEvento(self):
         print('Estou no update')
         self.sairModoEdicao()
 
     def sairModoEdicao(self):
         self.modoEdicao = False
-        self.pbCancelaEdicao.hide()
 
         self.atualizaMarcacoesNoCalendario()
+        self.pbCancelaEdicao.hide()
 
         self.pbAddEvento.setText("Adicionar Evento")
         # self.parent.menssagemSistema('Evento editado com sucesso.')

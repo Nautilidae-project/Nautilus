@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>570</width>
+    <width>568</width>
     <height>400</height>
    </rect>
   </property>
@@ -31,6 +31,154 @@
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="1">
+    <widget class="QFrame" name="frInfosEdicoes">
+     <property name="minimumSize">
+      <size>
+       <width>120</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>120</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QLabel" name="lbHoraFimEvento">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>210</y>
+        <width>101</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Fim</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbDiaInteiroEvento">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>69</y>
+        <width>101</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Dia Inteiro</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbDataEvento">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>101</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Data do Evento</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbHoraInicioEvento">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>137</y>
+        <width>101</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Início</string>
+      </property>
+     </widget>
+     <widget class="QTimeEdit" name="teHoraInicioEvento">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>160</y>
+        <width>103</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="cbxDiaInteiro">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>90</y>
+        <width>103</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Não</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Sim</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QTimeEdit" name="teHoraFimEvento">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>250</y>
+        <width>103</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QDateEdit" name="deDataEvento">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>30</y>
+        <width>103</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </item>
    <item row="0" column="0">
     <widget class="QFrame" name="frGrupoCard">
      <property name="frameShape">
@@ -40,6 +188,38 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
+      <item row="1" column="0">
+       <widget class="QTextEdit" name="lbDescricao">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#lbDescricao {
+	border: 0px;
+	background-color: transparent;
+	color: #fff;
+	font-family: Ubuntu;
+	font-size: 12pt;
+	font-style: italic;
+}</string>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="placeholderText">
+         <string>DESCRIÇÃO</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="lbTituloCard">
         <property name="minimumSize">
@@ -77,42 +257,10 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QTextEdit" name="lbDescricao">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>100</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>100</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">#lbDescricao {
-	border: 0px;
-	background-color: transparent;
-	color: #fff;
-	font-family: Ubuntu;
-	font-size: 12pt;
-	font-style: italic;
-}</string>
-        </property>
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-        <property name="placeholderText">
-         <string>DESCRIÇÃO</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </item>
-   <item row="0" column="1">
+   <item row="0" column="2">
     <widget class="QFrame" name="frame">
      <property name="minimumSize">
       <size>

@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QApplication
@@ -34,6 +35,8 @@ class EventosCard(Ui_wdgEventoCard, QWidget):
 
         self.calendar = CalendarioController(db=self.db)
 
+        self.frInfosEdicoes.hide()
+
         # Dao's
         self.daoEvento = DaoEvento(self.db)
         # self.daoGrupo = DaoGrupo(self.db)
@@ -63,6 +66,22 @@ class EventosCard(Ui_wdgEventoCard, QWidget):
     def editarEvento(self):
         self.frGrupoCard.setStyleSheet(self.styleEdicao)
         self.parent.editarEvento(self.evento)
+
+        self.frInfosEdicoes.show()
+
+        horaInicio = datetime.time(self.evento.horaInicio[0])
+        horaFim = datetime.time(self.evento.horaFim[0])
+
+        self.lbTituloCard.setText(self.evento.titulo[0])
+        self.lbDescricao.setPlainText(self.evento.detalhe[0])
+        self.lbDescricao.setStyleSheet('background-color: #fafafa;')
+        self.lbDescricao.setReadOnly(False)
+
+        self.deDataEvento.setDate(self.evento.dataEvento[0])
+        self.cbxDiaInteiro.setCurrentIndex(int(self.evento.diaInteiro))
+
+        self.teHoraInicioEvento.setTime(horaInicio)
+        self.teHoraFimEvento.setTime(horaFim)
 
     def emailEvento(self):
         print('FAlta implementar Envio de Email')
