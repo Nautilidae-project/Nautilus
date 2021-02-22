@@ -91,7 +91,12 @@ class Ui_tabFinanceiroGeral(object):
         self.tabGeral.setObjectName("tabGeral")
         self.tabFinanceiro.addTab(self.tabGeral, "")
         self.tabPlanos = QtWidgets.QWidget()
-        self.tabPlanos.setStyleSheet("\n"
+        self.tabPlanos.setStyleSheet("/*------------------------------- LineEdit --------------------------------------*/\n"
+"#leNomePlano, #leValor {\n"
+"    border-top-left-radius: 0px;\n"
+"}\n"
+"\n"
+"\n"
 "/*------------------------------- Labels --------------------------------------*/\n"
 "#lbDataInicio, \n"
 "#lbDataTermino,\n"
@@ -207,15 +212,21 @@ class Ui_tabFinanceiroGeral(object):
 "#tblPlanos {\n"
 "    margin-left: 4px;\n"
 "    margin-right: 4px;\n"
+"    margin-top: 4px;\n"
+"}\n"
+"\n"
+"/*---------------------------------- TextEdit -------------------------------------*/\n"
+"#teDescricaoPlano{\n"
+"    border-top-left-radius: 0px;\n"
 "}")
         self.tabPlanos.setObjectName("tabPlanos")
         self.frtblPlanos = QtWidgets.QFrame(self.tabPlanos)
-        self.frtblPlanos.setGeometry(QtCore.QRect(10, 10, 401, 371))
+        self.frtblPlanos.setGeometry(QtCore.QRect(10, 10, 441, 371))
         self.frtblPlanos.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frtblPlanos.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frtblPlanos.setObjectName("frtblPlanos")
         self.frCabecalho = QtWidgets.QFrame(self.frtblPlanos)
-        self.frCabecalho.setGeometry(QtCore.QRect(0, 0, 401, 51))
+        self.frCabecalho.setGeometry(QtCore.QRect(0, 0, 441, 51))
         self.frCabecalho.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frCabecalho.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frCabecalho.setObjectName("frCabecalho")
@@ -223,10 +234,10 @@ class Ui_tabFinanceiroGeral(object):
         self.lbTituloTabela.setGeometry(QtCore.QRect(10, 10, 211, 31))
         self.lbTituloTabela.setObjectName("lbTituloTabela")
         self.cbInativos = QtWidgets.QCheckBox(self.frCabecalho)
-        self.cbInativos.setGeometry(QtCore.QRect(270, 20, 131, 23))
+        self.cbInativos.setGeometry(QtCore.QRect(300, 20, 131, 23))
         self.cbInativos.setObjectName("cbInativos")
         self.frTblBottom = QtWidgets.QFrame(self.frtblPlanos)
-        self.frTblBottom.setGeometry(QtCore.QRect(0, 50, 401, 321))
+        self.frTblBottom.setGeometry(QtCore.QRect(0, 50, 441, 321))
         self.frTblBottom.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frTblBottom.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frTblBottom.setObjectName("frTblBottom")
@@ -236,8 +247,16 @@ class Ui_tabFinanceiroGeral(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.tblPlanos = QtWidgets.QTableWidget(self.frTblBottom)
         self.tblPlanos.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.tblPlanos.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.tblPlanos.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.tblPlanos.setAlternatingRowColors(True)
+        self.tblPlanos.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.tblPlanos.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.tblPlanos.setTextElideMode(QtCore.Qt.ElideMiddle)
+        self.tblPlanos.setShowGrid(False)
+        self.tblPlanos.setCornerButtonEnabled(False)
         self.tblPlanos.setObjectName("tblPlanos")
-        self.tblPlanos.setColumnCount(4)
+        self.tblPlanos.setColumnCount(5)
         self.tblPlanos.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.tblPlanos.setHorizontalHeaderItem(0, item)
@@ -247,9 +266,16 @@ class Ui_tabFinanceiroGeral(object):
         self.tblPlanos.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.tblPlanos.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tblPlanos.setHorizontalHeaderItem(4, item)
+        self.tblPlanos.horizontalHeader().setCascadingSectionResizes(True)
+        self.tblPlanos.horizontalHeader().setHighlightSections(True)
+        self.tblPlanos.horizontalHeader().setStretchLastSection(False)
+        self.tblPlanos.verticalHeader().setVisible(False)
+        self.tblPlanos.verticalHeader().setSortIndicatorShown(False)
         self.verticalLayout.addWidget(self.tblPlanos)
         self.frCriaPlanos = QtWidgets.QFrame(self.tabPlanos)
-        self.frCriaPlanos.setGeometry(QtCore.QRect(10, 390, 401, 331))
+        self.frCriaPlanos.setGeometry(QtCore.QRect(10, 390, 441, 331))
         self.frCriaPlanos.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frCriaPlanos.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frCriaPlanos.setObjectName("frCriaPlanos")
@@ -285,7 +311,7 @@ class Ui_tabFinanceiroGeral(object):
         self.cbxFreq.setGeometry(QtCore.QRect(10, 220, 141, 25))
         self.cbxFreq.setObjectName("cbxFreq")
         self.cbPresencial = QtWidgets.QCheckBox(self.frCriaPlanos)
-        self.cbPresencial.setGeometry(QtCore.QRect(290, 20, 90, 23))
+        self.cbPresencial.setGeometry(QtCore.QRect(330, 20, 90, 23))
         self.cbPresencial.setObjectName("cbPresencial")
         self.dtTermino = QtWidgets.QDateEdit(self.frCriaPlanos)
         self.dtTermino.setGeometry(QtCore.QRect(140, 290, 110, 26))
@@ -297,16 +323,16 @@ class Ui_tabFinanceiroGeral(object):
         self.dtInicio.setDate(QtCore.QDate(2021, 1, 1))
         self.dtInicio.setObjectName("dtInicio")
         self.teDescricaoPlano = QtWidgets.QTextEdit(self.frCriaPlanos)
-        self.teDescricaoPlano.setGeometry(QtCore.QRect(220, 90, 161, 151))
+        self.teDescricaoPlano.setGeometry(QtCore.QRect(260, 90, 161, 151))
         self.teDescricaoPlano.setObjectName("teDescricaoPlano")
         self.lbDescricaoPlano = QtWidgets.QLabel(self.frCriaPlanos)
-        self.lbDescricaoPlano.setGeometry(QtCore.QRect(220, 70, 81, 17))
+        self.lbDescricaoPlano.setGeometry(QtCore.QRect(260, 70, 81, 17))
         self.lbDescricaoPlano.setObjectName("lbDescricaoPlano")
         self.pbInserir = QtWidgets.QPushButton(self.frCriaPlanos)
-        self.pbInserir.setGeometry(QtCore.QRect(300, 260, 83, 25))
+        self.pbInserir.setGeometry(QtCore.QRect(340, 260, 83, 25))
         self.pbInserir.setObjectName("pbInserir")
         self.pbCancelar = QtWidgets.QPushButton(self.frCriaPlanos)
-        self.pbCancelar.setGeometry(QtCore.QRect(300, 290, 83, 25))
+        self.pbCancelar.setGeometry(QtCore.QRect(340, 290, 83, 25))
         self.pbCancelar.setObjectName("pbCancelar")
         self.tabFinanceiro.addTab(self.tabPlanos, "")
         self.horizontalLayout.addWidget(self.tabFinanceiro)
@@ -322,12 +348,14 @@ class Ui_tabFinanceiroGeral(object):
         self.lbTituloTabela.setText(_translate("tabFinanceiroGeral", "Planos Ativos"))
         self.cbInativos.setText(_translate("tabFinanceiroGeral", "Mostrar inativos"))
         item = self.tblPlanos.horizontalHeaderItem(0)
-        item.setText(_translate("tabFinanceiroGeral", "Nome"))
+        item.setText(_translate("tabFinanceiroGeral", "Id"))
         item = self.tblPlanos.horizontalHeaderItem(1)
-        item.setText(_translate("tabFinanceiroGeral", "Valor"))
+        item.setText(_translate("tabFinanceiroGeral", "Nome"))
         item = self.tblPlanos.horizontalHeaderItem(2)
-        item.setText(_translate("tabFinanceiroGeral", "Frequência"))
+        item.setText(_translate("tabFinanceiroGeral", "Valor"))
         item = self.tblPlanos.horizontalHeaderItem(3)
+        item.setText(_translate("tabFinanceiroGeral", "Frequência"))
+        item = self.tblPlanos.horizontalHeaderItem(4)
         item.setText(_translate("tabFinanceiroGeral", "Clientes Inscritos"))
         self.lbTituloCriaPlano.setText(_translate("tabFinanceiroGeral", "Criar Plano"))
         self.lbNomePlano.setText(_translate("tabFinanceiroGeral", "Nome do Plano"))

@@ -12,6 +12,7 @@ from brain.DAOs.daoCategoria import DaoCategoria
 from brain.DAOs.daoCliente import DaoCliente
 from brain.DAOs.daoGrupo import DaoGrupo
 from brain.DAOs.daoParticipantes import DaoParticipantes
+from brain.DAOs.daoPlanos import DaoPlanos
 from brain.DAOs.daoUsuario import DaoUsuario
 from brain.dashboard.Cliente.localStyleSheets.filtroAlfabeto import estiloBotoesFiltro, estiloLabelFiltro
 from brain.dashboard.Cliente.localWidgets.gruposCard import GruposCard
@@ -19,7 +20,8 @@ from brain.dashboard.Cliente.relatorio import RelatorioCliente
 from brain.dashboard.Sinais import Sinais
 from brain.delegates.alinhamento import AlinhamentoCentro
 from brain.envioDeMensagens import Mensagens
-from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt, mascaraCep
+from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt, mascaraCep, \
+    mascaraMeses
 from modelos.clienteModel import Cliente
 from modelos.efeitosModel import Efeitos
 from modelos.grupoModel import GrupoModelo
@@ -29,6 +31,7 @@ import os
 from math import ceil
 
 from modelos.participantesModel import ParticipanteModel
+from modelos.planoModel import PlanoModelo
 
 
 class brainCliente(Ui_wdgCliente, QWidget):
@@ -38,23 +41,26 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.db = db
         self.setupUi(self)
         self.parent = parent
+        self.dashboard = parent.parent
 
-        # =================================================================== INICIALIZAÇÕES GERAIS
+        # ====================================================================================== INICIALIZAÇÕES GERAIS
         self.cliente = Cliente()
         self.daoCliente = DaoCliente(self.db)
         self.daoCategoria = DaoCategoria(self.db)
         self.daoGrupo = DaoGrupo(self.db)
+        self.daoPlanos = DaoPlanos(self.db)
         self.efeito = Efeitos()
         self.sinais = Sinais()
         self.enviarEmail = Mensagens()
+        self.dictPlanos = dict()
 
-        # ====================================================== INICIALIZAÇÕES DA ABA "INFORMAÇÕES"
+        # ========================================================================= INICIALIZAÇÕES DA ABA "INFORMAÇÕES"
         self.desativaInfoCampos(True)
         self.atualizaTabelaGeral()
         self.tblClientes.setColumnHidden(0, True)
         self.tblClientes.setItemDelegate(AlinhamentoCentro())
 
-        ## ---------------------------------------------------------- Declaração dos sinais de input
+        ## ---------------------------------------------------------------------------- Declaração dos sinais de input
         self.leInfoNome.textEdited.connect(lambda: self.defineInfoCampo('nome'))
         self.leInfoSobrenome.textEdited.connect(lambda: self.defineInfoCampo('sobrenome'))
         self.leInfoTel.textEdited.connect(lambda: self.defineInfoCampo('tel'))
@@ -64,30 +70,32 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leInfoEndereco.textEdited.connect(lambda: self.defineInfoCampo('end'))
         self.leInfoBairro.textEdited.connect(lambda: self.defineInfoCampo('bairro'))
         self.leInfoComplemento.textEdited.connect(lambda: self.defineInfoCampo('compl'))
-        self.cbInfoAtivo.clicked.connect(lambda: self.defineInfoCampo('ativo'))
 
-        ## -------------------------------------------------------------------- Declaração dos botões
+        ## ---------------------------------------------------------------------- Declaração dos sinais cliques e afins
         self.pbConfirmarAtualizacao.clicked.connect(lambda: self.showPopupSimCancela(
             'As atualizações podem ser efetivadas?\nEssa ação não pode ser desfeita.'))
         self.pbEnviarEmail.clicked.connect(self.enviarUmEmail)
         self.pbCancelarEdicao.hide()
         self.pbConfirmarAtualizacao.hide()
         self.pbCancelarEdicao.clicked.connect(self.limpaCampos)
+        self.cbInfoAtivo.clicked.connect(lambda: self.defineInfoCampo('ativo'))
+        self.cbxPlanos.currentTextChanged.connect(self.atualizaInfoPlanos)
 
-        ## ------------------------------------------------------------------- Declaração das LineEdit
+
+        ## ----------------------------------------------------------------------------------- Declaração das LineEdit
         self.leCep.editingFinished.connect(self.trataCep)
         self.leTel.editingFinished.connect(lambda: self.insereMascara('tel'))
         self.leSearchCliente.textEdited.connect(self.busca)
 
-        ## ------------------------------------------------- Declaração do sinal da tabela de clientes
+        ## ----------------------------------------------------------------- Declaração do sinal da tabela de clientes
         self.tblClientes.doubleClicked.connect(self.carregaInfoCliente)
 
-        ## -------------------------------------------------------------------- Declaração dos efeitos
+        ## ------------------------------------------------------------------------------------ Declaração dos efeitos
         self.efeito.shadowCards([self.frClientesTotal, self.frClientesMensal, self.frClientesAnuais],
                                 offset=(1, 3), color=(63, 63, 63, 50), parentOnly=True)
 
-        # ============================================================= INICIALIZAÇÕES DA ABA "CADASTRO"
-        ## -------------------------------------- Declaração relacionadas à aba de cadastro de clientes
+        # ============================================================================ INICIALIZAÇÕES DA ABA "CADASTRO"
+        ## ----------------------------------------------------- Declaração relacionadas à aba de cadastro de clientes
         self.leNome.textEdited.connect(lambda: self.defineCampoCadastro('nome'))
         self.leSobrenome.textEdited.connect(lambda: self.defineCampoCadastro('sobrenome'))
         self.leTel.textEdited.connect(lambda: self.defineCampoCadastro('tel'))
@@ -105,7 +113,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.pbMinimizaPlano.clicked.connect(self.frPlanoBody.hide)
         self.pbMinimizaPessoa.clicked.connect(self.frPessoaBody.hide)
 
-        # =============================================================== INICIALIZAÇÕES DA ABA "GRUPOS"
+        # ============================================================================== INICIALIZAÇÕES DA ABA "GRUPOS"
         self.colunas = 1
         self.modoEdicao = False
         self.grupoEdicao = GrupoModelo()
@@ -122,10 +130,10 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.tblParticipantes.setColumnHidden(0, True)
 
 
-        ## ---------------------------------------------- Declaração do sinal da tabela de Participantes
+        ## ------------------------------------------------------------- Declaração do sinal da tabela de Participantes
         self.tblParticipantes.clicked.connect(self.selecionaParticipante)
 
-        ## ----------------------------------------------------------------------- Declaração dos botões
+        ## -------------------------------------------------------------------------------------- Declaração dos botões
         self.pbAddGrupo.clicked.connect(lambda: self.criaGrupo() if not self.modoEdicao else self.updateGrupo())
         self.pbRefresh.clicked.connect(lambda: self.filtroAZ(letra=None))
         self.pbCancelar.clicked.connect(self.sairModoEdicao)
@@ -178,6 +186,38 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         if self.gridBox.count():
             self.scrollGrupos.setLayout(self.gridBox)
+
+    def atualizaInfoPlanos(self):
+        planoAtual = 0
+
+        for chave, valor in self.dictPlanos.items():
+            if valor == self.cbxPlanos.currentText():
+                planoAtual = chave
+
+        infoPlanoAtual = self.daoPlanos.buscaPlanoPorId(planoAtual)
+        planoModel = PlanoModelo()
+
+        planoModel.planoId = infoPlanoAtual[0]
+        planoModel.nomePlano = infoPlanoAtual[1]
+        planoModel.valor = infoPlanoAtual[2]
+        planoModel.descricao = infoPlanoAtual[3]
+        planoModel.periodoUnidade = infoPlanoAtual[4]
+        planoModel.dataInicio = infoPlanoAtual[5]
+        planoModel.dataFim = infoPlanoAtual[6]
+        planoModel.presencial = infoPlanoAtual[7] == 1
+
+        if len(infoPlanoAtual) == 0:
+            self.dashboard.menssagemSistema('Não foi possível carregar as informações do plano. Tente novamente.')
+        else:
+            self.lbDescValor.setText(f'R$ {planoModel.valor}')
+            self.lbPeriodo.setText(planoModel.periodoUnidade)
+            self.lbDescDescricao.setText(planoModel.descricao)
+            self.lbDescDuracao.setText(f"{mascaraMeses(planoModel.dataInicio)}\n à \n{mascaraMeses(planoModel.dataFim)}")
+            if planoModel.presencial:
+                self.lbPresencial.setText('Presencial')
+            else:
+                self.lbPresencial.setText('On-line')
+
 
     def enviarUmEmail(self, *args):
 
@@ -618,6 +658,13 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.sairModoEdicao()
 
     def carregaComboBoxes(self):
+        listPlanos = self.daoPlanos.getAllPlanosId()
+
+        for idPlano, nomePlano in listPlanos:
+            self.dictPlanos[idPlano] = nomePlano
+
+        self.cbxPlanos.addItems(self.dictPlanos.values())
+
         if self.cbxCategoria.count() != 0:
             self.cbxCategoria.clear()
         if self.cbxOrdenar.count() != 0:

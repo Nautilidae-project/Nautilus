@@ -123,7 +123,7 @@ class DaoGrupo:
                 grupoId = {grupo.grupoId}"""
 
         try:
-            cursor.execute(strComando)
+            print(cursor.execute(strComando))
             self.db.commit()
         except:
             raise Warning(f'Erro SQL - atualizarGrupo({self.configs.tblGrupo}) <UPDATE>')

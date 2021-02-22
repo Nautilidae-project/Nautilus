@@ -121,7 +121,7 @@ class ConfigDB:
                     nomePlano VARCHAR(30) NOT NULL,
                     valor FLOAT NOT NULL,
                     descricao VARCHAR(500) NOT NULL,
-                    periodoUnidade VARCHAR(120) NOT NULL,
+                    periodoUnidade VARCHAR(10) NOT NULL,
                     dataInicio DATETIME NOT NULL,
                     dataFim DATETIME NOT NULL,
                     dataCadastro DATETIME NOT NULL,

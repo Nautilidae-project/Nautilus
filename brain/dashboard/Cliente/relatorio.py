@@ -1,5 +1,6 @@
 #!/usr/bin/sh
 import os
+from pathlib import Path
 
 from PyQt5.QtWidgets import QFileDialog, QAction
 from pylatex import Document, Head, Subsection, Tabular, MultiColumn, \
@@ -124,10 +125,10 @@ class RelatorioCliente:
     def exportaRelatorio(self, tipo='pdf'):
 
         # Desenvolvimento
-        fileName = QFileDialog.getSaveFileName(directory='/home/', options=QFileDialog.DontUseNativeDialog, filter="Adobe Pdf (*.pdf);;Excel (*.xlsx)")
+        fileName = QFileDialog.getSaveFileName(directory=str(Path.home()), options=QFileDialog.DontUseNativeDialog, filter="Adobe Pdf (*.pdf);;Excel (*.xlsx)")
 
         # Produção
-        # fileName = QFileDialog.getSaveFileName(directory='/home/', filter="Adobe Pdf (*.pdf);;Excel (*.xlsx)")
+        # fileName = QFileDialog.getSaveFileName(directory=str(Path.home()), filter="Adobe Pdf (*.pdf);;Excel (*.xlsx)")
         print(f'\033[33m{fileName}')
 
         if fileName[0] != '':
