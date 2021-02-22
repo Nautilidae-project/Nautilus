@@ -79,7 +79,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.pbConfirmarAtualizacao.hide()
         self.pbCancelarEdicao.clicked.connect(self.limpaCampos)
         self.cbInfoAtivo.clicked.connect(lambda: self.defineInfoCampo('ativo'))
-        self.cbxPlanos.currentTextChanged.connect(self.atualizaInfoPlanos)
+        self.cbxPlanos.activated.connect(self.atualizaInfoPlanos)
 
 
         ## ----------------------------------------------------------------------------------- Declaração das LineEdit
@@ -194,30 +194,31 @@ class brainCliente(Ui_wdgCliente, QWidget):
             if valor == self.cbxPlanos.currentText():
                 planoAtual = chave
 
-        infoPlanoAtual = self.daoPlanos.buscaPlanoPorId(planoAtual)
-        planoModel = PlanoModelo()
+        if planoAtual != 0 and planoAtual != '0':
 
-        planoModel.planoId = infoPlanoAtual[0]
-        planoModel.nomePlano = infoPlanoAtual[1]
-        planoModel.valor = infoPlanoAtual[2]
-        planoModel.descricao = infoPlanoAtual[3]
-        planoModel.periodoUnidade = infoPlanoAtual[4]
-        planoModel.dataInicio = infoPlanoAtual[5]
-        planoModel.dataFim = infoPlanoAtual[6]
-        planoModel.presencial = infoPlanoAtual[7] == 1
+            infoPlanoAtual = self.daoPlanos.buscaPlanoPorId(planoAtual)
+            planoModel = PlanoModelo()
 
-        if len(infoPlanoAtual) == 0:
-            self.dashboard.menssagemSistema('Não foi possível carregar as informações do plano. Tente novamente.')
-        else:
-            self.lbDescValor.setText(f'R$ {planoModel.valor}')
-            self.lbPeriodo.setText(planoModel.periodoUnidade)
-            self.lbDescDescricao.setText(planoModel.descricao)
-            self.lbDescDuracao.setText(f"{mascaraMeses(planoModel.dataInicio)}\n à \n{mascaraMeses(planoModel.dataFim)}")
-            if planoModel.presencial:
-                self.lbPresencial.setText('Presencial')
+            planoModel.planoId = infoPlanoAtual[0]
+            planoModel.nomePlano = infoPlanoAtual[1]
+            planoModel.valor = infoPlanoAtual[2]
+            planoModel.descricao = infoPlanoAtual[3]
+            planoModel.periodoUnidade = infoPlanoAtual[4]
+            planoModel.dataInicio = infoPlanoAtual[5]
+            planoModel.dataFim = infoPlanoAtual[6]
+            planoModel.presencial = infoPlanoAtual[7] == 1
+
+            if len(infoPlanoAtual) == 0:
+                self.dashboard.menssagemSistema('Não foi possível carregar as informações do plano. Tente novamente.')
             else:
-                self.lbPresencial.setText('On-line')
-
+                self.lbDescValor.setText(f'R$ {planoModel.valor}')
+                self.lbPeriodo.setText(planoModel.periodoUnidade)
+                self.lbDescDescricao.setText(planoModel.descricao)
+                self.lbDescDuracao.setText(f"{mascaraMeses(planoModel.dataInicio)}\n à \n{mascaraMeses(planoModel.dataFim)}")
+                if planoModel.presencial:
+                    self.lbPresencial.setText('Presencial')
+                else:
+                    self.lbPresencial.setText('On-line')
 
     def enviarUmEmail(self, *args):
 
@@ -659,6 +660,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
     def carregaComboBoxes(self):
         listPlanos = self.daoPlanos.getAllPlanosId()
+        self.dictPlanos['0'] = ''
+        self.cbxPlanos.clear()
 
         for idPlano, nomePlano in listPlanos:
             self.dictPlanos[idPlano] = nomePlano
@@ -829,6 +832,10 @@ class brainCliente(Ui_wdgCliente, QWidget):
                 self.parent.loading(100)
                 self.parent.menssagemSistema('Não foi possível cadastrar cliente. Alguma informação faltante.')
                 return False
+        if self.cbxPlanos.currentText() == '':
+            self.parent.loading(100)
+            self.parent.menssagemSistema('Não foi possível cadastrar cliente. É preciso selecionar um plano.')
+            return False
 
         intLoading += 10
         self.parent.loading(intLoading)
