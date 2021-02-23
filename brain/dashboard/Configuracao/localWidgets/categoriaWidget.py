@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QWidget, QRadioButton
 
 from Telas.criaCategoriaWidget import Ui_CategoriaCard
 from brain.DAOs.daoCategoria import DaoCategoria
-from brain.dashboard.Configuracao.localStyleSheets.CardCategoria import colors, botoesStyleSheet
+from brain.dashboard.Configuracao.localStyleSheets.ssCardCategoria import colors, botoesStyleSheet, cardCategoriaBg
 from modelos.categoriaModel import CategoriaModel
 from modelos.efeitosModel import Efeitos
 
@@ -16,17 +16,27 @@ class CategoriaCard(Ui_CategoriaCard, QWidget):
         self.parent = parent
         self.daoCategoria = DaoCategoria(db=db)
         self.novaCategoria = CategoriaModel()
+        self.modoEdicao = None
 
-        self.pbConfirmar.clicked.connect(self.insereCategoria)
+        self.dashBoard = self.parent.parent
+
+        self.pbInserir.clicked.connect(lambda: self.atualizaCardCategoriaLayout('inserir'))
+        self.pbExcluir.clicked.connect(lambda: self.atualizaCardCategoriaLayout('excluir'))
+        self.pbCancelar.clicked.connect(self.limpaCampos)
         self.leNovaCategoria.textEdited.connect(self.defineNomeCategoria)
+        self.pbConfirmar.clicked.connect(lambda: self.verificaCampo() if self.modoEdicao is not None else None)
+
+        self.frColors.hide()
+        self.pbConfirmar.hide()
+        self.pbCancelar.hide()
+
+        self.leNovaCategoria.setReadOnly(True)
 
         self.efeitos = Efeitos()
         self.efeitos.shadowCards([self.frTop], color=(63, 63, 63, 90), parentOnly=True)
 
         self.coloreBotoes()
 
-        print(f'self.parent: {self.parent}')
-        print(f'self.parent.parent: {self.parent.parent}')
 
     def coloreBotoes(self):
         botoes = []
@@ -48,14 +58,54 @@ class CategoriaCard(Ui_CategoriaCard, QWidget):
         self.novaCategoria.cor = colors[posicao]
 
     def insereCategoria(self):
-        dashBoard = self.parent.parent
         self.daoCategoria.insereCategoria(self.novaCategoria)
-        dashBoard.menssagemSistema("Categoria cadastrada com sucesso")
+        self.dashBoard.menssagemSistema("Categoria cadastrada com sucesso")
         self.limpaCampos()
 
+    def verificaCampo(self):
+        if self.leNovaCategoria.text().strip() == '':
+            self.dashBoard.menssagemSistema("Insira um nome válido")
+        else:
+            if self.modoEdicao == 'inserir':
+                self.insereCategoria()
+            elif self.modoEdicao == 'excluir':
+                if self.daoCategoria.excluiCategoriaByNome(self.leNovaCategoria.text().strip().upper()):
+                    self.dashBoard.menssagemSistema("Categoria excluída com sucesso")
+                    self.limpaCampos()
+                else:
+                    self.dashBoard.menssagemSistema("Categoria não encontrada. Verifique se o nome está correto")
+
+        self.modoEdicao = None
+
+    def atualizaCardCategoriaLayout(self, modo=None):
+        if modo is not None:
+            self.modoEdicao = modo
+            self.pbConfirmar.show()
+            self.pbCancelar.show()
+            self.leNovaCategoria.setReadOnly(False)
+            self.frTopBg.setStyleSheet(cardCategoriaBg(modo=modo))
+
+
+            if modo == 'inserir':
+                self.frColors.show()
+                self.lbTitulo.setText("Digite o nome da categoria")
+            if modo == 'excluir':
+                self.lbTitulo.setText("Excluir categoria")
+                self.frColors.hide()
+
+        self.frTopBg.update()
+
+
     def limpaCampos(self):
+        self.modoEdicao = None
+        self.lbTitulo.setText("Crie/Exclua uma categoria")
+        self.leNovaCategoria.setReadOnly(True)
         self.leNovaCategoria.setText('')
         self.novaCategoria = CategoriaModel()
+        self.pbConfirmar.hide()
+        self.pbCancelar.hide()
+        self.frColors.hide()
+        self.frTopBg.setStyleSheet(cardCategoriaBg())
 
         for botao in self.frColors.children():
             if isinstance(botao, QRadioButton):

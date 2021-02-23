@@ -63,6 +63,25 @@ class DaoCategoria:
         finally:
             self.disconectBD(cursor)
 
+    def excluiCategoriaByNome(self, nomeCategoria):
+        self.db.connect()
+        cursor = self.db.cursor()
+
+        strComando = f"""DELETE FROM {self.configs.tblCategoria} WHERE nome = '{nomeCategoria}'"""
+
+        try:
+            confirmaExclusao = cursor.execute(strComando)
+            self.db.commit()
+            if confirmaExclusao == 1:
+                return True
+            elif confirmaExclusao == 0:
+                return False
+
+        except:
+            raise Warning(f'Erro SQL - excluiCategoriaByNome({self.configs.tblCategoria}) <DELETE>')
+        finally:
+            self.disconectBD(cursor)
+
     def disconectBD(self, cursor):
         cursor.close()
         self.db.close()

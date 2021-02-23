@@ -29,13 +29,13 @@ class DaoCliente:
             (
                 nomeCliente, sobrenomeCliente, telefone,
                 email, cpf, endereco, complemento , cep, bairro,
-                meioPagamento, ativo, dataCadastro, dataUltAlt
+                meioPagamento, ativo, plano, dataCadastro, dataUltAlt
             )
             VALUES
             (
                 '{cliente.nomeCliente}', '{cliente.sobrenomeCliente}', '{cliente.telefone}',
                 '{cliente.email}', '{cliente.cpf}', '{cliente.endereco}', '{cliente.complemento}', '{cliente.cep}',
-                '{cliente.bairro}', 'CC', {cliente.ativo}, NOW(), NOW()
+                '{cliente.bairro}', 'CC', {cliente.ativo}, {cliente.plano}, NOW(), NOW()
             )
             """
         try:
@@ -92,7 +92,7 @@ class DaoCliente:
         self.db.connect()
         cursor = self.db.cursor()
 
-        strComando = f"SELECT clienteId, nomeCliente, telefone, meioPagamento, ativo  FROM cliente where " \
+        strComando = f"SELECT clienteId, nomeCliente, sobrenomeCliente, telefone, meioPagamento, ativo  FROM cliente where " \
                      f"nomeCliente LIKE '%{busca}%' OR " \
                      f"sobrenomeCliente like '%{busca}%' OR " \
                      f"telefone like '%{busca}%' ORDER BY ativo DESC"
@@ -199,7 +199,6 @@ class DaoCliente:
             strComando += ';'
 
         try:
-            print(strComando)
             cursor.execute(strComando)
             intClientes = cursor.fetchone()
             if intClientes is not None:

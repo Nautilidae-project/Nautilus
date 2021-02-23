@@ -10,8 +10,8 @@ class ConfigDB:
         self.__passwd = None
         self.__banco = None
         self.__port = None
-        if carregaBanco:
 
+        if carregaBanco:
             # Servidores Local e Cloud
             # self.getDatabase('Cloud')
             self.getDatabase('Local')
@@ -23,6 +23,7 @@ class ConfigDB:
         self.__tblParticipantes = 'participantes'
         self.__tblGrupo = 'grupo'
         self.__tblCategoria = 'categoria'
+        self.__tblPlanos = 'planos'
 
         # Comando SQL para criar tabela de usuários
         self.__sqlCreateUsuario = f"""CREATE TABLE IF NOT EXISTS {self.tblUsuario}(
@@ -59,6 +60,7 @@ class ConfigDB:
                         telefone VARCHAR(11) NULL,
                         email VARCHAR(40) NOT NULL,
                         cpf VARCHAR(11) NULL,
+                        plano VARCHAR(20) NULL,
                         endereco VARCHAR(50) NOT NULL,
                         complemento VARCHAR(30) NULL, 
                         cep VARCHAR(8) NOT NULL,
@@ -94,22 +96,41 @@ class ConfigDB:
                     );"""
 
         # Comando SQL para criar tabela de grupos
-        self.__sqlCreateGrupo = f"""CREATE TABLE IF NOT EXISTS {self.tblGrupo} (
-                        grupoId INT AUTO_INCREMENT,
-                        titulo VARCHAR(30) NOT NULL,
-                        descricao VARCHAR(700) NULL,
-                        categoria VARCHAR(30) NULL,
-                        dataCadastro DATETIME NOT NULL,
-                        dataUltAlt DATETIME NOT NULL,
-                        PRIMARY KEY (grupoId)
-                    );"""
+        self.__sqlCreateGrupo = f"""
+                CREATE TABLE IF NOT EXISTS {self.tblGrupo} (
+                    grupoId INT AUTO_INCREMENT,
+                    titulo VARCHAR(30) NOT NULL,
+                    descricao VARCHAR(700) NULL,
+                    categoria VARCHAR(30) NULL,
+                    dataCadastro DATETIME NOT NULL,
+                    dataUltAlt DATETIME NOT NULL,
+                    PRIMARY KEY (grupoId)
+                );"""
 
         # Comando SQL para criar tabela de categorias
-        self.__sqlCreateCategoria = f"""CREATE TABLE IF NOT EXISTS {self.tblCategoria} (
-                                nome VARCHAR(30) NOT NULL,
-                                cor VARCHAR(7) NOT NULL,
-                                PRIMARY KEY (nome)
-                            );"""
+        self.__sqlCreateCategoria = f"""
+                CREATE TABLE IF NOT EXISTS {self.tblCategoria} (
+                    nome VARCHAR(30) NOT NULL,
+                    cor VARCHAR(7) NOT NULL,
+                    PRIMARY KEY (nome)
+                );"""
+
+        # Comando SQL para criar tabela de planos
+        self.__sqlCreatePlanos = f"""
+                CREATE TABLE IF NOT EXISTS {self.tblPlanos} (
+                    planoId INT AUTO_INCREMENT NOT NULL,
+                    nomePlano VARCHAR(30) NOT NULL,
+                    valor FLOAT NOT NULL,
+                    descricao VARCHAR(500) NOT NULL,
+                    periodoUnidade VARCHAR(10) NOT NULL,
+                    dataInicio DATETIME NOT NULL,
+                    dataFim DATETIME NOT NULL,
+                    dataCadastro DATETIME NOT NULL,
+                    dataUltAlt DATETIME NOT NULL,
+                    presencial BOOL NOT NULL DEFAULT FALSE,
+                    ativo BOOL NOT NULL DEFAULT TRUE,
+                    PRIMARY KEY (planoId)
+                );"""
 
     @property
     def sqlCreateUsuario(self):
@@ -138,6 +159,10 @@ class ConfigDB:
     @property
     def sqlCreateCategoria(self):
         return self.__sqlCreateCategoria
+
+    @property
+    def sqlCreatePlanos(self):
+        return self.__sqlCreatePlanos
 
     @property
     def host(self):
@@ -186,6 +211,10 @@ class ConfigDB:
     @property
     def tblCategoria(self):
         return self.__tblCategoria
+
+    @property
+    def tblPlanos(self):
+        return self.__tblPlanos
 
     def getDatabase(self, servidor: str):
         dataSourcesDir = os.path.join(os.path.dirname(__file__), 'datasources')

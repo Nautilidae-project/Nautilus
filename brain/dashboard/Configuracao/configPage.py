@@ -5,6 +5,7 @@ from brain.DAOs.daoUsuario import DaoUsuario
 from brain.dashboard.Configuracao.localWidgets.categoriaWidget import CategoriaCard
 from brain.dashboard.Sinais import Sinais
 from modelos.efeitosModel import Efeitos
+from brain.dashboard.Configuracao.financeiroController import FinanceiroController
 
 from brain.funcoesAuxiliares import transformaImgCirculo
 
@@ -16,6 +17,9 @@ class ConfigPage(Ui_wdgConfig, QWidget):
         self.parent = parent
         self.daoUsuario = DaoUsuario(db=db)
         self.setupUi(self)
+
+        self.financeiroController = FinanceiroController(parent=self, db=db)
+        self.vlFinanceiro.addWidget(self.financeiroController)
 
         self.vlCategorias.addWidget(CategoriaCard(parent=self, db=db))
 

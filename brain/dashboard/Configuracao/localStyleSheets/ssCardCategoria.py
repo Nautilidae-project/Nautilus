@@ -27,3 +27,19 @@ QRadioButton::indicator::checked {
 	border-radius: 6px;
 	border: 3px solid white;
 }"""
+
+def cardCategoriaBg(modo=None):
+    if modo == 'inserir':
+        backgroundColor = "rgba(237, 201, 81, 255)"
+    elif modo == 'excluir':
+        backgroundColor = "rgb(235, 114, 75)"
+    else:
+        backgroundColor = "rgba(136, 138, 133, 170)"
+
+    return """#frTopBg {
+	background-color: """ + backgroundColor + """;	
+	border-top-left-radius: 12px;
+	border-bottom-right-radius: 12px;
+	border-top-right-radius: 12px;
+	border-bottom-left-radius: 2px;
+}"""

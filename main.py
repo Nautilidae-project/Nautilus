@@ -25,7 +25,7 @@ class Main(Ui_MainWindow, QMainWindow):
 
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.progresso)
-        self.timer.start(35)
+        self.timer.start(25)
 
     def progresso(self, add=None):
         if add is None:
@@ -70,6 +70,10 @@ class Main(Ui_MainWindow, QMainWindow):
 
         self.lbInfo.setText('CRIANDO BANCO DOS ESTADOS...')
         if self.daoConfigs.criaTblEstado():
+            self.progresso(add=10)
+
+        self.lbInfo.setText('CRIANDO BANCO DOS PLANOS...')
+        if self.daoConfigs.criaTblPlanos():
             self.progresso(add=10)
 
         self.lbInfo.setText('LEMBRANDO DOS ESTADOS DO BRASIL...')

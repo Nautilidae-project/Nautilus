@@ -185,7 +185,7 @@ class Ui_wdgConfig(object):
         self.tabClientes = QtWidgets.QWidget()
         self.tabClientes.setObjectName("tabClientes")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.tabClientes)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(20, 20, 321, 201))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(20, 20, 361, 201))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.vlCategorias = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.vlCategorias.setContentsMargins(0, 0, 0, 0)
@@ -196,11 +196,18 @@ class Ui_wdgConfig(object):
         self.tabConfiguracoes.addTab(self.tabAgenda, "")
         self.tabFinanceiro = QtWidgets.QWidget()
         self.tabFinanceiro.setObjectName("tabFinanceiro")
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.tabFinanceiro)
+        self.horizontalLayout_4.setContentsMargins(0, 4, 0, 0)
+        self.horizontalLayout_4.setSpacing(0)
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        self.vlFinanceiro = QtWidgets.QVBoxLayout()
+        self.vlFinanceiro.setObjectName("vlFinanceiro")
+        self.horizontalLayout_4.addLayout(self.vlFinanceiro)
         self.tabConfiguracoes.addTab(self.tabFinanceiro, "")
         self.verticalLayout.addWidget(self.tabConfiguracoes)
 
         self.retranslateUi(wdgConfig)
-        self.tabConfiguracoes.setCurrentIndex(0)
+        self.tabConfiguracoes.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(wdgConfig)
 
     def retranslateUi(self, wdgConfig):

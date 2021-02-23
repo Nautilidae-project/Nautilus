@@ -127,6 +127,19 @@ class DaoConfiguracoes:
         finally:
             self.disconectBD(cursor)
 
+    def criaTblPlanos(self):
+        self.db.connect()
+        cursor = self.db.cursor()
+
+        try:
+            cursor.execute(self.configs.sqlCreatePlanos)
+            self.db.commit()
+            return True
+        except:
+            raise Warning(f'Erro SQL - criaBanco({self.configs.banco}) <CREATE TABLE {self.configs.tblPlanos}>')
+        finally:
+            self.disconectBD(cursor)
+
     def addEstados(self):
 
         self.db.connect()
