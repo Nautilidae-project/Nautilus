@@ -26,7 +26,7 @@ from modelos.clienteModel import Cliente
 from modelos.efeitosModel import Efeitos
 from modelos.grupoModel import GrupoModelo
 
-import os
+from datetime import datetime
 
 from math import ceil
 
@@ -105,6 +105,9 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leBairro.textEdited.connect(lambda: self.defineCampoCadastro('bairro'))
         self.leCompl.textEdited.connect(lambda: self.defineCampoCadastro('compl'))
         self.pbCadastrar.clicked.connect(lambda: self.trataCadastro(self.cliente))
+        self.dataVazia = f"{mascaraMeses(datetime.now())}"
+        self.lbDescDataInicio.setText(self.dataVazia)
+        self.lbDescDataFim.setText(self.dataVazia)
 
         self.frPessoaBody.hide()
         self.frPlanoBody.hide()
@@ -211,10 +214,14 @@ class brainCliente(Ui_wdgCliente, QWidget):
             if len(infoPlanoAtual) == 0:
                 self.dashboard.menssagemSistema('Não foi possível carregar as informações do plano. Tente novamente.')
             else:
+                for chave, valor in self.dictPlanos.items():
+                    if valor == self.cbxPlanos.currentText():
+                        self.cliente.plano = chave
                 self.lbDescValor.setText(f'R$ {planoModel.valor}')
                 self.lbPeriodo.setText(planoModel.periodoUnidade)
                 self.lbDescDescricao.setText(planoModel.descricao)
-                self.lbDescDuracao.setText(f"{mascaraMeses(planoModel.dataInicio)}\n à \n{mascaraMeses(planoModel.dataFim)}")
+                self.lbDescDataInicio.setText(mascaraMeses(planoModel.dataInicio))
+                self.lbDescDataFim.setText(mascaraMeses(planoModel.dataFim))
                 if planoModel.presencial:
                     self.lbPresencial.setText('Presencial')
                 else:
@@ -527,6 +534,10 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.pbCancelarEdicao.hide()
         self.pbConfirmarAtualizacao.hide()
         self.frInfoCliente.setGraphicsEffect(None)
+        self.lbDescDataInicio.setText(self.dataVazia)
+        self.lbDescDataFim.setText(self.dataVazia)
+        self.lbDescDescricao.setText('Descrição detalhada do plano.')
+        self.lbDescValor.setText('R$ 0,00')
 
         for i in range(0, self.tblParticipantes.rowCount()):
             if self.tblParticipantes.item(i, 3) is not None:

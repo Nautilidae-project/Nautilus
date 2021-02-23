@@ -60,6 +60,7 @@ class ConfigDB:
                         telefone VARCHAR(11) NULL,
                         email VARCHAR(40) NOT NULL,
                         cpf VARCHAR(11) NULL,
+                        plano VARCHAR(20) NULL,
                         endereco VARCHAR(50) NOT NULL,
                         complemento VARCHAR(30) NULL, 
                         cep VARCHAR(8) NOT NULL,

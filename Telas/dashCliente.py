@@ -1039,8 +1039,8 @@ class Ui_wdgCliente(object):
         self.tbCadastraCliente.setSizePolicy(sizePolicy)
         self.tbCadastraCliente.setStyleSheet("/*------------------------------- Frames ----------------------------------------*/\n"
 "#frCabecalhoCadPessoa, #frCabecalhoCadPlano {\n"
-"    border-radius: 0px;\n"
-"    background-color: rgb(210, 210, 226);\n"
+"    border-radius: 8px;\n"
+"    background-color: rgb(220, 220, 236);\n"
 "    border: 0px;\n"
 "}\n"
 "\n"
@@ -1055,6 +1055,8 @@ class Ui_wdgCliente(object):
 "} \n"
 "\n"
 "#frPessoaBody, #frPlanoBody{\n"
+"    margin-left: 8px;\n"
+"    margin-right: 8px;\n"
 "    background-color: rgb(238, 238, 236);\n"
 "    border-bottom: 2px solid rgb(46, 52, 54);\n"
 "    border-left: 2px solid rgb(46, 52, 54);\n"
@@ -1089,7 +1091,7 @@ class Ui_wdgCliente(object):
 "\n"
 "#lbTituloPessoa, #lbTituloPlano,\n"
 "#lbDescValor, #lbDescPlano, #lbPeriodo,\n"
-"#lbDescDuracao {\n"
+"#lbDescDataInicio, #lbDescDataFim, #lbNomePlano {\n"
 "    background-color: transparent;\n"
 "    font-family: Ubuntu;\n"
 "    font-size: 24px;\n"
@@ -1099,7 +1101,7 @@ class Ui_wdgCliente(object):
 "}\n"
 "\n"
 "#lbDescricaoPessoa, #lbDescricaoPlano,\n"
-"#lbValor, #lbDuracao, #lbDescDescricao, \n"
+"#lbValor, #lbDataInicio, #lbDataFim, #lbDescDescricao, \n"
 "#lbPresencial {\n"
 "    background-color: transparent;\n"
 "    font-family: Ubuntu;\n"
@@ -1149,7 +1151,7 @@ class Ui_wdgCliente(object):
         self.scrollClienteCadastro.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.scrollClienteCadastro.setObjectName("scrollClienteCadastro")
         self.scrollClienteContents = QtWidgets.QWidget()
-        self.scrollClienteContents.setGeometry(QtCore.QRect(0, -188, 1064, 901))
+        self.scrollClienteContents.setGeometry(QtCore.QRect(0, -185, 1064, 901))
         self.scrollClienteContents.setObjectName("scrollClienteContents")
         self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.scrollClienteContents)
         self.verticalLayout_10.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
@@ -1416,7 +1418,7 @@ class Ui_wdgCliente(object):
         self.verticalLayout_12.setObjectName("verticalLayout_12")
         self.lbNomePlano = QtWidgets.QLabel(self.frNomePlano)
         self.lbNomePlano.setMinimumSize(QtCore.QSize(130, 0))
-        self.lbNomePlano.setMaximumSize(QtCore.QSize(150, 30))
+        self.lbNomePlano.setMaximumSize(QtCore.QSize(200, 30))
         self.lbNomePlano.setStyleSheet("color: rgb(46, 52, 54)")
         self.lbNomePlano.setTextFormat(QtCore.Qt.RichText)
         self.lbNomePlano.setAlignment(QtCore.Qt.AlignCenter)
@@ -1435,20 +1437,20 @@ class Ui_wdgCliente(object):
         self.frDescPlano.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frDescPlano.setObjectName("frDescPlano")
         self.lbValor = QtWidgets.QLabel(self.frDescPlano)
-        self.lbValor.setGeometry(QtCore.QRect(40, 20, 41, 31))
+        self.lbValor.setGeometry(QtCore.QRect(30, 0, 41, 31))
         self.lbValor.setObjectName("lbValor")
         self.lbDescValor = QtWidgets.QLabel(self.frDescPlano)
-        self.lbDescValor.setGeometry(QtCore.QRect(110, 20, 121, 31))
+        self.lbDescValor.setGeometry(QtCore.QRect(30, 20, 121, 31))
         self.lbDescValor.setObjectName("lbDescValor")
-        self.lbDuracao = QtWidgets.QLabel(self.frDescPlano)
-        self.lbDuracao.setGeometry(QtCore.QRect(390, 140, 81, 41))
-        self.lbDuracao.setObjectName("lbDuracao")
-        self.lbDescDuracao = QtWidgets.QLabel(self.frDescPlano)
-        self.lbDescDuracao.setGeometry(QtCore.QRect(470, 110, 221, 101))
-        self.lbDescDuracao.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbDescDuracao.setObjectName("lbDescDuracao")
+        self.lbDataInicio = QtWidgets.QLabel(self.frDescPlano)
+        self.lbDataInicio.setGeometry(QtCore.QRect(410, 90, 161, 41))
+        self.lbDataInicio.setObjectName("lbDataInicio")
+        self.lbDescDataInicio = QtWidgets.QLabel(self.frDescPlano)
+        self.lbDescDataInicio.setGeometry(QtCore.QRect(380, 130, 281, 41))
+        self.lbDescDataInicio.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbDescDataInicio.setObjectName("lbDescDataInicio")
         self.lbDescDescricao = QtWidgets.QLabel(self.frDescPlano)
-        self.lbDescDescricao.setGeometry(QtCore.QRect(10, 120, 361, 111))
+        self.lbDescDescricao.setGeometry(QtCore.QRect(10, 120, 331, 111))
         self.lbDescDescricao.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.lbDescDescricao.setWordWrap(True)
         self.lbDescDescricao.setObjectName("lbDescDescricao")
@@ -1456,12 +1458,19 @@ class Ui_wdgCliente(object):
         self.lbDescPlano.setGeometry(QtCore.QRect(10, 70, 211, 41))
         self.lbDescPlano.setObjectName("lbDescPlano")
         self.lbPresencial = QtWidgets.QLabel(self.frDescPlano)
-        self.lbPresencial.setGeometry(QtCore.QRect(550, 50, 151, 31))
+        self.lbPresencial.setGeometry(QtCore.QRect(550, 40, 151, 31))
         self.lbPresencial.setObjectName("lbPresencial")
         self.lbPeriodo = QtWidgets.QLabel(self.frDescPlano)
-        self.lbPeriodo.setGeometry(QtCore.QRect(550, 20, 101, 31))
+        self.lbPeriodo.setGeometry(QtCore.QRect(550, 10, 101, 31))
         self.lbPeriodo.setObjectName("lbPeriodo")
-        self.horizontalLayout_9.addWidget(self.frDescPlano, 0, QtCore.Qt.AlignTop)
+        self.lbDataFim = QtWidgets.QLabel(self.frDescPlano)
+        self.lbDataFim.setGeometry(QtCore.QRect(410, 170, 191, 41))
+        self.lbDataFim.setObjectName("lbDataFim")
+        self.lbDescDataFim = QtWidgets.QLabel(self.frDescPlano)
+        self.lbDescDataFim.setGeometry(QtCore.QRect(380, 220, 281, 41))
+        self.lbDescDataFim.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbDescDataFim.setObjectName("lbDescDataFim")
+        self.horizontalLayout_9.addWidget(self.frDescPlano)
         self.verticalLayout_11.addWidget(self.frPlanoBody)
         self.verticalLayout_10.addWidget(self.frAreaPlano, 0, QtCore.Qt.AlignTop)
         spacerItem4 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
@@ -1966,12 +1975,14 @@ class Ui_wdgCliente(object):
         self.lbNomePlano.setText(_translate("wdgCliente", "Nome do plano"))
         self.lbValor.setText(_translate("wdgCliente", "Valor:"))
         self.lbDescValor.setText(_translate("wdgCliente", "R$ 0,00"))
-        self.lbDuracao.setText(_translate("wdgCliente", "Duração:"))
-        self.lbDescDuracao.setText(_translate("wdgCliente", "02/05/2021 à 05/09/2021"))
+        self.lbDataInicio.setText(_translate("wdgCliente", "Data de início:"))
+        self.lbDescDataInicio.setText(_translate("wdgCliente", "02 de Maio de 2021"))
         self.lbDescDescricao.setText(_translate("wdgCliente", "Descrição do plano."))
         self.lbDescPlano.setText(_translate("wdgCliente", "Descrição do plano:"))
         self.lbPresencial.setText(_translate("wdgCliente", "Presencial"))
         self.lbPeriodo.setText(_translate("wdgCliente", "Período"))
+        self.lbDataFim.setText(_translate("wdgCliente", "Data de término:"))
+        self.lbDescDataFim.setText(_translate("wdgCliente", "02 de Maio de 2021"))
         self.pbCadastrar.setText(_translate("wdgCliente", "Cadastrar"))
         self.tabsCliente.setTabText(self.tabsCliente.indexOf(self.tbCadastraCliente), _translate("wdgCliente", "Cadastro"))
         self.lbCabecalho.setText(_translate("wdgCliente", "Grupos"))

@@ -2364,8 +2364,8 @@ QScrollBar:vertical {
       <property name="styleSheet">
        <string notr="true">/*------------------------------- Frames ----------------------------------------*/
 #frCabecalhoCadPessoa, #frCabecalhoCadPlano {
-	border-radius: 0px;
-	background-color: rgb(210, 210, 226);
+	border-radius: 8px;
+	background-color: rgb(220, 220, 236);
 	border: 0px;
 }
 
@@ -2380,6 +2380,8 @@ QScrollBar:vertical {
 } 
 
 #frPessoaBody, #frPlanoBody{
+	margin-left: 8px;
+	margin-right: 8px;
 	background-color: rgb(238, 238, 236);
 	border-bottom: 2px solid rgb(46, 52, 54);
 	border-left: 2px solid rgb(46, 52, 54);
@@ -2414,7 +2416,7 @@ QScrollBar:vertical {
 
 #lbTituloPessoa, #lbTituloPlano,
 #lbDescValor, #lbDescPlano, #lbPeriodo,
-#lbDescDuracao {
+#lbDescDataInicio, #lbDescDataFim, #lbNomePlano {
 	background-color: transparent;
 	font-family: Ubuntu;
 	font-size: 24px;
@@ -2424,7 +2426,7 @@ QScrollBar:vertical {
 }
 
 #lbDescricaoPessoa, #lbDescricaoPlano,
-#lbValor, #lbDuracao, #lbDescDescricao, 
+#lbValor, #lbDataInicio, #lbDataFim, #lbDescDescricao, 
 #lbPresencial {
 	background-color: transparent;
 	font-family: Ubuntu;
@@ -2537,7 +2539,7 @@ QScrollBar:vertical {
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-188</y>
+            <y>-185</y>
             <width>1064</width>
             <height>901</height>
            </rect>
@@ -3484,7 +3486,7 @@ QScrollBar:vertical {
                       </property>
                       <property name="maximumSize">
                        <size>
-                        <width>150</width>
+                        <width>200</width>
                         <height>30</height>
                        </size>
                       </property>
@@ -3515,7 +3517,7 @@ QScrollBar:vertical {
                    </layout>
                   </widget>
                  </item>
-                 <item alignment="Qt::AlignTop">
+                 <item>
                   <widget class="QFrame" name="frDescPlano">
                    <property name="minimumSize">
                     <size>
@@ -3544,8 +3546,8 @@ QScrollBar:vertical {
                    <widget class="QLabel" name="lbValor">
                     <property name="geometry">
                      <rect>
-                      <x>40</x>
-                      <y>20</y>
+                      <x>30</x>
+                      <y>0</y>
                       <width>41</width>
                       <height>31</height>
                      </rect>
@@ -3557,7 +3559,7 @@ QScrollBar:vertical {
                    <widget class="QLabel" name="lbDescValor">
                     <property name="geometry">
                      <rect>
-                      <x>110</x>
+                      <x>30</x>
                       <y>20</y>
                       <width>121</width>
                       <height>31</height>
@@ -3567,30 +3569,30 @@ QScrollBar:vertical {
                      <string>R$ 0,00</string>
                     </property>
                    </widget>
-                   <widget class="QLabel" name="lbDuracao">
+                   <widget class="QLabel" name="lbDataInicio">
                     <property name="geometry">
                      <rect>
-                      <x>390</x>
-                      <y>140</y>
-                      <width>81</width>
+                      <x>410</x>
+                      <y>90</y>
+                      <width>161</width>
                       <height>41</height>
                      </rect>
                     </property>
                     <property name="text">
-                     <string>Duração:</string>
+                     <string>Data de início:</string>
                     </property>
                    </widget>
-                   <widget class="QLabel" name="lbDescDuracao">
+                   <widget class="QLabel" name="lbDescDataInicio">
                     <property name="geometry">
                      <rect>
-                      <x>470</x>
-                      <y>110</y>
-                      <width>221</width>
-                      <height>101</height>
+                      <x>380</x>
+                      <y>130</y>
+                      <width>281</width>
+                      <height>41</height>
                      </rect>
                     </property>
                     <property name="text">
-                     <string>02/05/2021 à 05/09/2021</string>
+                     <string>02 de Maio de 2021</string>
                     </property>
                     <property name="alignment">
                      <set>Qt::AlignCenter</set>
@@ -3601,7 +3603,7 @@ QScrollBar:vertical {
                      <rect>
                       <x>10</x>
                       <y>120</y>
-                      <width>361</width>
+                      <width>331</width>
                       <height>111</height>
                      </rect>
                     </property>
@@ -3635,7 +3637,7 @@ QScrollBar:vertical {
                     <property name="geometry">
                      <rect>
                       <x>550</x>
-                      <y>50</y>
+                      <y>40</y>
                       <width>151</width>
                       <height>31</height>
                      </rect>
@@ -3648,13 +3650,42 @@ QScrollBar:vertical {
                     <property name="geometry">
                      <rect>
                       <x>550</x>
-                      <y>20</y>
+                      <y>10</y>
                       <width>101</width>
                       <height>31</height>
                      </rect>
                     </property>
                     <property name="text">
                      <string>Período</string>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="lbDataFim">
+                    <property name="geometry">
+                     <rect>
+                      <x>410</x>
+                      <y>170</y>
+                      <width>191</width>
+                      <height>41</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Data de término:</string>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="lbDescDataFim">
+                    <property name="geometry">
+                     <rect>
+                      <x>380</x>
+                      <y>220</y>
+                      <width>281</width>
+                      <height>41</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>02 de Maio de 2021</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
                     </property>
                    </widget>
                   </widget>

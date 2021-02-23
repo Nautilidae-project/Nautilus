@@ -15,6 +15,7 @@ class Cliente:
         self.cep = None
         self.bairro = None
         self.meioPagamento = None
+        self.plano = None
         self.ativo = 1
 
     def toDict(self):
@@ -30,6 +31,7 @@ class Cliente:
         'cep': self.cep,
         'bairro': self.bairro,
         'meioPagamento': self.meioPagamento,
+        'plano': self.plano,
         'ativo': 1
         }
         return dictUsuario
@@ -47,9 +49,10 @@ class Cliente:
         self.bairro = dictCliente['bairro'],
         self.meioPagamento = dictCliente['meioPagamento'],
         self.ativo = dictCliente['ativo']
+        self.plano = dictCliente['plano']
 
     def __repr__(self):
         return f'Cliente(\nclienteId: {self.clienteId}, nomeCliente: {self.nomeCliente}, sobrenomeCliente: {self.sobrenomeCliente}, \n' \
                f'telefone: {self.telefone}, email: {self.email}, cpf: {self.cpf}, endereco: {self.endereco}, \n' \
                f'complemento: {self.complemento}, cep: {self.cep}, bairro: {self.bairro}, meioPagamento: {self.meioPagamento},\n' \
-               f'ativo: {self.ativo}'
+               f'ativo: {self.ativo}, plano: {self.plano}'

@@ -29,13 +29,13 @@ class DaoCliente:
             (
                 nomeCliente, sobrenomeCliente, telefone,
                 email, cpf, endereco, complemento , cep, bairro,
-                meioPagamento, ativo, dataCadastro, dataUltAlt
+                meioPagamento, ativo, plano, dataCadastro, dataUltAlt
             )
             VALUES
             (
                 '{cliente.nomeCliente}', '{cliente.sobrenomeCliente}', '{cliente.telefone}',
                 '{cliente.email}', '{cliente.cpf}', '{cliente.endereco}', '{cliente.complemento}', '{cliente.cep}',
-                '{cliente.bairro}', 'CC', {cliente.ativo}, NOW(), NOW()
+                '{cliente.bairro}', 'CC', {cliente.ativo}, {cliente.plano}, NOW(), NOW()
             )
             """
         try:
