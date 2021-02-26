@@ -2,6 +2,9 @@
   <qresource prefix="refresh">
     <file>refresh.png</file>
   </qresource>
+  <qresource prefix="editar">
+    <file>cardEditar.png</file>
+  </qresource>
   <qresource prefix="maximiza">
     <file>arrowDown.png</file>
   </qresource>

@@ -144,6 +144,13 @@ class Ui_wdgCliente(object):
 "\n"
 "QTableWidget::item {\n"
 "    font-family: Ubuntu\n"
+"}\n"
+"\n"
+"#tbInfosCliente, \n"
+"#tbCadastraCliente, \n"
+"#tbBoletoCliente, \n"
+"#tbGrupoCliente {\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0.994318, stop:0 rgba(251, 162, 77, 69), stop:1 rgba(165, 46, 255, 135));\n"
 "}")
         self.gridLayout = QtWidgets.QGridLayout(wdgCliente)
         self.gridLayout.setContentsMargins(0, 9, 0, 30)
@@ -155,14 +162,19 @@ class Ui_wdgCliente(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.tabsCliente.sizePolicy().hasHeightForWidth())
         self.tabsCliente.setSizePolicy(sizePolicy)
-        self.tabsCliente.setStyleSheet("QTabWidget::pane {\n"
-"    border-top: 3px solid;\n"
+        self.tabsCliente.setStyleSheet("QTabWidget {\n"
+"    background-color: black;\n"
 "}\n"
 "\n"
-"QTabWidget QStackedWidget > QWidget   \n"
+"QTabWidget::pane {\n"
+"    border-top: 3px solid;\n"
+"    background-color: white;\n"
+"}\n"
+"\n"
+"/*QTabWidget QStackedWidget > QWidget   \n"
 "{    \n"
 "    background-color: #fafafa;\n"
-"}\n"
+"}*/\n"
 "\n"
 "\n"
 "/*-------------------------------------------------------------*/\n"
@@ -182,6 +194,7 @@ class Ui_wdgCliente(object):
 "    border-top-right-radius: 14px;\n"
 "\n"
 "    padding: 8px;\n"
+"\n"
 "}\n"
 "\n"
 "QTabBar::tab:selected, QTabBar::tab:hover {\n"
@@ -217,20 +230,28 @@ class Ui_wdgCliente(object):
 "#frInformacoes,\n"
 "#frInfoConfirmar,\n"
 "#frInfoMeioPag,\n"
-"#frInfoTitulo {\n"
+"#frInfoTitulo,\n"
+"#frTopTabMenu,\n"
+"#frListButtons,\n"
+"#frInfoCliente,\n"
+"#frNomeTabela,\n"
+"#frRightButtons,\n"
+"#frCmbFilter {\n"
 "    background-color: transparent;\n"
 "}\n"
 "\n"
 "#frInfoCliente {\n"
 "    padding: 4px;\n"
-"    background-color: rgb(222, 248, 255);\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 243, 183, 193), stop:1 rgba(255, 255, 255, 255));\n"
 "}\n"
 "\n"
-"#frClientesTotal {\n"
-"    background-color: rgb(229, 239, 245);\n"
+"#frClientesTotal, \n"
+"#frClientesMensal, \n"
+"#frClientesAnuais {\n"
+"    background-color: rgb(255, 255, 255);\n"
 "    border-radius: 12px;\n"
 "}\n"
-"\n"
+"/*\n"
 "#frClientesMensal {\n"
 "    background-color: rgb(221, 237, 238);\n"
 "    border-radius: 12px;\n"
@@ -239,7 +260,7 @@ class Ui_wdgCliente(object):
 "#frClientesAnuais {\n"
 "    background-color: rgb(226, 249, 244);\n"
 "    border-radius: 12px;\n"
-"}\n"
+"}*/\n"
 "\n"
 "/*-----------------------LineEdit------------------------------*/\n"
 "#leInfoBairro, \n"
@@ -477,6 +498,7 @@ class Ui_wdgCliente(object):
         self.tblClientes.horizontalHeader().setDefaultSectionSize(150)
         self.tblClientes.horizontalHeader().setMinimumSectionSize(100)
         self.tblClientes.verticalHeader().setVisible(False)
+        self.tblClientes.verticalHeader().setCascadingSectionResizes(False)
         self.gridLayout_5.addWidget(self.tblClientes, 2, 0, 1, 1, QtCore.Qt.AlignLeft)
         self.frTblGeralTitulo = QtWidgets.QFrame(self.frClientsList)
         self.frTblGeralTitulo.setMinimumSize(QtCore.QSize(0, 60))
@@ -1038,50 +1060,81 @@ class Ui_wdgCliente(object):
         sizePolicy.setHeightForWidth(self.tbCadastraCliente.sizePolicy().hasHeightForWidth())
         self.tbCadastraCliente.setSizePolicy(sizePolicy)
         self.tbCadastraCliente.setStyleSheet("/*------------------------------- Frames ----------------------------------------*/\n"
-"#frCabecalhoCadPessoa, #frCabecalhoCadPlano {\n"
+"#frCabecalhoCadPessoa, \n"
+"#frCabecalhoCadPlano,\n"
+"#frCabecalhoCadPag {\n"
 "    border-radius: 8px;\n"
-"    background-color: rgb(220, 220, 236);\n"
-"    border: 0px;\n"
+"    background-color: rgba(194, 255, 247, 175);\n"
+"    border: 0px solid transparent;\n"
 "}\n"
 "\n"
-"#frAreaPlano, frCadPessoa {\n"
+"/*#frAreaPlano, frCadPessoa {\n"
 "    border-radius: 0px;\n"
 "    border: 0px;\n"
-"}\n"
+"}*/\n"
 "\n"
-"#frame_3, #frame_4, #frame_5, #frame_6 {\n"
+"#frCabecalho,\n"
+"#frame,\n"
+"#scrollClienteCadastro,\n"
+"#scrollClienteContents,\n"
+"#frAreaPlano, \n"
+"#frCadPessoa,\n"
+"#frAreaPag,\n"
+"#frame_3, \n"
+"#frame_4, \n"
+"#frame_5, \n"
+"#frame_6,\n"
+"#frame_8,\n"
+"#frame_9 {\n"
 "    background-color: transparent;    \n"
 "    border: 0px solid transparent;\n"
 "} \n"
 "\n"
-"#frPessoaBody, #frPlanoBody{\n"
+"#frPessoaBody, \n"
+"#frPlanoBody,\n"
+"#frPagBody {\n"
 "    margin-left: 8px;\n"
 "    margin-right: 8px;\n"
-"    background-color: rgb(238, 238, 236);\n"
+"    background-color: rgb(255, 249, 249);\n"
+"    border-bottom-left-radius: 8px;\n"
+"    border-bottom-right-radius: 8px;\n"
+"    border-top-left-radius: 0px;\n"
+"    border-top-right-radius: 0px;\n"
 "    border-bottom: 2px solid rgb(46, 52, 54);\n"
 "    border-left: 2px solid rgb(46, 52, 54);\n"
 "    border-right: 2px solid rgb(46, 52, 54);\n"
 "    border-top: 1px solid rgb(211, 215, 207);\n"
-"    border-radius: 0px;\n"
 "}\n"
 "\n"
 "/*------------------------------ Buttons ----------------------------------------*/\n"
-"#pbMaximizaPessoa, #pbMaximizaPlano{\n"
+"#pbMaximizaPessoa, \n"
+"#pbMaximizaPlano,\n"
+"#pbMaximizaPag {\n"
 "    background-image: url(:/maximiza/arrowDown.png);\n"
 "    background-repeat: no-repeat;\n"
 "    background-position: center;\n"
 "    background-color: transparent;\n"
 "}\n"
 "\n"
-"#pbMinimizaPessoa, #pbMinimizaPlano{\n"
+"#pbMinimizaPessoa, \n"
+"#pbMinimizaPlano, \n"
+"#pbMinimizaPag {\n"
 "    background-image: url(:/minimiza/arrowUp.png);\n"
 "    background-repeat: no-repeat;\n"
 "    background-position: center;\n"
 "    background-color: transparent;\n"
 "}\n"
 "\n"
+"#pbEditarInscricao {\n"
+"    background-color: rgb(213, 167, 208);\n"
+"    background-image: url(:/editar/cardEditar.png);\n"
+"    background-repeat: no-repeat;\n"
+"    background-position: center;\n"
+"    border-radius: 4px;\n"
+"}\n"
+"\n"
 "/*------------------------------- Labels ----------------------------------------*/\n"
-"#lbPasso1de3, #lbPasso2de3 {\n"
+"#lbPasso1de3, #lbPasso2de3, #lbPasso3de3 {\n"
 "    background-color: transparent;\n"
 "    font-family: Ubuntu;\n"
 "    font-style: italic;\n"
@@ -1091,7 +1144,9 @@ class Ui_wdgCliente(object):
 "\n"
 "#lbTituloPessoa, #lbTituloPlano,\n"
 "#lbDescValor, #lbDescPlano, #lbPeriodo,\n"
-"#lbDescDataInicio, #lbDescDataFim, #lbNomePlano {\n"
+"#lbDescDataInicio, #lbDescDataFim, #lbNomePlano,\n"
+"#lbTituloPag, #lbInscricao, #lbValorInscricao,\n"
+"#lbDataVencimento {\n"
 "    background-color: transparent;\n"
 "    font-family: Ubuntu;\n"
 "    font-size: 24px;\n"
@@ -1102,12 +1157,36 @@ class Ui_wdgCliente(object):
 "\n"
 "#lbDescricaoPessoa, #lbDescricaoPlano,\n"
 "#lbValor, #lbDataInicio, #lbDataFim, #lbDescDescricao, \n"
-"#lbPresencial {\n"
+"#lbPresencial, #lbDescricaoPag, #lbAdiantarPag {\n"
 "    background-color: transparent;\n"
 "    font-family: Ubuntu;\n"
 "    font-size: 14px;\n"
 "    border: 0px;\n"
-"}")
+"}\n"
+"\n"
+"/*--------------------------- Check Box---------------------------------------*/\n"
+"\n"
+"#cbAdiantarPag::indicator:unchecked {\n"
+"    background-color: #fff;\n"
+"    border: 1px solid;\n"
+"    font-family: Ubuntu;\n"
+"}\n"
+"\n"
+"#cbAdiantarPag {\n"
+"    background-color: transparent;\n"
+"    font-family: Ubuntu;\n"
+"}\n"
+"\n"
+"\n"
+"/*---------------------------- Table View --------------------------------------*/\n"
+"\n"
+"#tblDatasVencimento {\n"
+"    background-color: transparent;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"\n"
+"")
         self.tbCadastraCliente.setObjectName("tbCadastraCliente")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.tbCadastraCliente)
         self.gridLayout_2.setContentsMargins(9, 0, -1, 6)
@@ -1151,7 +1230,7 @@ class Ui_wdgCliente(object):
         self.scrollClienteCadastro.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.scrollClienteCadastro.setObjectName("scrollClienteCadastro")
         self.scrollClienteContents = QtWidgets.QWidget()
-        self.scrollClienteContents.setGeometry(QtCore.QRect(0, -185, 1064, 901))
+        self.scrollClienteContents.setGeometry(QtCore.QRect(0, -596, 1064, 1309))
         self.scrollClienteContents.setObjectName("scrollClienteContents")
         self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.scrollClienteContents)
         self.verticalLayout_10.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
@@ -1473,27 +1552,158 @@ class Ui_wdgCliente(object):
         self.horizontalLayout_9.addWidget(self.frDescPlano)
         self.verticalLayout_11.addWidget(self.frPlanoBody)
         self.verticalLayout_10.addWidget(self.frAreaPlano, 0, QtCore.Qt.AlignTop)
+        self.frAreaPag = QtWidgets.QFrame(self.scrollClienteContents)
+        self.frAreaPag.setMaximumSize(QtCore.QSize(16777215, 400))
+        self.frAreaPag.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frAreaPag.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frAreaPag.setObjectName("frAreaPag")
+        self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.frAreaPag)
+        self.verticalLayout_13.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_13.setSpacing(0)
+        self.verticalLayout_13.setObjectName("verticalLayout_13")
+        self.frCabecalhoCadPag = QtWidgets.QFrame(self.frAreaPag)
+        self.frCabecalhoCadPag.setMinimumSize(QtCore.QSize(0, 90))
+        self.frCabecalhoCadPag.setMaximumSize(QtCore.QSize(16777215, 100))
+        self.frCabecalhoCadPag.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frCabecalhoCadPag.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frCabecalhoCadPag.setObjectName("frCabecalhoCadPag")
+        self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.frCabecalhoCadPag)
+        self.horizontalLayout_10.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_10.setSpacing(0)
+        self.horizontalLayout_10.setObjectName("horizontalLayout_10")
+        self.frame_8 = QtWidgets.QFrame(self.frCabecalhoCadPag)
+        self.frame_8.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_8.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_8.setObjectName("frame_8")
+        self.lbDescricaoPag = QtWidgets.QLabel(self.frame_8)
+        self.lbDescricaoPag.setGeometry(QtCore.QRect(20, 62, 481, 17))
+        self.lbDescricaoPag.setObjectName("lbDescricaoPag")
+        self.lbPasso3de3 = QtWidgets.QLabel(self.frame_8)
+        self.lbPasso3de3.setGeometry(QtCore.QRect(10, 10, 71, 17))
+        self.lbPasso3de3.setObjectName("lbPasso3de3")
+        self.lbTituloPag = QtWidgets.QLabel(self.frame_8)
+        self.lbTituloPag.setGeometry(QtCore.QRect(20, 30, 311, 31))
+        self.lbTituloPag.setObjectName("lbTituloPag")
+        self.horizontalLayout_10.addWidget(self.frame_8)
+        self.frame_9 = QtWidgets.QFrame(self.frCabecalhoCadPag)
+        self.frame_9.setMinimumSize(QtCore.QSize(0, 24))
+        self.frame_9.setMaximumSize(QtCore.QSize(58, 24))
+        self.frame_9.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_9.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_9.setObjectName("frame_9")
+        self.horizontalLayout_11 = QtWidgets.QHBoxLayout(self.frame_9)
+        self.horizontalLayout_11.setContentsMargins(0, 8, 8, 0)
+        self.horizontalLayout_11.setSpacing(0)
+        self.horizontalLayout_11.setObjectName("horizontalLayout_11")
+        self.pbMaximizaPag = QtWidgets.QPushButton(self.frame_9)
+        self.pbMaximizaPag.setText("")
+        self.pbMaximizaPag.setObjectName("pbMaximizaPag")
+        self.horizontalLayout_11.addWidget(self.pbMaximizaPag)
+        self.pbMinimizaPag = QtWidgets.QPushButton(self.frame_9)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pbMinimizaPag.sizePolicy().hasHeightForWidth())
+        self.pbMinimizaPag.setSizePolicy(sizePolicy)
+        self.pbMinimizaPag.setText("")
+        self.pbMinimizaPag.setObjectName("pbMinimizaPag")
+        self.horizontalLayout_11.addWidget(self.pbMinimizaPag)
+        self.horizontalLayout_10.addWidget(self.frame_9, 0, QtCore.Qt.AlignTop)
+        self.verticalLayout_13.addWidget(self.frCabecalhoCadPag)
+        self.frPagBody = QtWidgets.QFrame(self.frAreaPag)
+        self.frPagBody.setMinimumSize(QtCore.QSize(0, 300))
+        self.frPagBody.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frPagBody.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frPagBody.setObjectName("frPagBody")
+        self.horizontalLayout_12 = QtWidgets.QHBoxLayout(self.frPagBody)
+        self.horizontalLayout_12.setObjectName("horizontalLayout_12")
+        self.frMeioPag = QtWidgets.QFrame(self.frPagBody)
+        self.frMeioPag.setMinimumSize(QtCore.QSize(0, 150))
+        self.frMeioPag.setMaximumSize(QtCore.QSize(300, 16777215))
+        self.frMeioPag.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frMeioPag.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frMeioPag.setObjectName("frMeioPag")
+        self.cbxPag = QtWidgets.QComboBox(self.frMeioPag)
+        self.cbxPag.setGeometry(QtCore.QRect(6, 246, 201, 25))
+        self.cbxPag.setMaximumSize(QtCore.QSize(250, 16777215))
+        self.cbxPag.setObjectName("cbxPag")
+        self.lbAdiantarPag = QtWidgets.QLabel(self.frMeioPag)
+        self.lbAdiantarPag.setGeometry(QtCore.QRect(10, 220, 161, 23))
+        self.lbAdiantarPag.setMinimumSize(QtCore.QSize(130, 0))
+        self.lbAdiantarPag.setMaximumSize(QtCore.QSize(200, 30))
+        self.lbAdiantarPag.setStyleSheet("color: rgb(46, 52, 54)")
+        self.lbAdiantarPag.setTextFormat(QtCore.Qt.RichText)
+        self.lbAdiantarPag.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbAdiantarPag.setObjectName("lbAdiantarPag")
+        self.cbAdiantarPag = QtWidgets.QCheckBox(self.frMeioPag)
+        self.cbAdiantarPag.setGeometry(QtCore.QRect(10, 180, 171, 23))
+        self.cbAdiantarPag.setObjectName("cbAdiantarPag")
+        self.lbInscricao = QtWidgets.QLabel(self.frMeioPag)
+        self.lbInscricao.setGeometry(QtCore.QRect(10, 10, 201, 31))
+        self.lbInscricao.setObjectName("lbInscricao")
+        self.lbValorInscricao = QtWidgets.QLabel(self.frMeioPag)
+        self.lbValorInscricao.setGeometry(QtCore.QRect(10, 60, 101, 41))
+        self.lbValorInscricao.setObjectName("lbValorInscricao")
+        self.pbEditarInscricao = QtWidgets.QPushButton(self.frMeioPag)
+        self.pbEditarInscricao.setGeometry(QtCore.QRect(120, 70, 31, 25))
+        self.pbEditarInscricao.setText("")
+        self.pbEditarInscricao.setObjectName("pbEditarInscricao")
+        self.horizontalLayout_12.addWidget(self.frMeioPag)
+        self.frDescPag = QtWidgets.QFrame(self.frPagBody)
+        self.frDescPag.setMinimumSize(QtCore.QSize(0, 250))
+        self.frDescPag.setMaximumSize(QtCore.QSize(16777215, 350))
+        self.frDescPag.setSizeIncrement(QtCore.QSize(0, 0))
+        self.frDescPag.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frDescPag.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frDescPag.setObjectName("frDescPag")
+        self.tblDatasVencimento = QtWidgets.QTableWidget(self.frDescPag)
+        self.tblDatasVencimento.setGeometry(QtCore.QRect(360, 10, 321, 261))
+        self.tblDatasVencimento.setObjectName("tblDatasVencimento")
+        self.tblDatasVencimento.setColumnCount(1)
+        self.tblDatasVencimento.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setFamily("Ubuntu")
+        font.setPointSize(14)
+        item.setFont(font)
+        self.tblDatasVencimento.setHorizontalHeaderItem(0, item)
+        self.tblDatasVencimento.horizontalHeader().setStretchLastSection(True)
+        self.tblDatasVencimento.verticalHeader().setVisible(False)
+        self.calVencimento = QtWidgets.QCalendarWidget(self.frDescPag)
+        self.calVencimento.setGeometry(QtCore.QRect(7, 50, 321, 211))
+        self.calVencimento.setGridVisible(False)
+        self.calVencimento.setSelectionMode(QtWidgets.QCalendarWidget.SingleSelection)
+        self.calVencimento.setVerticalHeaderFormat(QtWidgets.QCalendarWidget.NoVerticalHeader)
+        self.calVencimento.setNavigationBarVisible(True)
+        self.calVencimento.setDateEditEnabled(True)
+        self.calVencimento.setObjectName("calVencimento")
+        self.lbDataVencimento = QtWidgets.QLabel(self.frDescPag)
+        self.lbDataVencimento.setGeometry(QtCore.QRect(10, 10, 231, 31))
+        self.lbDataVencimento.setObjectName("lbDataVencimento")
+        self.horizontalLayout_12.addWidget(self.frDescPag)
+        self.verticalLayout_13.addWidget(self.frPagBody)
+        self.verticalLayout_10.addWidget(self.frAreaPag)
         spacerItem4 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_10.addItem(spacerItem4)
         self.scrollClienteCadastro.setWidget(self.scrollClienteContents)
         self.gridLayout_2.addWidget(self.scrollClienteCadastro, 3, 0, 1, 1)
-        self.frame = QtWidgets.QFrame(self.tbCadastraCliente)
-        self.frame.setMaximumSize(QtCore.QSize(16777215, 100))
-        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame.setObjectName("frame")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.frame)
+        self.frCadastrar = QtWidgets.QFrame(self.tbCadastraCliente)
+        self.frCadastrar.setMaximumSize(QtCore.QSize(16777215, 100))
+        self.frCadastrar.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frCadastrar.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frCadastrar.setObjectName("frCadastrar")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.frCadastrar)
         self.horizontalLayout.setContentsMargins(8, 8, 8, 8)
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.pbCadastrar = QtWidgets.QPushButton(self.frame)
+        self.pbCadastrar = QtWidgets.QPushButton(self.frCadastrar)
         self.pbCadastrar.setMinimumSize(QtCore.QSize(80, 50))
         self.pbCadastrar.setMaximumSize(QtCore.QSize(100, 50))
         self.pbCadastrar.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.pbCadastrar.setStyleSheet("")
         self.pbCadastrar.setObjectName("pbCadastrar")
         self.horizontalLayout.addWidget(self.pbCadastrar)
-        self.gridLayout_2.addWidget(self.frame, 4, 0, 1, 1, QtCore.Qt.AlignRight)
+        self.gridLayout_2.addWidget(self.frCadastrar, 4, 0, 1, 1, QtCore.Qt.AlignRight)
         self.tabsCliente.addTab(self.tbCadastraCliente, "")
         self.tbGrupoCliente = QtWidgets.QWidget()
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
@@ -1969,7 +2179,7 @@ class Ui_wdgCliente(object):
         self.leTel.setPlaceholderText(_translate("wdgCliente", "(11) 9.1234-5678"))
         self.lbTel.setText(_translate("wdgCliente", "Telefone:    "))
         self.leEnd.setPlaceholderText(_translate("wdgCliente", "Av. Paulista, 1445"))
-        self.lbDescricaoPlano.setText(_translate("wdgCliente", "Informações importantes para a gerenciar a saúde financeira do negócio"))
+        self.lbDescricaoPlano.setText(_translate("wdgCliente", "Informações importantes para a gerenciar as incrições nos planos"))
         self.lbPasso2de3.setText(_translate("wdgCliente", "Passo 2 de 3"))
         self.lbTituloPlano.setText(_translate("wdgCliente", "Informações do plano"))
         self.lbNomePlano.setText(_translate("wdgCliente", "Nome do plano"))
@@ -1983,6 +2193,16 @@ class Ui_wdgCliente(object):
         self.lbPeriodo.setText(_translate("wdgCliente", "Período"))
         self.lbDataFim.setText(_translate("wdgCliente", "Data de término:"))
         self.lbDescDataFim.setText(_translate("wdgCliente", "02 de Maio de 2021"))
+        self.lbDescricaoPag.setText(_translate("wdgCliente", "Informações importantes para a gerenciar a saúde financeira do negócio"))
+        self.lbPasso3de3.setText(_translate("wdgCliente", "Passo 3 de 3"))
+        self.lbTituloPag.setText(_translate("wdgCliente", "Informações de Pagamento"))
+        self.lbAdiantarPag.setText(_translate("wdgCliente", "Quantidades de parcelas"))
+        self.cbAdiantarPag.setText(_translate("wdgCliente", "Adiantar pagamento"))
+        self.lbInscricao.setText(_translate("wdgCliente", "Valor da inscrição"))
+        self.lbValorInscricao.setText(_translate("wdgCliente", "R$ 0,00"))
+        item = self.tblDatasVencimento.horizontalHeaderItem(0)
+        item.setText(_translate("wdgCliente", "Datas de vencimentos"))
+        self.lbDataVencimento.setText(_translate("wdgCliente", "Data de vencimento"))
         self.pbCadastrar.setText(_translate("wdgCliente", "Cadastrar"))
         self.tabsCliente.setTabText(self.tabsCliente.indexOf(self.tbCadastraCliente), _translate("wdgCliente", "Cadastro"))
         self.lbCabecalho.setText(_translate("wdgCliente", "Grupos"))

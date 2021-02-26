@@ -35,7 +35,7 @@ class Main(Ui_MainWindow, QMainWindow):
 
         self.pbarSplash.setValue(self.contador)
 
-        if self.contador == 20:
+        if self.contador == 10:
             self.timer.stop()
             self.iniciaBancos()
 
@@ -74,6 +74,10 @@ class Main(Ui_MainWindow, QMainWindow):
 
         self.lbInfo.setText('CRIANDO BANCO DOS PLANOS...')
         if self.daoConfigs.criaTblPlanos():
+            self.progresso(add=10)
+
+        self.lbInfo.setText('CRIANDO BANCO DOS PAGAMENTOS...')
+        if self.daoConfigs.criaTblPagamentos():
             self.progresso(add=10)
 
         self.lbInfo.setText('LEMBRANDO DOS ESTADOS DO BRASIL...')

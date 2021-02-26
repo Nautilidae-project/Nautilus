@@ -24,6 +24,7 @@ class ConfigDB:
         self.__tblGrupo = 'grupo'
         self.__tblCategoria = 'categoria'
         self.__tblPlanos = 'planos'
+        self.__tblPagamentos = 'pagamentos'
 
         # Comando SQL para criar tabela de usuários
         self.__sqlCreateUsuario = f"""CREATE TABLE IF NOT EXISTS {self.tblUsuario}(
@@ -123,6 +124,7 @@ class ConfigDB:
                     valor FLOAT NOT NULL,
                     descricao VARCHAR(500) NOT NULL,
                     periodoUnidade VARCHAR(10) NOT NULL,
+                    qtdInscritos INT NOT NULL DEFAULT 0,
                     dataInicio DATETIME NOT NULL,
                     dataFim DATETIME NOT NULL,
                     dataCadastro DATETIME NOT NULL,
@@ -131,6 +133,22 @@ class ConfigDB:
                     ativo BOOL NOT NULL DEFAULT TRUE,
                     PRIMARY KEY (planoId)
                 );"""
+
+        # Comando SQL para criar tabela de pagamentos
+        self.__sqlCreatePagamentos = f"""
+                       CREATE TABLE IF NOT EXISTS {self.tblPagamentos} (
+                           pagId INT AUTO_INCREMENT NOT NULL,
+                           clientId INT NOT NULL,
+                           planoId INT NOT NULL,
+                           valorPlano FLOAT NOT NULL,
+                           valorRecebido FLOAT NULL,
+                           formaPagamento VARCHAR(15) NOT NULL,
+                           dataVencimento DATETIME NOT NULL,
+                           dataPagamento DATETIME NULL,
+                           situacao VARCHAR(20) NOT NULL,
+                           dataCadastro DATETIME NOT NULL,
+                           PRIMARY KEY (pagId)
+                       );"""
 
     @property
     def sqlCreateUsuario(self):
@@ -163,6 +181,10 @@ class ConfigDB:
     @property
     def sqlCreatePlanos(self):
         return self.__sqlCreatePlanos
+
+    @property
+    def sqlCreatePagamentos(self):
+        return self.__sqlCreatePagamentos
 
     @property
     def host(self):
@@ -215,6 +237,10 @@ class ConfigDB:
     @property
     def tblPlanos(self):
         return self.__tblPlanos
+
+    @property
+    def tblPagamentos(self):
+        return self.__tblPagamentos
 
     def getDatabase(self, servidor: str):
         dataSourcesDir = os.path.join(os.path.dirname(__file__), 'datasources')

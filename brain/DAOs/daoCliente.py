@@ -40,12 +40,18 @@ class DaoCliente:
             """
         try:
             cursor.execute(strComando)
-            self.db.commit()
-            cursor.close()
         except:
             raise Warning(f'Erro SQL - insereCliente({cliente.clienteId}) <INSERT>')
+
+        strComando = f""" UPDATE planos SET qtdInscritos = qtdInscritos + 1 WHERE planoId = '{cliente.plano}'; """
+
+        try:
+            cursor.execute(strComando)
+            self.db.commit()
+        except:
+            raise Warning(f'Erro SQL - insereCliente({cliente.clienteId}) <UPDATE>')
         finally:
-            cursor.close()
+            self.disconectBD(cursor)
 
     def findAll(self, all= False):
 
