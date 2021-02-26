@@ -13,9 +13,7 @@ class DaoFinanceiro:
         self.db.connect()
         cursor = self.db.cursor()
 
-        strComando = f"""SELECT p.valor, c.dataCadastro FROM {self.configs.tblPlanos} p
-                            JOIN {self.configs.tblCliente} c
-                                ON c.plano = p.planoId;"""
+        strComando = f"""SELECT nomePlano, valor, qtdInscritos, dataInicio, dataFim FROM {self.configs.tblPlanos}"""
         try:
             cursor.execute(strComando)
             return cursor.fetchall()

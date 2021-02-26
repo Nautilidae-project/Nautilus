@@ -69,6 +69,11 @@ class FinanceiroController(Ui_tabFinanceiroGeral, QWidget):
             self.plano.presencial = self.cbPresencial.isChecked()
 
     def inserePlano(self):
+        self.dashboard.loading(20)
+        self.plano.dataInicio = self.dtInicio.date().toPyDate()
+        self.plano.dataFim = self.dtTermino.date().toPyDate()
+        self.plano.periodoUnidade = self.cbxFreq.currentText()
+        print(f"self.cbxFreq.currentText(): {self.cbxFreq.currentText()}")
         self.dashboard.loading(45)
 
         if self.daoPlanos.inserePlano(self.plano):

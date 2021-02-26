@@ -13,7 +13,7 @@ class DaoPlanos:
         self.db.connect()
         cursor = self.db.cursor()
 
-        strComando = f"""SELECT planoId, nomePlano, valor, descricao, periodoUnidade, dataInicio, dataFim, presencial FROM {self.configs.tblPlanos}"""
+        strComando = f"""SELECT planoId, nomePlano, valor, periodoUnidade, descricao, dataInicio, dataFim, presencial FROM {self.configs.tblPlanos}"""
 
         if not ativo:
             strComando += f""" WHERE ativo = TRUE"""
@@ -33,7 +33,10 @@ class DaoPlanos:
         strComando = f"""SELECT 
                             planoId, nomePlano 
                         FROM {self.configs.tblPlanos}
-                            WHERE ativo = TRUE;"""
+                            WHERE 
+                                ativo = TRUE
+                            AND
+                                DATEDIFF(dataInicio, NOW()) >= -66;"""
 
         try:
             cursor.execute(strComando)

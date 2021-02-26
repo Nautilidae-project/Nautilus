@@ -144,6 +144,13 @@ QTableWidget {
 
 QTableWidget::item {
 	font-family: Ubuntu
+}
+
+#tbInfosCliente, 
+#tbCadastraCliente, 
+#tbBoletoCliente, 
+#tbGrupoCliente {
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0.994318, stop:0 rgba(251, 162, 77, 69), stop:1 rgba(165, 46, 255, 135));
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -171,14 +178,19 @@ QTableWidget::item {
       </sizepolicy>
      </property>
      <property name="styleSheet">
-      <string notr="true">QTabWidget::pane {
-	border-top: 3px solid;
+      <string notr="true">QTabWidget {
+	background-color: black;
 }
 
-QTabWidget QStackedWidget &gt; QWidget   
+QTabWidget::pane {
+	border-top: 3px solid;
+	background-color: white;
+}
+
+/*QTabWidget QStackedWidget &gt; QWidget   
 {	
     background-color: #fafafa;
-}
+}*/
 
 
 /*-------------------------------------------------------------*/
@@ -198,6 +210,7 @@ QTabBar::tab {
     border-top-right-radius: 14px;
 
     padding: 8px;
+
 }
 
 QTabBar::tab:selected, QTabBar::tab:hover {
@@ -244,20 +257,28 @@ QTabBar::tab:selected, QTabBar::tab:hover {
 #frInformacoes,
 #frInfoConfirmar,
 #frInfoMeioPag,
-#frInfoTitulo {
+#frInfoTitulo,
+#frTopTabMenu,
+#frListButtons,
+#frInfoCliente,
+#frNomeTabela,
+#frRightButtons,
+#frCmbFilter {
 	background-color: transparent;
 }
 
 #frInfoCliente {
 	padding: 4px;
-	background-color: rgb(222, 248, 255);
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 243, 183, 193), stop:1 rgba(255, 255, 255, 255));
 }
 
-#frClientesTotal {
-	background-color: rgb(229, 239, 245);
+#frClientesTotal, 
+#frClientesMensal, 
+#frClientesAnuais {
+	background-color: rgb(255, 255, 255);
 	border-radius: 12px;
 }
-
+/*
 #frClientesMensal {
 	background-color: rgb(221, 237, 238);
 	border-radius: 12px;
@@ -266,7 +287,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
 #frClientesAnuais {
 	background-color: rgb(226, 249, 244);
 	border-radius: 12px;
-}
+}*/
 
 /*-----------------------LineEdit------------------------------*/
 #leInfoBairro, 
@@ -544,6 +565,9 @@ QScrollBar:vertical {
              <number>150</number>
             </attribute>
             <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="verticalHeaderCascadingSectionResizes">
              <bool>false</bool>
             </attribute>
             <column>
@@ -2363,50 +2387,81 @@ QScrollBar:vertical {
       </property>
       <property name="styleSheet">
        <string notr="true">/*------------------------------- Frames ----------------------------------------*/
-#frCabecalhoCadPessoa, #frCabecalhoCadPlano {
+#frCabecalhoCadPessoa, 
+#frCabecalhoCadPlano,
+#frCabecalhoCadPag {
 	border-radius: 8px;
-	background-color: rgb(220, 220, 236);
-	border: 0px;
+	background-color: rgba(194, 255, 247, 175);
+	border: 0px solid transparent;
 }
 
-#frAreaPlano, frCadPessoa {
+/*#frAreaPlano, frCadPessoa {
 	border-radius: 0px;
 	border: 0px;
-}
+}*/
 
-#frame_3, #frame_4, #frame_5, #frame_6 {
+#frCabecalho,
+#frame,
+#scrollClienteCadastro,
+#scrollClienteContents,
+#frAreaPlano, 
+#frCadPessoa,
+#frAreaPag,
+#frame_3, 
+#frame_4, 
+#frame_5, 
+#frame_6,
+#frame_8,
+#frame_9 {
 	background-color: transparent;	
 	border: 0px solid transparent;
 } 
 
-#frPessoaBody, #frPlanoBody{
+#frPessoaBody, 
+#frPlanoBody,
+#frPagBody {
 	margin-left: 8px;
 	margin-right: 8px;
-	background-color: rgb(238, 238, 236);
+	background-color: rgb(255, 249, 249);
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
 	border-bottom: 2px solid rgb(46, 52, 54);
 	border-left: 2px solid rgb(46, 52, 54);
 	border-right: 2px solid rgb(46, 52, 54);
 	border-top: 1px solid rgb(211, 215, 207);
-	border-radius: 0px;
 }
 
 /*------------------------------ Buttons ----------------------------------------*/
-#pbMaximizaPessoa, #pbMaximizaPlano{
+#pbMaximizaPessoa, 
+#pbMaximizaPlano,
+#pbMaximizaPag {
 	background-image: url(:/maximiza/arrowDown.png);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-color: transparent;
 }
 
-#pbMinimizaPessoa, #pbMinimizaPlano{
+#pbMinimizaPessoa, 
+#pbMinimizaPlano, 
+#pbMinimizaPag {
 	background-image: url(:/minimiza/arrowUp.png);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-color: transparent;
 }
 
+#pbEditarInscricao {
+	background-color: rgb(213, 167, 208);
+	background-image: url(:/editar/cardEditar.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	border-radius: 4px;
+}
+
 /*------------------------------- Labels ----------------------------------------*/
-#lbPasso1de3, #lbPasso2de3 {
+#lbPasso1de3, #lbPasso2de3, #lbPasso3de3 {
 	background-color: transparent;
 	font-family: Ubuntu;
 	font-style: italic;
@@ -2416,7 +2471,9 @@ QScrollBar:vertical {
 
 #lbTituloPessoa, #lbTituloPlano,
 #lbDescValor, #lbDescPlano, #lbPeriodo,
-#lbDescDataInicio, #lbDescDataFim, #lbNomePlano {
+#lbDescDataInicio, #lbDescDataFim, #lbNomePlano,
+#lbTituloPag, #lbInscricao, #lbValorInscricao,
+#lbDataVencimento {
 	background-color: transparent;
 	font-family: Ubuntu;
 	font-size: 24px;
@@ -2427,12 +2484,36 @@ QScrollBar:vertical {
 
 #lbDescricaoPessoa, #lbDescricaoPlano,
 #lbValor, #lbDataInicio, #lbDataFim, #lbDescDescricao, 
-#lbPresencial {
+#lbPresencial, #lbDescricaoPag, #lbAdiantarPag {
 	background-color: transparent;
 	font-family: Ubuntu;
 	font-size: 14px;
 	border: 0px;
-}</string>
+}
+
+/*--------------------------- Check Box---------------------------------------*/
+
+#cbAdiantarPag::indicator:unchecked {
+	background-color: #fff;
+	border: 1px solid;
+	font-family: Ubuntu;
+}
+
+#cbAdiantarPag {
+	background-color: transparent;
+	font-family: Ubuntu;
+}
+
+
+/*---------------------------- Table View --------------------------------------*/
+
+#tblDatasVencimento {
+	background-color: transparent;
+	color: black;
+}
+
+
+</string>
       </property>
       <attribute name="title">
        <string>Cadastro</string>
@@ -2539,9 +2620,9 @@ QScrollBar:vertical {
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-185</y>
+            <y>-596</y>
             <width>1064</width>
-            <height>901</height>
+            <height>1309</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -3332,7 +3413,7 @@ QScrollBar:vertical {
                      </rect>
                     </property>
                     <property name="text">
-                     <string>Informações importantes para a gerenciar a saúde financeira do negócio</string>
+                     <string>Informações importantes para a gerenciar as incrições nos planos</string>
                     </property>
                    </widget>
                    <widget class="QLabel" name="lbPasso2de3">
@@ -3697,6 +3778,421 @@ QScrollBar:vertical {
             </widget>
            </item>
            <item>
+            <widget class="QFrame" name="frAreaPag">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>400</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_13">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QFrame" name="frCabecalhoCadPag">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>90</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>100</height>
+                 </size>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_10">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QFrame" name="frame_8">
+                   <property name="frameShape">
+                    <enum>QFrame::NoFrame</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QLabel" name="lbDescricaoPag">
+                    <property name="geometry">
+                     <rect>
+                      <x>20</x>
+                      <y>62</y>
+                      <width>481</width>
+                      <height>17</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Informações importantes para a gerenciar a saúde financeira do negócio</string>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="lbPasso3de3">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>10</y>
+                      <width>71</width>
+                      <height>17</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Passo 3 de 3</string>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="lbTituloPag">
+                    <property name="geometry">
+                     <rect>
+                      <x>20</x>
+                      <y>30</y>
+                      <width>311</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Informações de Pagamento</string>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item alignment="Qt::AlignTop">
+                  <widget class="QFrame" name="frame_9">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>24</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>58</width>
+                     <height>24</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::NoFrame</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_11">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>8</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>8</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QPushButton" name="pbMaximizaPag">
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pbMinimizaPag">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frPagBody">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>300</height>
+                 </size>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_12">
+                 <item>
+                  <widget class="QFrame" name="frMeioPag">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>150</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>300</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::NoFrame</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QComboBox" name="cbxPag">
+                    <property name="geometry">
+                     <rect>
+                      <x>6</x>
+                      <y>246</y>
+                      <width>201</width>
+                      <height>25</height>
+                     </rect>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>250</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="lbAdiantarPag">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>220</y>
+                      <width>161</width>
+                      <height>23</height>
+                     </rect>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>130</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>200</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(46, 52, 54)</string>
+                    </property>
+                    <property name="text">
+                     <string>Quantidades de parcelas</string>
+                    </property>
+                    <property name="textFormat">
+                     <enum>Qt::RichText</enum>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                   <widget class="QCheckBox" name="cbAdiantarPag">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>180</y>
+                      <width>171</width>
+                      <height>23</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Adiantar pagamento</string>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="lbInscricao">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>10</y>
+                      <width>201</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Valor da inscrição</string>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="lbValorInscricao">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>60</y>
+                      <width>101</width>
+                      <height>41</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>R$ 0,00</string>
+                    </property>
+                   </widget>
+                   <widget class="QPushButton" name="pbEditarInscricao">
+                    <property name="geometry">
+                     <rect>
+                      <x>120</x>
+                      <y>70</y>
+                      <width>31</width>
+                      <height>25</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frDescPag">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>250</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>350</height>
+                    </size>
+                   </property>
+                   <property name="sizeIncrement">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::NoFrame</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QTableWidget" name="tblDatasVencimento">
+                    <property name="geometry">
+                     <rect>
+                      <x>360</x>
+                      <y>10</y>
+                      <width>321</width>
+                      <height>261</height>
+                     </rect>
+                    </property>
+                    <attribute name="horizontalHeaderStretchLastSection">
+                     <bool>true</bool>
+                    </attribute>
+                    <attribute name="verticalHeaderVisible">
+                     <bool>false</bool>
+                    </attribute>
+                    <column>
+                     <property name="text">
+                      <string>Datas de vencimentos</string>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Ubuntu</family>
+                       <pointsize>14</pointsize>
+                      </font>
+                     </property>
+                    </column>
+                   </widget>
+                   <widget class="QCalendarWidget" name="calVencimento">
+                    <property name="geometry">
+                     <rect>
+                      <x>7</x>
+                      <y>50</y>
+                      <width>321</width>
+                      <height>211</height>
+                     </rect>
+                    </property>
+                    <property name="gridVisible">
+                     <bool>false</bool>
+                    </property>
+                    <property name="selectionMode">
+                     <enum>QCalendarWidget::SingleSelection</enum>
+                    </property>
+                    <property name="verticalHeaderFormat">
+                     <enum>QCalendarWidget::NoVerticalHeader</enum>
+                    </property>
+                    <property name="navigationBarVisible">
+                     <bool>true</bool>
+                    </property>
+                    <property name="dateEditEnabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="lbDataVencimento">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>10</y>
+                      <width>231</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Data de vencimento</string>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
             <spacer name="verticalSpacer_2">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -3714,7 +4210,7 @@ QScrollBar:vertical {
         </widget>
        </item>
        <item row="4" column="0" alignment="Qt::AlignRight">
-        <widget class="QFrame" name="frame">
+        <widget class="QFrame" name="frCadastrar">
          <property name="maximumSize">
           <size>
            <width>16777215</width>
