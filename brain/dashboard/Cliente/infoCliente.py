@@ -2,7 +2,7 @@ import base64
 
 import requests
 from PyQt5 import QtCore, QtWidgets, QtGui
-from PyQt5.QtCore import QDateTime, QDate
+from PyQt5.QtCore import QDate
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QMessageBox, QGridLayout, QLabel, QPushButton, QListWidget, QGraphicsDropShadowEffect
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem
@@ -21,16 +21,18 @@ from brain.dashboard.Sinais import Sinais
 from brain.delegates.alinhamento import AlinhamentoCentro
 from brain.envioDeMensagens import Mensagens
 from brain.funcoesAuxiliares import mascaraCelular, macaraFormaPagamento, isTrueBool, isTrueInt, mascaraCep, \
-    mascaraMeses
+    mascaraMeses, getValor
 from modelos.clienteModel import Cliente
 from modelos.efeitosModel import Efeitos
 from modelos.grupoModel import GrupoModelo
 
 from datetime import datetime, timedelta
 from dateutil.relativedelta import *
+from collections.abc import Callable
 
 from math import ceil
 
+from modelos.pagamentoModel import PagamentoModelo
 from modelos.participantesModel import ParticipanteModel
 from modelos.planoModel import PlanoModelo
 
@@ -78,7 +80,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.pbEnviarEmail.clicked.connect(self.enviarUmEmail)
         self.pbCancelarEdicao.hide()
         self.pbConfirmarAtualizacao.hide()
-        self.pbCancelarEdicao.clicked.connect(self.limpaCampos)
+        self.pbCancelarEdicao.clicked.connect(self.limpaCamposTela)
         self.cbInfoAtivo.clicked.connect(lambda: self.defineInfoCampo('ativo'))
         self.cbxPlanos.activated.connect(self.atualizaInfoPlanos)
 
@@ -100,6 +102,10 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.planoAtual = PlanoModelo()
         self.planoAtual.dataInicio = datetime.now()
         self.planoAtual.dataFim = datetime.now()
+        self.dictParcelasAdiantamento = dict()
+
+        self.valorInscricao = 40.00
+        self.lbValorInscricao.setText(f"R$ {self.valorInscricao}".replace('.', ','))
 
         self.leNome.textEdited.connect(lambda: self.defineCampoCadastro('nome'))
         self.leSobrenome.textEdited.connect(lambda: self.defineCampoCadastro('sobrenome'))
@@ -109,12 +115,19 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.leEnd.textEdited.connect(lambda: self.defineCampoCadastro('end'))
         self.leBairro.textEdited.connect(lambda: self.defineCampoCadastro('bairro'))
         self.leCompl.textEdited.connect(lambda: self.defineCampoCadastro('compl'))
+        self.leAlteraValorInscricao.hide()
+        self.leAlteraValorInscricao.editingFinished.connect(self.alterarValorInscricao)
         self.pbCadastrar.clicked.connect(lambda: self.trataCadastro(self.cliente))
+        # self.pbCadastrar.clicked.connect(self.carregaInfoPagamento)
         self.dataVazia = f"{mascaraMeses(datetime.now())}"
         self.lbDescDataInicio.setText(self.dataVazia)
         self.lbDescDataFim.setText(self.dataVazia)
         self.calVencimento.setCurrentPage(self.planoAtual.dataInicio.year, self.planoAtual.dataInicio.month)
         self.calVencimento.clicked.connect(self.atualizaPagamentos)
+        self.cbAdiantarPag.setEnabled(False)
+        self.cbAdiantarPag.clicked.connect(self.atualizaAdiantaPag)
+        self.cbxPag.activated.connect(self.atualizaPagamentos)
+        self.pbEditarInscricao.clicked.connect(self.apresentarEditaInscricao)
 
         self.frPessoaBody.hide()
         self.frPlanoBody.hide()
@@ -126,8 +139,9 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.pbMinimizaPlano.clicked.connect(self.frPlanoBody.hide)
         self.pbMinimizaPessoa.clicked.connect(self.frPessoaBody.hide)
 
-        self.lbValorInscricao.setText('R$ 40,00')
         self.cbxPag.setEnabled(False)
+
+        self.tblDatasVencimento.setItemDelegate(AlinhamentoCentro())
 
         # ============================================================================== INICIALIZAÇÕES DA ABA "GRUPOS"
         self.colunas = 1
@@ -159,6 +173,37 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.sinais.sResizeWindow.connect(self.redimensionaTela)
 
         self.tabsCliente.currentChanged.connect(self.onChange)
+
+    def alterarValorInscricao(self):
+
+        self.valorInscricao = float(self.leAlteraValorInscricao.text().replace(',', '.'))
+
+        self.lbValorInscricao.setText(f"R$ {self.valorInscricao}".replace('.', ','))
+        self.leAlteraValorInscricao.hide()
+        self.atualizaPagamentos()
+        self.leAlteraValorInscricao.clear()
+
+    def apresentarEditaInscricao(self):
+        self.leAlteraValorInscricao.show()
+        self.leAlteraValorInscricao.setFocus()
+
+    def atualizaAdiantaPag(self):
+        self.parcelasAdiantamento = dict()
+        adiantaPagamento = self.cbAdiantarPag.isChecked()
+        if adiantaPagamento:
+            self.cbxPag.setEnabled(adiantaPagamento)
+            data: datetime = self.planoAtual.dataInicio.date()
+            divisorPagTotal = self.planoAtual.dataFim.month - data.month
+
+            self.cbxPag.clear()
+            self.parcelasAdiantamento[0] = 'Nenhum'
+            for i in range(1, divisorPagTotal):
+                self.parcelasAdiantamento[i] = f'{i} parcelas'
+            self.cbxPag.addItems(self.parcelasAdiantamento.values())
+        else:
+            self.cbxPag.setEnabled(False)
+            self.cbxPag.clear()
+            self.atualizaPagamentos()
 
     def atualizaGruposCards(self):
 
@@ -212,6 +257,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         if planoAtual != 0 and planoAtual != '0':
 
+            self.cbAdiantarPag.setEnabled(True)
             infoPlanoAtual = self.daoPlanos.buscaPlanoPorId(planoAtual)
 
             self.planoAtual.planoId = infoPlanoAtual[0]
@@ -222,6 +268,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.planoAtual.dataInicio = infoPlanoAtual[5]
             self.planoAtual.dataFim = infoPlanoAtual[6]
             self.planoAtual.presencial = infoPlanoAtual[7] == 1
+            self.frPagBody.show()
 
             if len(infoPlanoAtual) == 0:
                 self.dashboard.menssagemSistema('Não foi possível carregar as informações do plano. Tente novamente.')
@@ -229,7 +276,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
                 for chave, valor in self.dictPlanos.items():
                     if valor == self.cbxPlanos.currentText():
                         self.cliente.plano = chave
-                self.lbDescValor.setText(f'R$ {self.planoAtual.valor}')
+
+                self.lbDescValor.setText(f'R$ {self.planoAtual.valor}'.replace('.', ','))
                 self.lbPeriodo.setText(self.planoAtual.periodoUnidade)
                 self.lbDescDescricao.setText(self.planoAtual.descricao)
                 self.lbDescDataInicio.setText(mascaraMeses(self.planoAtual.dataInicio))
@@ -240,27 +288,105 @@ class brainCliente(Ui_wdgCliente, QWidget):
                     self.lbPresencial.setText('Presencial')
                 else:
                     self.lbPresencial.setText('On-line')
+        else:
+            self.cbAdiantarPag.setEnabled(False)
+            self.limpaCamposTela(tela='cadastro')
 
     def atualizaPagamentos(self, *args):
+        divisorPagTotal = None
         self.calVencimento.setCurrentPage(self.planoAtual.dataInicio.year, self.planoAtual.dataInicio.month+1)
 
         # Usando type-hint para ajudar no "auto-complete"
         if len(args) == 0:
             data: datetime = self.planoAtual.dataInicio.date()
-        else:
-            data: datetime = args[0].toPyDate()
-        i = 0
-        self.tblDatasVencimento.setRowCount(0)
 
-        while data < self.planoAtual.dataFim.date():
-            self.tblDatasVencimento.insertRow(i)
-            data += relativedelta(months=+1)
-            strItem = QTableWidgetItem(str(data.strftime('%d/%m/%Y')))
-            strItem.setFont(QFont('Ubuntu', pointSize=12, italic=True, weight=25))
-            self.tblDatasVencimento.setItem(i, 0, strItem)
-            i += 1
+        # Caso receba uma data vinda do calendário
+        elif isinstance(args[0], QDate):
+            data: datetime = args[0].toPyDate()
+
+        # Caso eu receba um index vindo da combobox do adiantamento
+        elif isinstance(args[0], int):
+            divisorPagTotal = args[0]
+            data: datetime = self.planoAtual.dataInicio.date()
+
+        if self.cbAdiantarPag.isChecked():
+            if divisorPagTotal is None:
+                for chave, valor in self.dictParcelasAdiantamento.items():
+                    if valor == self.cbxPag.currentText():
+                        divisorPagTotal = chave
+
+            self.carregaVencComAdiantamento(data, divisorPagTotal)
+        else:
+            divisorPagTotal = self.planoAtual.dataFim.month - data.month
+            self.carregaVencSemAdiantamento(data, divisorPagTotal)
 
         self.tblDatasVencimento.resizeColumnsToContents()
+
+    def carregaVencSemAdiantamento(self, data, divisorPagTotal):
+        i = 0
+        self.tblDatasVencimento.setRowCount(0)
+        while data < self.planoAtual.dataFim.date():
+            self.tblDatasVencimento.insertRow(i)
+
+            for coluna in range(0, 2):
+
+                if coluna == 0:
+                    strItem = QTableWidgetItem(str(data.strftime('%d/%m/%Y')))
+                    strItem.setFont(QFont('Ubuntu', pointSize=12, italic=True, weight=25))
+                    self.tblDatasVencimento.setItem(i, coluna, strItem)
+
+                elif coluna == 1:
+                    valor = round(self.planoAtual.valor / divisorPagTotal, 2)
+                    if i == 0:
+                        strItem = QTableWidgetItem(str(f"R$ {valor + self.valorInscricao}".replace('.', ',')))
+                    else:
+                        strItem = QTableWidgetItem(str(f"R$ {valor}".replace('.', ',')))
+                    strItem.setFont(QFont('Ubuntu', pointSize=12, italic=True, weight=25))
+                    self.tblDatasVencimento.setItem(i, coluna, strItem)
+            i += 1
+            data += relativedelta(months=+1)
+
+    def carregaVencComAdiantamento(self, data, divisorPagTotal):
+        self.tblDatasVencimento.setRowCount(0)
+        # print(f'divisorPagTotal: {divisorPagTotal}')
+        for i in range(0, divisorPagTotal):
+            self.tblDatasVencimento.insertRow(i)
+
+            for coluna in range(0, 2):
+
+                if coluna == 0:
+                    strItem = QTableWidgetItem(str(data.strftime('%d/%m/%Y')))
+                    strItem.setFont(QFont('Ubuntu', pointSize=12, italic=True, weight=25))
+                    self.tblDatasVencimento.setItem(i, coluna, strItem)
+
+                elif coluna == 1:
+                    valor = round(self.planoAtual.valor / divisorPagTotal, 2)
+                    if i == 0:
+                        strItem = QTableWidgetItem(str(f"R$ {valor + self.valorInscricao}".replace('.', ',')))
+                    else:
+                        strItem = QTableWidgetItem(str(f"R$ {valor}".replace('.', ',')))
+                    strItem.setFont(QFont('Ubuntu', pointSize=12, italic=True, weight=25))
+                    self.tblDatasVencimento.setItem(i, coluna, strItem)
+
+            data += relativedelta(months=+1)
+
+    def carregaInfoPagamento(self):
+        listaPagamentos = list()
+
+        for row in range(self.tblDatasVencimento.rowCount()):
+            pagamento = PagamentoModelo()
+            pagamento.planoId = self.planoAtual.planoId
+            pagamento.valorPlano = self.planoAtual.valor
+            for column in range(self.tblDatasVencimento.columnCount()):
+                if column == 0:
+                    pagamento.dataVencimento = datetime.strptime(self.tblDatasVencimento.item(row, column).text(), '%d/%m/%Y')
+                elif column == 1:
+                    pagamento.valorAPagar = getValor(self.tblDatasVencimento.item(row, column).text())
+
+            listaPagamentos.append(pagamento)
+        return listaPagamentos
+
+
 
     def enviarUmEmail(self, *args):
 
@@ -339,7 +465,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
                 daoParticipantes.insereParticipantes(listaParticipantes)
 
             self.limpaLayout()
-            self.limpaCampos()
+            self.limpaCamposTela()
 
             intLoading += 20
             self.parent.loading(intLoading)
@@ -531,7 +657,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
             intLoading += 20
             self.parent.loading(intLoading)
-            self.limpaCampos()
+            self.limpaCamposTela()
 
             intLoading += 20
             self.parent.loading(intLoading)
@@ -546,38 +672,52 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.parent.menssagemSistema('Cliente cadastrado com sucesso!')
         self.atualizaTabelaGeral()
 
-    def limpaCampos(self):
-        self.leInfoNome.clear()
-        self.leInfoSobrenome.clear()
-        self.leInfoCep.clear()
-        self.leInfoTel.clear()
-        self.leInfoCpf.clear()
-        self.leInfoComplemento.clear()
-        self.leInfoBairro.clear()
-        self.leInfoEndereco.clear()
-        self.leInfoEmail.clear()
-        self.leTituloGrupo.clear()
-        self.leDescricaoGrupo.clear()
-        self.leNome.clear()
-        self.leSobrenome.clear()
-        self.leCompl.clear()
-        self.leTel.clear()
-        self.leEnd.clear()
-        self.leBairro.clear()
-        self.leEmail.clear()
-        self.leCep.clear()
-        self.pbCancelarEdicao.hide()
-        self.pbConfirmarAtualizacao.hide()
-        self.frInfoCliente.setGraphicsEffect(None)
-        self.lbDescDataInicio.setText(self.dataVazia)
-        self.lbDescDataFim.setText(self.dataVazia)
-        self.lbDescDescricao.setText('Descrição detalhada do plano.')
-        self.lbDescValor.setText('R$ 0,00')
-        self.lbValorInscricao.setText('R$ 40,00')
+    def limpaCamposTela(self, tela='All'):
 
-        for i in range(0, self.tblParticipantes.rowCount()):
-            if self.tblParticipantes.item(i, 3) is not None:
-                self.tblParticipantes.item(i, 3).setCheckState(QtCore.Qt.Unchecked)
+        if tela.lower() == 'informacoes' or tela == 'All':
+            self.leInfoNome.clear()
+            self.leInfoSobrenome.clear()
+            self.leInfoCep.clear()
+            self.leInfoTel.clear()
+            self.leInfoCpf.clear()
+            self.leInfoComplemento.clear()
+            self.leInfoBairro.clear()
+            self.leInfoEndereco.clear()
+            self.leInfoEmail.clear()
+            self.pbConfirmarAtualizacao.hide()
+            self.frInfoCliente.setGraphicsEffect(None)
+
+            for i in range(0, self.tblParticipantes.rowCount()):
+                if self.tblParticipantes.item(i, 3) is not None:
+                    self.tblParticipantes.item(i, 3).setCheckState(QtCore.Qt.Unchecked)
+
+        if tela.lower() == 'cadastro' or tela == 'All':
+            self.leNome.clear()
+            self.leSobrenome.clear()
+            self.leCompl.clear()
+            self.leTel.clear()
+            self.leEnd.clear()
+            self.leBairro.clear()
+            self.leEmail.clear()
+            self.leCep.clear()
+            self.pbCancelarEdicao.hide()
+            self.valorInscricao = 40.00
+
+            self.lbDescDataInicio.setText(self.dataVazia)
+            self.lbDescDataFim.setText(self.dataVazia)
+            self.lbDescDescricao.setText('Descrição detalhada do plano.')
+            self.lbDescValor.setText(f'R$ {self.valorInscricao}')
+            self.lbValorInscricao.setText(f'R$ {self.valorInscricao}')
+            self.frPagBody.hide()
+            self.cbxPag.clear()
+            self.cbAdiantarPag.setChecked(False)
+            while self.tblDatasVencimento.rowCount() > 0:
+                self.tblDatasVencimento.removeRow(0)
+
+        if tela.lower() == 'grupo' or tela == 'All':
+            self.leTituloGrupo.clear()
+            self.leDescricaoGrupo.clear()
+            self.cbxCategoria.setCurrentIndex(0)
 
     def showPopupSimCancela(self, mensagem, titulo='Atenção!'):
         dialogPopup = QMessageBox()
@@ -596,12 +736,11 @@ class brainCliente(Ui_wdgCliente, QWidget):
         :param args: {0: 'Informações', 1: 'Cadastro', 2: 'Grupos'}
         :return:
         """
-        print('\n\nTROCOU DE TAB!\n\n')
 
         if args[0] == 0:
             self.cardsInfosCliente()
             self.atualizaTabelaGeral()
-            self.limpaCampos()
+            self.limpaCamposTela()
 
         elif args[0] == 2:
             self.atualizaTabelaParticipantes()
@@ -679,7 +818,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
     def sairModoEdicao(self):
         self.modoEdicao = False
         self.limpaLayout()
-        self.limpaCampos()
+        self.limpaCamposTela()
         self.atualizaGruposCards()
         self.pbCancelar.hide()
         self.pbAddGrupo.setText("Criar grupo")
@@ -709,9 +848,9 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.sairModoEdicao()
 
     def carregaComboBoxes(self):
-        listPlanos = self.daoPlanos.getAllPlanosId()
-        self.dictPlanos['0'] = ''
         self.cbxPlanos.clear()
+        listPlanos = self.daoPlanos.getAllPlanosId()
+        self.dictPlanos['0'] = 'Nenhum'
 
         for idPlano, nomePlano in listPlanos:
             self.dictPlanos[idPlano] = nomePlano
@@ -872,20 +1011,21 @@ class brainCliente(Ui_wdgCliente, QWidget):
     def trataCadastro(self, cliente):
         intLoading = 0
 
+        pagamentos: list = self.carregaInfoPagamento()
+
+        if self.cbxPlanos.currentText() == 'Nenhum':
+            self.popUpSimCancela('Deseja inserir um cliente sem plano?', funcao=lambda: self.cadastraSemPlano(cliente))
+            return False
+
         self.parent.loading(intLoading)
         wdgLista = [cliente.nomeCliente, cliente.sobrenomeCliente, cliente.email, cliente.endereco, cliente.cep]
         for wdg in wdgLista:
             intLoading += 10
             self.parent.loading(intLoading)
             if wdg == "" or wdg is None:
-                print("Informação faltante - <trataCadastro>")
                 self.parent.loading(100)
                 self.parent.menssagemSistema('Não foi possível cadastrar cliente. Alguma informação faltante.')
                 return False
-        if self.cbxPlanos.currentText() == '':
-            self.parent.loading(100)
-            self.parent.menssagemSistema('Não foi possível cadastrar cliente. É preciso selecionar um plano.')
-            return False
 
         intLoading += 10
         self.parent.loading(intLoading)
@@ -906,9 +1046,9 @@ class brainCliente(Ui_wdgCliente, QWidget):
         # ----------------------------------------
 
         self.parent.loading(70)
-        self.daoCliente.cadastraCliente(self.cliente)
+        self.daoCliente.cadastraCliente(self.cliente, pagamentos)
         self.parent.loading(100)
-        self.limpaCampos()
+        self.limpaCamposTela()
         self.parent.menssagemSistema('Cliente cadastrado com sucesso.')
         # enviaEmail(self.titulo, self.msgCadastro, self.leEmail.text())
 
@@ -934,6 +1074,27 @@ class brainCliente(Ui_wdgCliente, QWidget):
         if campo == 'tel':
             if not self.leTel.text() == "":
                 self.leTel.setText(mascaraCelular(str(self.cliente.telefone)))
+
+    def popUpSimCancela(self, mensagem, titulo: str = 'Atenção!', funcao=None):
+        pop = QMessageBox()
+        pop.setWindowTitle(titulo)
+        pop.setText(mensagem)
+        pop.setIcon(QMessageBox.Warning)
+        pop.setStandardButtons(QMessageBox.Cancel | QMessageBox.Yes)
+        pop.setDefaultButton(QMessageBox.Cancel)
+
+        x = pop.exec_()
+        if x == QMessageBox.Yes:
+            funcao()
+        elif x == QMessageBox.Cancel:
+            return False
+        else:
+            self.parent.menssagemSistema('Ocorreu um erro inesperado')
+            raise Warning(f'Ocorreu um erro inesperado')
+
+    def cadastraSemPlano(self, cliente):
+        self.parent.menssagemSistema('Cadastrou sem plano')
+        print(cliente)
 
 
 if __name__ == '__main__':

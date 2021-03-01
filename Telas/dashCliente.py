@@ -150,7 +150,7 @@ class Ui_wdgCliente(object):
 "#tbCadastraCliente, \n"
 "#tbBoletoCliente, \n"
 "#tbGrupoCliente {\n"
-"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0.994318, stop:0 rgba(251, 162, 77, 69), stop:1 rgba(165, 46, 255, 135));\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0.994318, stop:0 rgba(77, 176, 251, 69), stop:1 rgba(46, 255, 173, 65));\n"
 "}")
         self.gridLayout = QtWidgets.QGridLayout(wdgCliente)
         self.gridLayout.setContentsMargins(0, 9, 0, 30)
@@ -1064,7 +1064,7 @@ class Ui_wdgCliente(object):
 "#frCabecalhoCadPlano,\n"
 "#frCabecalhoCadPag {\n"
 "    border-radius: 8px;\n"
-"    background-color: rgba(194, 255, 247, 175);\n"
+"    background-color: rgba(44, 174, 203, 210);\n"
 "    border: 0px solid transparent;\n"
 "}\n"
 "\n"
@@ -1126,7 +1126,7 @@ class Ui_wdgCliente(object):
 "}\n"
 "\n"
 "#pbEditarInscricao {\n"
-"    background-color: rgb(213, 167, 208);\n"
+"    background-color: rgba(44, 174, 203, 210);\n"
 "    background-image: url(:/editar/cardEditar.png);\n"
 "    background-repeat: no-repeat;\n"
 "    background-position: center;\n"
@@ -1140,13 +1140,21 @@ class Ui_wdgCliente(object):
 "    font-style: italic;\n"
 "    font-size: 12px;\n"
 "    border: 0px;\n"
+"    color: white;\n"
 "}\n"
 "\n"
-"#lbTituloPessoa, #lbTituloPlano,\n"
-"#lbDescValor, #lbDescPlano, #lbPeriodo,\n"
-"#lbDescDataInicio, #lbDescDataFim, #lbNomePlano,\n"
-"#lbTituloPag, #lbInscricao, #lbValorInscricao,\n"
-"#lbDataVencimento {\n"
+"#lbTituloPag, #lbTituloPlano, #lbTituloPessoa{\n"
+"    background-color: transparent;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 24px;\n"
+"    font-weight: 200;\n"
+"    border: 0px;\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"#lbNomePlano, #lbDescPlano, #lbPeriodo,\n"
+"#lbDescDataInicio, #lbDescDataFim, #lbDataVencimento,\n"
+"#lbInscricao, #lbDescValor, #lbValorInscricao{\n"
 "    background-color: transparent;\n"
 "    font-family: Ubuntu;\n"
 "    font-size: 24px;\n"
@@ -1155,13 +1163,24 @@ class Ui_wdgCliente(object):
 "    color: black;\n"
 "}\n"
 "\n"
-"#lbDescricaoPessoa, #lbDescricaoPlano,\n"
-"#lbValor, #lbDataInicio, #lbDataFim, #lbDescDescricao, \n"
-"#lbPresencial, #lbDescricaoPag, #lbAdiantarPag {\n"
+"#lbDescDescricao, #lbDataInicio,\n"
+"#lbDataFim, #lbPresencial,\n"
+"#lbAdiantarPag, #lbValor {\n"
 "    background-color: transparent;\n"
 "    font-family: Ubuntu;\n"
 "    font-size: 14px;\n"
 "    border: 0px;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"#lbDescricaoPessoa,\n"
+"#lbDescricaoPlano,\n"
+"#lbDescricaoPag {\n"
+"    background-color: transparent;\n"
+"    font-family: Ubuntu;\n"
+"    font-size: 14px;\n"
+"    border: 0px;\n"
+"    color: white;\n"
 "}\n"
 "\n"
 "/*--------------------------- Check Box---------------------------------------*/\n"
@@ -1648,6 +1667,9 @@ class Ui_wdgCliente(object):
         self.pbEditarInscricao.setGeometry(QtCore.QRect(120, 70, 31, 25))
         self.pbEditarInscricao.setText("")
         self.pbEditarInscricao.setObjectName("pbEditarInscricao")
+        self.leAlteraValorInscricao = QtWidgets.QLineEdit(self.frMeioPag)
+        self.leAlteraValorInscricao.setGeometry(QtCore.QRect(10, 100, 141, 25))
+        self.leAlteraValorInscricao.setObjectName("leAlteraValorInscricao")
         self.horizontalLayout_12.addWidget(self.frMeioPag)
         self.frDescPag = QtWidgets.QFrame(self.frPagBody)
         self.frDescPag.setMinimumSize(QtCore.QSize(0, 250))
@@ -1659,7 +1681,7 @@ class Ui_wdgCliente(object):
         self.tblDatasVencimento = QtWidgets.QTableWidget(self.frDescPag)
         self.tblDatasVencimento.setGeometry(QtCore.QRect(360, 10, 321, 261))
         self.tblDatasVencimento.setObjectName("tblDatasVencimento")
-        self.tblDatasVencimento.setColumnCount(1)
+        self.tblDatasVencimento.setColumnCount(2)
         self.tblDatasVencimento.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
@@ -1667,6 +1689,13 @@ class Ui_wdgCliente(object):
         font.setPointSize(14)
         item.setFont(font)
         self.tblDatasVencimento.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setFamily("Ubuntu")
+        font.setPointSize(14)
+        item.setFont(font)
+        self.tblDatasVencimento.setHorizontalHeaderItem(1, item)
+        self.tblDatasVencimento.horizontalHeader().setCascadingSectionResizes(True)
         self.tblDatasVencimento.horizontalHeader().setStretchLastSection(True)
         self.tblDatasVencimento.verticalHeader().setVisible(False)
         self.calVencimento = QtWidgets.QCalendarWidget(self.frDescPag)
@@ -1748,7 +1777,7 @@ class Ui_wdgCliente(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollGrupos = QtWidgets.QWidget()
-        self.scrollGrupos.setGeometry(QtCore.QRect(0, 0, 552, 767))
+        self.scrollGrupos.setGeometry(QtCore.QRect(0, 0, 98, 28))
         self.scrollGrupos.setObjectName("scrollGrupos")
         self.scrollArea.setWidget(self.scrollGrupos)
         self.gridLayout_6.addWidget(self.scrollArea, 1, 0, 1, 1)
@@ -2200,8 +2229,11 @@ class Ui_wdgCliente(object):
         self.cbAdiantarPag.setText(_translate("wdgCliente", "Adiantar pagamento"))
         self.lbInscricao.setText(_translate("wdgCliente", "Valor da inscrição"))
         self.lbValorInscricao.setText(_translate("wdgCliente", "R$ 0,00"))
+        self.leAlteraValorInscricao.setPlaceholderText(_translate("wdgCliente", "R$ 40,00"))
         item = self.tblDatasVencimento.horizontalHeaderItem(0)
-        item.setText(_translate("wdgCliente", "Datas de vencimentos"))
+        item.setText(_translate("wdgCliente", "Vencimentos"))
+        item = self.tblDatasVencimento.horizontalHeaderItem(1)
+        item.setText(_translate("wdgCliente", "Valor"))
         self.lbDataVencimento.setText(_translate("wdgCliente", "Data de vencimento"))
         self.pbCadastrar.setText(_translate("wdgCliente", "Cadastrar"))
         self.tabsCliente.setTabText(self.tabsCliente.indexOf(self.tbCadastraCliente), _translate("wdgCliente", "Cadastro"))

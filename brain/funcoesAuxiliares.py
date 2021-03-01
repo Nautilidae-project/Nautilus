@@ -24,6 +24,11 @@ def macaraFormaPagamento(pagamento: str):
 def mascaraMeses(data: datetime.date):
     return f'{data.day} de {meses[data.month]} de {data.year}'
 
+def getValor(valor: str):
+    auxValor = valor.replace(',', '.')
+    floatValor = float(auxValor.split(' ')[1])
+    return floatValor
+
 def isTrueInt(lista):
     if [bool(i) for i in lista[11]][0]:
         return 1

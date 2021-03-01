@@ -13,10 +13,20 @@ class DaoPlanos:
         self.db.connect()
         cursor = self.db.cursor()
 
-        strComando = f"""SELECT planoId, nomePlano, valor, periodoUnidade, descricao, dataInicio, dataFim, presencial FROM {self.configs.tblPlanos}"""
+        # strComando = f"""SELECT planoId, nomePlano, valor, periodoUnidade, descricao, dataInicio, dataFim, presencial FROM {self.configs.tblPlanos}"""
+
+        strComando = f"""SELECT p.planoId, p.nomePlano, p.valor, p.periodoUnidade, 
+                                p.descricao, p.dataInicio, p.dataFim, 
+                                p.presencial, COUNT(c.clienteId)
+                        FROM {self.configs.tblPlanos} p
+                        LEFT JOIN {self.configs.tblCliente} c
+                            ON c.plano = p.planoId
+                        """
 
         if not ativo:
             strComando += f""" WHERE ativo = TRUE"""
+
+        strComando += f""" GROUP BY p.planoId"""
 
         try:
             cursor.execute(strComando)

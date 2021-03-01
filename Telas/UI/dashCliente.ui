@@ -150,7 +150,7 @@ QTableWidget::item {
 #tbCadastraCliente, 
 #tbBoletoCliente, 
 #tbGrupoCliente {
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0.994318, stop:0 rgba(251, 162, 77, 69), stop:1 rgba(165, 46, 255, 135));
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0.994318, stop:0 rgba(77, 176, 251, 69), stop:1 rgba(46, 255, 173, 65));
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -2391,7 +2391,7 @@ QScrollBar:vertical {
 #frCabecalhoCadPlano,
 #frCabecalhoCadPag {
 	border-radius: 8px;
-	background-color: rgba(194, 255, 247, 175);
+	background-color: rgba(44, 174, 203, 210);
 	border: 0px solid transparent;
 }
 
@@ -2453,7 +2453,7 @@ QScrollBar:vertical {
 }
 
 #pbEditarInscricao {
-	background-color: rgb(213, 167, 208);
+	background-color: rgba(44, 174, 203, 210);
 	background-image: url(:/editar/cardEditar.png);
 	background-repeat: no-repeat;
 	background-position: center;
@@ -2467,13 +2467,21 @@ QScrollBar:vertical {
 	font-style: italic;
 	font-size: 12px;
 	border: 0px;
+	color: white;
 }
 
-#lbTituloPessoa, #lbTituloPlano,
-#lbDescValor, #lbDescPlano, #lbPeriodo,
-#lbDescDataInicio, #lbDescDataFim, #lbNomePlano,
-#lbTituloPag, #lbInscricao, #lbValorInscricao,
-#lbDataVencimento {
+#lbTituloPag, #lbTituloPlano, #lbTituloPessoa{
+	background-color: transparent;
+	font-family: Ubuntu;
+	font-size: 24px;
+	font-weight: 200;
+	border: 0px;
+	color: white;
+}
+
+#lbNomePlano, #lbDescPlano, #lbPeriodo,
+#lbDescDataInicio, #lbDescDataFim, #lbDataVencimento,
+#lbInscricao, #lbDescValor, #lbValorInscricao{
 	background-color: transparent;
 	font-family: Ubuntu;
 	font-size: 24px;
@@ -2482,13 +2490,24 @@ QScrollBar:vertical {
 	color: black;
 }
 
-#lbDescricaoPessoa, #lbDescricaoPlano,
-#lbValor, #lbDataInicio, #lbDataFim, #lbDescDescricao, 
-#lbPresencial, #lbDescricaoPag, #lbAdiantarPag {
+#lbDescDescricao, #lbDataInicio,
+#lbDataFim, #lbPresencial,
+#lbAdiantarPag, #lbValor {
 	background-color: transparent;
 	font-family: Ubuntu;
 	font-size: 14px;
 	border: 0px;
+	color: black;
+}
+
+#lbDescricaoPessoa,
+#lbDescricaoPlano,
+#lbDescricaoPag {
+	background-color: transparent;
+	font-family: Ubuntu;
+	font-size: 14px;
+	border: 0px;
+	color: white;
 }
 
 /*--------------------------- Check Box---------------------------------------*/
@@ -4091,6 +4110,19 @@ QScrollBar:vertical {
                      <string/>
                     </property>
                    </widget>
+                   <widget class="QLineEdit" name="leAlteraValorInscricao">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>100</y>
+                      <width>141</width>
+                      <height>25</height>
+                     </rect>
+                    </property>
+                    <property name="placeholderText">
+                     <string>R$ 40,00</string>
+                    </property>
+                   </widget>
                   </widget>
                  </item>
                  <item>
@@ -4128,6 +4160,9 @@ QScrollBar:vertical {
                       <height>261</height>
                      </rect>
                     </property>
+                    <attribute name="horizontalHeaderCascadingSectionResizes">
+                     <bool>true</bool>
+                    </attribute>
                     <attribute name="horizontalHeaderStretchLastSection">
                      <bool>true</bool>
                     </attribute>
@@ -4136,7 +4171,18 @@ QScrollBar:vertical {
                     </attribute>
                     <column>
                      <property name="text">
-                      <string>Datas de vencimentos</string>
+                      <string>Vencimentos</string>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Ubuntu</family>
+                       <pointsize>14</pointsize>
+                      </font>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>Valor</string>
                      </property>
                      <property name="font">
                       <font>
@@ -4329,8 +4375,8 @@ QComboBox::drop-down{
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>552</width>
-               <height>767</height>
+               <width>98</width>
+               <height>28</height>
               </rect>
              </property>
             </widget>
