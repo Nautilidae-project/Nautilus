@@ -2,6 +2,8 @@ from configBD import ConfigDB
 from modelos.clienteModel import Cliente
 import pymysql
 
+from modelos.pagamentoModel import PagamentoModelo
+
 
 class DaoCliente:
 
@@ -19,7 +21,7 @@ class DaoCliente:
         #     port=self.configs.port
         # )
 
-    def cadastraCliente(self, cliente: Cliente):
+    def cadastraCliente(self, cliente: Cliente, pagamentos: list):
 
         self.db.connect()
         cursor = self.db.cursor()
@@ -42,6 +44,33 @@ class DaoCliente:
             cursor.execute(strComando)
         except:
             raise Warning(f'Erro SQL - insereCliente({cliente.clienteId}) <INSERT>')
+
+        clienteId = cursor.lastrowid
+
+        strComando = f"""INSERT INTO {self.configs.tblPagamentos} 
+            (
+                clientId, planoId, valorAPagar, 
+                formaPagamento, dataVencimento, situacao, 
+                dataCadastro
+            )
+            VALUES """
+
+        for pagamento in pagamentos:
+            strComando += f"""  
+            (
+                {clienteId}, {cliente.plano}, {pagamento.valorAPagar},
+                '{pagamento.formaPagamento}', '{pagamento.dataVencimento}', '{pagamento.situacao}',
+                NOW()
+            ),"""
+
+        strComando = strComando[:len(strComando)-1]
+
+        print(strComando)
+
+        try:
+            cursor.execute(strComando)
+        except:
+            raise Warning(f'Erro SQL - insereCliente({self.configs.tblPagamentos}) <INSERT>')
 
         strComando = f""" UPDATE planos SET qtdInscritos = qtdInscritos + 1 WHERE planoId = '{cliente.plano}'; """
 

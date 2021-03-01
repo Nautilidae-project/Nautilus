@@ -140,7 +140,7 @@ class ConfigDB:
                            pagId INT AUTO_INCREMENT NOT NULL,
                            clientId INT NOT NULL,
                            planoId INT NOT NULL,
-                           valorPlano FLOAT NOT NULL,
+                           valorAPagar FLOAT NOT NULL,
                            valorRecebido FLOAT NULL,
                            formaPagamento VARCHAR(15) NOT NULL,
                            dataVencimento DATETIME NOT NULL,

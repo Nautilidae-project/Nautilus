@@ -5,57 +5,59 @@ class PagamentoModelo:
 
     def __init__(self, listPagamento: list = None, dictPagamento: dict = None):
 
-        self.pagamentoId = None
-        self.titulo = None
-        self.descricao = None
-        self.nomeCategoria = None
-        self.corCategoria = None
+        self.pagId = None
+        self.clienteId = None
+        self.planoId = None
+        self.valorPlano = None
+        self.valorAPagar = None
+        self.valorRecebido = None
+        self.formaPagamento = 'Crédito'
+        self.dataVencimento = None
+        self.dataPagamento = None
+        self.situacao = 'aPagar'
         self.dataCadastro = None
-        self.dataUltAlt = None
-
-        if listPagamento is not None:
-            self.fromList(listPagamento)
-        elif dictPagamento is not None:
-            self.fromDict(dictPagamento)
 
     def toDict(self):
         dictPagamento = {
-            'pagamentoId': self.pagamentoId,
-            'titulo': self.titulo,
-            'descricao': self.descricao,
-            'nomeCategoria': self.nomeCategoria,
-            'corCategoria': self.corCategoria,
-            'dataCadastro': self.dataCadastro,
-            'dataUltAlt': self.dataUltAlt
+            'pagId': self.pagId,
+            'clienteId': self.clienteId,
+            'planoId': self.planoId,
+            'valorPlano': self.valorPlano,
+            'valorAPagar': self.valorAPagar,
+            'valorRecebido': self.valorRecebido,
+            'formaPagamento': self.formaPagamento,
+            'dataVencimento': self.dataVencimento,
+            'dataPagamento': self.dataPagamento,
+            'situacao': self.situacao,
+            'dataCadastro': self.dataCadastro
+
         }
         return dictPagamento
 
     def fromDict(self, dictPagamento: dict):
-        if dictPagamento['pagamentoId'] is not None:
-            self.pagamentoId = dictPagamento['pagamentoId']
-
-        if dictPagamento['dataCadastro'] is not None:
-            self.dataCadastro = dictPagamento['dataCadastro']
-
-        if dictPagamento['dataUltAlt'] is not None:
-            self.dataUltAlt = dictPagamento['dataUltAlt']
-
-        self.titulo = dictPagamento['titulo']
-        self.descricao = dictPagamento['descricao']
-        self.nomeCategoria = dictPagamento['nomeCategoria']
-        self.corCategoria = dictPagamento['corCategoria']
-
+        self.pagId = dictPagamento['pagId']
+        self.clienteId = dictPagamento['clienteId']
+        self.planoId = dictPagamento['planoId']
+        self.valorPlano = dictPagamento['valorPlano']
+        self.valorAPagar = dictPagamento['valorAPagar']
+        self.valorRecebido = dictPagamento['valorRecebido']
+        self.formaPagamento = dictPagamento['formaPagamento']
+        self.dataVencimento = dictPagamento['dataVencimento']
+        self.dataPagamento = dictPagamento['dataPagamento']
+        self.situacao = dictPagamento['situacao']
+        self.dataCadastro = dictPagamento['dataCadastro']
 
     def fromList(self, listPagamento: list):
-        self.pagamentoId = listPagamento[0]
-        self.titulo = listPagamento[1]
-        self.descricao = listPagamento[2]
-        self.nomeCategoria = listPagamento[3]
-        self.corCategoria = listPagamento[4]
-        self.dataCadastro = listPagamento[5]
-        self.dataUltAlt = listPagamento[6]
+        pass
 
     def __repr__(self):
-        return f"""Pagamento(\n    pagamentoId: {self.pagamentoId}, titulo: {self.titulo}, descricao: {self.descricao}, 
-                    nomeCategoria: {self.nomeCategoria}, corCategoria: {self.corCategoria}, dataCadastro: {self.dataCadastro}, 
-                    dataUltAlt: {self.dataUltAlt}\n)"""
+        return f"""Pagamento(
+        pagId: {self.pagId},
+        clienteId: {self.clienteId},
+        planoId: {self.planoId},
+        dataVencimento: {self.dataVencimento},
+        valorPlano: {self.valorPlano},
+        valorAPagar: {self.valorAPagar},
+        valorRecebido: {self.valorRecebido},
+        dataCadastro: {self.dataCadastro}, 
+        formaPagamento: {self.formaPagamento}\n)"""

@@ -49,10 +49,10 @@ class FinanceiroPage(Ui_wdgFinanceiro, QWidget):
             soma = 0
             for nomePlano, valor, qtdInscritos, dataInicio, dataFim in zip(itemReceita['nomePlano'], itemReceita['valor'], itemReceita['qtdInscritos'], itemReceita['dataInicio'], itemReceita['dataFim']):
                 if dataInicio < hoje < dataFim:
-                    print(nomePlano)
+                    # print(nomePlano)
                     soma += round(float(valor)*float(qtdInscritos), 2)
 
-            print(f"Mês: {hoje.month} - Faturamento: {soma}")
+            # print(f"Mês: {hoje.month} - Faturamento: {soma}")
             hoje += timedelta(days=30)
 
 

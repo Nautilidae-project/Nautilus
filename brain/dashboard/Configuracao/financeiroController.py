@@ -111,7 +111,7 @@ class FinanceiroController(Ui_tabFinanceiroGeral, QWidget):
                     self.tblPlanos.setItem(numLinha, numCol, strItem)
 
                 elif numCol == 4:
-                    strItem = QTableWidgetItem('10')
+                    strItem = QTableWidgetItem(f'{infoLinha[8]}')
                     strItem.setFont(QFont('Ubuntu', pointSize=12, italic=True, weight=25))
                     self.tblPlanos.setItem(numLinha, numCol, strItem)
 
