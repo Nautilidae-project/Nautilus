@@ -10,6 +10,7 @@ from brain.DAOs.daoEvento import DaoEvento
 from brain.DAOs.daoParticipantes import DaoParticipantes
 from brain.dashboard.Agenda.agendaController import CalendarioController
 from brain.dashboard.Agenda.localWidgets.eventosCard import EventosCard
+from  brain.dashboard.Agenda.localWidgets.tabelaParticipantes import TabelaParticipantes
 from modelos.eventoModel import EventoModelo
 from modelos.efeitosModel import Efeitos
 
@@ -47,7 +48,12 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         self.pbChamaInserirEvento.clicked.connect(self.chamaTelaAddEventos)
 
         self.pbCancelaEdicao.hide()
-        self.pbCancelaEdicao.clicked.connect(self.sairModoEdicao)
+        # self.pbCancelaEdicao.clicked.connect(self.sairModoEdicao)
+
+        self.tabelaParticipantes = TabelaParticipantes(db=self.db)
+        self.vlClientes.addWidget(self.tabelaParticipantes)
+        self.frClientes.hide()
+        self.pbParticipantes.clicked.connect(self.chamarParticipantes)
 
         # .............................................................................. Adiciona os Grupos na ComboBox
         # self.cbxGrupos.addItem('Nenhum grupo')
@@ -62,17 +68,18 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         self.calendario.selectionChanged.connect(self.selectedDateChanged)
 
         # ........................................................................................... Criando um Evento
-        self.pbAddEvento.clicked.connect(lambda: self.criaEvento() if not self.modoEdicao else self.updateEvento())
-        # if not self.modoEdicao:
-        #     self.pbAddEvento.clicked.connect(self.criaEvento)
-        # if self.modoEdicao:
-        #     self.pbAddEvento.clicked.connect(self.updateEvento)
-
+        # self.pbAddEvento.clicked.connect(lambda: self.criaEvento() if not self.modoEdicao else self.updateEvento())
+        self.pbAddEvento.clicked.connect(self.criaEvento)
 
         # Botões de manipulação do CardEvento ????????????????????????????????????????
 
         # self.calendario.clicked[QDate].connect(self.printDataSelecionada)
         # self.calendario.clicked[QDate].connect(lambda: self.dataSelecionada(self.calendario.selectedDate())) # ---- Esse deu certo Eu Acho
+
+
+    def chamarParticipantes(self):
+        self.calendario.setHidden(not self.calendario.isHidden())
+        self.frClientes.setHidden(not self.frClientes.isHidden())
 
     def selectedDateChanged(self):
         self.deDataEvento.setDate(self.calendario.selectedDate())
@@ -169,13 +176,14 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
 
     # ............................................................................. Edições dos Eventos e participantes
     def editarEvento(self, evento: EventoModelo):
-        self.modoEdicao = True
-        self.pbCancelaEdicao.show()
-        self.eventoEdicao = evento
-        self.pbAddEvento.setText('Confirmar')
-        self.frInserirEvento.show()
-
-        print(evento)
+        # self.modoEdicao = True
+        # self.pbCancelaEdicao.show()
+        # self.eventoEdicao = evento
+        # self.pbAddEvento.setText('Confirmar')
+        # self.frInserirEvento.show()
+        #
+        # print(evento)
+        pass
 
         # .............................. Atribuindo as informações dos eventos cadastradso na frame de criaão de Evento
 
@@ -192,17 +200,20 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         self.teHoraFimEvento.setTime(horaFim)
 
     def updateEvento(self):
-        print('Estou no update')
-        self.sairModoEdicao()
+        # print('Estou no update')
+        # self.sairModoEdicao()
+        pass
 
     def sairModoEdicao(self):
-        self.modoEdicao = False
+        # self.modoEdicao = False
+        #
+        # self.atualizaMarcacoesNoCalendario()
+        # self.pbCancelaEdicao.hide()
+        #
+        # self.pbAddEvento.setText("Adicionar Evento")
 
-        self.atualizaMarcacoesNoCalendario()
-        self.pbCancelaEdicao.hide()
-
-        self.pbAddEvento.setText("Adicionar Evento")
-        # self.parent.menssagemSistema('Evento editado com sucesso.')
+        ## self.parent.menssagemSistema('Evento editado com sucesso.')
+        pass
 
     # ............................................................................................. Manipulações Gerais
     def dataSelecionadaToPy(self, data: QDate):
@@ -226,7 +237,43 @@ class AgendaPage(Ui_wdgAgenda, QWidget):
         """
         Faz aparecer a tela com as informações editaveis para cadastrar os eventos
         """
+
         self.frInserirEvento.setHidden(not self.frInserirEvento.isHidden())
+        self.frClientes.hide()
+        self.calendario.show()
+
+        # self.frInserirEvento.show()
+        # self.calendario.setHidden(not self.calendario.isHidden())
+
+        wStart = self.frAgenda.width()
+        hStart = self.frInserirEvento.height()
+        print(wStart, hStart)
+
+        if self.animTela:
+            baseW = 300
+            baseH = -250
+        else:
+            baseW = - 300
+            baseH = 250
+
+        self.animSideBar = QPropertyAnimation(self.frAgenda, b"maximumWidth")
+        self.animSideBar.setDuration(400)
+        self.animSideBar.setStartValue(wStart)
+        self.animSideBar.setEndValue(wStart + baseW)
+        self.animSideBar.start()
+
+        self.animInsereEvento = QPropertyAnimation(self.frInserirEvento, b"maximumHeight")
+        self.animInsereEvento.setDuration(400)
+        self.animInsereEvento.setStartValue(hStart)
+        self.animInsereEvento.setEndValue(hStart + baseH)
+        self.animInsereEvento.start()
+
+        self.animTela = not self.animTela
+
+        # if self.frAgenda.width() < 700:
+        #     self.frAgenda.setMaximumWidth(700)
+        # else:
+        #     self.frAgenda.setMaximumWidth(200)
 
     def atualizaMarcacoesNoCalendario(self):
         self.calendario.daoEvento = dict(enumerate(DaoEvento(self.db).buscaDatasEventosSemRepeticao()))

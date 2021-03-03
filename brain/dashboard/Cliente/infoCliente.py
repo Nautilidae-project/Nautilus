@@ -206,8 +206,8 @@ class brainCliente(Ui_wdgCliente, QWidget):
         self.lbValorTotal.setText(f"{intTotal}")
         self.lbValorMensal.setText(f"{intMesAtual}")
         self.lbValorAnual.setText(f"{intAnoAtual}")
-        self.lbEstMensal.setText(f'{(round((intMesAtual/intMesPassado), 1) - 1) * 100} %')
-        self.lbEstAnual.setText(f'{(round((intAnoAtual / intAnoPassado), 1) - 1) * 100} %')
+        # self.lbEstMensal.setText(f'{(round((intMesAtual/intMesPassado), 1) - 1) * 100} %')
+        # self.lbEstAnual.setText(f'{(round((intAnoAtual / intAnoPassado), 1) - 1) * 100} %')
 
     def criaGrupo(self):
         '''

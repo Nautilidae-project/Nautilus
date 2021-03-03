@@ -63,10 +63,7 @@ class EventosCard(Ui_wdgEventoCard, QWidget):
         # print(participante)
         return participante
 
-    def editarEvento(self):
-        self.frGrupoCard.setStyleSheet(self.styleEdicao)
-        self.parent.editarEvento(self.evento)
-
+    def carregaInfosEvento(self):
         self.frInfosEdicoes.show()
 
         horaInicio = datetime.time(self.evento.horaInicio[0])
@@ -82,6 +79,14 @@ class EventosCard(Ui_wdgEventoCard, QWidget):
 
         self.teHoraInicioEvento.setTime(horaInicio)
         self.teHoraFimEvento.setTime(horaFim)
+
+
+    def editarEvento(self):
+        # self.parent.editarEvento(self.evento)
+
+        self.frGrupoCard.setStyleSheet(self.styleEdicao)
+        self.carregaInfosEvento()
+
 
     def emailEvento(self):
         print('FAlta implementar Envio de Email')
