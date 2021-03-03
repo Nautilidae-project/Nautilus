@@ -11,6 +11,7 @@ colors = {
     9: "#95a5a6"
 }
 
+
 def botoesStyleSheet(cor='#fff'):
     return """
     QRadioButton {
@@ -28,6 +29,7 @@ QRadioButton::indicator::checked {
 	border: 3px solid white;
 }"""
 
+
 def cardCategoriaBg(modo=None):
     if modo == 'inserir':
         backgroundColor = "rgba(237, 201, 81, 255)"
@@ -42,4 +44,16 @@ def cardCategoriaBg(modo=None):
 	border-bottom-right-radius: 12px;
 	border-top-right-radius: 12px;
 	border-bottom-left-radius: 2px;
+}"""
+
+
+def framePlanoBg(modoEdicao: bool):
+    if modoEdicao:
+        backgroundColor = 'rgba(255, 255, 100, 80);'
+    else:
+        backgroundColor = 'rgba(238, 238, 236, 150);'
+
+    return """ #frCriaPlanos {
+    background-color: """ + backgroundColor + """
+	border-radius: 12px;
 }"""

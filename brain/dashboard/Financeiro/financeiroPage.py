@@ -42,7 +42,7 @@ class FinanceiroPage(Ui_wdgFinanceiro, QWidget):
 
         dfTotal = pd.DataFrame.from_dict(itemReceita)
 
-        print(dfTotal.head())
+        # print(dfTotal.head())
 
         hoje = datetime.now().date()
         for mes in range(6):

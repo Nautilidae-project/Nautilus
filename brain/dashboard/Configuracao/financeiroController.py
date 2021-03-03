@@ -7,6 +7,7 @@ from datetime import datetime
 
 from Telas.tabFinanceiro import Ui_tabFinanceiroGeral
 from brain.DAOs.daoPlanos import DaoPlanos
+from brain.dashboard.Configuracao.localStyleSheets.ssCardCategoria import framePlanoBg
 from modelos.planoModel import PlanoModelo
 
 
@@ -20,6 +21,7 @@ class FinanceiroController(Ui_tabFinanceiroGeral, QWidget):
         self.plano = PlanoModelo()
         self.setupUi(self)
         self.daoPlanos = DaoPlanos(db=db)
+        self.modoEdicao = False
 
         self.tblPlanos.setColumnHidden(0, True)
 
@@ -28,6 +30,7 @@ class FinanceiroController(Ui_tabFinanceiroGeral, QWidget):
         self.pbInserir.clicked.connect(lambda: self.inserePlano() if self.verificaCampos() else None)
         self.pbCancelar.clicked.connect(self.limpaCampos)
         self.cbInativos.setChecked(True)
+        self.tblPlanos.doubleClicked.connect(self.editarPlano)
 
         self.leValor.textEdited.connect(lambda: self.definePlano('valor'))
         self.leNomePlano.textEdited.connect(lambda: self.definePlano('nomePlano'))
@@ -40,6 +43,16 @@ class FinanceiroController(Ui_tabFinanceiroGeral, QWidget):
         self.cbInativos.stateChanged.connect(lambda: self.recarregaTabela(ativo=self.cbInativos.isChecked()))
 
         self.cbxFreq.addItems(['Semanal', 'Mensal'])
+
+    def defineModoEdicao(self, modoEdicao: bool):
+        self.frCriaPlanos.setStyleSheet(framePlanoBg(modoEdicao))
+
+        if modoEdicao:
+            self.pbInserir.setText('CONFIRMAR')
+            self.lbTituloCriaPlano.setText('Alterar plano')
+        else:
+            self.pbInserir.setText('INSERIR')
+            self.lbTituloCriaPlano.setText('Criar plano')
 
     def verificaCampos(self):
         if self.leValor.text().strip() == '':
@@ -68,6 +81,13 @@ class FinanceiroController(Ui_tabFinanceiroGeral, QWidget):
         elif campo == 'presencial':
             self.plano.presencial = self.cbPresencial.isChecked()
 
+    def editarPlano(self, *args):
+        self.defineModoEdicao(True)
+
+        for column in range(self.tblPlanos.columnCount()):
+            print(f"{column}: {self.tblPlanos.item(args[0].row(), column).text()}", sep=' ')
+        print()
+
     def inserePlano(self):
         self.dashboard.loading(20)
         self.plano.dataInicio = self.dtInicio.date().toPyDate()
@@ -95,7 +115,12 @@ class FinanceiroController(Ui_tabFinanceiroGeral, QWidget):
             self.tblPlanos.insertRow(numLinha)
             for numCol, infoCol in enumerate(infoLinha):
 
-                if numCol == 1:
+                if numCol == 0:
+                    strItem = QTableWidgetItem(str(infoCol))
+                    strItem.setFont(QFont('Ubuntu', pointSize=12, italic=True, weight=25))
+                    self.tblPlanos.setItem(numLinha, numCol, strItem)
+
+                elif numCol == 1:
                     strItem = QTableWidgetItem(str(infoCol))
                     strItem.setFont(QFont('Ubuntu', pointSize=12, italic=True, weight=25))
                     self.tblPlanos.setItem(numLinha, numCol, strItem)
@@ -122,6 +147,7 @@ class FinanceiroController(Ui_tabFinanceiroGeral, QWidget):
         self.leNomePlano.clear()
         self.teDescricaoPlano.clear()
         self.cbPresencial.setChecked(False)
+        self.defineModoEdicao(False)
 
     def recarregaTabela(self, ativo=False):
         self.carregaTabelaPlanos(ativo=ativo)
