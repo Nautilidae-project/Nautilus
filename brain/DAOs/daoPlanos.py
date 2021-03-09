@@ -24,7 +24,7 @@ class DaoPlanos:
                         """
 
         if not ativo:
-            strComando += f""" WHERE ativo = TRUE"""
+            strComando += f""" WHERE p.ativo = TRUE"""
 
         strComando += f""" GROUP BY p.planoId"""
 

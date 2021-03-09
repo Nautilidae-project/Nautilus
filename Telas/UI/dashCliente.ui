@@ -4160,6 +4160,9 @@ QScrollBar:vertical {
                       <height>261</height>
                      </rect>
                     </property>
+                    <property name="alternatingRowColors">
+                     <bool>true</bool>
+                    </property>
                     <attribute name="horizontalHeaderCascadingSectionResizes">
                      <bool>true</bool>
                     </attribute>
@@ -4375,8 +4378,8 @@ QComboBox::drop-down{
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>98</width>
-               <height>28</height>
+               <width>552</width>
+               <height>767</height>
               </rect>
              </property>
             </widget>

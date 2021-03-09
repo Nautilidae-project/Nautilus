@@ -108,7 +108,7 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
 
             idParticipantes += str(DaoCliente(self.db).buscaPorId(cliente[0])[0][0]) + ', '
 
-            nomeParticipantes += f"{DaoCliente(self.db).buscaPorId(cliente[0])[0][1]} {DaoCliente(self.db).buscaPorId(cliente[0])[0][2]}, "
+            nomeParticipantes += f"{DaoCliente(self.db).buscaPorId(cliente[0])[0][1]} {DaoCliente(db=self.db).buscaPorId(cliente[0])[0][2]}, "
 
             emailParticipantes += DaoCliente(self.db).buscaPorId(cliente[0])[0][4] + ', '
 

@@ -1,6 +1,7 @@
 import pymysql
 from PyQt5 import QtWidgets, QtCore, QtGui
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QMainWindow, QMessageBox
+from pymysql import OperationalError
 
 from Telas.SplashScreen.splashScreen import Ui_MainWindow
 from brain.DAOs.UserConfig import DaoConfiguracoes
@@ -108,14 +109,33 @@ class Main(Ui_MainWindow, QMainWindow):
         self.move(frameGm.topLeft())
 
     def getDB(self):
+        try:
+            connection = pymysql.connect(
+                host=self.config.host,
+                user=self.config.user,
+                passwd=self.config.passwd,
+                db=self.config.banco,
+                port=self.config.port
+                )
+            return connection
+        except OperationalError as e:
+            # print(e.args[1])
+            self.popUpOk('O Nautilus não pôde se conectar ao banco de dados. Entre em contato com os desenvolvedores.', textoInfo=e.args[1])
+            raise Warning(f'Erro Banco de dados - getDB()')
 
-        return pymysql.connect(
-            host=self.config.host,
-            user=self.config.user,
-            passwd=self.config.passwd,
-            db=self.config.banco,
-            port=self.config.port
-            )
+    def popUpOk(self, mensagem, titulo: str = 'Atenção!', textoInfo: str = None):
+        pop = QMessageBox()
+        pop.setWindowTitle(titulo)
+        pop.setText(mensagem)
+        if textoInfo is not None:
+            pop.setInformativeText(textoInfo)
+        pop.setIcon(QMessageBox.Warning)
+        pop.setStandardButtons(QMessageBox.Ok)
+        pop.setDefaultButton(QMessageBox.Ok)
+
+        x = pop.exec_()
+
+
 
 
 if __name__ == '__main__':

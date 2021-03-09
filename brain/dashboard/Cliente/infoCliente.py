@@ -706,7 +706,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.lbDescDataInicio.setText(self.dataVazia)
             self.lbDescDataFim.setText(self.dataVazia)
             self.lbDescDescricao.setText('Descrição detalhada do plano.')
-            self.lbDescValor.setText(f'R$ {self.valorInscricao}')
+            self.lbDescValor.setText(f'R$ 0,00')
             self.lbValorInscricao.setText(f'R$ {self.valorInscricao}')
             self.frPagBody.hide()
             self.cbxPag.clear()

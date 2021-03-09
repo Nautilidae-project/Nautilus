@@ -14,9 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_wdgGrupoCard(object):
     def setupUi(self, wdgGrupoCard):
         wdgGrupoCard.setObjectName("wdgGrupoCard")
-        wdgGrupoCard.resize(400, 350)
-        wdgGrupoCard.setMinimumSize(QtCore.QSize(350, 350))
-        wdgGrupoCard.setMaximumSize(QtCore.QSize(400, 400))
+        wdgGrupoCard.resize(440, 320)
+        wdgGrupoCard.setMinimumSize(QtCore.QSize(440, 320))
+        wdgGrupoCard.setMaximumSize(QtCore.QSize(440, 320))
         wdgGrupoCard.setStyleSheet("/*----------------------------------- Frames ------------------------------------*/\n"
 "#frCategoria {\n"
 "    background-color: rgb(52, 101, 164);\n"
@@ -100,65 +100,6 @@ class Ui_wdgGrupoCard(object):
         self.tblGrupoItem.horizontalHeader().setStretchLastSection(True)
         self.tblGrupoItem.verticalHeader().setVisible(False)
         self.gridLayout_3.addWidget(self.tblGrupoItem, 0, 0, 1, 1)
-        self.frBotoes = QtWidgets.QFrame(self.frBottom)
-        self.frBotoes.setMinimumSize(QtCore.QSize(0, 0))
-        self.frBotoes.setMaximumSize(QtCore.QSize(24, 100))
-        self.frBotoes.setStyleSheet("#frBotoes{\n"
-"    background-color: transparent;\n"
-"}")
-        self.frBotoes.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.frBotoes.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frBotoes.setObjectName("frBotoes")
-        self.formLayout = QtWidgets.QFormLayout(self.frBotoes)
-        self.formLayout.setContentsMargins(0, 0, 0, 4)
-        self.formLayout.setHorizontalSpacing(0)
-        self.formLayout.setVerticalSpacing(9)
-        self.formLayout.setObjectName("formLayout")
-        self.pbEditar = QtWidgets.QPushButton(self.frBotoes)
-        self.pbEditar.setMinimumSize(QtCore.QSize(24, 24))
-        self.pbEditar.setMaximumSize(QtCore.QSize(24, 24))
-        self.pbEditar.setStyleSheet("#pbEditar {\n"
-"    background-image: url(:/Editar/cardEditar.png);\n"
-"    background-position: center;\n"
-"    background-repeat: no-repeat;\n"
-"}")
-        self.pbEditar.setText("")
-        self.pbEditar.setObjectName("pbEditar")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.pbEditar)
-        self.pbEmailCard = QtWidgets.QPushButton(self.frBotoes)
-        self.pbEmailCard.setMinimumSize(QtCore.QSize(24, 24))
-        self.pbEmailCard.setMaximumSize(QtCore.QSize(24, 24))
-        self.pbEmailCard.setStyleSheet("#pbEmailCard{\n"
-"    background-image: url(:/Email/cardEmail.png);\n"
-"    background-position: center;\n"
-"    background-repeat: no-repeat;\n"
-"}\n"
-"")
-        self.pbEmailCard.setText("")
-        self.pbEmailCard.setObjectName("pbEmailCard")
-        self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.pbEmailCard)
-        self.pbExcluir = QtWidgets.QPushButton(self.frBotoes)
-        self.pbExcluir.setMinimumSize(QtCore.QSize(24, 24))
-        self.pbExcluir.setMaximumSize(QtCore.QSize(24, 24))
-        self.pbExcluir.setStyleSheet("#pbExcluir {\n"
-"    background-image: url(:/Excluir/cardExcluirRed.png);\n"
-"    background-position: center;\n"
-"    background-repeat: no-repeat;\n"
-"    background-color: #fff;\n"
-"}\n"
-"\n"
-"#pbExcluir::hover {\n"
-"    background-image: url(:/ExcluirW/cardExcluirWhite.png);\n"
-"    background-position: center;\n"
-"    background-repeat: no-repeat;\n"
-"    background-color: #ff8d74;\n"
-"}")
-        self.pbExcluir.setText("")
-        self.pbExcluir.setObjectName("pbExcluir")
-        self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.pbExcluir)
-        self.gridLayout_3.addWidget(self.frBotoes, 0, 1, 1, 1, QtCore.Qt.AlignVCenter)
-        self.frBotoes.raise_()
-        self.tblGrupoItem.raise_()
         self.gridLayout.addWidget(self.frBottom, 2, 0, 1, 1)
         self.lbDescricao = QtWidgets.QTextEdit(self.frGrupoCard)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.MinimumExpanding)
@@ -220,6 +161,75 @@ class Ui_wdgGrupoCard(object):
         self.lbCategoria = QtWidgets.QLabel(self.frCategoria)
         self.lbCategoria.setObjectName("lbCategoria")
         self.horizontalLayout.addWidget(self.lbCategoria, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignBottom)
+        self.frBotoes = QtWidgets.QFrame(wdgGrupoCard)
+        self.frBotoes.setGeometry(QtCore.QRect(400, 20, 30, 220))
+        self.frBotoes.setMinimumSize(QtCore.QSize(30, 220))
+        self.frBotoes.setMaximumSize(QtCore.QSize(30, 220))
+        self.frBotoes.setStyleSheet("#frBotoes{\n"
+"    background-color: transparent;\n"
+"}\n"
+"\n"
+"#pbEditar {\n"
+"    background-image: url(:/Editar/cardEditar.png);\n"
+"    background-position: center;\n"
+"    background-repeat: no-repeat;\n"
+"}\n"
+"\n"
+"#pbEmailCard{\n"
+"    background-image: url(:/Email/cardEmail.png);\n"
+"    background-position: center;\n"
+"    background-repeat: no-repeat;\n"
+"}\n"
+"\n"
+"#pbExcluir {\n"
+"    background-image: url(:/Excluir/cardExcluirRed.png);\n"
+"    background-position: center;\n"
+"    background-repeat: no-repeat;\n"
+"    background-color: #fff;\n"
+"}\n"
+"\n"
+"#pbExcluir::hover {\n"
+"    background-image: url(:/ExcluirW/cardExcluirWhite.png);\n"
+"    background-position: center;\n"
+"    background-repeat: no-repeat;\n"
+"    background-color: #ff8d74;\n"
+"}\n"
+"")
+        self.frBotoes.setObjectName("frBotoes")
+        self.formLayout = QtWidgets.QFormLayout(self.frBotoes)
+        self.formLayout.setContentsMargins(0, 0, 0, 4)
+        self.formLayout.setHorizontalSpacing(0)
+        self.formLayout.setVerticalSpacing(9)
+        self.formLayout.setObjectName("formLayout")
+        self.pbEditar = QtWidgets.QPushButton(self.frBotoes)
+        self.pbEditar.setMinimumSize(QtCore.QSize(30, 30))
+        self.pbEditar.setMaximumSize(QtCore.QSize(30, 30))
+        self.pbEditar.setStyleSheet("")
+        self.pbEditar.setText("")
+        self.pbEditar.setObjectName("pbEditar")
+        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.pbEditar)
+        self.pbEmailCard = QtWidgets.QPushButton(self.frBotoes)
+        self.pbEmailCard.setMinimumSize(QtCore.QSize(30, 30))
+        self.pbEmailCard.setMaximumSize(QtCore.QSize(30, 30))
+        self.pbEmailCard.setStyleSheet("")
+        self.pbEmailCard.setText("")
+        self.pbEmailCard.setObjectName("pbEmailCard")
+        self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.pbEmailCard)
+        self.pbExcluir = QtWidgets.QPushButton(self.frBotoes)
+        self.pbExcluir.setMinimumSize(QtCore.QSize(30, 30))
+        self.pbExcluir.setMaximumSize(QtCore.QSize(30, 30))
+        self.pbExcluir.setStyleSheet("")
+        self.pbExcluir.setText("")
+        self.pbExcluir.setObjectName("pbExcluir")
+        self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.pbExcluir)
+        self.pbExcluir_2 = QtWidgets.QPushButton(self.frBotoes)
+        self.pbExcluir_2.setMinimumSize(QtCore.QSize(30, 30))
+        self.pbExcluir_2.setMaximumSize(QtCore.QSize(30, 30))
+        self.pbExcluir_2.setStyleSheet("")
+        self.pbExcluir_2.setText("")
+        self.pbExcluir_2.setObjectName("pbExcluir_2")
+        self.formLayout.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.pbExcluir_2)
+        self.frBotoes.raise_()
         self.frCategoria.raise_()
         self.frGrupoCard.raise_()
 
