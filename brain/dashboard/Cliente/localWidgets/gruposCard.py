@@ -11,14 +11,19 @@ from brain.envioDeMensagens import Mensagens
 from modelos.efeitosModel import Efeitos
 from modelos.grupoModel import GrupoModelo
 
+from selenium import webdriver
+import time
+from webdriver_manager.chrome import ChromeDriverManager
+
 
 class GruposCard(Ui_wdgGrupoCard, QWidget):
 
     def __init__(self, parent=None, grupo: GrupoModelo = None, db=None):
-        super(GruposCard, self).__init__()
+        super(GruposCard, self).__init__(parent=parent)
         self.setupUi(self)
         self.db = db
-
+        if parent is not None:
+            self.dashboard = parent.parent
         self.grupo = grupo
         self.parent = parent
         self.sinais = Sinais()
@@ -42,16 +47,13 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
         self.pbEditar.clicked.connect(self.editarGrupo)
         self.pbExcluir.clicked.connect(self.excluirGrupo)
         self.pbEmailCard.clicked.connect(self.emailGrupo)
+        self.pbZap.clicked.connect(self.enviarWhatsapp)
 
         if grupo is not None:
             self.populaTblParticipantes()
             self.defineCategoriaNomeStyle()
             self.lbTituloCard.setText(grupo.titulo)
             self.lbDescricao.setText(grupo.descricao)
-
-        # if grupo is not None:
-        #     self.lbTituloCard.setText(grupo.titulo)
-        #     self.lbDescricao.setText(grupo.descricao)
 
     def populaTblParticipantes(self):
         daoGrupo = DaoGrupo(self.db)
@@ -66,45 +68,57 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
                 strItem.setFont(QFont('Ubuntu', pointSize=12, italic=True))
                 self.tblGrupoItem.setItem(rowCount, columnCount, strItem)
 
+    def enviarWhatsapp(self):
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver.get('https://www.whatsapp.com/')
+
+        time.sleep(30)
+
+        driver.find_element_by_xpath()
+
     def excluirGrupo(self):
         daoGrupo = DaoGrupo(self.db)
         intLoading = 0
 
         intLoading += 20
-        self.parent.parent.loading(intLoading)
+        self.dashboard.loading(intLoading)
         daoGrupo.excluirGrupoEParticipantes(self.grupo.grupoId)
 
         intLoading += 20
-        self.parent.parent.loading(intLoading)
+        self.dashboard.loading(intLoading)
         self.sinais.sAtualizarTela.emit()
 
         intLoading += 20
-        self.parent.parent.loading(intLoading)
+        self.dashboard.loading(intLoading)
         self.sinais.sAtualizarTela.disconnect()
 
         intLoading += 20
-        self.parent.parent.loading(intLoading)
+        self.dashboard.loading(intLoading)
         self.sinais.sAtualizarTela.connect(self.atualizarCards)
 
         intLoading += 20
-        self.parent.parent.loading(intLoading)
+        self.dashboard.loading(intLoading)
 
-        self.parent.parent.menssagemSistema(f'Grupo "{self.grupo.titulo}" excluído com sucesso.')
+        self.dashboard.part.menssagemSistema(f'Grupo "{self.grupo.titulo}" excluído com sucesso.')
 
     def atualizarCards(self):
-        self.parent.atualizaGruposCards()
+        self.dashboard.atualizaGruposCards()
 
     def editarGrupo(self):
         self.frGrupoCard.setStyleSheet(self.styleEdicao)
-        self.parent.editarGrupo(self.grupo)
+        self.dashboard.editarGrupo(self.grupo)
 
     def emailGrupo(self):
+        self.dashboard.loading(10)
         daoGrupo = DaoGrupo(self.db).buscaParticipantesGrupo(self.grupo.grupoId)
+        self.dashboard.loading(30)
         emailParticipantes = ''
+        self.dashboard.loading(40)
         idParticipantes = ''
+        self.dashboard.loading(50)
         nomeParticipantes = ''
+        self.dashboard.loading(60)
         for cliente in daoGrupo:
-            #print(DaoCliente().buscaPorId(cliente[0])[0])  # Indexs --> [2 tuplas], [1 tupla], [campo especifico]
 
             idParticipantes += str(DaoCliente(self.db).buscaPorId(cliente[0])[0][0]) + ', '
 
@@ -112,9 +126,13 @@ class GruposCard(Ui_wdgGrupoCard, QWidget):
 
             emailParticipantes += DaoCliente(self.db).buscaPorId(cliente[0])[0][4] + ', '
 
+        self.dashboard.loading(70)
         self.enviarEmail.leId.setText(idParticipantes[0:-2])
+        self.dashboard.loading(80)
         self.enviarEmail.leNome.setText(nomeParticipantes[0:-2])
+        self.dashboard.loading(90)
         self.enviarEmail.leEmail.setText(emailParticipantes[0:-2])
+        self.dashboard.loading(100)
 
         self.enviarEmail.show()
 

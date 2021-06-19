@@ -374,24 +374,45 @@
     </size>
    </property>
    <property name="styleSheet">
-    <string notr="true">#frBotoes{
+    <string notr="true">/*------------------------------------ Frame ------------------------------------------*/
+
+#frBotoes{
 	background-color: transparent;
 }
+
+
+/*----------------------------- Push Buttons ------------------------------------------*/
 
 #pbEditar {
 	background-image: url(:/Editar/cardEditar.png);
 	background-position: center;
 	background-repeat: no-repeat;
+	background-color: white;
 }
 
-#pbEmailCard{
+#pbEditar:hover {
+	background-image: url(:/Editar/cardEditar.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: rgb(221, 241, 255);
+}
+
+#pbEmailCard {
 	background-image: url(:/Email/cardEmail.png);
 	background-position: center;
 	background-repeat: no-repeat;
+	background-color: white;
+}
+
+#pbEmailCard:hover {
+	background-image: url(:/Email/cardEmail.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: rgb(221, 241, 255);
 }
 
 #pbExcluir {
-	background-image: url(:/Excluir/cardExcluirRed.png);
+	background-image: url(:/ExcluirR/cardExcluirRed.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-color: #fff;
@@ -402,6 +423,20 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	background-color: #ff8d74;
+}
+
+#pbZap {
+	background-image: url(:/Whatsapp/whatsapp.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #fff;
+}
+
+#pbZap::hover {
+	background-image: url(:/Whatsapp/whatsapp.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: rgb(237, 255, 235);
 }
 </string>
    </property>
@@ -491,7 +526,7 @@
      </widget>
     </item>
     <item row="6" column="1">
-     <widget class="QPushButton" name="pbExcluir_2">
+     <widget class="QPushButton" name="pbZap">
       <property name="minimumSize">
        <size>
         <width>30</width>
@@ -519,7 +554,7 @@
   <zorder>frGrupoCard</zorder>
  </widget>
  <resources>
-  <include location="../Imagens/cardResources.qrc"/>
+  <include location="../Resources/cardGrupoResources.qrc"/>
  </resources>
  <connections/>
 </ui>

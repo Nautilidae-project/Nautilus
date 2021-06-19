@@ -147,7 +147,11 @@ class brainCadastro(Ui_mwCadastro, QMainWindow):
             self.leCEP.setText(mascaraCep(str(self.usuarioModel.cep)))
             response = requests.get(f'http://viacep.com.br/ws/{str(self.usuarioModel.cep)}/json/')
             if response.status_code == 200:
-                dictEndereco = json.loads(response.text)
+                dictEndereco: dict = json.loads(response.text)
+
+                for chave, valor in dictEndereco.items():
+                    print(f"{chave} - {valor}")
+
                 self.leEndereco.setText(dictEndereco['logradouro'].title())
                 self.usuarioModel.endereco = dictEndereco['logradouro'].title()
 

@@ -3,13 +3,14 @@ from PyQt5.QtCore import QDate
 
 from configBD import ConfigDB
 from modelos.eventoModel import EventoModelo
+from utils.enumsNautilus import TipoBanco
 
 
 class DaoEvento:
 
     def __init__(self, db):
         self.db = db
-        self.configs = ConfigDB()
+        self.configs = ConfigDB(TipoBanco.local)
         
         # self.configs = ConfigDB()
         # 

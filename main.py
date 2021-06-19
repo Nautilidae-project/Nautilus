@@ -1,5 +1,5 @@
 import pymysql
-from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QMainWindow, QMessageBox
 from pymysql import OperationalError
 
@@ -8,6 +8,8 @@ from brain.DAOs.UserConfig import DaoConfiguracoes
 from brain.loginPage import LoginPage
 from configBD import ConfigDB
 
+from utils.enumsNautilus import TipoBanco
+
 
 class Main(Ui_MainWindow, QMainWindow):
 
@@ -15,7 +17,7 @@ class Main(Ui_MainWindow, QMainWindow):
         super(Main, self).__init__()
         self.setupUi(self)
         self.contador = 0
-        self.config = ConfigDB(carregaBanco=True)
+        self.config = ConfigDB(tipoBanco=TipoBanco.local)
         self.db = self.getDB()
         self.daoConfigs = DaoConfiguracoes(self.db)
         self.center()
@@ -134,8 +136,6 @@ class Main(Ui_MainWindow, QMainWindow):
         pop.setDefaultButton(QMessageBox.Ok)
 
         x = pop.exec_()
-
-
 
 
 if __name__ == '__main__':

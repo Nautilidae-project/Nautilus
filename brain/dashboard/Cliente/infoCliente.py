@@ -211,7 +211,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         if self.gridBox.count():
             self.limpaLayout()
 
-        colunas = 1
+        colunas = 2
         linhas = 1
 
         widthCard = self.frGruposFormados.sizeHint().width() + 20
@@ -219,13 +219,11 @@ class brainCliente(Ui_wdgCliente, QWidget):
 
         # Busca no banco de dados todos os grupos criados
         gruposCadastrados = self.daoGrupo.findAll()
-        print(f'gruposCadastrados[0]: {gruposCadastrados[0]}')
 
-
-        if len(gruposCadastrados) > 8 and 3*widthCard < widthScreen:
-            colunas = 3
-        elif len(gruposCadastrados) > 2 and 2*widthCard < widthScreen:
-            colunas = 2
+        # if len(gruposCadastrados) > 8 and 3*widthCard < widthScreen:
+        #     colunas = 2
+        # elif len(gruposCadastrados) > 2 and 2*widthCard < widthScreen:
+        #     colunas = 2
 
         self.colunas = colunas
 
@@ -244,6 +242,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
             self.efeito.shadowCards([card], color=(105, 210, 231, 80))
             self.gridBox.addWidget(card, *posicao)
         self.gridBox.setSpacing(32)
+        self.redimensionaTela()
 
         if self.gridBox.count():
             self.scrollGrupos.setLayout(self.gridBox)
@@ -386,8 +385,6 @@ class brainCliente(Ui_wdgCliente, QWidget):
             listaPagamentos.append(pagamento)
         return listaPagamentos
 
-
-
     def enviarUmEmail(self, *args):
 
         if (self.cliente.clienteId is not None):
@@ -412,11 +409,21 @@ class brainCliente(Ui_wdgCliente, QWidget):
         intAnoAtual = self.daoCliente.buscaClientesAtuaisMesAno()
         intAnoPassado = self.daoCliente.buscaClientePeridoPassado()
 
-        self.lbValorTotal.setText(f"{intTotal}")
-        self.lbValorMensal.setText(f"{intMesAtual}")
-        self.lbValorAnual.setText(f"{intAnoAtual}")
-        self.lbEstMensal.setText(f'{(round((intMesAtual/intMesPassado), 1) - 1) * 100} %')
-        self.lbEstAnual.setText(f'{(round((intAnoAtual / intAnoPassado), 1) - 1) * 100} %')
+        if intMesPassado != 0 and intAnoPassado != 0:
+
+            self.lbValorTotal.setText(f"{intTotal}")
+            self.lbValorMensal.setText(f"{intMesAtual}")
+            self.lbValorAnual.setText(f"{intAnoAtual}")
+            self.lbEstMensal.setText(f'{(round((intMesAtual/ intMesPassado), 1) - 1) * 100} %')
+            self.lbEstAnual.setText(f'{(round((intAnoAtual / intAnoPassado), 1) - 1) * 100} %')
+
+        else:
+            self.lbValorTotal.setText(f"{intTotal}")
+            self.lbValorMensal.setText(f"{intMesAtual}")
+            self.lbValorAnual.setText(f"{intAnoAtual}")
+            self.lbEstMensal.setText(f'- %')
+            self.lbEstAnual.setText(f'- %')
+
 
     def criaGrupo(self):
         '''
@@ -900,7 +907,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
         sizeArea = self.frGruposFormados.size().width()
 
         if 3*sizeCard < sizeArea:
-            colunas = 3
+            colunas = 2
         elif 2*sizeCard < sizeArea:
             colunas = 2
         else:
@@ -921,6 +928,7 @@ class brainCliente(Ui_wdgCliente, QWidget):
             linhas = ceil(len(listaCards) / colunas)
 
             posicoes = [(linha, coluna) for linha in range(linhas) for coluna in range(colunas)]
+            print(posicoes)
 
             for card, posicao in zip(listaCards, posicoes):
                 self.efeito.shadowCards([card], color=(105, 210, 231, 80))

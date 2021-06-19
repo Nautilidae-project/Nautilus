@@ -165,24 +165,45 @@ class Ui_wdgGrupoCard(object):
         self.frBotoes.setGeometry(QtCore.QRect(400, 20, 30, 220))
         self.frBotoes.setMinimumSize(QtCore.QSize(30, 220))
         self.frBotoes.setMaximumSize(QtCore.QSize(30, 220))
-        self.frBotoes.setStyleSheet("#frBotoes{\n"
+        self.frBotoes.setStyleSheet("/*------------------------------------ Frame ------------------------------------------*/\n"
+"\n"
+"#frBotoes{\n"
 "    background-color: transparent;\n"
 "}\n"
+"\n"
+"\n"
+"/*----------------------------- Push Buttons ------------------------------------------*/\n"
 "\n"
 "#pbEditar {\n"
 "    background-image: url(:/Editar/cardEditar.png);\n"
 "    background-position: center;\n"
 "    background-repeat: no-repeat;\n"
+"    background-color: white;\n"
 "}\n"
 "\n"
-"#pbEmailCard{\n"
+"#pbEditar:hover {\n"
+"    background-image: url(:/Editar/cardEditar.png);\n"
+"    background-position: center;\n"
+"    background-repeat: no-repeat;\n"
+"    background-color: rgb(221, 241, 255);\n"
+"}\n"
+"\n"
+"#pbEmailCard {\n"
 "    background-image: url(:/Email/cardEmail.png);\n"
 "    background-position: center;\n"
 "    background-repeat: no-repeat;\n"
+"    background-color: white;\n"
+"}\n"
+"\n"
+"#pbEmailCard:hover {\n"
+"    background-image: url(:/Email/cardEmail.png);\n"
+"    background-position: center;\n"
+"    background-repeat: no-repeat;\n"
+"    background-color: rgb(221, 241, 255);\n"
 "}\n"
 "\n"
 "#pbExcluir {\n"
-"    background-image: url(:/Excluir/cardExcluirRed.png);\n"
+"    background-image: url(:/ExcluirR/cardExcluirRed.png);\n"
 "    background-position: center;\n"
 "    background-repeat: no-repeat;\n"
 "    background-color: #fff;\n"
@@ -193,6 +214,20 @@ class Ui_wdgGrupoCard(object):
 "    background-position: center;\n"
 "    background-repeat: no-repeat;\n"
 "    background-color: #ff8d74;\n"
+"}\n"
+"\n"
+"#pbZap {\n"
+"    background-image: url(:/Whatsapp/whatsapp.png);\n"
+"    background-position: center;\n"
+"    background-repeat: no-repeat;\n"
+"    background-color: #fff;\n"
+"}\n"
+"\n"
+"#pbZap::hover {\n"
+"    background-image: url(:/Whatsapp/whatsapp.png);\n"
+"    background-position: center;\n"
+"    background-repeat: no-repeat;\n"
+"    background-color: rgb(237, 255, 235);\n"
 "}\n"
 "")
         self.frBotoes.setObjectName("frBotoes")
@@ -222,13 +257,13 @@ class Ui_wdgGrupoCard(object):
         self.pbExcluir.setText("")
         self.pbExcluir.setObjectName("pbExcluir")
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.pbExcluir)
-        self.pbExcluir_2 = QtWidgets.QPushButton(self.frBotoes)
-        self.pbExcluir_2.setMinimumSize(QtCore.QSize(30, 30))
-        self.pbExcluir_2.setMaximumSize(QtCore.QSize(30, 30))
-        self.pbExcluir_2.setStyleSheet("")
-        self.pbExcluir_2.setText("")
-        self.pbExcluir_2.setObjectName("pbExcluir_2")
-        self.formLayout.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.pbExcluir_2)
+        self.pbZap = QtWidgets.QPushButton(self.frBotoes)
+        self.pbZap.setMinimumSize(QtCore.QSize(30, 30))
+        self.pbZap.setMaximumSize(QtCore.QSize(30, 30))
+        self.pbZap.setStyleSheet("")
+        self.pbZap.setText("")
+        self.pbZap.setObjectName("pbZap")
+        self.formLayout.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.pbZap)
         self.frBotoes.raise_()
         self.frCategoria.raise_()
         self.frGrupoCard.raise_()
@@ -248,7 +283,7 @@ class Ui_wdgGrupoCard(object):
         self.lbDescricao.setPlaceholderText(_translate("wdgGrupoCard", "DESCRIÇÃO"))
         self.lbTituloCard.setText(_translate("wdgGrupoCard", "Titulo"))
         self.lbCategoria.setText(_translate("wdgGrupoCard", "TextLabel"))
-import Telas.Resources.cardResources
+import Telas.Resources.cardGrupoResources
 
 
 if __name__ == "__main__":

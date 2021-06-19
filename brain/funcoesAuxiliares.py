@@ -11,7 +11,6 @@ def mascaraCelular(celular):
 def mascaraCNPJ(cnpj):
     return f'{cnpj[:2]}.{cnpj[2:5]}.{cnpj[5:8]}/{cnpj[8:12]}-{cnpj[12:]}'
 
-
 def mascaraCep(cep):
     return f'{cep[:5]}-{cep[5:]}'
 
@@ -23,6 +22,9 @@ def macaraFormaPagamento(pagamento: str):
 
 def mascaraMeses(data: datetime.date):
     return f'{data.day} de {meses[data.month]} de {data.year}'
+
+def unmaskAll(info: str):
+    return info.replace('.', '').replace('/', '').replace('\\', '').replace(',', '')
 
 def getValor(valor: str):
     auxValor = valor.replace(',', '.')

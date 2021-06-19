@@ -1,8 +1,0 @@
-<RCC>
-  <qresource prefix="Editar">
-    <file>Imagens/cardEditar.png</file>
-  </qresource>
-  <qresource prefix="Excluir">
-    <file>Imagens/cardExcluir.png</file>
-  </qresource>
-</RCC>

@@ -1,5 +1,5 @@
 from bcrypt import checkpw
-
+from utils.enumsNautilus import TipoBanco
 from configBD import ConfigDB
 from modelos.usuarioModel import UsuarioModel
 
@@ -8,7 +8,7 @@ class DaoUsuario:
 
     def __init__(self, db):
         self.db = db
-        self.configs = ConfigDB()
+        self.configs = ConfigDB(TipoBanco.local)
 
     def carregaUsrAtual(self, id):
         self.db.connect()

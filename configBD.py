@@ -1,9 +1,11 @@
 import json
 import os
+from utils.enumsNautilus import TipoBanco
+
 
 class ConfigDB:
 
-    def __init__(self, carregaBanco=False):
+    def __init__(self, tipoBanco: TipoBanco):
 
         self.__host = None
         self.__user = None
@@ -11,10 +13,13 @@ class ConfigDB:
         self.__banco = None
         self.__port = None
 
-        if carregaBanco:
-            # Servidores Local e Cloud
+        if tipoBanco == TipoBanco.local:
+            self.getDatabase('Local')
+        elif tipoBanco == TipoBanco.nuvem:
             self.getDatabase('Cloud')
-            # self.getDatabase('Local')
+        elif tipoBanco == TipoBanco.sqlite:
+            print("criar instância para o sqlite")
+            pass
 
         self.__tblUsuario = 'usuario'
         self.__tblEstados = 'estados'
@@ -46,6 +51,27 @@ class ConfigDB:
                         dataUltAlt DATETIME NOT NULL,
                         PRIMARY KEY (userId)
                     );"""
+
+        # Comando SQL para criar tabela de usuários
+        self.__sqlCreateCursos = f"""CREATE TABLE IF NOT EXISTS {self.tblUsuario}(
+        	                    cursoId INT AUTO_INCREMENT,
+                                codCurso VARCHAR(20) NOT NULL,
+                                nomeCurso VARCHAR(30) NOT NULL,
+                                nomeFantasia VARCHAR(30) NULL,
+                                caminhoLogo VARCHAR(120) NULL,
+                                cnpj VARCHAR(15) NOT NULL,
+                                email VARCHAR(40) NOT NULL,
+                                tel VARCHAR(11) NOT NULL,
+                                endereco VARCHAR(30) NOT NULL,
+                                cidade VARCHAR(30) NULL,
+                                complemento VARCHAR(30) NULL, 
+                                cep VARCHAR(8) NOT NULL,
+                                bairro VARCHAR(30) NULL,
+                                senha VARBINARY(80) NOT NULL,
+                                dataCadastro DATETIME NOT NULL,
+                                dataUltAlt DATETIME NOT NULL,
+                                PRIMARY KEY (userId)
+                            );"""
 
         # Comando SQL para criar tabela de Estados
         self.__sqlCreateEstado = f"""CREATE TABLE IF NOT EXISTS {self.tblEstados}(

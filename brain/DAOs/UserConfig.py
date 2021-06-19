@@ -1,6 +1,6 @@
 import pymysql
 from configBD import ConfigDB
-from bcrypt import checkpw
+from utils.enumsNautilus import TipoBanco
 from modelos.estadosModel import EstadosModelo
 
 
@@ -8,7 +8,7 @@ class DaoConfiguracoes:
 
     def __init__(self, db):
         self.db = db
-        self.configs = ConfigDB()
+        self.configs = ConfigDB(tipoBanco=TipoBanco.local)
 
         # self.db = pymysql.connect(
         #     host=self.configs.host,
@@ -25,6 +25,22 @@ class DaoConfiguracoes:
 
         try:
             cursor.execute(self.configs.sqlCreateUsuario)
+            self.db.commit()
+            # cursor.close()
+            return True
+        except:
+            raise Warning(f'Erro SQL - criaTblUsuario({self.configs.banco}) <CREATE TABLE ({self.configs.tblUsuario})>')
+        finally:
+            cursor.close()
+            self.db.close()
+
+    def criaTblCursos(self):
+
+        self.db.connect()
+        cursor = self.db.cursor()
+
+        try:
+            cursor.execute(self.configs.sqlCreateCursos)
             self.db.commit()
             # cursor.close()
             return True

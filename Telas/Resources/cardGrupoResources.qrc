@@ -1,0 +1,17 @@
+<RCC>
+  <qresource prefix="Whatsapp">
+    <file>whatsapp.png</file>
+  </qresource>
+  <qresource prefix="Editar">
+    <file>cardEditar.png</file>
+  </qresource>
+  <qresource prefix="Email">
+    <file>cardEmail.png</file>
+  </qresource>
+  <qresource prefix="ExcluirR">
+    <file>cardExcluirRed.png</file>
+  </qresource>
+  <qresource prefix="ExcluirW">
+    <file>cardExcluirWhite.png</file>
+  </qresource>
+</RCC>
